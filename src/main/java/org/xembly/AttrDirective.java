@@ -32,7 +32,6 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -45,7 +44,6 @@ import org.w3c.dom.Node;
  * @since 0.1
  */
 @Immutable
-@ToString
 @EqualsAndHashCode(of = { "name", "value" })
 @Loggable(Loggable.DEBUG)
 final class AttrDirective implements Directive {
@@ -68,6 +66,16 @@ final class AttrDirective implements Directive {
     protected AttrDirective(final String attr, final String val) {
         this.name = attr;
         this.value = val;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format(
+            "ATTR %s %s", new Arg(this.name), new Arg(this.value)
+        );
     }
 
     /**

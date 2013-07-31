@@ -36,7 +36,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -49,7 +48,6 @@ import org.w3c.dom.NodeList;
  * @since 0.1
  */
 @Immutable
-@ToString
 @EqualsAndHashCode(of = "expr")
 @Loggable(Loggable.DEBUG)
 final class XPathDirective implements Directive {
@@ -65,6 +63,14 @@ final class XPathDirective implements Directive {
      */
     protected XPathDirective(final String path) {
         this.expr = path;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format("XPATH %s", new Arg(this.expr));
     }
 
     /**

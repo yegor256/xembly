@@ -31,51 +31,39 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.Collection;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 /**
- * Xembler.
+ * Argument properly escaped.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
  */
 @Immutable
-@ToString
-@EqualsAndHashCode(of = "directives")
+@EqualsAndHashCode(of = "value")
 @Loggable(Loggable.DEBUG)
-public final class Xembler {
+final class Arg {
 
     /**
-     * Array of directives.
+     * Value of it.
      */
-    private final transient Array<Directive> directives;
+    private final transient String value;
 
     /**
      * Public ctor.
-     * @param dirs Directives
+     * @param val Value of it
      */
-    public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Collection<Directive> dirs) {
-        this.directives = new Array<Directive>(dirs);
+    protected Arg(final String val) {
+        this.value = val;
     }
 
     /**
-     * Apply all changes to the document.
-     * @param dom DOM document
+     * {@inheritDoc}
      */
-    public void exec(@NotNull(message = "DOM can't be NULL")
-        final Document dom) {
-        Node ptr = dom.getDocumentElement();
-        for (Directive dir : this.directives) {
-            ptr = dir.exec(dom, ptr);
-        }
+    @Override
+    public String toString() {
+        return this.value.replace("\"", "\\\"");
     }
 
 }

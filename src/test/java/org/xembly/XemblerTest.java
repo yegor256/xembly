@@ -70,4 +70,36 @@ public final class XemblerTest {
         );
     }
 
+    /**
+     * Xembler can change DOM document from builder.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void makesChangesToDomDocumentFromBuilder() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("top");
+        dom.appendChild(root);
+        new Xembler(
+            new XemblyBuilder()
+                .add("employees")
+                .add("employee")
+                .attr("id", "443")
+                .add("name")
+                .set("Саша Пушкин")
+                .up()
+                .up()
+                .xpath("/top/employees/employee[@id=443]/name")
+                .set("Юра Лермонтов")
+                .directives()
+        ).exec(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom.getDocumentElement()),
+            XhtmlMatchers.hasXPaths(
+                "/top/employees/employee[@id=443]",
+                "//employee[name='Юра Лермонтов']"
+            )
+        );
+    }
+
 }
