@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<!--
+ * Copyright (c) 2013, xembly.org
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the xembly.org nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.jcabi</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.7.21</version>
+    </parent>
+    <groupId>com.jcabi.incubator</groupId>
+    <artifactId>xembly</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>xembly</name>
+    <description>Assembly for XML</description>
+    <url>https://github.com/yegor256/xembly</url>
+    <inceptionYear>2013</inceptionYear>
+    <organization>
+        <name>Xembly</name>
+        <url>https://github.com/yegor256/xembly</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>BSD</name>
+            <url>https://www.xembly.org/LICENSE.txt</url>
+            <distribution>site</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Yegor Bugayenko</name>
+            <email>yegor@tpc2.com</email>
+            <organization>TPC2</organization>
+            <organizationUrl>http://www.tpc2.com</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/yegor256/xembly/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:git@github.com:yegor256/xembly.git</connection>
+        <developerConnection>scm:git:git@github.com:yegor256/xembly.git</developerConnection>
+        <url>https://github.com/yegor256/xembly</url>
+    </scm>
+    <ciManagement>
+        <system>rultor</system>
+        <url>http://www.rultor.com/s/xembly</url>
+    </ciManagement>
+    <distributionManagement>
+        <site>
+            <id>github-pages</id>
+            <url>http://www.xembly.org</url>
+        </site>
+    </distributionManagement>
+    <properties>
+        <github.global.server>github</github.global.server>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-aspects</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.doxia</groupId>
+                        <artifactId>doxia-module-markdown</artifactId>
+                        <version>1.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.8</version>
+                <configuration>
+                    <message>site for ${project.version}</message>
+                    <path></path>
+                    <merge>true</merge>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>site-deploy</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>site</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-site-plugin</artifactId>
+                            <inherited>false</inherited>
+                            <configuration>
+                                <reportPlugins combine.children="append">
+                                    <plugin>
+                                        <artifactId>maven-changes-plugin</artifactId>
+                                        <reportSets>
+                                            <reportSet>
+                                                <reports>
+                                                    <report>github-report</report>
+                                                    <report>changes-report</report>
+                                                </reports>
+                                            </reportSet>
+                                        </reportSets>
+                                    </plugin>
+                                </reportPlugins>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+</project>
