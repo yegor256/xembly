@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+/**
  * Copyright (c) 2013, xembly.org
  * All rights reserved.
  *
@@ -27,35 +26,35 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- -->
-<project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0     http://maven.apache.org/xsd/decoration-1.0.0.xsd" name="xembly">
-    <skin>
-        <groupId>com.jcabi</groupId>
-        <artifactId>jcabi-maven-skin</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </skin>
-    <googleAnalyticsAccountId>UA-1963507-29</googleAnalyticsAccountId>
-    <bannerLeft>
-        <name>xembly.org</name>
-        <src>http://img.xembly.org/logo-256x256.png</src>
-        <href>http://www.xembly.org/</href>
-        <width>64</width>
-        <height>64</height>
-    </bannerLeft>
-    <body>
-        <head>
-            <link href="http://img.xembly.org/favicon.ico" rel="shortcut icon"/>
-        </head>
-        <breadcrumbs>
-            <item name="xembly.com" href="http://www.xembly.org"/>
-        </breadcrumbs>
-        <menu name="Overview">
-            <item name="Introduction" href="./index.html"/>
-            <item name="JavaDoc ${project.version}" href="./apidocs-${project.version}/index.html"/>
-            <item name="Test Coverage" href="./cobertura/index.html"/>
-            <item name="Release History" href="./changes-report.html"/>
-        </menu>
-        <menu ref="modules"/>
-        <menu ref="reports"/>
-    </body>
-</project>
+ */
+package org.xembly;
+
+import com.jcabi.aspects.Immutable;
+import com.jcabi.aspects.Loggable;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+
+/**
+ * UP directive.
+ *
+ * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @version $Id$
+ * @since 0.1
+ */
+@Immutable
+@ToString
+@EqualsAndHashCode
+@Loggable(Loggable.DEBUG)
+final class UpDirective implements Directive {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Node exec(final Document dom, final Node node) {
+        return node.getParentNode();
+    }
+
+}

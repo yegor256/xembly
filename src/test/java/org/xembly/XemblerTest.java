@@ -55,12 +55,18 @@ public final class XemblerTest {
         dom.appendChild(root);
         new Xembler(
             new Directives(
-                "XPATH '/*'; ADD 'order'; SET 'hello, world!';"
+                // @checkstyle StringLiteralsConcatenation (3 lines)
+                "XPATH '/*'; ADD 'order'; ATTR 'tag', 'hello, world!';"
+                + "ADD 'price'; SET \"$29.99\"; UP; UP;"
+                + "XPATH '//order[price=\\'$29.99\\']/price'; SET '$39.99';"
             )
         ).exec(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom.getDocumentElement()),
-            XhtmlMatchers.hasXPath("/root/order[.='hello, world!']")
+            XhtmlMatchers.hasXPaths(
+                "/root/order[@tag='hello, world!']",
+                "/root/order[price='$39.99']"
+            )
         );
     }
 

@@ -57,11 +57,11 @@ directives returns [Collection<Directive> ret]
     @init { $ret = new LinkedList<Directive>(); }
     :
     first=directive
-    ';'
+    SEMICOLON
     { $ret.add($first.ret); }
     (
         next=directive
-        ';'
+        SEMICOLON
         { $ret.add($next.ret); }
     )*
     EOF
@@ -75,14 +75,28 @@ directive returns [Directive ret]
     'SET' argument
     { $ret = new SetDirective($argument.ret.toString()); }
     |
+    'ATTR' name=argument COMMA value=argument
+    { $ret = new AttrDirective($name.ret.toString(), $value.ret.toString()); }
+    |
     'ADD' argument
     { $ret = new AddDirective($argument.ret.toString()); }
+    |
+    'UP'
+    { $ret = new UpDirective(); }
     ;
 
 argument returns [Object ret]
     :
     TEXT
     { $ret = $TEXT.text; }
+    ;
+
+COMMA:
+    ','
+    ;
+
+SEMICOLON:
+    ';'
     ;
 
 TEXT
