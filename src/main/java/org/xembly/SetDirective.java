@@ -31,16 +31,13 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.Collection;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * Xembler.
+ * SET directive.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -48,34 +45,30 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @ToString
-@EqualsAndHashCode(of = "array")
+@EqualsAndHashCode(of = "value")
 @Loggable(Loggable.DEBUG)
-public final class Xembler {
+final class SetDirective implements Directive {
 
     /**
-     * Array of directives.
+     * Text value to set.
      */
-    private final transient Array<Directive> array;
+    private final transient String value;
 
     /**
      * Public ctor.
-     * @param dirs Directives
+     * @param val Text value to set
      */
-    public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Collection<Directive> dirs) {
-        this.array = new Array<Directive>(dirs);
+    protected SetDirective(final String val) {
+        this.value = val;
     }
 
     /**
-     * Apply all changes to the document.
-     * @param dom DOM document
+     * {@inheritDoc}
      */
-    public void exec(@NotNull(message = "DOM can't be NULL")
-        final Document dom) {
-        Node ptr = dom.getDocumentElement();
-        for (Directive dir : this.array) {
-            ptr = dir.exec(dom, ptr);
-        }
+    @Override
+    public Node exec(final Document dom, final Node node) {
+        node.setTextContent(this.value);
+        return node;
     }
 
 }

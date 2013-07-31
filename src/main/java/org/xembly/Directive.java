@@ -47,7 +47,8 @@ public interface Directive {
      * Execute it in the given document with current position at the given node.
      * @param dom Document
      * @param node Node we're currently at
+     * @return New position
      */
-    void exec(Document dom, Node node);
+    Node exec(Document dom, Node node);
 
 }

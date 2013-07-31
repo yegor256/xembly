@@ -53,13 +53,17 @@ public final class XemblerTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("root");
         dom.appendChild(root);
+        MatcherAssert.assertThat(
+            dom.getDocumentElement(),
+            XhtmlMatchers.hasXPath("/root")
+        );
         new Xembler(
             new Directives(
-                "ADD 'order'; SET 'hello, world!';"
+                "XPATH '/'; ADD 'order'; SET 'hello, world!';"
             )
         ).exec(dom);
         MatcherAssert.assertThat(
-            dom,
+            XhtmlMatchers.xhtml(dom.getDocumentElement()),
             XhtmlMatchers.hasXPath("/root/order[.='hello, world!']")
         );
     }

@@ -31,16 +31,18 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.Collection;
-import javax.validation.constraints.NotNull;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
- * Xembler.
+ * XPATH directive.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -48,34 +50,47 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @ToString
-@EqualsAndHashCode(of = "array")
+@EqualsAndHashCode(of = "expr")
 @Loggable(Loggable.DEBUG)
-public final class Xembler {
+final class XPathDirective implements Directive {
 
     /**
-     * Array of directives.
+     * XPath to use.
      */
-    private final transient Array<Directive> array;
+    private final transient String expr;
 
     /**
      * Public ctor.
-     * @param dirs Directives
+     * @param path XPath
      */
-    public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Collection<Directive> dirs) {
-        this.array = new Array<Directive>(dirs);
+    protected XPathDirective(final String path) {
+        this.expr = path;
     }
 
     /**
-     * Apply all changes to the document.
-     * @param dom DOM document
+     * {@inheritDoc}
      */
-    public void exec(@NotNull(message = "DOM can't be NULL")
-        final Document dom) {
-        Node ptr = dom.getDocumentElement();
-        for (Directive dir : this.array) {
-            ptr = dir.exec(dom, ptr);
+    @Override
+    public Node exec(final Document dom, final Node node) {
+        final XPath xpath = XPathFactory.newInstance().newXPath();
+        final NodeList nodes;
+        try {
+            nodes = NodeList.class.cast(
+                xpath.evaluate(
+                    this.expr,
+                    node,
+                    XPathConstants.NODESET
+                )
+            );
+        } catch (XPathExpressionException ex) {
+            throw new IllegalArgumentException(ex);
         }
+        if (nodes.getLength() == 0) {
+            throw new IllegalStateException(
+                String.format("no nodes found by XPath '%s'", this.expr)
+            );
+        }
+        return nodes.item(0);
     }
 
 }

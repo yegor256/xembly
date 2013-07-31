@@ -36,6 +36,11 @@ import java.util.AbstractCollection;
 import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.TokenStream;
 
 /**
  * Directives.
@@ -60,7 +65,16 @@ public final class Directives extends AbstractCollection<Directive> {
      * @param text Xembly script
      */
     public Directives(final String text) {
-        this.array = null;
+        super();
+        final CharStream input = new ANTLRStringStream(text);
+        final XemblyLexer lexer = new XemblyLexer(input);
+        final TokenStream tokens = new CommonTokenStream(lexer);
+        final XemblyParser parser = new XemblyParser(tokens);
+        try {
+            this.array = new Array<Directive>(parser.directives());
+        } catch (RecognitionException ex) {
+            throw new IllegalArgumentException(ex);
+        }
     }
 
     /**

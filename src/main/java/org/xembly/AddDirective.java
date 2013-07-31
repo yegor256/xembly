@@ -31,16 +31,14 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.Collection;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * Xembler.
+ * ADD directive.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -48,34 +46,31 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @ToString
-@EqualsAndHashCode(of = "array")
+@EqualsAndHashCode(of = "name")
 @Loggable(Loggable.DEBUG)
-public final class Xembler {
+final class AddDirective implements Directive {
 
     /**
-     * Array of directives.
+     * Name of node to add.
      */
-    private final transient Array<Directive> array;
+    private final transient String name;
 
     /**
      * Public ctor.
-     * @param dirs Directives
+     * @param node Name of node to add
      */
-    public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Collection<Directive> dirs) {
-        this.array = new Array<Directive>(dirs);
+    protected AddDirective(final String node) {
+        this.name = node;
     }
 
     /**
-     * Apply all changes to the document.
-     * @param dom DOM document
+     * {@inheritDoc}
      */
-    public void exec(@NotNull(message = "DOM can't be NULL")
-        final Document dom) {
-        Node ptr = dom.getDocumentElement();
-        for (Directive dir : this.array) {
-            ptr = dir.exec(dom, ptr);
-        }
+    @Override
+    public Node exec(final Document dom, final Node node) {
+        final Element element = dom.createElement(this.name);
+        node.appendChild(element);
+        return element;
     }
 
 }

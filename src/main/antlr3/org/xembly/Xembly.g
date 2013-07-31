@@ -27,55 +27,75 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.xembly;
+grammar Xembly;
 
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.Collection;
-import javax.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
-/**
- * Xembler.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
- * @since 0.1
- */
-@Immutable
-@ToString
-@EqualsAndHashCode(of = "array")
-@Loggable(Loggable.DEBUG)
-public final class Xembler {
-
-    /**
-     * Array of directives.
-     */
-    private final transient Array<Directive> array;
-
-    /**
-     * Public ctor.
-     * @param dirs Directives
-     */
-    public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Collection<Directive> dirs) {
-        this.array = new Array<Directive>(dirs);
-    }
-
-    /**
-     * Apply all changes to the document.
-     * @param dom DOM document
-     */
-    public void exec(@NotNull(message = "DOM can't be NULL")
-        final Document dom) {
-        Node ptr = dom.getDocumentElement();
-        for (Directive dir : this.array) {
-            ptr = dir.exec(dom, ptr);
-        }
-    }
-
+@header {
+    package org.xembly;
+    import java.util.Collection;
+    import java.util.LinkedList;
 }
+
+@lexer::header {
+    package org.xembly;
+}
+
+@lexer::members {
+    @Override
+    public void emitErrorMessage(String msg) {
+        throw new IllegalArgumentException(msg);
+    }
+}
+
+@parser::members {
+    @Override
+    public void emitErrorMessage(String msg) {
+        throw new IllegalArgumentException(msg);
+    }
+}
+
+directives returns [Collection<Directive> ret]
+    @init { $ret = new LinkedList<Directive>(); }
+    :
+    first=directive
+    ';'
+    { $ret.add($first.ret); }
+    (
+        next=directive
+        ';'
+        { $ret.add($next.ret); }
+    )*
+    EOF
+    ;
+
+directive returns [Directive ret]
+    :
+    'XPATH' argument
+    { $ret = new XPathDirective($argument.ret.toString()); }
+    |
+    'SET' argument
+    { $ret = new SetDirective($argument.ret.toString()); }
+    |
+    'ADD' argument
+    { $ret = new AddDirective($argument.ret.toString()); }
+    ;
+
+argument returns [Object ret]
+    :
+    TEXT
+    { $ret = $TEXT.text; }
+    ;
+
+TEXT
+    :
+    '"' ('\\"' | ~'"')* '"'
+    { this.setText(this.getText().substring(1, this.getText().length() - 1).replace("\\\"", "\"")); }
+    |
+    '\'' ('\\\'' | ~'\'')* '\''
+    { this.setText(this.getText().substring(1, this.getText().length() - 1).replace("\\'", "'")); }
+    ;
+
+SPACE
+    :
+    ( ' ' | '\t' | '\n' | '\r' )+
+    { skip(); }
+    ;
