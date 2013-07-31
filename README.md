@@ -28,10 +28,8 @@ This Java package implements Xembly:
 
 ```java
 Document document = // ready to use DOM document
-Xembly xembly = new Xembly(
-  "XPATH "orders/order[id=553]; SET "$140.00;"
-);
-xembly.exec(document);
+Iterable<Directive> dirs = new Directives("XPATH 'orders/order[id=553]'; SET '$140.00;'");
+new Xembler(dirs).exec(document);
 ```
 
 ## How to contribute
