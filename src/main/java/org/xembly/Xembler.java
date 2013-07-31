@@ -69,7 +69,7 @@ public final class Xembler {
      * Apply all changes to the document.
      * @param dom DOM document
      */
-    void exec(@NotNull(message = "DOM can't be NULL") Document dom) {
+    void exec(@NotNull(message = "DOM can't be NULL") final Document dom) {
         for (Directive dir : this.array) {
             dir.exec(dom, dom.getDocumentElement());
         }

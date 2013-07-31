@@ -27,56 +27,12 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.xembly;
-
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.AbstractCollection;
-import java.util.Iterator;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
- * Directives.
+ * Assembly for XML, tests.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
  */
-@Immutable
-@ToString
-@EqualsAndHashCode(callSuper = false, of = "array")
-@Loggable(Loggable.DEBUG)
-public final class Directives extends AbstractCollection<Directive> {
-
-    /**
-     * Array of directives.
-     */
-    private final transient Array<Directive> array;
-
-    /**
-     * Public ctor.
-     * @param text Xembly script
-     */
-    public Directives(final String text) {
-        this.array = null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Iterator<Directive> iterator() {
-        return this.array.iterator();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int size() {
-        return this.array.size();
-    }
-
-}
+package org.xembly;

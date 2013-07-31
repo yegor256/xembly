@@ -99,6 +99,12 @@
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-aspects</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.rexsl</groupId>
+            <artifactId>rexsl-test</artifactId>
+            <version>0.4.14</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
