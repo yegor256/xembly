@@ -62,7 +62,7 @@ public final class XemblyBuilder {
         for (Directive dir : this.dirs) {
             text.append(dir).append("; ");
         }
-        return text.toString();
+        return text.toString().trim();
     }
 
     /**
