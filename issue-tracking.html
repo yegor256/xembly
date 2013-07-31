@@ -7,7 +7,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>xembly - </title>
+        <title>xembly - Issue Tracking</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                             <script>
                 var _gaq = _gaq || [];
@@ -42,9 +42,8 @@
                     Overview
                                             <ul>
                                                                             <li>
-                                            <strong>                        <a href="index.html" title="Introduction">Introduction</a>
-        </strong>
-                                                                                                                <ul>
+                                                                    <a href="index.html" title="Introduction">Introduction</a>
+                                                                                                                        <ul>
                                                     </ul>
                                     </li>
                                                                                         <li>
@@ -69,7 +68,55 @@
                                             <ul>
                                                                             <li>
                                                                     <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
+                                                                            <li>
+                                                                    <a href="integration.html" title="Continuous Integration">Continuous Integration</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="dependencies.html" title="Dependencies">Dependencies</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                            <strong>                        <a href="issue-tracking.html" title="Issue Tracking">Issue Tracking</a>
+        </strong>
+                                                                                                                <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="license.html" title="Project License">Project License</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="mail-lists.html" title="Mailing Lists">Mailing Lists</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="plugins.html" title="Project Plugins">Project Plugins</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="team-list.html" title="Project Team">Project Team</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="source-repository.html" title="Source Repository">Source Repository</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                                        <li>
+                                                                    <a href="project-summary.html" title="Project Summary">Project Summary</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                </ul>
+                                    </li>
                                                                                         <li>
                                                                     <a href="project-reports.html" title="Project Reports">Project Reports</a>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </li>
@@ -95,37 +142,7 @@
                 1.0-SNAPSHOT
             </p>
             <article>
-                <h1>Assembly for XML</h1><p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to XSLT and XQuery. For example:</p>
-<div class="source"><pre>ADD 'orders';
-ADD 'order';
-ATTR 'id', '55';
-ADD 'amount';
-SET '$29.99';
-UP;
-ADD &quot;summary&quot;;
-SET &quot;free \&quot;subscription\&quot;&quot;;
-</pre></div><p>Will transform <tt>&lt;root&gt;</tt> into:</p>
-<div class="source"><pre>&lt;root&gt;
-  &lt;orders&gt;
-    &lt;order id=&quot;55&quot;&gt;
-      &lt;amount&gt;$29.99&lt;/amount&gt;
-      &lt;summary&gt;free &quot;subscription&quot;&lt;/summary&gt;
-    &lt;/order&gt;
-  &lt;/orders&gt;
-&lt;/root&gt;
-</pre></div><p>Xembly program (similar to Assembly program) consists of directives. Each directive may have a few or zero arguments. Every directive is executed at current node. Program starts at the root node of the document.</p><p>Arguments may use single or double quotes.</p><div class="section"><h2>Directives<a name="Directives"></a></h2><p>Full list of supported directives in the current version:</p><div class="section"><h3>ADD<a name="ADD"></a></h3><p><tt>ADD</tt> directive adds a node to the current node, and expects exactly one argument:</p>
-<div class="source"><pre>ADD 'orders';
-ADD 'order';
-</pre></div><p>After exeucution <tt>ADD</tt> directive changes current node to the one just added.</p></div><div class="section"><h3>ADDIF<a name="ADDIF"></a></h3><p><tt>ADDIF</tt> directive adds a node to the current node only if its absent, and expects exactly one argument:</p>
-<div class="source"><pre>ADD 'orders';
-ADDIF 'order';
-</pre></div><p>After exeucution <tt>ADDIF</tt> directive changes current node to the one just added.</p></div><div class="section"><h3>SET<a name="SET"></a></h3><p><tt>SET</tt> changes text content of the current node, and expects exactly one argument:</p>
-<div class="source"><pre>ADD &quot;employee&quot;;
-SET &quot;John Smith&quot;;
-</pre></div></div><div class="section"><h3>UP<a name="UP"></a></h3><p><tt>UP</tt> changes the current node to one level up (to it parent node).</p></div><div class="section"><h3>XPATH<a name="XPATH"></a></h3><p><tt>XPATH</tt> changes the current node to the first one found by XPath expression:</p>
-<div class="source"><pre>XPATH &quot;//employee[@id='234' and name='John Smith']/name&quot;;
-SET &quot;John R. Smith&quot;;
-</pre></div></div></div>
+                <div class="section"><h2>Overview<a name="Overview"></a></h2><a name="Overview"></a><p>This project uses GitHub to manage its issues.</p></div><div class="section"><h2>Issue Tracking<a name="Issue_Tracking"></a></h2><a name="Issue_Tracking"></a><p>Issues, bugs, and feature requests should be submitted to the following issue tracking system for this project.</p><div class="source"><pre><a class="externalLink" href="https://github.com/yegor256/xembly/issues">https://github.com/yegor256/xembly/issues</a></pre></div></div>
             </article>
             <p style="margin-bottom: 3em; margin-top: 2em;">
                 Copyright &#169;
