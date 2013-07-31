@@ -63,7 +63,11 @@ final class Arg {
      */
     @Override
     public String toString() {
-        return this.value.replace("\"", "\\\"");
+        return new StringBuilder()
+            .append('"')
+            .append(this.value.replace("\"", "\\\""))
+            .append('"')
+            .toString();
     }
 
 }
