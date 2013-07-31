@@ -41,6 +41,7 @@ import lombok.EqualsAndHashCode;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
+ * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
 @EqualsAndHashCode(of = "dirs")
 @Loggable(Loggable.DEBUG)
@@ -80,6 +81,17 @@ public final class XemblyBuilder {
     public XemblyBuilder add(
         @NotNull(message = "name can't be NULL") final String name) {
         this.dirs.add(new AddDirective(name));
+        return this;
+    }
+
+    /**
+     * Add node if it's absent.
+     * @param name Name of the node to add
+     * @return This object
+     */
+    public XemblyBuilder addIfAbsent(
+        @NotNull(message = "name can't be NULL") final String name) {
+        this.dirs.add(new AddIfDirective(name));
         return this;
     }
 

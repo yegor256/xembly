@@ -83,7 +83,7 @@ public final class XemblerTest {
         new Xembler(
             new XemblyBuilder()
                 .add("employees")
-                .add("employee")
+                .addIfAbsent("employee")
                 .attr("id", "443")
                 .add("name")
                 .set("Саша Пушкин")

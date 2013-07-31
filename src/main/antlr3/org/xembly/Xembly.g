@@ -81,6 +81,9 @@ directive returns [Directive ret]
     'ADD' argument
     { $ret = new AddDirective($argument.ret.toString()); }
     |
+    'ADDIF' argument
+    { $ret = new AddIfDirective($argument.ret.toString()); }
+    |
     'UP'
     { $ret = new UpDirective(); }
     ;

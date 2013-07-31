@@ -51,6 +51,19 @@ ADD 'order';
 After exeucution `ADD` directive changes current node to the one just
 added.
 
+### ADDIF
+
+`ADDIF` directive adds a node to the current node only if it's absent,
+and expects exactly one argument:
+
+```
+ADD 'orders';
+ADDIF 'order';
+```
+
+After exeucution `ADDIF` directive changes current node to the one just
+added.
+
 ### SET
 
 `SET` changes text content of the current node, and expects
