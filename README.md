@@ -40,9 +40,11 @@ Just use this dependency in Maven:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1</version>
 </dependency>
 ```
+
+Or download latest release [here](https://github.com/yegor256/xembly/releases).
 
 ## How to contribute
 
