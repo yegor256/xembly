@@ -89,7 +89,9 @@ final class XPathDirective implements Directive {
                 )
             );
         } catch (XPathExpressionException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format("invalid XPath expression '%s'", this.expr), ex
+            );
         }
         if (nodes.getLength() == 0) {
             throw new IllegalStateException(

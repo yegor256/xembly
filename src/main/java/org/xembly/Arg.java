@@ -65,9 +65,93 @@ final class Arg {
     public String toString() {
         return new StringBuilder()
             .append('"')
-            .append(this.value.replace("\"", "\\\""))
+            .append(Arg.escape(this.value))
             .append('"')
             .toString();
+    }
+
+    /**
+     * Un-escape all XML symbols.
+     * @param text XML text
+     * @return Clean text
+     */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    public static String unescape(final String text) {
+        final StringBuilder output = new StringBuilder();
+        final char[] chars = text.toCharArray();
+        for (int idx = 0; idx < chars.length; ++idx) {
+            if (chars[idx] == '&') {
+                final StringBuilder sbuf = new StringBuilder();
+                while (chars[idx] != ';') {
+                    // @checkstyle ModifiedControlVariable (1 line)
+                    ++idx;
+                    if (idx == chars.length) {
+                        throw new IllegalArgumentException(
+                            "reached EOF while parsing XML symbol"
+                        );
+                    }
+                    sbuf.append(chars[idx]);
+                }
+                output.append(Arg.symbol(sbuf.substring(0, sbuf.length() - 1)));
+            } else {
+                output.append(chars[idx]);
+            }
+        }
+        return output.toString();
+    }
+
+    /**
+     * Escape all unprintable characters.
+     * @param text Raw text
+     * @return Clean text
+     */
+    private static String escape(final String text) {
+        final StringBuilder output = new StringBuilder();
+        for (char chr : text.toCharArray()) {
+            if (chr < ' ') {
+                output.append("&#").append((int) chr).append(';');
+            } else if (chr == '"') {
+                output.append("&quot;");
+            } else if (chr == '&') {
+                output.append("&amp;");
+            } else if (chr == '\'') {
+                output.append("&apos;");
+            } else if (chr == '<') {
+                output.append("&lt;");
+            } else if (chr == '>') {
+                output.append("&gt;");
+            } else {
+                output.append(chr);
+            }
+        }
+        return output.toString();
+    }
+
+    /**
+     * Convert XML symbol to char.
+     * @param symbol XML symbol, without leading ampersand
+     * @return Character
+     */
+    private static char symbol(final String symbol) {
+        final char chr;
+        if (symbol.charAt(0) == '#') {
+            chr = (char) (Integer.parseInt(symbol.substring(1)));
+        } else if ("apos".equals(symbol)) {
+            chr = '\'';
+        } else if ("quot".equals(symbol)) {
+            chr = '"';
+        } else if ("lt".equals(symbol)) {
+            chr = '<';
+        } else if ("gt".equals(symbol)) {
+            chr = '>';
+        } else if ("amp".equals(symbol)) {
+            chr = '&';
+        } else {
+            throw new IllegalArgumentException(
+                String.format("unknown XML symbol &%s;", symbol)
+            );
+        }
+        return chr;
     }
 
 }

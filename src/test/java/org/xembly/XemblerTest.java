@@ -55,10 +55,11 @@ public final class XemblerTest {
         dom.appendChild(root);
         new Xembler(
             new Directives(
-                // @checkstyle StringLiteralsConcatenation (3 lines)
+                // @checkstyle StringLiteralsConcatenation (4 lines)
                 "XPATH '/*'; ADD 'order'; ATTR 'tag', 'hello, world!';"
                 + "ADD 'price'; SET \"$29.99\"; UP; UP;"
-                + "XPATH '//order[price=\\'$29.99\\']/price'; SET '$39.99';"
+                + "XPATH '//order[price=&apos;$29.99&apos;]/price';"
+                + "SET '$39.99';"
             )
         ).exec(dom);
         MatcherAssert.assertThat(
@@ -80,24 +81,22 @@ public final class XemblerTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("top");
         dom.appendChild(root);
-        new Xembler(
-            new XemblyBuilder()
-                .add("employees")
-                .addIfAbsent("employee")
-                .attr("id", "443")
-                .add("name")
-                .set("Саша Пушкин")
-                .up()
-                .up()
-                .xpath("/top/employees/employee[@id=443]/name")
-                .set("Юра Лермонтов")
-                .directives()
-        ).exec(dom);
+        final XemblyBuilder builder = new XemblyBuilder()
+            .add("employees")
+            .addIfAbsent("employee")
+            .attr("id", "<443>")
+            .add("name")
+            .set("\rСаша\t\nПушкин\n")
+            .up()
+            .up()
+            .xpath("/top/employees/employee[@id='<443>']/name")
+            .set("\"Юра Лермонтов\"");
+        new Xembler(new Directives(builder.toString())).exec(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom.getDocumentElement()),
             XhtmlMatchers.hasXPaths(
-                "/top/employees/employee[@id=443]",
-                "//employee[name='Юра Лермонтов']"
+                "/top/employees/employee[@id='<443>']",
+                "//employee[name='\"Юра Лермонтов\"']"
             )
         );
     }

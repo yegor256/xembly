@@ -105,10 +105,10 @@ SEMICOLON:
 TEXT
     :
     '"' ('\\"' | ~'"')* '"'
-    { this.setText(this.getText().substring(1, this.getText().length() - 1).replace("\\\"", "\"")); }
+    { this.setText(Arg.unescape(this.getText().substring(1, this.getText().length() - 1))); }
     |
     '\'' ('\\\'' | ~'\'')* '\''
-    { this.setText(this.getText().substring(1, this.getText().length() - 1).replace("\\'", "'")); }
+    { this.setText(Arg.unescape(this.getText().substring(1, this.getText().length() - 1))); }
     ;
 
 SPACE

@@ -74,7 +74,7 @@ final class AttrDirective implements Directive {
     @Override
     public String toString() {
         return String.format(
-            "ATTR %s %s", new Arg(this.name), new Arg(this.value)
+            "ATTR %s, %s", new Arg(this.name), new Arg(this.value)
         );
     }
 
