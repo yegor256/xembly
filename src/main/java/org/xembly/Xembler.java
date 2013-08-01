@@ -32,6 +32,7 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.immutable.Array;
+import java.util.Arrays;
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
@@ -72,7 +73,7 @@ public final class Xembler {
      */
     public void exec(@NotNull(message = "DOM can't be NULL")
         final Document dom) {
-        Node ptr = dom.getDocumentElement();
+        Collection<Node> ptr = Arrays.<Node>asList(dom.getDocumentElement());
         for (Directive dir : this.directives) {
             ptr = dir.exec(dom, ptr);
         }

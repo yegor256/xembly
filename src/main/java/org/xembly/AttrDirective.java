@@ -31,6 +31,8 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.Collection;
+import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -82,9 +84,12 @@ final class AttrDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
-    public Node exec(final Document dom, final Node node) {
-        Element.class.cast(node).setAttribute(this.name, this.value);
-        return node;
+    public Collection<Node> exec(final Document dom,
+        final Collection<Node> nodes) {
+        for (Node node : nodes) {
+            Element.class.cast(node).setAttribute(this.name, this.value);
+        }
+        return Collections.unmodifiableCollection(nodes);
     }
 
 }

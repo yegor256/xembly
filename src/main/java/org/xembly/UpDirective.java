@@ -31,6 +31,8 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.Arrays;
+import java.util.Collection;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -59,8 +61,25 @@ final class UpDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
-    public Node exec(final Document dom, final Node node) {
-        return node.getParentNode();
+    public Collection<Node> exec(final Document dom,
+        final Collection<Node> nodes) {
+        Node parent = null;
+        for (Node node : nodes) {
+            if (parent == null) {
+                parent = node.getParentNode();
+            }
+            if (!node.getParentNode().equals(parent)) {
+                throw new IllegalArgumentException(
+                    "multiple parents, can't go up"
+                );
+            }
+        }
+        if (parent == null) {
+            throw new IllegalArgumentException(
+                "empty current node set, internal error"
+            );
+        }
+        return Arrays.asList(parent);
     }
 
 }

@@ -31,6 +31,8 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.Collection;
+import java.util.LinkedList;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -77,28 +79,30 @@ final class XPathDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
-    public Node exec(final Document dom, final Node node) {
+    public Collection<Node> exec(final Document dom,
+        final Collection<Node> nodes) {
         final XPath xpath = XPathFactory.newInstance().newXPath();
-        final NodeList nodes;
-        try {
-            nodes = NodeList.class.cast(
-                xpath.evaluate(
-                    this.expr,
-                    node,
-                    XPathConstants.NODESET
-                )
-            );
-        } catch (XPathExpressionException ex) {
-            throw new IllegalArgumentException(
-                String.format("invalid XPath expression '%s'", this.expr), ex
-            );
+        final Collection<Node> dests = new LinkedList<Node>();
+        for (Node node : nodes) {
+            final NodeList list;
+            try {
+                list = NodeList.class.cast(
+                    xpath.evaluate(
+                        this.expr,
+                        node,
+                        XPathConstants.NODESET
+                    )
+                );
+            } catch (XPathExpressionException ex) {
+                throw new IllegalArgumentException(
+                    String.format("invalid XPath expr '%s'", this.expr), ex
+                );
+            }
+            for (int idx = 0; idx < list.getLength(); ++idx) {
+                dests.add(list.item(idx));
+            }
         }
-        if (nodes.getLength() == 0) {
-            throw new IllegalStateException(
-                String.format("no nodes found by XPath '%s'", this.expr)
-            );
-        }
-        return nodes.item(0);
+        return dests;
     }
 
 }

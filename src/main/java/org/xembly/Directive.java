@@ -30,6 +30,7 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
+import java.util.Collection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -46,9 +47,9 @@ public interface Directive {
     /**
      * Execute it in the given document with current position at the given node.
      * @param dom Document
-     * @param node Node we're currently at
-     * @return New position
+     * @param current Nodes we're currently at
+     * @return New current nodes
      */
-    Node exec(Document dom, Node node);
+    Collection<Node> exec(Document dom, Collection<Node> current);
 
 }

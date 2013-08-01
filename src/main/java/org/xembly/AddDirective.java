@@ -31,6 +31,9 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -73,10 +76,15 @@ final class AddDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
-    public Node exec(final Document dom, final Node node) {
-        final Element element = dom.createElement(this.name);
-        node.appendChild(element);
-        return element;
+    public Collection<Node> exec(final Document dom,
+        final Collection<Node> nodes) {
+        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
+        for (Node node : nodes) {
+            final Element element = dom.createElement(this.name);
+            node.appendChild(element);
+            dests.add(element);
+        }
+        return Collections.unmodifiableCollection(dests);
     }
 
 }

@@ -31,6 +31,8 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.Collection;
+import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -72,9 +74,12 @@ final class SetDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
-    public Node exec(final Document dom, final Node node) {
-        node.setTextContent(this.value);
-        return node;
+    public Collection<Node> exec(final Document dom,
+        final Collection<Node> nodes) {
+        for (Node node : nodes) {
+            node.setTextContent(this.value);
+        }
+        return Collections.unmodifiableCollection(nodes);
     }
 
 }

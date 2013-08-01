@@ -31,6 +31,9 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -73,20 +76,25 @@ final class AddIfDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
-    public Node exec(final Document dom, final Node node) {
-        final NodeList childs = node.getChildNodes();
-        Node dest = null;
-        for (int idx = 0; idx < childs.getLength(); ++idx) {
-            if (childs.item(idx).getLocalName().equals(this.name)) {
-                dest = childs.item(idx);
-                break;
+    public Collection<Node> exec(final Document dom,
+        final Collection<Node> nodes) {
+        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
+        for (Node node : nodes) {
+            final NodeList childs = node.getChildNodes();
+            Node dest = null;
+            for (int idx = 0; idx < childs.getLength(); ++idx) {
+                if (childs.item(idx).getLocalName().equals(this.name)) {
+                    dest = childs.item(idx);
+                    break;
+                }
             }
+            if (dest == null) {
+                dest = dom.createElement(this.name);
+                node.appendChild(dest);
+            }
+            dests.add(dest);
         }
-        if (dest == null) {
-            dest = dom.createElement(this.name);
-            node.appendChild(dest);
-        }
-        return dest;
+        return Collections.unmodifiableCollection(dests);
     }
 
 }
