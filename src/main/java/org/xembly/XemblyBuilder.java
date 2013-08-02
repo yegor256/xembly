@@ -74,7 +74,7 @@ public final class XemblyBuilder {
     }
 
     /**
-     * Add node.
+     * Add node to all current nodes.
      * @param name Name of the node to add
      * @return This object
      */
@@ -92,6 +92,15 @@ public final class XemblyBuilder {
     public XemblyBuilder addIfAbsent(
         @NotNull(message = "name can't be NULL") final String name) {
         this.dirs.add(new AddIfDirective(name));
+        return this;
+    }
+
+    /**
+     * Remove all current nodes and move cursor to their parents.
+     * @return This object
+     */
+    public XemblyBuilder remove() {
+        this.dirs.add(new RemoveDirective());
         return this;
     }
 

@@ -83,6 +83,10 @@ public final class XemblerTest {
         dom.appendChild(root);
         final XemblyBuilder builder = new XemblyBuilder()
             .add("employees")
+            .add("paper")
+            .up()
+            .xpath("*")
+            .remove()
             .addIfAbsent("employee")
             .attr("id", "<443>")
             .add("name")

@@ -39,7 +39,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * UP directive.
+ * REMOVE directive.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -48,14 +48,14 @@ import org.w3c.dom.Node;
 @Immutable
 @EqualsAndHashCode
 @Loggable(Loggable.DEBUG)
-final class UpDirective implements Directive {
+final class RemoveDirective implements Directive {
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String toString() {
-        return "UP";
+        return "REMOVE";
     }
 
     /**
@@ -66,7 +66,9 @@ final class UpDirective implements Directive {
         final Collection<Node> nodes) {
         final Collection<Node> parents = new HashSet<Node>(0);
         for (Node node : nodes) {
-            parents.add(node.getParentNode());
+            final Node parent = node.getParentNode();
+            parents.add(parent);
+            parent.removeChild(node);
         }
         return Collections.unmodifiableCollection(parents);
     }
