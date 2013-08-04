@@ -56,14 +56,14 @@ public final class XemblerTest {
         new Xembler(
             new Directives(
                 // @checkstyle StringLiteralsConcatenation (4 lines)
-                "XPATH '/*'; ADD 'order'; ATTR 'tag', 'hello, world!';"
+                "ADD 'order'; ATTR 'tag', 'hello, world!';"
                 + "ADD 'price'; SET \"$29.99\"; UP; UP;"
                 + "XPATH '//order[price=&apos;$29.99&apos;]/price';"
                 + "SET '$39.99';"
             )
         ).exec(dom);
         MatcherAssert.assertThat(
-            XhtmlMatchers.xhtml(dom.getDocumentElement()),
+            XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root/order[@tag='hello, world!']",
                 "/root/order[price='$39.99']"
@@ -97,7 +97,7 @@ public final class XemblerTest {
             .set("\"Юра Лермонтов\"");
         new Xembler(new Directives(builder.toString())).exec(dom);
         MatcherAssert.assertThat(
-            XhtmlMatchers.xhtml(dom.getDocumentElement()),
+            XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/top/employees/employee[@id='<443>']",
                 "//employee[name='\"Юра Лермонтов\"']"
