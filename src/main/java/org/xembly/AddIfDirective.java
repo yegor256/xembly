@@ -69,7 +69,7 @@ final class AddIfDirective implements Directive {
      */
     @Override
     public String toString() {
-        return String.format("ADD %s", new Arg(this.name));
+        return String.format("ADDIF %s", new Arg(this.name));
     }
 
     /**
