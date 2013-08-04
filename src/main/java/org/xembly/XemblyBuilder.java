@@ -30,6 +30,7 @@
 package org.xembly;
 
 import com.jcabi.aspects.Loggable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import javax.validation.constraints.NotNull;
@@ -70,6 +71,30 @@ public final class XemblyBuilder {
      */
     private final transient Collection<Directive> dirs =
         new LinkedList<Directive>();
+
+    /**
+     * Public ctor (without any content).
+     */
+    public XemblyBuilder() {
+        this(new ArrayList<Directive>(0));
+    }
+
+    /**
+     * Public ctor from pre-existing content.
+     * @param script Xembly script to parse first
+     * @throws XemblySyntaxException If syntax is not valid
+     */
+    public XemblyBuilder(final String script) throws XemblySyntaxException {
+        this(new Directives(script));
+    }
+
+    /**
+     * Public ctor from pre-existing directives.
+     * @param directives Directives
+     */
+    public XemblyBuilder(final Collection<Directive> directives) {
+        this.dirs.addAll(directives);
+    }
 
     /**
      * {@inheritDoc}
