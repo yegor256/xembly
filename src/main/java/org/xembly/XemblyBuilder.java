@@ -150,4 +150,16 @@ public final class XemblyBuilder {
         return this;
     }
 
+    /**
+     * Check that there is exactly this number of current nodes.
+     * @param number Number of expected nodes
+     * @return This object
+     * @since 0.3
+     */
+    public XemblyBuilder strict(
+        @NotNull(message = "number can't be NULL") final int number) {
+        this.dirs.add(new StrictDirective(number));
+        return this;
+    }
+
 }

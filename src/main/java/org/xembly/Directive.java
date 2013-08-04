@@ -49,7 +49,9 @@ public interface Directive {
      * @param dom Document
      * @param current Nodes we're currently at
      * @return New current nodes
+     * @throws ImpossibleModificationException If can't do it
      */
-    Collection<Node> exec(Document dom, Collection<Node> current);
+    Collection<Node> exec(Document dom, Collection<Node> current)
+        throws ImpossibleModificationException;
 
 }

@@ -87,6 +87,9 @@ directive returns [Directive ret]
     'REMOVE'
     { $ret = new RemoveDirective(); }
     |
+    'STRICT' argument
+    { $ret = new StrictDirective(Integer.parseInt($argument.ret.toString())); }
+    |
     'UP'
     { $ret = new UpDirective(); }
     ;

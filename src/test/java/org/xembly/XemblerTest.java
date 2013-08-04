@@ -56,8 +56,8 @@ public final class XemblerTest {
         new Xembler(
             new Directives(
                 // @checkstyle StringLiteralsConcatenation (4 lines)
-                "ADD 'order'; ATTR 'tag', 'hello, world!';"
-                + "ADD 'price'; SET \"$29.99\"; UP; UP;"
+                "STRICT '1'; ADD 'order'; ATTR 'tag', 'hello, world!';"
+                + "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;"
                 + "XPATH '//order[price=&apos;$29.99&apos;]/price';"
                 + "SET '$39.99';"
             )
@@ -90,6 +90,7 @@ public final class XemblerTest {
             .addIfAbsent("employee")
             .attr("id", "<443>")
             .add("name")
+            .strict(1)
             .set("\rСаша\t\nПушкин\n")
             .up()
             .up()

@@ -80,7 +80,7 @@ final class XPathDirective implements Directive {
      */
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
+        final Collection<Node> nodes) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
         final Collection<Node> dests = new LinkedList<Node>();
         for (Node node : nodes) {
@@ -94,7 +94,7 @@ final class XPathDirective implements Directive {
                     )
                 );
             } catch (XPathExpressionException ex) {
-                throw new IllegalArgumentException(
+                throw new ImpossibleModificationException(
                     String.format("invalid XPath expr '%s'", this.expr), ex
                 );
             }

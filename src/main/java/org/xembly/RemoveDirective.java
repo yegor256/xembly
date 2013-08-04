@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.2
  */
 @Immutable
 @EqualsAndHashCode

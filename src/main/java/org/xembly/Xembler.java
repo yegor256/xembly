@@ -70,12 +70,13 @@ public final class Xembler {
     /**
      * Apply all changes to the document.
      * @param dom DOM document
+     * @throws ImpossibleModificationException If can't modify
      */
     public void exec(@NotNull(message = "DOM can't be NULL")
-        final Document dom) {
+        final Document dom) throws ImpossibleModificationException {
         final Node root = dom.getDocumentElement();
         if (root == null) {
-            throw new IllegalArgumentException(
+            throw new ImpossibleModificationException(
                 "DOM document doesn't have a document element"
             );
         }

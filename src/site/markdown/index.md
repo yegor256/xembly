@@ -30,7 +30,7 @@ Will transform `<root>` into:
 
 Xembly program (similar to Assembly program) consists of "directives". Each
 directive may have a few or zero arguments. Every directive is executed at
-current node. Program starts at the root node of the document.
+current node(s). Program starts at the root node of the document.
 
 Arguments may use single or double quotes.
 
@@ -40,7 +40,7 @@ Full list of supported directives in the current version:
 
 ### ADD
 
-`ADD` directive adds a node to the current node,
+`ADD` directive adds a new node to every one of current node set,
 and expects exactly one argument:
 
 ```
@@ -48,12 +48,12 @@ ADD 'orders';
 ADD 'order';
 ```
 
-After exeucution `ADD` directive changes current node to the one just
+After execution, `ADD` directive changes current nodes to the nodes just
 added.
 
 ### ADDIF
 
-`ADDIF` directive adds a node to the current node only if it's absent,
+`ADDIF` directive adds a new node to every node of the current set only if it's absent,
 and expects exactly one argument:
 
 ```
@@ -61,12 +61,12 @@ ADD 'orders';
 ADDIF 'order';
 ```
 
-After exeucution `ADDIF` directive changes current node to the one just
+After execution, `ADDIF` directive changes current nodes to the ones just
 added.
 
 ### SET
 
-`SET` changes text content of the current node, and expects
+`SET` changes text content of all current nodes, and expects
 exactly one argument:
 
 ```
@@ -76,14 +76,32 @@ SET "John Smith";
 
 ### UP
 
-`UP` changes the current node to one level up (to it parent node).
+`UP` moves all current nodes to their parents.
 
 ### XPATH
 
-`XPATH` changes the current node to the first one found by XPath expression:
+`XPATH` changes current nodes to the all found by XPath expression:
 
 ```
 XPATH "//employee[@id='234' and name='John Smith']/name";
 SET "John R. Smith";
+```
+
+### REMOVE
+
+`REMOVE` removes current nodes and jumps to their parents:
+
+```
+ADD "employee";
+REMOVE;
+```
+
+### STRICT
+
+`STRICT` checks that there is certain number of current nodes:
+
+```
+XPATH "/root/employee[name='John Doe']";
+STRICT "1";
 ```
 
