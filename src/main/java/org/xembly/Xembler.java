@@ -73,7 +73,13 @@ public final class Xembler {
      */
     public void exec(@NotNull(message = "DOM can't be NULL")
         final Document dom) {
-        Collection<Node> ptr = Arrays.<Node>asList(dom.getDocumentElement());
+        final Node root = dom.getDocumentElement();
+        if (root == null) {
+            throw new IllegalArgumentException(
+                "DOM document doesn't have a document element"
+            );
+        }
+        Collection<Node> ptr = Arrays.<Node>asList(root);
         for (Directive dir : this.directives) {
             ptr = dir.exec(dom, ptr);
         }
