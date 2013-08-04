@@ -29,71 +29,36 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import java.util.AbstractCollection;
-import java.util.Iterator;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
-
 /**
- * Directives.
+ * When syntax is broken.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.3
  */
-@Immutable
-@ToString
-@EqualsAndHashCode(callSuper = false, of = "array")
-@Loggable(Loggable.DEBUG)
-public final class Directives extends AbstractCollection<Directive> {
+public final class XemblySyntaxException extends Exception {
 
     /**
-     * Array of directives.
+     * Serialization marker.
      */
-    private final transient Array<Directive> array;
+    private static final long serialVersionUID = 0x6547f9e98af6efb9L;
 
     /**
      * Public ctor.
-     * @param text Xembly script
-     * @throws XemblySyntaxException If syntax is broken
+     * @param cause Cause of it
      */
-    public Directives(final String text) throws XemblySyntaxException {
-        super();
-        final CharStream input = new ANTLRStringStream(text);
-        final XemblyLexer lexer = new XemblyLexer(input);
-        final TokenStream tokens = new CommonTokenStream(lexer);
-        final XemblyParser parser = new XemblyParser(tokens);
-        try {
-            this.array = new Array<Directive>(parser.directives());
-        } catch (RecognitionException ex) {
-            throw new XemblySyntaxException(text, ex);
-        } catch (IllegalArgumentException ex) {
-            throw new XemblySyntaxException(text, ex);
-        }
+    public XemblySyntaxException(final String cause) {
+        super(cause);
     }
 
     /**
-     * {@inheritDoc}
+     * Public ctor.
+     * @param cause Cause of it
+     * @param thr Original throwable
      */
-    @Override
-    public Iterator<Directive> iterator() {
-        return this.array.iterator();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int size() {
-        return this.array.size();
+    public XemblySyntaxException(final String cause,
+        final Throwable thr) {
+        super(cause, thr);
     }
 
 }
