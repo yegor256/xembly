@@ -41,7 +41,21 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * Xembler.
+ * Processor of Xembly directives, main entry point to the package.
+ *
+ * <p>For example, to modify a DOM document:
+ *
+ * <pre>Document dom = DocumentBuilderFactory.newInstance()
+ *   .newDocumentBuilder().newDocument();
+ * dom.appendChild(dom.createElement("root"));
+ * new Xembler(
+ *   new XemblyBuilder()
+ *     .xpath("/root")
+ *     .addIfAbsent("employees")
+ *     .add("employee")
+ *     .attr("id", 6564)
+ *     .directives()
+ * ).exec(dom);</pre>
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$

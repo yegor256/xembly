@@ -43,7 +43,17 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
 
 /**
- * Directives.
+ * Collection of {@link Directive}s, instantiable from {@link String}.
+ *
+ * <p>For example, to fetch directives from a string and apply to the
+ * DOM document:
+ *
+ * <pre>Document dom = DocumentBuilderFactory.newInstance()
+ *   .newDocumentBuilder().newDocument();
+ * dom.appendChild(dom.createElement("root"));
+ * new Xembler(
+ *   new Directives("XPATH 'root'; ADD 'employee';")
+ * ).exec(dom);</pre>
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$

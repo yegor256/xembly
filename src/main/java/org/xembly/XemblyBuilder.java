@@ -38,6 +38,24 @@ import lombok.EqualsAndHashCode;
 /**
  * Mutable builder of Xembly code.
  *
+ * <p>For example, to create a Xembly script and apply to a DOM document:
+ *
+ * <pre>Document dom = DocumentBuilderFactory.newInstance()
+ *   .newDocumentBuilder().newDocument();
+ * dom.appendChild(dom.createElement("root"));
+ * new Xembler(
+ *   new XemblyBuilder()
+ *     .xpath("/root")
+ *     .addIfAbsent("employees")
+ *     .add("employee")
+ *     .attr("id", 6564)
+ *     .up()
+ *     .xpath("employee[&#64;id='100']")
+ *     .strict(1)
+ *     .remove()
+ *     .directives()
+ * ).exec(dom);</pre>
+ *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
