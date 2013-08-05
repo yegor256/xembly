@@ -5,17 +5,17 @@ an XML document. It is a much simplier alternative to
 XSLT and XQuery. For example:
 
 ```
-ADD 'orders';
+ADDIF 'orders';
 ADD 'order';
 ATTR 'id', '55';
 ADD 'amount';
 SET '$29.99';
 UP;
 ADD "summary";
-SET "free \"subscription\"";
+SET "free &quot;subscription&quot;";
 ```
 
-Will transform `<root>` into:
+Will transform `<root/>` into:
 
 ```xml
 <root>
@@ -32,7 +32,7 @@ Xembly program (similar to Assembly program) consists of "directives". Each
 directive may have a few or zero arguments. Every directive is executed at
 current node(s). Program starts at the root node of the document.
 
-Arguments may use single or double quotes.
+Arguments may be wrapped into single or double quotes.
 
 ## Directives
 
@@ -40,21 +40,27 @@ Full list of supported directives in the current version:
 
 ### ADD
 
-`ADD` directive adds a new node to every one of current node set,
-and expects exactly one argument:
+`ADD` directive adds a new node to every node in the current node set.
+`ADD` expects exactly one mandatory argument, which is the name of
+a new node to be added (case insensitive):
 
 ```
 ADD 'orders';
 ADD 'order';
 ```
 
+Even if the node with the same name already exists, a new node
+will be added. Use `ADDIF` if you need to add only if the same-name node
+is absent.
+
 After execution, `ADD` directive changes current nodes to the nodes just
 added.
 
 ### ADDIF
 
-`ADDIF` directive adds a new node to every node of the current set only if it's absent,
-and expects exactly one argument:
+`ADDIF` directive adds a new node to every node of the current set,
+only if it's absent. `ADDIF` expects exactly one argument, which
+is the name of the node to be added (case insensitive):
 
 ```
 ADD 'orders';
@@ -67,7 +73,7 @@ added.
 ### SET
 
 `SET` changes text content of all current nodes, and expects
-exactly one argument:
+exactly one argument, which is the text content to set:
 
 ```
 ADD "employee";
