@@ -73,12 +73,13 @@ final class Print {
         final StringBuilder text = new StringBuilder();
         int width = 0;
         for (Directive dir : this.array) {
-            if (width > Print.MARGIN) {
-                text.append('\n');
-            }
             final String txt = dir.toString();
             text.append(txt).append(';');
             width += txt.length();
+            if (width > Print.MARGIN) {
+                text.append('\n');
+                width = 0;
+            }
         }
         return text.toString().trim();
     }
