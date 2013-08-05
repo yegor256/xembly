@@ -81,7 +81,7 @@ public final class XemblerTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("top");
         dom.appendChild(root);
-        final XemblyBuilder builder = new XemblyBuilder()
+        final Directives builder = new Directives()
             .add("employees")
             .add("paper")
             .up()
