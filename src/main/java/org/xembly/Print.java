@@ -48,6 +48,11 @@ import lombok.EqualsAndHashCode;
 final class Print {
 
     /**
+     * Right margin.
+     */
+    private static final int MARGIN = 80;
+
+    /**
      * Array of directives.
      */
     private final transient Array<Directive> array;
@@ -66,8 +71,14 @@ final class Print {
     @Override
     public String toString() {
         final StringBuilder text = new StringBuilder();
+        int width = 0;
         for (Directive dir : this.array) {
-            text.append(dir).append("; ");
+            if (width > Print.MARGIN) {
+                text.append('\n');
+            }
+            final String txt = dir.toString();
+            text.append(txt).append(';');
+            width += txt.length();
         }
         return text.toString().trim();
     }
