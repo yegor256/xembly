@@ -83,6 +83,7 @@ public final class XemblyBuilder {
      * Public ctor from pre-existing content.
      * @param script Xembly script to parse first
      * @throws XemblySyntaxException If syntax is not valid
+     * @since 0.4
      */
     public XemblyBuilder(final String script) throws XemblySyntaxException {
         this(new Directives(script));
@@ -91,6 +92,7 @@ public final class XemblyBuilder {
     /**
      * Public ctor from pre-existing directives.
      * @param directives Directives
+     * @since 0.4
      */
     public XemblyBuilder(final Collection<Directive> directives) {
         this.dirs.addAll(directives);

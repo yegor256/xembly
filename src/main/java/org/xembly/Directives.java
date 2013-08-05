@@ -35,7 +35,6 @@ import com.jcabi.immutable.Array;
 import java.util.AbstractCollection;
 import java.util.Iterator;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -60,7 +59,6 @@ import org.antlr.runtime.TokenStream;
  * @since 0.1
  */
 @Immutable
-@ToString
 @EqualsAndHashCode(callSuper = false, of = "array")
 @Loggable(Loggable.DEBUG)
 public final class Directives extends AbstractCollection<Directive> {
@@ -88,6 +86,19 @@ public final class Directives extends AbstractCollection<Directive> {
         } catch (IllegalArgumentException ex) {
             throw new XemblySyntaxException(text, ex);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     * @since 0.4
+     */
+    @Override
+    public String toString() {
+        final StringBuilder text = new StringBuilder();
+        for (Directive dir : this.array) {
+            text.append(dir).append("; ");
+        }
+        return text.toString().trim();
     }
 
     /**
