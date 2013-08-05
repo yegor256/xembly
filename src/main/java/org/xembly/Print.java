@@ -32,36 +32,20 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.immutable.Array;
-import java.util.AbstractCollection;
-import java.util.Iterator;
+import java.util.Collection;
 import lombok.EqualsAndHashCode;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
 
 /**
- * Collection of {@link Directive}s, instantiable from {@link String}.
- *
- * <p>For example, to fetch directives from a string and apply to the
- * DOM document:
- *
- * <pre>Document dom = DocumentBuilderFactory.newInstance()
- *   .newDocumentBuilder().newDocument();
- * dom.appendChild(dom.createElement("root"));
- * new Xembler(
- *   new Directives("XPATH 'root'; ADD 'employee';")
- * ).exec(dom);</pre>
+ * Printed collection of directives.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.4
  */
 @Immutable
-@EqualsAndHashCode(callSuper = false, of = "array")
+@EqualsAndHashCode(of = "array")
 @Loggable(Loggable.DEBUG)
-public final class Directives extends AbstractCollection<Directive> {
+final class Print {
 
     /**
      * Array of directives.
@@ -70,47 +54,22 @@ public final class Directives extends AbstractCollection<Directive> {
 
     /**
      * Public ctor.
-     * @param text Xembly script
-     * @throws XemblySyntaxException If syntax is broken
+     * @param dirs Directives
      */
-    public Directives(final String text) throws XemblySyntaxException {
-        super();
-        final CharStream input = new ANTLRStringStream(text);
-        final XemblyLexer lexer = new XemblyLexer(input);
-        final TokenStream tokens = new CommonTokenStream(lexer);
-        final XemblyParser parser = new XemblyParser(tokens);
-        try {
-            this.array = new Array<Directive>(parser.directives());
-        } catch (RecognitionException ex) {
-            throw new XemblySyntaxException(text, ex);
-        } catch (IllegalArgumentException ex) {
-            throw new XemblySyntaxException(text, ex);
-        }
+    protected Print(final Collection<Directive> dirs) {
+        this.array = new Array<Directive>(dirs);
     }
 
     /**
      * {@inheritDoc}
-     * @since 0.4
      */
     @Override
     public String toString() {
-        return new Print(this.array).toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Iterator<Directive> iterator() {
-        return this.array.iterator();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int size() {
-        return this.array.size();
+        final StringBuilder text = new StringBuilder();
+        for (Directive dir : this.array) {
+            text.append(dir).append("; ");
+        }
+        return text.toString().trim();
     }
 
 }

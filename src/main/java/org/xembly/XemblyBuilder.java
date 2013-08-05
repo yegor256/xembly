@@ -103,11 +103,7 @@ public final class XemblyBuilder {
      */
     @Override
     public String toString() {
-        final StringBuilder text = new StringBuilder();
-        for (Directive dir : this.dirs) {
-            text.append(dir).append("; ");
-        }
-        return text.toString().trim();
+        return new Print(this.dirs).toString();
     }
 
     /**
