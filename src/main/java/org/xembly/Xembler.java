@@ -54,7 +54,7 @@ import org.w3c.dom.Node;
  *     .addIfAbsent("employees")
  *     .add("employee")
  *     .attr("id", 6564)
- * ).exec(dom);</pre>
+ * ).apply(dom);</pre>
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -85,7 +85,7 @@ public final class Xembler {
      * @param dom DOM document
      * @throws ImpossibleModificationException If can't modify
      */
-    public void exec(@NotNull(message = "DOM can't be NULL")
+    public void apply(@NotNull(message = "DOM can't be NULL")
         final Document dom) throws ImpossibleModificationException {
         final Node root = dom.getDocumentElement();
         if (root == null) {

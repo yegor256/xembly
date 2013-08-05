@@ -29,13 +29,12 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import org.antlr.runtime.ANTLRStringStream;
@@ -74,19 +73,28 @@ import org.antlr.runtime.TokenStream;
  *     .remove()
  * ).exec(dom);</pre>
  *
+ * <p>The class is mutable and thread-safe.
+ *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
+ * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
-@Immutable
-@EqualsAndHashCode(callSuper = false, of = "array")
+@EqualsAndHashCode(callSuper = false, of = "all")
 @Loggable(Loggable.DEBUG)
+@SuppressWarnings("PMD.TooManyMethods")
 public final class Directives extends AbstractCollection<Directive> {
 
     /**
-     * Array of directives.
+     * Right margin.
      */
-    private final transient Array<Directive> array;
+    private static final int MARGIN = 80;
+
+    /**
+     * List of directives.
+     */
+    private final transient Collection<Directive> all =
+        new CopyOnWriteArrayList<Directive>();
 
     /**
      * Public ctor.
@@ -100,7 +108,8 @@ public final class Directives extends AbstractCollection<Directive> {
      * @param text Xembly script
      * @throws XemblySyntaxException If syntax is broken
      */
-    public Directives(final String text) throws XemblySyntaxException {
+    public Directives(@NotNull(message = "xembly script can't be NULL")
+        final String text) throws XemblySyntaxException {
         this(Directives.parse(text));
     }
 
@@ -108,18 +117,29 @@ public final class Directives extends AbstractCollection<Directive> {
      * Public ctor.
      * @param dirs Directives
      */
-    public Directives(final Collection<Directive> dirs) {
+    public Directives(@NotNull(message = "directives can't be NULL")
+        final Collection<Directive> dirs) {
         super();
-        this.array = new Array<Directive>(dirs);
+        this.all.addAll(dirs);
     }
 
     /**
      * {@inheritDoc}
-     * @since 0.4
      */
     @Override
     public String toString() {
-        return new Print(this.array).toString();
+        final StringBuilder text = new StringBuilder();
+        int width = 0;
+        for (Directive dir : this.all) {
+            final String txt = dir.toString();
+            text.append(txt).append(';');
+            width += txt.length();
+            if (width > Directives.MARGIN) {
+                text.append('\n');
+                width = 0;
+            }
+        }
+        return text.toString().trim();
     }
 
     /**
@@ -127,7 +147,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     @Override
     public Iterator<Directive> iterator() {
-        return this.array.iterator();
+        return this.all.iterator();
     }
 
     /**
@@ -135,7 +155,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     @Override
     public int size() {
-        return this.array.size();
+        return this.all.size();
     }
 
     /**
@@ -146,7 +166,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives add(
         @NotNull(message = "name can't be NULL") final String name) {
-        this.array.add(new AddDirective(name));
+        this.all.add(new AddDirective(name));
         return this;
     }
 
@@ -158,7 +178,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives addIfAbsent(
         @NotNull(message = "name can't be NULL") final String name) {
-        this.array.add(new AddIfDirective(name));
+        this.all.add(new AddIfDirective(name));
         return this;
     }
 
@@ -168,7 +188,7 @@ public final class Directives extends AbstractCollection<Directive> {
      * @since 0.5
      */
     public Directives remove() {
-        this.array.add(new RemoveDirective());
+        this.all.add(new RemoveDirective());
         return this;
     }
 
@@ -182,7 +202,7 @@ public final class Directives extends AbstractCollection<Directive> {
     public Directives attr(
         @NotNull(message = "attr name can't be NULL") final String name,
         @NotNull(message = "value can't be NULL") final String value) {
-        this.array.add(new AttrDirective(name, value));
+        this.all.add(new AttrDirective(name, value));
         return this;
     }
 
@@ -194,7 +214,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives set(
         @NotNull(message = "content can't be NULL") final String text) {
-        this.array.add(new SetDirective(text));
+        this.all.add(new SetDirective(text));
         return this;
     }
 
@@ -206,7 +226,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     @SuppressWarnings("PMD.ShortMethodName")
     public Directives up() {
-        this.array.add(new UpDirective());
+        this.all.add(new UpDirective());
         return this;
     }
 
@@ -218,7 +238,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives xpath(
         @NotNull(message = "xpath can't be NULL") final String path) {
-        this.array.add(new XPathDirective(path));
+        this.all.add(new XPathDirective(path));
         return this;
     }
 
@@ -230,7 +250,7 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives strict(
         @NotNull(message = "number can't be NULL") final int number) {
-        this.array.add(new StrictDirective(number));
+        this.all.add(new StrictDirective(number));
         return this;
     }
 

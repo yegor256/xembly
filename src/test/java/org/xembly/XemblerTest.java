@@ -61,7 +61,7 @@ public final class XemblerTest {
                 + "XPATH '//order[price=&apos;$29.99&apos;]/price';"
                 + "SET '$39.99';"
             )
-        ).exec(dom);
+        ).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
@@ -96,7 +96,7 @@ public final class XemblerTest {
             .up()
             .xpath("/top/employees/employee[@id='<443>']/name")
             .set("\"Юра Лермонтов\"");
-        new Xembler(new Directives(builder.toString())).exec(dom);
+        new Xembler(new Directives(builder.toString())).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
