@@ -49,12 +49,11 @@ import org.w3c.dom.Node;
  *   .newDocumentBuilder().newDocument();
  * dom.appendChild(dom.createElement("root"));
  * new Xembler(
- *   new XemblyBuilder()
+ *   new Directives()
  *     .xpath("/root")
  *     .addIfAbsent("employees")
  *     .add("employee")
  *     .attr("id", 6564)
- *     .directives()
  * ).exec(dom);</pre>
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
