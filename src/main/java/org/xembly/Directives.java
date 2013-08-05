@@ -159,6 +159,17 @@ public final class Directives extends AbstractCollection<Directive> {
     }
 
     /**
+     * Add more directives to the end of the list.
+     * @param list List of them
+     * @return This object
+     * @since 0.5
+     */
+    public Directives append(final Collection<Directive> list) {
+        this.all.addAll(list);
+        return this;
+    }
+
+    /**
      * Add node to all current nodes.
      * @param name Name of the node to add
      * @return This object
