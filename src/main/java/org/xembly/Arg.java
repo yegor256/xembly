@@ -79,7 +79,12 @@ final class Arg {
     public static String unescape(final String text) {
         final StringBuilder output = new StringBuilder();
         final char[] chars = text.toCharArray();
-        for (int idx = 0; idx < chars.length; ++idx) {
+        if (chars.length < 2) {
+            throw new IllegalArgumentException(
+                "internal error, argument can't be shorter than 2 chars"
+            );
+        }
+        for (int idx = 1; idx < chars.length - 1; ++idx) {
             if (chars[idx] == '&') {
                 final StringBuilder sbuf = new StringBuilder();
                 while (chars[idx] != ';') {
