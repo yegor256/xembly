@@ -77,6 +77,10 @@ final class StrictDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
+    @Loggable(
+        value = Loggable.DEBUG,
+        ignore = ImpossibleModificationException.class
+    )
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) throws ImpossibleModificationException {
         if (nodes.size() != this.number) {

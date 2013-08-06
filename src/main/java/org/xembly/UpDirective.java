@@ -62,6 +62,10 @@ final class UpDirective implements Directive {
      * {@inheritDoc}
      */
     @Override
+    @Loggable(
+        value = Loggable.DEBUG,
+        ignore = ImpossibleModificationException.class
+    )
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) throws ImpossibleModificationException {
         final Collection<Node> parents = new HashSet<Node>(0);

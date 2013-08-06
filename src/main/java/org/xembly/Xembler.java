@@ -85,6 +85,10 @@ public final class Xembler {
      * @param dom DOM document
      * @throws ImpossibleModificationException If can't modify
      */
+    @Loggable(
+        value = Loggable.DEBUG,
+        ignore = ImpossibleModificationException.class
+    )
     public void apply(@NotNull(message = "DOM can't be NULL")
         final Document dom) throws ImpossibleModificationException {
         final Node root = dom.getDocumentElement();
