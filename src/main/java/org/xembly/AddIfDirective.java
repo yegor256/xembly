@@ -34,6 +34,7 @@ import com.jcabi.aspects.Loggable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -61,7 +62,7 @@ final class AddIfDirective implements Directive {
      * @param node Name of node to add
      */
     protected AddIfDirective(final String node) {
-        this.name = node;
+        this.name = node.toLowerCase(Locale.ENGLISH);
     }
 
     /**
@@ -83,7 +84,8 @@ final class AddIfDirective implements Directive {
             final NodeList childs = node.getChildNodes();
             Node dest = null;
             for (int idx = 0; idx < childs.getLength(); ++idx) {
-                if (childs.item(idx).getLocalName().equals(this.name)) {
+                if (childs.item(idx).getNodeName()
+                    .toLowerCase(Locale.ENGLISH).equals(this.name)) {
                     dest = childs.item(idx);
                     break;
                 }

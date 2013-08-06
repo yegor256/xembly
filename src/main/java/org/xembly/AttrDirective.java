@@ -33,6 +33,7 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -66,7 +67,7 @@ final class AttrDirective implements Directive {
      * @param val Text value to set
      */
     protected AttrDirective(final String attr, final String val) {
-        this.name = attr;
+        this.name = attr.toLowerCase(Locale.ENGLISH);
         this.value = val;
     }
 

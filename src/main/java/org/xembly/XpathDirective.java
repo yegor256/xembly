@@ -32,7 +32,7 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashSet;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -82,7 +82,7 @@ final class XPathDirective implements Directive {
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
-        final Collection<Node> dests = new LinkedList<Node>();
+        final Collection<Node> dests = new HashSet<Node>(0);
         for (Node node : nodes) {
             final NodeList list;
             try {

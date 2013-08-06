@@ -82,7 +82,7 @@ final class StrictDirective implements Directive {
         if (nodes.size() != this.number) {
             throw new ImpossibleModificationException(
                 String.format(
-                    "%d current nodes while strictly %d expected",
+                    "%d current node(s) while strictly %d expected",
                     nodes.size(), this.number
                 )
             );

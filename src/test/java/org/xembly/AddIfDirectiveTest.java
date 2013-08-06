@@ -29,63 +29,40 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
-import java.util.ArrayList;
+import com.rexsl.test.XhtmlMatchers;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Locale;
-import lombok.EqualsAndHashCode;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
- * ADD directive.
- *
+ * Test case for {@link AddIfDirective}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
  */
-@Immutable
-@EqualsAndHashCode(of = "name")
-@Loggable(Loggable.DEBUG)
-final class AddDirective implements Directive {
+public final class AddIfDirectiveTest {
 
     /**
-     * Name of node to add.
+     * AddIfDirective can add nodes to current nodes.
+     * @throws Exception If some problem inside
      */
-    private final transient String name;
-
-    /**
-     * Public ctor.
-     * @param node Name of node to add
-     */
-    protected AddDirective(final String node) {
-        this.name = node.toLowerCase(Locale.ENGLISH);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return String.format("ADD %s", new Arg(this.name));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
-        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
-        for (Node node : nodes) {
-            final Element element = dom.createElement(this.name);
-            node.appendChild(element);
-            dests.add(element);
-        }
-        return Collections.unmodifiableCollection(dests);
+    @Test
+    public void addsNodesToCurrentNodes() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "ADD 'foo'; UP; ADDIF 'bar'; UP; ADDIF 'bar';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("root"));
+        new Xembler(dirs).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/root/foo",
+                "/root[count(bar) = 1]"
+            )
+        );
     }
 
 }

@@ -29,63 +29,52 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
-import java.util.ArrayList;
+import com.rexsl.test.XhtmlMatchers;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Locale;
-import lombok.EqualsAndHashCode;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
- * ADD directive.
- *
+ * Test case for {@link UpDirective}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
  */
-@Immutable
-@EqualsAndHashCode(of = "name")
-@Loggable(Loggable.DEBUG)
-final class AddDirective implements Directive {
+public final class UpDirectiveTest {
 
     /**
-     * Name of node to add.
+     * UpDirective can find parents and move to them.
+     * @throws Exception If some problem inside
      */
-    private final transient String name;
-
-    /**
-     * Public ctor.
-     * @param node Name of node to add
-     */
-    protected AddDirective(final String node) {
-        this.name = node.toLowerCase(Locale.ENGLISH);
+    @Test
+    public void jumpsToParentsWhenTheyExist() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("root"));
+        new Xembler(dirs).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/root/foo/bar")
+        );
     }
 
     /**
-     * {@inheritDoc}
+     * UpDirective can throw when there are no parents.
+     * @throws Exception If some problem inside
      */
-    @Override
-    public String toString() {
-        return String.format("ADD %s", new Arg(this.name));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
-        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
-        for (Node node : nodes) {
-            final Element element = dom.createElement(this.name);
-            node.appendChild(element);
-            dests.add(element);
-        }
-        return Collections.unmodifiableCollection(dests);
+    @Test
+    public void throwsWhenNoParents() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "ADD 'foo'; UP; UP; UP;"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("boom"));
+        new Xembler(dirs).apply(dom);
     }
 
 }

@@ -63,10 +63,19 @@ final class UpDirective implements Directive {
      */
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
+        final Collection<Node> nodes) throws ImpossibleModificationException {
         final Collection<Node> parents = new HashSet<Node>(0);
         for (Node node : nodes) {
-            parents.add(node.getParentNode());
+            final Node parent = node.getParentNode();
+            if (parent == null) {
+                throw new ImpossibleModificationException(
+                    String.format(
+                        "there is no parent node of '%s' (%s), can't go UP",
+                        node.getNodeName(), node.getNodeType()
+                    )
+                );
+            }
+            parents.add(parent);
         }
         return Collections.unmodifiableCollection(parents);
     }

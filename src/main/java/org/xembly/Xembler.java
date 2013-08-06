@@ -90,12 +90,21 @@ public final class Xembler {
         final Node root = dom.getDocumentElement();
         if (root == null) {
             throw new ImpossibleModificationException(
-                "DOM document doesn't have a document element"
+                "DOM document doesn't have a root/document element"
             );
         }
         Collection<Node> ptr = Arrays.<Node>asList(root);
+        int pos = 0;
         for (Directive dir : this.directives) {
-            ptr = dir.exec(dom, ptr);
+            try {
+                ptr = dir.exec(dom, ptr);
+            } catch (ImpossibleModificationException ex) {
+                throw new ImpossibleModificationException(
+                    String.format("directive #%d: %s", pos, dir),
+                    ex
+                );
+            }
+            ++pos;
         }
     }
 
