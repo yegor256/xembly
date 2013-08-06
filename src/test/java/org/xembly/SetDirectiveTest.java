@@ -37,20 +37,22 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 
 /**
- * Test case for {@link UpDirective}.
+ * Test case for {@link SetDirective}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-public final class UpDirectiveTest {
+public final class SetDirectiveTest {
 
     /**
-     * UpDirective can find parents and move to them.
+     * SetDirective can set text content of nodes.
      * @throws Exception If some problem inside
      */
     @Test
-    public void jumpsToParentsWhenTheyExist() throws Exception {
+    public void setsTextContentOfNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
+            // @checkstyle StringLiteralsConcatenation (2 lines)
+            "ADD 'foo'; SET '&quot;Bonnie &amp; Clyde&quot;';"
+            + "UP; ADD 'cops'; SET 'everywhere';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -58,23 +60,11 @@ public final class UpDirectiveTest {
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPath("/root/foo/bar")
+            XhtmlMatchers.hasXPaths(
+                "/root/foo[.='\"Bonnie & Clyde\"']",
+                "/root/cops[.='everywhere']"
+            )
         );
-    }
-
-    /**
-     * UpDirective can throw when there are no parents.
-     * @throws Exception If some problem inside
-     */
-    @Test(expected = ImpossibleModificationException.class)
-    public void throwsWhenNoParents() throws Exception {
-        final Collection<Directive> dirs = new Directives(
-            "ADD 'foo'; UP; UP; UP;"
-        );
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("boom"));
-        new Xembler(dirs).apply(dom);
     }
 
 }
