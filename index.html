@@ -48,7 +48,7 @@
                                                     </ul>
                                     </li>
                                                                                         <li>
-                                                                    <a href="apidocs-0.3/index.html" title="JavaDoc 0.3">JavaDoc 0.3</a>
+                                                                    <a href="apidocs-0.5/index.html" title="JavaDoc 0.5">JavaDoc 0.5</a>
                                                                                                                         <ul>
                                                     </ul>
                                     </li>
@@ -91,20 +91,20 @@
             </a>
                         <p>
                 
-                04-Aug-2013
-                0.3
+                07-Aug-2013
+                0.5
             </p>
             <article>
                 <h1>Assembly for XML</h1><p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to XSLT and XQuery. For example:</p>
-<div class="source"><pre>ADD 'orders';
+<div class="source"><pre>ADDIF 'orders';
 ADD 'order';
 ATTR 'id', '55';
 ADD 'amount';
 SET '$29.99';
 UP;
 ADD &quot;summary&quot;;
-SET &quot;free \&quot;subscription\&quot;&quot;;
-</pre></div><p>Will transform <tt>&lt;root&gt;</tt> into:</p>
+SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
+</pre></div><p>Will transform <tt>&lt;root/&gt;</tt> into:</p>
 <div class="source"><pre>&lt;root&gt;
   &lt;orders&gt;
     &lt;order id=&quot;55&quot;&gt;
@@ -113,13 +113,13 @@ SET &quot;free \&quot;subscription\&quot;&quot;;
     &lt;/order&gt;
   &lt;/orders&gt;
 &lt;/root&gt;
-</pre></div><p>Xembly program (similar to Assembly program) consists of directives. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the root node of the document.</p><p>Arguments may use single or double quotes.</p><div class="section"><h2>Directives<a name="Directives"></a></h2><p>Full list of supported directives in the current version:</p><div class="section"><h3>ADD<a name="ADD"></a></h3><p><tt>ADD</tt> directive adds a new node to every one of current node set, and expects exactly one argument:</p>
+</pre></div><p>Xembly program (similar to Assembly program) consists of directives. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the root node of the document.</p><p>Arguments may be wrapped into single or double quotes.</p><div class="section"><h2>Directives<a name="Directives"></a></h2><p>Full list of supported directives in the current version:</p><div class="section"><h3>ADD<a name="ADD"></a></h3><p><tt>ADD</tt> directive adds a new node to every node in the current node set. <tt>ADD</tt> expects exactly one mandatory argument, which is the name of a new node to be added (case insensitive):</p>
 <div class="source"><pre>ADD 'orders';
 ADD 'order';
-</pre></div><p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p></div><div class="section"><h3>ADDIF<a name="ADDIF"></a></h3><p><tt>ADDIF</tt> directive adds a new node to every node of the current set only if its absent, and expects exactly one argument:</p>
+</pre></div><p>Even if the node with the same name already exists, a new node will be added. Use <tt>ADDIF</tt> if you need to add only if the same-name node is absent.</p><p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p></div><div class="section"><h3>ADDIF<a name="ADDIF"></a></h3><p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if its absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case insensitive):</p>
 <div class="source"><pre>ADD 'orders';
 ADDIF 'order';
-</pre></div><p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p></div><div class="section"><h3>SET<a name="SET"></a></h3><p><tt>SET</tt> changes text content of all current nodes, and expects exactly one argument:</p>
+</pre></div><p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p></div><div class="section"><h3>SET<a name="SET"></a></h3><p><tt>SET</tt> changes text content of all current nodes, and expects exactly one argument, which is the text content to set:</p>
 <div class="source"><pre>ADD &quot;employee&quot;;
 SET &quot;John Smith&quot;;
 </pre></div></div><div class="section"><h3>UP<a name="UP"></a></h3><p><tt>UP</tt> moves all current nodes to their parents.</p></div><div class="section"><h3>XPATH<a name="XPATH"></a></h3><p><tt>XPATH</tt> changes current nodes to the all found by XPath expression:</p>

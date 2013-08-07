@@ -71,7 +71,7 @@
 <a class="jxr_linenumber" name="61" href="#61">61</a>                  + <span class="jxr_string">"XPATH '//order[price=&amp;apos;$29.99&amp;apos;]/price';"</span>
 <a class="jxr_linenumber" name="62" href="#62">62</a>                  + <span class="jxr_string">"SET '$39.99';"</span>
 <a class="jxr_linenumber" name="63" href="#63">63</a>              )
-<a class="jxr_linenumber" name="64" href="#64">64</a>          ).exec(dom);
+<a class="jxr_linenumber" name="64" href="#64">64</a>          ).apply(dom);
 <a class="jxr_linenumber" name="65" href="#65">65</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="66" href="#66">66</a>              XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="67" href="#67">67</a>              XhtmlMatchers.hasXPaths(
@@ -91,7 +91,7 @@
 <a class="jxr_linenumber" name="81" href="#81">81</a>              .newDocumentBuilder().newDocument();
 <a class="jxr_linenumber" name="82" href="#82">82</a>          <strong class="jxr_keyword">final</strong> Element root = dom.createElement(<span class="jxr_string">"top"</span>);
 <a class="jxr_linenumber" name="83" href="#83">83</a>          dom.appendChild(root);
-<a class="jxr_linenumber" name="84" href="#84">84</a>          <strong class="jxr_keyword">final</strong> XemblyBuilder builder = <strong class="jxr_keyword">new</strong> XemblyBuilder()
+<a class="jxr_linenumber" name="84" href="#84">84</a>          <strong class="jxr_keyword">final</strong> Directives builder = <strong class="jxr_keyword">new</strong> Directives()
 <a class="jxr_linenumber" name="85" href="#85">85</a>              .add(<span class="jxr_string">"employees"</span>)
 <a class="jxr_linenumber" name="86" href="#86">86</a>              .add(<span class="jxr_string">"paper"</span>)
 <a class="jxr_linenumber" name="87" href="#87">87</a>              .up()
@@ -106,7 +106,7 @@
 <a class="jxr_linenumber" name="96" href="#96">96</a>              .up()
 <a class="jxr_linenumber" name="97" href="#97">97</a>              .xpath(<span class="jxr_string">"/top/employees/employee[@id='&lt;443&gt;']/name"</span>)
 <a class="jxr_linenumber" name="98" href="#98">98</a>              .set(<span class="jxr_string">"\&quot;Юра Лермонтов\&quot;"</span>);
-<a class="jxr_linenumber" name="99" href="#99">99</a>          <strong class="jxr_keyword">new</strong> Xembler(<strong class="jxr_keyword">new</strong> Directives(builder.toString())).exec(dom);
+<a class="jxr_linenumber" name="99" href="#99">99</a>          <strong class="jxr_keyword">new</strong> Xembler(<strong class="jxr_keyword">new</strong> Directives(builder.toString())).apply(dom);
 <a class="jxr_linenumber" name="100" href="#100">100</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="101" href="#101">101</a>             XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="102" href="#102">102</a>             XhtmlMatchers.hasXPaths(

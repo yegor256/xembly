@@ -8,7 +8,7 @@
 <body>
 <div id="overview"><a href="../../../apidocs/org/xembly/XemblyLexer.html">View Javadoc</a></div><pre>
 
-<a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_comment">// $ANTLR 3.5 org/xembly/Xembly.g 2013-08-04 12:54:43</em>
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_comment">// $ANTLR 3.5 org/xembly/Xembly.g 2013-08-07 11:06:52</em>
 <a class="jxr_linenumber" name="2" href="#2">2</a>   
 <a class="jxr_linenumber" name="3" href="#3">3</a>       <strong class="jxr_keyword">package</strong> org.xembly;
 <a class="jxr_linenumber" name="4" href="#4">4</a>   
@@ -343,7 +343,7 @@
 <a class="jxr_linenumber" name="333" href="#333">333</a> 					}
 <a class="jxr_linenumber" name="334" href="#334">334</a> 
 <a class="jxr_linenumber" name="335" href="#335">335</a> 					match('\&quot;'); 
-<a class="jxr_linenumber" name="336" href="#336">336</a> 					 <strong class="jxr_keyword">this</strong>.setText(Arg.unescape(<strong class="jxr_keyword">this</strong>.getText().substring(1, <strong class="jxr_keyword">this</strong>.getText().length() - 1))); 
+<a class="jxr_linenumber" name="336" href="#336">336</a> 					 <strong class="jxr_keyword">this</strong>.setText(Arg.unescape(<strong class="jxr_keyword">this</strong>.getText())); 
 <a class="jxr_linenumber" name="337" href="#337">337</a> 					}
 <a class="jxr_linenumber" name="338" href="#338">338</a> 					<strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="339" href="#339">339</a> 				<strong class="jxr_keyword">case</strong> 2 :
@@ -404,7 +404,7 @@
 <a class="jxr_linenumber" name="394" href="#394">394</a> 					}
 <a class="jxr_linenumber" name="395" href="#395">395</a> 
 <a class="jxr_linenumber" name="396" href="#396">396</a> 					match('\''); 
-<a class="jxr_linenumber" name="397" href="#397">397</a> 					 <strong class="jxr_keyword">this</strong>.setText(Arg.unescape(<strong class="jxr_keyword">this</strong>.getText().substring(1, <strong class="jxr_keyword">this</strong>.getText().length() - 1))); 
+<a class="jxr_linenumber" name="397" href="#397">397</a> 					 <strong class="jxr_keyword">this</strong>.setText(Arg.unescape(<strong class="jxr_keyword">this</strong>.getText())); 
 <a class="jxr_linenumber" name="398" href="#398">398</a> 					}
 <a class="jxr_linenumber" name="399" href="#399">399</a> 					<strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="400" href="#400">400</a> 
