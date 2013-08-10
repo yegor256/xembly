@@ -67,4 +67,19 @@ public final class XpathDirectiveTest {
         );
     }
 
+    /**
+     * XpathDirective can ignore empty searches.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void ignoresEmptySearches() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "XPATH '/nothing'; XPATH '/top'; STRICT '1';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("top"));
+        new Xembler(dirs).apply(dom);
+    }
+
 }
