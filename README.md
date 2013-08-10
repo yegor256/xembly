@@ -6,8 +6,7 @@ for data manipulation in XML documents. For example, you have an XML document:
 
 ```xml
 <orders>
-  <order>
-    <id>553</id>
+  <order id="553">
     <amount>$45.00</amount>
   </order>
 </orders>
@@ -17,7 +16,7 @@ And you want to change the amount of the order #553
 from `$45.00` to `$140.00`. Xembly script would look like:
 
 ```
-XPATH "orders/order[id=553]";
+XPATH "orders/order[@id=553]";
 SET "$140.00";
 ```
 
@@ -27,8 +26,12 @@ It is much simpler and compact than
 This Java package implements Xembly:
 
 ```java
-Document document = // ready to use DOM document
-Iterable<Directive> dirs = new Directives("XPATH '//order[id=553]'; SET '$140.00';");
+Document document = DocumentBuilderFactory.newInstance()
+  .newDocumentBuilder().newDocument();
+dom.appendChild(dom.createElement("orders"));
+Iterable<Directive> dirs = new Directives(
+  "ADD 'order'; ATTR 'id', '553'; SET '$140.00';"
+);
 new Xembler(dirs).exec(document);
 ```
 
@@ -40,7 +43,7 @@ Just use this dependency in Maven:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.2</version>
+  <version>0.5.2</version>
 </dependency>
 ```
 
