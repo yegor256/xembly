@@ -31,6 +31,7 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import javax.xml.xpath.XPath;
@@ -87,7 +88,7 @@ final class XPathDirective implements Directive {
         final Collection<Node> nodes) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
         final Collection<Node> dests = new HashSet<Node>(0);
-        for (Node node : nodes) {
+        for (Node node : this.roots(dom, nodes)) {
             final NodeList list;
             try {
                 list = NodeList.class.cast(
@@ -107,6 +108,23 @@ final class XPathDirective implements Directive {
             }
         }
         return dests;
+    }
+
+    /**
+     * Get roots to start searching from.
+     * @param dom Document
+     * @param nodes Current nodes
+     * @return Root nodes to start searching from
+     */
+    private Collection<Node> roots(final Document dom,
+        final Collection<Node> nodes) {
+        final Collection<Node> roots;
+        if (nodes.isEmpty()) {
+            roots = Arrays.<Node>asList(dom.getDocumentElement());
+        } else {
+            roots = nodes;
+        }
+        return roots;
     }
 
 }
