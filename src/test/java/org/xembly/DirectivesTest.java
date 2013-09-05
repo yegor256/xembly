@@ -60,8 +60,26 @@ public final class DirectivesTest {
      * @throws Exception If some problem inside
      */
     @Test(expected = XemblySyntaxException.class)
-    public void trhowsOnBrokenGrammar() throws Exception {
+    public void throwsOnBrokenGrammar() throws Exception {
         new Directives("not a xembly at all");
+    }
+
+    /**
+     * Directives can throw when XML content is broken.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = XemblySyntaxException.class)
+    public void throwsOnBrokenXmlContent() throws Exception {
+        new Directives("ADD '\u001b';");
+    }
+
+    /**
+     * Directives can throw when escaped XML content is broken.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = XemblySyntaxException.class)
+    public void throwsOnBrokenEscapedXmlContent() throws Exception {
+        new Directives("ADD '&#27;';");
     }
 
 }

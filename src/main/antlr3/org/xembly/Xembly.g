@@ -42,14 +42,14 @@ grammar Xembly;
 @lexer::members {
     @Override
     public void emitErrorMessage(String msg) {
-        throw new IllegalArgumentException(msg);
+        throw new ParsingException(msg);
     }
 }
 
 @parser::members {
     @Override
     public void emitErrorMessage(String msg) {
-        throw new IllegalArgumentException(msg);
+        throw new ParsingException(msg);
     }
 }
 
