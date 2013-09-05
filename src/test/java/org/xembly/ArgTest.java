@@ -65,9 +65,18 @@ public final class ArgTest {
      * Arg can reject to escape invalid text.
      * @throws Exception If some problem inside
      */
-    @Test
+    @Test(expected = XmlContentException.class)
     public void rejectsToEscapeInvalidXmlChars() throws Exception {
         new Arg("\u001b\u0000").toString();
+    }
+
+    /**
+     * Arg can reject to unescape invalid text.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = XmlContentException.class)
+    public void rejectsToUnEscapeInvalidXmlChars() throws Exception {
+        new Arg("&#27;&#0000;").toString();
     }
 
 }
