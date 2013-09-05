@@ -53,8 +53,9 @@ final class Arg {
     /**
      * Public ctor.
      * @param val Value of it
+     * @throws XmlContentException If fails
      */
-    protected Arg(final String val) {
+    protected Arg(final String val) throws XmlContentException {
         this.value = val;
     }
 
@@ -71,12 +72,22 @@ final class Arg {
     }
 
     /**
+     * Get it's raw value.
+     * @return Value
+     */
+    public String raw() {
+        return this.value;
+    }
+
+    /**
      * Un-escape all XML symbols.
      * @param text XML text
      * @return Clean text
+     * @throws XmlContentException If fails
      */
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public static String unescape(final String text) {
+    public static String unescape(final String text)
+        throws XmlContentException {
         final StringBuilder output = new StringBuilder();
         final char[] chars = text.toCharArray();
         if (chars.length < 2) {
@@ -91,7 +102,7 @@ final class Arg {
                     // @checkstyle ModifiedControlVariable (1 line)
                     ++idx;
                     if (idx == chars.length) {
-                        throw new IllegalArgumentException(
+                        throw new XmlContentException(
                             "reached EOF while parsing XML symbol"
                         );
                     }
@@ -136,8 +147,9 @@ final class Arg {
      * Convert XML symbol to char.
      * @param symbol XML symbol, without leading ampersand
      * @return Character
+     * @throws XmlContentException If fails
      */
-    private static char symbol(final String symbol) {
+    private static char symbol(final String symbol) throws XmlContentException {
         final char chr;
         if (symbol.charAt(0) == '#') {
             chr = (char) (Integer.parseInt(symbol.substring(1)));
@@ -152,7 +164,7 @@ final class Arg {
         } else if ("amp".equals(symbol)) {
             chr = '&';
         } else {
-            throw new IllegalArgumentException(
+            throw new XmlContentException(
                 String.format("unknown XML symbol &%s;", symbol)
             );
         }

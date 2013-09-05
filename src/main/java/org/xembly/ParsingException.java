@@ -29,64 +29,26 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Locale;
-import lombok.EqualsAndHashCode;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
 /**
- * ADD directive.
+ * When parsing of directives is impossible.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.6
  */
-@Immutable
-@EqualsAndHashCode(of = "name")
-@Loggable(Loggable.DEBUG)
-final class AddDirective implements Directive {
+final class ParsingException extends RuntimeException {
 
     /**
-     * Name of node to add.
+     * Serialization marker.
      */
-    private final transient Arg name;
+    private static final long serialVersionUID = 0x6547f999eaf6efb9L;
 
     /**
      * Public ctor.
-     * @param node Name of node to add
-     * @throws XmlContentException If invalid input
+     * @param cause Cause of it
      */
-    protected AddDirective(final String node) throws XmlContentException {
-        this.name = new Arg(node.toLowerCase(Locale.ENGLISH));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return String.format("ADD %s", this.name);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
-        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
-        for (Node node : nodes) {
-            final Element element = dom.createElement(this.name.raw());
-            node.appendChild(element);
-            dests.add(element);
-        }
-        return Collections.unmodifiableCollection(dests);
+    protected ParsingException(final Throwable cause) {
+        super(cause);
     }
 
 }

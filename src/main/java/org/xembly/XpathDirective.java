@@ -58,14 +58,15 @@ final class XPathDirective implements Directive {
     /**
      * XPath to use.
      */
-    private final transient String expr;
+    private final transient Arg expr;
 
     /**
      * Public ctor.
      * @param path XPath
+     * @throws XmlContentException If invalid input
      */
-    protected XPathDirective(final String path) {
-        this.expr = path;
+    protected XPathDirective(final String path) throws XmlContentException {
+        this.expr = new Arg(path);
     }
 
     /**
@@ -73,7 +74,7 @@ final class XPathDirective implements Directive {
      */
     @Override
     public String toString() {
-        return String.format("XPATH %s", new Arg(this.expr));
+        return String.format("XPATH %s", this.expr);
     }
 
     /**
@@ -93,7 +94,7 @@ final class XPathDirective implements Directive {
             try {
                 list = NodeList.class.cast(
                     xpath.evaluate(
-                        this.expr,
+                        this.expr.raw(),
                         node,
                         XPathConstants.NODESET
                     )

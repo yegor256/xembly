@@ -54,21 +54,23 @@ final class AttrDirective implements Directive {
     /**
      * Attribute name.
      */
-    private final transient String name;
+    private final transient Arg name;
 
     /**
      * Text value to set.
      */
-    private final transient String value;
+    private final transient Arg value;
 
     /**
      * Public ctor.
      * @param attr Attribute name
      * @param val Text value to set
+     * @throws XmlContentException If invalid input
      */
-    protected AttrDirective(final String attr, final String val) {
-        this.name = attr.toLowerCase(Locale.ENGLISH);
-        this.value = val;
+    protected AttrDirective(final String attr, final String val)
+        throws XmlContentException {
+        this.name = new Arg(attr.toLowerCase(Locale.ENGLISH));
+        this.value = new Arg(val);
     }
 
     /**
@@ -76,9 +78,7 @@ final class AttrDirective implements Directive {
      */
     @Override
     public String toString() {
-        return String.format(
-            "ATTR %s, %s", new Arg(this.name), new Arg(this.value)
-        );
+        return String.format("ATTR %s, %s", this.name, this.value);
     }
 
     /**
@@ -88,7 +88,9 @@ final class AttrDirective implements Directive {
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {
         for (Node node : nodes) {
-            Element.class.cast(node).setAttribute(this.name, this.value);
+            Element.class.cast(node).setAttribute(
+                this.name.raw(), this.value.raw()
+            );
         }
         return Collections.unmodifiableCollection(nodes);
     }

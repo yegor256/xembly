@@ -70,19 +70,49 @@ directives returns [Collection<Directive> ret]
 directive returns [Directive ret]
     :
     'XPATH' argument
-    { $ret = new XPathDirective($argument.ret.toString()); }
+    {
+        try {
+            $ret = new XPathDirective($argument.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     |
     'SET' argument
-    { $ret = new SetDirective($argument.ret.toString()); }
+    {
+        try {
+            $ret = new SetDirective($argument.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     |
     'ATTR' name=argument COMMA value=argument
-    { $ret = new AttrDirective($name.ret.toString(), $value.ret.toString()); }
+    {
+        try {
+            $ret = new AttrDirective($name.ret.toString(), $value.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     |
     'ADD' argument
-    { $ret = new AddDirective($argument.ret.toString()); }
+    {
+        try {
+            $ret = new AddDirective($argument.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     |
     'ADDIF' argument
-    { $ret = new AddIfDirective($argument.ret.toString()); }
+    {
+        try {
+            $ret = new AddIfDirective($argument.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     |
     'REMOVE'
     { $ret = new RemoveDirective(); }
@@ -111,10 +141,22 @@ SEMICOLON:
 TEXT
     :
     '"' ('\\"' | ~'"')* '"'
-    { this.setText(Arg.unescape(this.getText())); }
+    {
+        try {
+            this.setText(Arg.unescape(this.getText()));
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     |
     '\'' ('\\\'' | ~'\'')* '\''
-    { this.setText(Arg.unescape(this.getText())); }
+    {
+        try {
+            this.setText(Arg.unescape(this.getText()));
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     ;
 
 SPACE

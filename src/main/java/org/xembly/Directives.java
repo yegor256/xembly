@@ -177,7 +177,11 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives add(
         @NotNull(message = "name can't be NULL") final String name) {
-        this.all.add(new AddDirective(name));
+        try {
+            this.all.add(new AddDirective(name));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
         return this;
     }
 
@@ -189,7 +193,11 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives addIfAbsent(
         @NotNull(message = "name can't be NULL") final String name) {
-        this.all.add(new AddIfDirective(name));
+        try {
+            this.all.add(new AddIfDirective(name));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
         return this;
     }
 
@@ -213,7 +221,11 @@ public final class Directives extends AbstractCollection<Directive> {
     public Directives attr(
         @NotNull(message = "attr name can't be NULL") final String name,
         @NotNull(message = "value can't be NULL") final String value) {
-        this.all.add(new AttrDirective(name, value));
+        try {
+            this.all.add(new AttrDirective(name, value));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
         return this;
     }
 
@@ -225,7 +237,11 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives set(
         @NotNull(message = "content can't be NULL") final String text) {
-        this.all.add(new SetDirective(text));
+        try {
+            this.all.add(new SetDirective(text));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
         return this;
     }
 
@@ -249,7 +265,11 @@ public final class Directives extends AbstractCollection<Directive> {
      */
     public Directives xpath(
         @NotNull(message = "xpath can't be NULL") final String path) {
-        this.all.add(new XPathDirective(path));
+        try {
+            this.all.add(new XPathDirective(path));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
         return this;
     }
 
@@ -281,7 +301,7 @@ public final class Directives extends AbstractCollection<Directive> {
             return parser.directives();
         } catch (RecognitionException ex) {
             throw new XemblySyntaxException(script, ex);
-        } catch (IllegalArgumentException ex) {
+        } catch (ParsingException ex) {
             throw new XemblySyntaxException(script, ex);
         }
     }

@@ -55,14 +55,15 @@ final class AddIfDirective implements Directive {
     /**
      * Name of node to add.
      */
-    private final transient String name;
+    private final transient Arg name;
 
     /**
      * Public ctor.
      * @param node Name of node to add
+     * @throws XmlContentException If invalid input
      */
-    protected AddIfDirective(final String node) {
-        this.name = node.toLowerCase(Locale.ENGLISH);
+    protected AddIfDirective(final String node) throws XmlContentException {
+        this.name = new Arg(node.toLowerCase(Locale.ENGLISH));
     }
 
     /**
@@ -70,7 +71,7 @@ final class AddIfDirective implements Directive {
      */
     @Override
     public String toString() {
-        return String.format("ADDIF %s", new Arg(this.name));
+        return String.format("ADDIF %s", this.name);
     }
 
     /**
@@ -85,13 +86,13 @@ final class AddIfDirective implements Directive {
             Node dest = null;
             for (int idx = 0; idx < childs.getLength(); ++idx) {
                 if (childs.item(idx).getNodeName()
-                    .toLowerCase(Locale.ENGLISH).equals(this.name)) {
+                    .toLowerCase(Locale.ENGLISH).equals(this.name.raw())) {
                     dest = childs.item(idx);
                     break;
                 }
             }
             if (dest == null) {
-                dest = dom.createElement(this.name);
+                dest = dom.createElement(this.name.raw());
                 node.appendChild(dest);
             }
             dests.add(dest);

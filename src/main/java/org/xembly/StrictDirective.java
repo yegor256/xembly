@@ -67,10 +67,7 @@ final class StrictDirective implements Directive {
      */
     @Override
     public String toString() {
-        return String.format(
-            "STRICT %s",
-            new Arg(Integer.toString(this.number))
-        );
+        return String.format("STRICT \"%d\"", this.number);
     }
 
     /**

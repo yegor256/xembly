@@ -52,14 +52,15 @@ final class SetDirective implements Directive {
     /**
      * Text value to set.
      */
-    private final transient String value;
+    private final transient Arg value;
 
     /**
      * Public ctor.
      * @param val Text value to set
+     * @throws XmlContentException If invalid input
      */
-    protected SetDirective(final String val) {
-        this.value = val;
+    protected SetDirective(final String val) throws XmlContentException {
+        this.value = new Arg(val);
     }
 
     /**
@@ -67,7 +68,7 @@ final class SetDirective implements Directive {
      */
     @Override
     public String toString() {
-        return String.format("SET %s", new Arg(this.value));
+        return String.format("SET %s", this.value);
     }
 
     /**
@@ -77,7 +78,7 @@ final class SetDirective implements Directive {
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {
         for (Node node : nodes) {
-            node.setTextContent(this.value);
+            node.setTextContent(this.value.raw());
         }
         return Collections.unmodifiableCollection(nodes);
     }
