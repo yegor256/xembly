@@ -76,7 +76,7 @@ public final class ArgTest {
      */
     @Test(expected = XmlContentException.class)
     public void rejectsToUnEscapeInvalidXmlChars() throws Exception {
-        new Arg("&#27;&#0000;").toString();
+        Arg.unescape("&#27;&#0000;");
     }
 
 }

@@ -56,6 +56,9 @@ final class Arg {
      * @throws XmlContentException If fails
      */
     protected Arg(final String val) throws XmlContentException {
+        for (char chr : val.toCharArray()) {
+            Arg.legal(chr);
+        }
         this.value = val;
     }
 
@@ -152,7 +155,8 @@ final class Arg {
     private static char symbol(final String symbol) throws XmlContentException {
         final char chr;
         if (symbol.charAt(0) == '#') {
-            chr = (char) (Integer.parseInt(symbol.substring(1)));
+            final int num = Integer.parseInt(symbol.substring(1));
+            chr = (char) Arg.legal(num);
         } else if ("apos".equals(symbol)) {
             chr = '\'';
         } else if ("quot".equals(symbol)) {
@@ -169,6 +173,42 @@ final class Arg {
             );
         }
         return chr;
+    }
+
+    /**
+     * Validate char number and throw exception if it's not legal.
+     * @param number Char number
+     * @return The same number
+     * @throws XmlContentException If illegal
+     */
+    private static int legal(final int number) throws XmlContentException {
+        // @checkstyle MagicNumber (5 lines)
+        Arg.range(number, 0x00, 0x08);
+        Arg.range(number, 0x0B, 0x0C);
+        Arg.range(number, 0x0E, 0x1F);
+        Arg.range(number, 0x7F, 0x84);
+        Arg.range(number, 0x86, 0x9F);
+        return number;
+    }
+
+    /**
+     * Throw if number is in the range.
+     * @param number Char number
+     * @param left Left number (inclusive)
+     * @param right Right number (inclusive)
+     * @throws XmlContentException If illegal
+     */
+    private static void range(final int number, final int left, final int right)
+        throws XmlContentException {
+        if (number >= left && number <= right) {
+            throw new XmlContentException(
+                String.format(
+                    // @checkstyle LineLength (1 line)
+                    "Character #%02X is in restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets",
+                    number, left, right
+                )
+            );
+        }
     }
 
 }
