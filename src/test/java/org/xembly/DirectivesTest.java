@@ -55,4 +55,13 @@ public final class DirectivesTest {
         );
     }
 
+    /**
+     * Directives can throw when grammar is broken.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = XemblySyntaxException.class)
+    public void trhowsOnBrokenGrammar() throws Exception {
+        new Directives("not a xembly at all");
+    }
+
 }
