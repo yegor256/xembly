@@ -43,7 +43,7 @@ Just use this dependency in Maven:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.5.2</version>
+  <version>0.6.1</version>
 </dependency>
 ```
 
