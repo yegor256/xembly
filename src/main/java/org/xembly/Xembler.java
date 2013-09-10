@@ -98,7 +98,7 @@ public final class Xembler {
             );
         }
         Collection<Node> ptr = Arrays.<Node>asList(root);
-        int pos = 0;
+        int pos = 1;
         for (Directive dir : this.directives) {
             try {
                 ptr = dir.exec(dom, ptr);

@@ -92,7 +92,7 @@ final class StrictDirective implements Directive {
                 throw new ImpossibleModificationException(
                     String.format(
                         "one current node '%s' while strictly %d expected",
-                        nodes.iterator().next().getLocalName(), this.number
+                        nodes.iterator().next().getNodeName(), this.number
                     )
                 );
             }
@@ -117,7 +117,11 @@ final class StrictDirective implements Directive {
             if (text.length() > 0) {
                 text.append(", ");
             }
-            text.append(node.getLocalName());
+            final Node parent = node.getParentNode();
+            if (parent != null) {
+                text.append(parent.getNodeName());
+            }
+            text.append('/').append(node.getNodeName());
         }
         return text.toString();
     }

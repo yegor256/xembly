@@ -65,4 +65,49 @@ public final class StrictDirectiveTest {
         );
     }
 
+    /**
+     * StrictDirective can fail when number of current nodes is too big.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = ImpossibleModificationException.class)
+    public void failsWhenNumberOfCurrentNodesIsTooBig() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("f"));
+        new Xembler(dirs).apply(dom);
+    }
+
+    /**
+     * StrictDirective can fail when number of current nodes is zero.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = ImpossibleModificationException.class)
+    public void failsWhenNumberOfCurrentNodesIsZero() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("z"));
+        new Xembler(dirs).apply(dom);
+    }
+
+    /**
+     * StrictDirective can fail when number of current nodes is too small.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = ImpossibleModificationException.class)
+    public void failsWhenNumberOfCurrentNodesIsTooSmall() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "ADD 'bar'; STRICT '2';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("x"));
+        new Xembler(dirs).apply(dom);
+    }
+
 }
