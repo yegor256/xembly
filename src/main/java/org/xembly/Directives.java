@@ -49,16 +49,16 @@ import org.antlr.runtime.TokenStream;
  * <p>For example, to fetch directives from a string and apply to the
  * DOM document:
  *
- * <pre>Document dom = DocumentBuilderFactory.newInstance()
+ * <pre> Document dom = DocumentBuilderFactory.newInstance()
  *   .newDocumentBuilder().newDocument();
  * dom.appendChild(dom.createElement("root"));
  * new Xembler(
  *   new Directives("XPATH 'root'; ADD 'employee';")
- * ).exec(dom);</pre>
+ * ).apply(dom);</pre>
  *
  * <p>{@link Directives} can be used as a builder of Xembly script:
  *
- * <pre>Document dom = DocumentBuilderFactory.newInstance()
+ * <pre> Document dom = DocumentBuilderFactory.newInstance()
  *   .newDocumentBuilder().newDocument();
  * dom.appendChild(dom.createElement("root"));
  * new Xembler(
@@ -71,7 +71,7 @@ import org.antlr.runtime.TokenStream;
  *     .xpath("employee[&#64;id='100']")
  *     .strict(1)
  *     .remove()
- * ).exec(dom);</pre>
+ * ).apply(dom);</pre>
  *
  * <p>The class is mutable and thread-safe.
  *

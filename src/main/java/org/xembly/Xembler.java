@@ -45,7 +45,7 @@ import org.w3c.dom.Node;
  *
  * <p>For example, to modify a DOM document:
  *
- * <pre>Document dom = DocumentBuilderFactory.newInstance()
+ * <pre> Document dom = DocumentBuilderFactory.newInstance()
  *   .newDocumentBuilder().newDocument();
  * dom.appendChild(dom.createElement("root"));
  * new Xembler(
