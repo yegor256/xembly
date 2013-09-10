@@ -81,14 +81,45 @@ final class StrictDirective implements Directive {
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) throws ImpossibleModificationException {
         if (nodes.size() != this.number) {
+            if (nodes.isEmpty()) {
+                throw new ImpossibleModificationException(
+                    String.format(
+                        "no current nodes while %d expected", this.number
+                    )
+                );
+            }
+            if (nodes.size() == 1) {
+                throw new ImpossibleModificationException(
+                    String.format(
+                        "one current node '%s' while strictly %d expected",
+                        nodes.iterator().next().getLocalName(), this.number
+                    )
+                );
+            }
             throw new ImpossibleModificationException(
                 String.format(
-                    "%d current node(s) while strictly %d expected",
-                    nodes.size(), this.number
+                    "%d current nodes [%s] while strictly %d expected",
+                    nodes.size(), this.names(nodes), this.number
                 )
             );
         }
         return Collections.unmodifiableCollection(nodes);
+    }
+
+    /**
+     * Get node names as a string.
+     * @param nodes Collection of nodes
+     * @return Text presentation of them
+     */
+    private String names(final Collection<Node> nodes) {
+        final StringBuilder text = new StringBuilder();
+        for (Node node : nodes) {
+            if (text.length() > 0) {
+                text.append(", ");
+            }
+            text.append(node.getLocalName());
+        }
+        return text.toString();
     }
 
 }
