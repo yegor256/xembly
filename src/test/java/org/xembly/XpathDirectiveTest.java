@@ -30,11 +30,15 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
+import java.util.Arrays;
 import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Test case for {@link XpathDirective}.
@@ -80,6 +84,27 @@ public final class XpathDirectiveTest {
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("top"));
         new Xembler(dirs).apply(dom);
+    }
+
+    /**
+     * XpathDirective can find nodes by XPath.
+     * @throws Exception If some problem inside
+     * @since 0.7
+     */
+    @Test
+    public void findsNodesByXpathDirectly() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("xxx");
+        final Element first = dom.createElement("a");
+        root.appendChild(first);
+        final Element second = dom.createElement("b");
+        root.appendChild(second);
+        dom.appendChild(root);
+        MatcherAssert.assertThat(
+            new XPathDirective("/*").exec(dom, Arrays.<Node>asList(first)),
+            Matchers.hasItem(root)
+        );
     }
 
 }
