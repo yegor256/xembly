@@ -80,6 +80,17 @@ ADD "employee";
 SET "John Smith";
 ```
 
+### XSET
+
+`XSET` changes text content of all current nodes to a value
+calculated with XPath expression:
+
+```
+ADD "product-1";
+ADD "price";
+XSET "sum(/products/price) div count(/products)";
+```
+
 ### UP
 
 `UP` moves all current nodes to their parents.

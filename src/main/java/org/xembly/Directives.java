@@ -246,6 +246,22 @@ public final class Directives extends AbstractCollection<Directive> {
     }
 
     /**
+     * Set text content.
+     * @param text Text to set
+     * @return This object
+     * @since 0.7
+     */
+    public Directives xset(
+        @NotNull(message = "content can't be NULL") final String text) {
+        try {
+            this.all.add(new XsetDirective(text));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        return this;
+    }
+
+    /**
      * Go one node/level up.
      * @return This object
      * @since 0.5

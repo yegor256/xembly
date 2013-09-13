@@ -87,6 +87,15 @@ directive returns [Directive ret]
         }
     }
     |
+    'XSET' argument
+    {
+        try {
+            $ret = new XsetDirective($argument.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
+    |
     'ATTR' name=argument COMMA value=argument
     {
         try {
