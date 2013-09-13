@@ -30,11 +30,14 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
+import java.util.Arrays;
 import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Test case for {@link SetDirective}.
@@ -74,6 +77,31 @@ public final class SetDirectiveTest {
     @Test(expected = XemblySyntaxException.class)
     public void rejectsContentWithInvalidXmlCharacters() throws Exception {
         new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';");
+    }
+
+    /**
+     * SetDirective can set text content of nodes.
+     * @throws Exception If some problem inside
+     * @since 0.7
+     */
+    @Test
+    public void setsTextDirectlyIntoDomNodes() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("xxx");
+        final Element first = dom.createElement("a");
+        root.appendChild(first);
+        final Element second = dom.createElement("b");
+        root.appendChild(second);
+        dom.appendChild(root);
+        new SetDirective("alpha").exec(dom, Arrays.<Node>asList(first, second));
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/xxx/a[.='alpha']",
+                "/xxx/b[.='alpha']"
+            )
+        );
     }
 
 }
