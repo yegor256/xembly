@@ -30,11 +30,14 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
+import java.util.Arrays;
 import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Test case for {@link RemoveDirective}.
@@ -62,6 +65,28 @@ public final class RemoveDirectiveTest {
                 "/root/foo",
                 "/root/foo[not(*)]"
             )
+        );
+    }
+
+    /**
+     * RemoveDirective can remove nodes.
+     * @throws Exception If some problem inside
+     * @since 0.7
+     */
+    @Test
+    public void removesDomNodesDirectly() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("xxx");
+        final Element first = dom.createElement("a");
+        root.appendChild(first);
+        final Element second = dom.createElement("b");
+        root.appendChild(second);
+        dom.appendChild(root);
+        new RemoveDirective().exec(dom, Arrays.<Node>asList(first));
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/xxx[b and not(a)]")
         );
     }
 
