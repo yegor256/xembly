@@ -53,9 +53,10 @@ public final class XsetDirectiveTest {
     @Test
     public void setsTextContentOfNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            // @checkstyle StringLiteralsConcatenation (2 lines)
+            // @checkstyle StringLiteralsConcatenation (3 lines)
             "ADD 'foo'; SET '&quot;Bonnie &amp; Clyde&quot;';"
             + "UP; ADD 'length'; XSET 'string-length(/root/foo)';"
+            + "XSET '. + 10';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -65,7 +66,7 @@ public final class XsetDirectiveTest {
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root/foo[.='\"Bonnie & Clyde\"']",
-                "/root/length[.='16']"
+                "/root/length[.='26']"
             )
         );
     }
