@@ -48,7 +48,7 @@
                                                     </ul>
                                     </li>
                                                                                         <li>
-                                                                    <a href="apidocs-0.5/index.html" title="JavaDoc 0.5">JavaDoc 0.5</a>
+                                                                    <a href="apidocs-0.7/index.html" title="JavaDoc 0.7">JavaDoc 0.7</a>
                                                                                                                         <ul>
                                                     </ul>
                                     </li>
@@ -91,8 +91,8 @@
             </a>
                         <p>
                 
-                07-Aug-2013
-                0.5
+                16-Sep-2013
+                0.7
             </p>
             <article>
                 <h1>Assembly for XML</h1><p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to XSLT and XQuery. For example:</p>
@@ -122,6 +122,10 @@ ADDIF 'order';
 </pre></div><p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p></div><div class="section"><h3>SET<a name="SET"></a></h3><p><tt>SET</tt> changes text content of all current nodes, and expects exactly one argument, which is the text content to set:</p>
 <div class="source"><pre>ADD &quot;employee&quot;;
 SET &quot;John Smith&quot;;
+</pre></div></div><div class="section"><h3>XSET<a name="XSET"></a></h3><p><tt>XSET</tt> changes text content of all current nodes to a value calculated with XPath expression:</p>
+<div class="source"><pre>ADD &quot;product-1&quot;;
+ADD &quot;price&quot;;
+XSET &quot;sum(/products/price) div count(/products)&quot;;
 </pre></div></div><div class="section"><h3>UP<a name="UP"></a></h3><p><tt>UP</tt> moves all current nodes to their parents.</p></div><div class="section"><h3>XPATH<a name="XPATH"></a></h3><p><tt>XPATH</tt> changes current nodes to the all found by XPath expression:</p>
 <div class="source"><pre>XPATH &quot;//employee[@id='234' and name='John Smith']/name&quot;;
 SET &quot;John R. Smith&quot;;
