@@ -87,7 +87,7 @@ public final class XemblerTest {
             .up()
             .xpath("*")
             .remove()
-            .addIfAbsent("employee")
+            .addIf("employee")
             .attr("id", "<443>")
             .add("name")
             .strict(1)

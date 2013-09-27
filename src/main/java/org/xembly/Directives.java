@@ -64,7 +64,7 @@ import org.antlr.runtime.TokenStream;
  * new Xembler(
  *   new Directives()
  *     .xpath("/root")
- *     .addIfAbsent("employees")
+ *     .addIf("employees")
  *     .add("employee")
  *     .attr("id", 6564)
  *     .up()
@@ -191,7 +191,7 @@ public final class Directives extends AbstractCollection<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives addIfAbsent(
+    public Directives addIf(
         @NotNull(message = "name can't be NULL") final String name) {
         try {
             this.all.add(new AddIfDirective(name));
