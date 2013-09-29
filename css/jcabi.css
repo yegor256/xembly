@@ -31,23 +31,21 @@
 body {
     padding: 2em;
     font-family: 'Helvetica Neue', Arial, serif;
-    font-size: 13px;
+    font-size: 16px;
     background-color: #EEE;
+    background-image: url('../images/background.png');
 }
 
 #breadcrumbs {
     list-style: none;
     padding-left: 0;
 }
-
     #breadcrumbs li {
         display: inline;
     }
-
     #breadcrumbs li:before {
         content: ">";
     }
-
     #breadcrumbs li:first-child:before {
         content: none;
     }
@@ -59,41 +57,48 @@ body {
     padding-left: 0;
     list-style: none;
 }
-
     #menu > li {
         margin-top: 1em;
     }
-
     #menu ul {
         padding-left: 1em;
         list-style: none;
     }
-
     #menu a {
         text-decoration: none;
     }
 
 #content {
     position: relative;
-    max-width: 55em;
-    min-height: 40em;
-    margin-left: 17em;
+    max-width: 40em;
+    min-height: 25em;
+    margin-left: auto;
+    margin-right: auto;
     background-color: white;
-    padding: 3em 8em 3em 3em;
-    -webkit-border-radius: 7px;
+    line-height: 1.5em;
+    padding: 3em;
     border-radius: 7px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    -webkit-border-radius: 7px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
 }
 
 h1, h2, h3 {
     font-weight: normal;
 }
+    h1 {
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
 
 a {
     color: #2276A4;
 }
-
     a tt {
         text-decoration: none;
         /* see http://stackoverflow.com/questions/13442609 */
@@ -105,31 +110,29 @@ pre {
     color: #f8f8f8;
     padding: 0.5em 1em;
     font-family: 'Monaco', monospace;
-    font-size: 11px;
-    width: 80%;
+    font-size: 13px;
     overflow-x: auto;
+    line-height: 1.3em;
 }
 
 tt {
     background-color: #eee;
     padding: 0 0.3em;
     font-family: 'Monaco', monospace;
-    font-size: 11px;
     border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
 }
 
 table {
     background-color: white;
 }
-
     table tr.a {
         background-color: #ddd;
     }
-
     table tr.b {
         background-color: #eee;
     }
-
     table th {
         background-color: #2276A4;
         color: white;

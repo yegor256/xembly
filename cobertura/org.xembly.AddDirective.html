@@ -145,9 +145,9 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * @throws XmlContentException If invalid input</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;37</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> AddDirective(<span class="keyword">final</span> String node) <span class="keyword">throws</span> XmlContentException {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsCovered">&nbsp;37</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.name = <span class="keyword">new</span> Arg(node.toLowerCase(Locale.ENGLISH));</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered">&nbsp;36</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered">&nbsp;40</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> AddDirective(<span class="keyword">final</span> String node) <span class="keyword">throws</span> XmlContentException {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsCovered">&nbsp;40</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.name = <span class="keyword">new</span> Arg(node.toLowerCase(Locale.ENGLISH));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered">&nbsp;39</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
@@ -160,7 +160,7 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String toString() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;74</td>  <td class="nbHitsCovered">&nbsp;37</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> String.format(<span class="string">"ADD %s"</span>, <span class="keyword">this</span>.name);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;74</td>  <td class="nbHitsCovered">&nbsp;42</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> String.format(<span class="string">"ADD %s"</span>, <span class="keyword">this</span>.name);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
@@ -177,13 +177,13 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> Collection&lt;Node&gt; exec(<span class="keyword">final</span> Document dom,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> Collection&lt;Node&gt; nodes) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsCovered">&nbsp;64</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> Collection&lt;Node&gt; dests = <span class="keyword">new</span> ArrayList&lt;Node&gt;(nodes.size());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;84</td>  <td class="nbHitsCovered"><a title="Line 84: Conditional coverage 100% (2/2).">&nbsp;32</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 84: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Node node : nodes) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> Element element = dom.createElement(<span class="keyword">this</span>.name.raw());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;            node.appendChild(element);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;87</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;            dests.add(element);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;88</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;89</td>  <td class="nbHitsCovered">&nbsp;32</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Collections.unmodifiableCollection(dests);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsCovered">&nbsp;70</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> Collection&lt;Node&gt; dests = <span class="keyword">new</span> ArrayList&lt;Node&gt;(nodes.size());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;84</td>  <td class="nbHitsCovered"><a title="Line 84: Conditional coverage 100% (2/2).">&nbsp;35</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 84: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (Node node : nodes) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered">&nbsp;35</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> Element element = dom.createElement(<span class="keyword">this</span>.name.raw());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsCovered">&nbsp;35</td>  <td class="src"><pre class="src">&nbsp;            node.appendChild(element);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;87</td>  <td class="nbHitsCovered">&nbsp;35</td>  <td class="src"><pre class="src">&nbsp;            dests.add(element);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;88</td>  <td class="nbHitsCovered">&nbsp;35</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;89</td>  <td class="nbHitsCovered">&nbsp;35</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> Collections.unmodifiableCollection(dests);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
@@ -192,6 +192,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 9/16/13 3:10 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 9/29/13 12:29 PM.</div>
 </body>
 </html>
