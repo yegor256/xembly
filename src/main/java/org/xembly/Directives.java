@@ -32,8 +32,10 @@ package org.xembly;
 import com.jcabi.aspects.Loggable;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
@@ -179,6 +181,50 @@ public final class Directives extends AbstractCollection<Directive> {
         @NotNull(message = "name can't be NULL") final String name) {
         try {
             this.all.add(new AddDirective(name));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        return this;
+    }
+
+    /**
+     * Add multiple nodes and set their text values.
+     *
+     * <p>Every pair in the provided map will be treated as a new
+     * node name and value. It's a convenient utility method that simplifies
+     * the process of adding a collection of nodes with pre-set values. For
+     * example:
+     *
+     * <pre> new Directives()
+     *   .add("first", "hello, world!")
+     *   .add(
+     *     new ArrayMap&lt;String, Object&gt;()
+     *       .with("alpha", 1)
+     *       .with("beta", "2")
+     *       .with("gamma", new Date())
+     *   )
+     *   .add("second");
+     * </pre>
+     *
+     * @param <K> Type of key
+     * @param <V> Type of value
+     * @param nodes Names and values of nodes to add
+     * @return This object
+     * @since 0.8
+     */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    public <K, V> Directives add(
+        @NotNull(message = "map can't be NULL") final Map<K, V> nodes) {
+        try {
+            for (Map.Entry<K, V> entry : nodes.entrySet()) {
+                this.all.addAll(
+                    Arrays.asList(
+                        new AddDirective(entry.getKey().toString()),
+                        new SetDirective(entry.getValue().toString()),
+                        new UpDirective()
+                    )
+                );
+            }
         } catch (XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }

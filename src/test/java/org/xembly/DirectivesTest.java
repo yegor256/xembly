@@ -29,9 +29,13 @@
  */
 package org.xembly;
 
+import com.jcabi.immutable.ArrayMap;
+import com.rexsl.test.XhtmlMatchers;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.w3c.dom.Document;
 
 /**
  * Test case for {@link Directives}.
@@ -80,6 +84,33 @@ public final class DirectivesTest {
     @Test(expected = XemblySyntaxException.class)
     public void throwsOnBrokenEscapedXmlContent() throws Exception {
         new Directives("ADD '&#27;';");
+    }
+
+    /**
+     * Directives can add map of values.
+     * @throws Exception If some problem inside
+     * @param 0.8
+     */
+    @Test
+    public void addsMapOfValues() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("root"));
+        new Xembler(
+            new Directives().add(
+                new ArrayMap<String, Object>()
+                    .with("first", 1)
+                    .with("second", "two")
+            ).add("third")
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/root/first[.=1]",
+                "/root/second[.='two']",
+                "/root/third"
+            )
+        );
     }
 
 }
