@@ -102,7 +102,7 @@ public final class XpathDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         MatcherAssert.assertThat(
-            new XPathDirective("/*").exec(dom, Arrays.<Node>asList(first)),
+            new XpathDirective("/*").exec(dom, Arrays.<Node>asList(first)),
             Matchers.hasItem(root)
         );
     }

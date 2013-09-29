@@ -72,7 +72,7 @@ directive returns [Directive ret]
     'XPATH' argument
     {
         try {
-            $ret = new XPathDirective($argument.ret.toString());
+            $ret = new XpathDirective($argument.ret.toString());
         } catch (XmlContentException ex) {
             throw new ParsingException(ex);
         }

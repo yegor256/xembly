@@ -53,7 +53,7 @@ import org.w3c.dom.NodeList;
 @Immutable
 @EqualsAndHashCode(of = "expr")
 @Loggable(Loggable.DEBUG)
-final class XPathDirective implements Directive {
+final class XpathDirective implements Directive {
 
     /**
      * XPath to use.
@@ -65,7 +65,7 @@ final class XPathDirective implements Directive {
      * @param path XPath
      * @throws XmlContentException If invalid input
      */
-    protected XPathDirective(final String path) throws XmlContentException {
+    protected XpathDirective(final String path) throws XmlContentException {
         this.expr = new Arg(path);
     }
 

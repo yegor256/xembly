@@ -328,7 +328,7 @@ public final class Directives extends AbstractCollection<Directive> {
     public Directives xpath(
         @NotNull(message = "xpath can't be NULL") final String path) {
         try {
-            this.all.add(new XPathDirective(path));
+            this.all.add(new XpathDirective(path));
         } catch (XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
