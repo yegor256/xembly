@@ -86,4 +86,25 @@ public final class PiDirectiveTest {
         );
     }
 
+    /**
+     * PiDirective can add processing instructions to root.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void addsProcessingInstructionsToDomRoot() throws Exception {
+        final Collection<Directive> dirs = new Directives(
+            "XPATH '/'; PI 'alpha' 'beta \u20ac';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("x4"));
+        new Xembler(dirs).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath(
+                "/processing-instruction('alpha')[.='beta \u20ac']"
+            )
+        );
+    }
+
 }
