@@ -55,11 +55,12 @@ Just use this dependency in Maven:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.8</version>
+  <version>0.9</version>
 </dependency>
 ```
 
-Or download latest release [here](https://github.com/yegor256/xembly/releases).
+Or download the latest release
+[here](https://github.com/yegor256/xembly/releases).
 
 ## How to contribute
 

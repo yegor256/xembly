@@ -122,3 +122,12 @@ XPATH "/root/employee[name='John Doe']";
 STRICT "1";
 ```
 
+### PI
+
+`PI` directives add a new processing directive to the XML:
+
+```
+PI "xsl-stylesheet" "href='http://example.com'";
+```
+
+

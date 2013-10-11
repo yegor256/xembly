@@ -131,6 +131,15 @@ directive returns [Directive ret]
     |
     'UP'
     { $ret = new UpDirective(); }
+    |
+    'PI' target=argument data=argument
+    {
+        try {
+            $ret = new PiDirective($target.ret.toString(), $data.ret.toString());
+        } catch (XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     ;
 
 argument returns [Object ret]
