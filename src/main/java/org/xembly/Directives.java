@@ -276,6 +276,26 @@ public final class Directives extends AbstractCollection<Directive> {
     }
 
     /**
+     * Add processing instruction.
+     * @param target PI name
+     * @param data Data to set
+     * @return This object
+     * @since 0.9
+     * @checkstyle MethodName (3 lines)
+     */
+    @SuppressWarnings("PMD.ShortMethodName")
+    public Directives pi(
+        @NotNull(message = "target can't be NULL") final String target,
+        @NotNull(message = "data can't be NULL") final String data) {
+        try {
+            this.all.add(new PiDirective(target, data));
+        } catch (XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        return this;
+    }
+
+    /**
      * Set text content.
      * @param text Text to set
      * @return This object
