@@ -32,9 +32,19 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.immutable.Array;
+import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.validation.constraints.NotNull;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.w3c.dom.Document;
@@ -55,6 +65,16 @@ import org.w3c.dom.Node;
  *     .add("employee")
  *     .attr("id", 6564)
  * ).apply(dom);</pre>
+ *
+ * <p>You can also convert your Xembly directives directly to XML document:
+ *
+ * <pre> String xml = new Xembler(
+ *   new Directives()
+ *     .xpath("/root")
+ *     .addIfAbsent("employees")
+ *     .add("employee")
+ *     .attr("id", 6564)
+ * ).xml("root");</pre>
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -110,6 +130,63 @@ public final class Xembler {
             }
             ++pos;
         }
+    }
+
+    /**
+     * Apply all changes to an empty DOM with the given root element name.
+     * @param name Name of root DOM element
+     * @return DOM created
+     * @throws ImpossibleModificationException If can't modify
+     * @since 0.9
+     */
+    @Loggable(
+        value = Loggable.DEBUG,
+        ignore = ImpossibleModificationException.class
+    )
+    public Document dom(@NotNull(message = "root element name can't be NULL")
+        final String name) throws ImpossibleModificationException {
+        final Document dom;
+        try {
+            dom = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+        } catch (ParserConfigurationException ex) {
+            throw new IllegalStateException(ex);
+        }
+        dom.appendChild(dom.createElement(name));
+        this.apply(dom);
+        return dom;
+    }
+
+    /**
+     * Convert to XML document.
+     * @param name Name of root DOM element
+     * @return XML document
+     * @throws ImpossibleModificationException If can't modify
+     * @since 0.9
+     */
+    @Loggable(
+        value = Loggable.DEBUG,
+        ignore = ImpossibleModificationException.class
+    )
+    public String xml(@NotNull(message = "root element name can't be NULL")
+        final String name) throws ImpossibleModificationException {
+        final Transformer transformer;
+        try {
+            transformer = TransformerFactory.newInstance().newTransformer();
+        } catch (TransformerConfigurationException ex) {
+            throw new IllegalStateException(ex);
+        }
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        final StringWriter writer = new StringWriter();
+        try {
+            transformer.transform(
+                new DOMSource(this.dom(name)),
+                new StreamResult(writer)
+            );
+        } catch (TransformerException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        return writer.toString();
     }
 
 }

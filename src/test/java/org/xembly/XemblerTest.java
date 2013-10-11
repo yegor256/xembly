@@ -106,4 +106,18 @@ public final class XemblerTest {
         );
     }
 
+    /**
+     * Xembler can print XML.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void printsXmlDocument() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(
+                new Directives().add("hey-you").add("hoy").set("\u20ac")
+            ).xml("bbb"),
+            XhtmlMatchers.hasXPath("/bbb/hey-you/hoy[.='\u20ac']")
+        );
+    }
+
 }

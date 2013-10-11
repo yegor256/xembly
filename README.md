@@ -32,7 +32,19 @@ dom.appendChild(dom.createElement("orders"));
 Iterable<Directive> dirs = new Directives(
   "ADD 'order'; ATTR 'id', '553'; SET '$140.00';"
 );
-new Xembler(dirs).exec(document);
+new Xembler(dirs).apply(document);
+```
+
+Since version 0.9 you can directly transform directives to XML:
+
+```java
+String xml = new Xembler(
+  new Directives()
+    .xpath("/root")
+    .add("order")
+    .attr("id", "553")
+    .set("$140.00")
+).xml("root");
 ```
 
 ## Download and Maven Dependency
