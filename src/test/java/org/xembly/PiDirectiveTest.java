@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -54,7 +55,9 @@ public final class PiDirectiveTest {
     @Test
     public void addsProcessingInstructionsToDom() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "PI 'ab' 'boom \u20ac'; ADD 'test'; PI 'foo' 'some data \u20ac';"
+            // @checkstyle StringLiteralsConcatenation (2 lines)
+            "XPATH '/root'; PI 'ab' 'boom \u20ac';"
+            + "ADD 'test'; PI 'foo' 'some data \u20ac';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -104,6 +107,18 @@ public final class PiDirectiveTest {
             XhtmlMatchers.hasXPath(
                 "/processing-instruction('alpha')[.='beta \u20ac']"
             )
+        );
+    }
+
+    /**
+     * PiDirective can prepend processing instruction.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void prependsProcessingInstructionsToDomRoot() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(new Directives("PI 'a' 'b'; ADD 'c';")).xml(),
+            Matchers.containsString("<?a b?><c/>")
         );
     }
 

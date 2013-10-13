@@ -46,6 +46,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -110,13 +111,7 @@ public final class Xembler {
     )
     public void apply(@NotNull(message = "DOM can't be NULL")
         final Document dom) throws ImpossibleModificationException {
-        final Node root = dom.getDocumentElement();
-        if (root == null) {
-            throw new ImpossibleModificationException(
-                "DOM document doesn't have a root/document element"
-            );
-        }
-        Collection<Node> ptr = Arrays.<Node>asList(root);
+        Collection<Node> ptr = Arrays.<Node>asList(dom);
         int pos = 1;
         for (Directive dir : this.directives) {
             try {
@@ -126,14 +121,18 @@ public final class Xembler {
                     String.format("directive #%d: %s", pos, dir),
                     ex
                 );
+            } catch (DOMException ex) {
+                throw new ImpossibleModificationException(
+                    String.format("DOM exception at dir #%d: %s", pos, dir),
+                    ex
+                );
             }
             ++pos;
         }
     }
 
     /**
-     * Apply all changes to an empty DOM with the given root element name.
-     * @param name Name of root DOM element
+     * Apply all changes to an empty DOM.
      * @return DOM created
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
@@ -142,8 +141,7 @@ public final class Xembler {
         value = Loggable.DEBUG,
         ignore = ImpossibleModificationException.class
     )
-    public Document dom(@NotNull(message = "root element name can't be NULL")
-        final String name) throws ImpossibleModificationException {
+    public Document dom() throws ImpossibleModificationException {
         final Document dom;
         try {
             dom = DocumentBuilderFactory.newInstance()
@@ -151,14 +149,12 @@ public final class Xembler {
         } catch (ParserConfigurationException ex) {
             throw new IllegalStateException(ex);
         }
-        dom.appendChild(dom.createElement(name));
         this.apply(dom);
         return dom;
     }
 
     /**
      * Convert to XML document.
-     * @param name Name of root DOM element
      * @return XML document
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
@@ -167,8 +163,7 @@ public final class Xembler {
         value = Loggable.DEBUG,
         ignore = ImpossibleModificationException.class
     )
-    public String xml(@NotNull(message = "root element name can't be NULL")
-        final String name) throws ImpossibleModificationException {
+    public String xml() throws ImpossibleModificationException {
         final Transformer transformer;
         try {
             transformer = TransformerFactory.newInstance().newTransformer();
@@ -178,7 +173,7 @@ public final class Xembler {
         final StringWriter writer = new StringWriter();
         try {
             transformer.transform(
-                new DOMSource(this.dom(name)),
+                new DOMSource(this.dom()),
                 new StreamResult(writer)
             );
         } catch (TransformerException ex) {

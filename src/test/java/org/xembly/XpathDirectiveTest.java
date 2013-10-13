@@ -55,12 +55,11 @@ public final class XpathDirectiveTest {
     public void findsNodesWithXpathExpression() throws Exception {
         final Collection<Directive> dirs = new Directives(
             // @checkstyle StringLiteralsConcatenation (2 lines)
-            "ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';"
+            "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';"
             + "XPATH '//*[@bar=1]'; ADD 'test';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("root"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

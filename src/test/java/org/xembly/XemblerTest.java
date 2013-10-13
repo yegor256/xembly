@@ -35,7 +35,6 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  * Test case for {@link Xembler}.
@@ -52,12 +51,11 @@ public final class XemblerTest {
     public void makesChangesToDomDocument() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        final Element root = dom.createElement("root");
-        dom.appendChild(root);
         new Xembler(
             new Directives(
-                // @checkstyle StringLiteralsConcatenation (4 lines)
-                "STRICT '1'; ADD 'order'; ATTR 'tag', 'hello, world!';"
+                // @checkstyle StringLiteralsConcatenation (5 lines)
+                "ADD 'root'; STRICT '1'; ADD 'order';"
+                + "ATTR 'tag', 'hello, world!';"
                 + "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;"
                 + "XPATH '//order[price=&apos;$29.99&apos;]/price';"
                 + "SET '$39.99';"
@@ -80,9 +78,8 @@ public final class XemblerTest {
     public void makesChangesToDomDocumentFromBuilder() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        final Element root = dom.createElement("top");
-        dom.appendChild(root);
         final Directives builder = new Directives()
+            .add("top")
             .add("employees")
             .add("paper")
             .up()
@@ -116,8 +113,8 @@ public final class XemblerTest {
         MatcherAssert.assertThat(
             new Xembler(
                 new Directives().add("hey-you").add("hoy").set("\u20ac")
-            ).xml("bbb"),
-            XhtmlMatchers.hasXPath("/bbb/hey-you/hoy[.='\u20ac']")
+            ).xml(),
+            XhtmlMatchers.hasXPath("/hey-you/hoy[.='\u20ac']")
         );
     }
 
@@ -128,7 +125,7 @@ public final class XemblerTest {
     @Test
     public void rendersXmlDeclaration() throws Exception {
         MatcherAssert.assertThat(
-            new Xembler(new Directives()).xml("f"),
+            new Xembler(new Directives("ADD 'f';")).xml(),
             Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?><f/>")
         );
     }

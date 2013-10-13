@@ -97,7 +97,7 @@ public final class DirectivesTest {
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("root"));
         new Xembler(
-            new Directives().add(
+            new Directives().xpath("/root").add(
                 new ArrayMap<String, Object>()
                     .with("first", 1)
                     .with("second", "two")

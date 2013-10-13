@@ -50,11 +50,10 @@ public final class UpDirectiveTest {
     @Test
     public void jumpsToParentsWhenTheyExist() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
+            "ADD 'root'; ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("root"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

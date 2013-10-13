@@ -30,7 +30,7 @@ Will transform `<root/>` into:
 
 Xembly program (similar to Assembly program) consists of "directives". Each
 directive may have a few or zero arguments. Every directive is executed at
-current node(s). Program starts at the root node of the document.
+current node(s). Program starts at the `Document` as the only current node.
 
 Arguments may be wrapped into single or double quotes.
 

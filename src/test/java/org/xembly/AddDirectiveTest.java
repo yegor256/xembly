@@ -50,11 +50,10 @@ public final class AddDirectiveTest {
     @Test
     public void addsNodesToCurrentNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "ADD 'foo'; UP; ADD 'bar'; UP; ADD 'bar';"
+            "ADD 'root'; ADD 'foo'; UP; ADD 'bar'; UP; ADD 'bar';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("root"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

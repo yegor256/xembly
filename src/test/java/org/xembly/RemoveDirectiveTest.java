@@ -53,11 +53,12 @@ public final class RemoveDirectiveTest {
     @Test
     public void removesCurrentNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "ADD 'foo'; ADD 'bar'; ADD 'boom'; XPATH '/*/foo//*'; REMOVE;"
+            // @checkstyle StringLiteralsConcatenation (2 lines)
+            "ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';"
+            + "XPATH '/*/foo//*'; REMOVE;"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("root"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

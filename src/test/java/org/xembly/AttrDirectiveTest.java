@@ -53,11 +53,12 @@ public final class AttrDirectiveTest {
     @Test
     public void addsAttributesToCurrentNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "ADD 'foo'; UP; ADD 'foo'; XPATH '//*'; ATTR 'bar', 'test';"
+            // @checkstyle StringLiteralsConcatenation (2 lines)
+            "ADD 'root'; ADD 'foo'; UP; ADD 'foo';"
+            + "XPATH '//*'; ATTR 'bar', 'test';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("root"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

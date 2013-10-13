@@ -54,12 +54,11 @@ public final class SetDirectiveTest {
     public void setsTextContentOfNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
             // @checkstyle StringLiteralsConcatenation (2 lines)
-            "ADD 'foo'; SET '&quot;Bonnie &amp; Clyde&quot;';"
+            "ADD 'root'; ADD 'foo'; SET '&quot;Bonnie &amp; Clyde&quot;';"
             + "UP; ADD 'cops'; SET 'everywhere';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("root"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

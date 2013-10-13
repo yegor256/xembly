@@ -90,7 +90,7 @@ final class PiDirective implements Directive {
             this.target.raw(), this.data.raw()
         );
         if (nodes.isEmpty()) {
-            dom.appendChild(instr);
+            dom.insertBefore(instr, dom.getDocumentElement());
         } else {
             for (Node node : nodes) {
                 node.appendChild(instr);
