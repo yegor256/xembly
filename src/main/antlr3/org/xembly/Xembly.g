@@ -56,13 +56,10 @@ grammar Xembly;
 directives returns [Collection<Directive> ret]
     @init { $ret = new LinkedList<Directive>(); }
     :
-    first=directive
-    SEMICOLON
-    { $ret.add($first.ret); }
     (
-        next=directive
+        directive
         SEMICOLON
-        { $ret.add($next.ret); }
+        { $ret.add($directive.ret); }
     )*
     EOF
     ;
