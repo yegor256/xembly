@@ -38,6 +38,7 @@ import java.util.Collection;
 import javax.validation.constraints.NotNull;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -170,6 +171,7 @@ public final class Xembler {
         } catch (TransformerConfigurationException ex) {
             throw new IllegalStateException(ex);
         }
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         final StringWriter writer = new StringWriter();
         try {
             transformer.transform(
