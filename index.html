@@ -48,7 +48,7 @@
                                                     </ul>
                                     </li>
                                                                                         <li>
-                                                                    <a href="apidocs-0.9.1/index.html" title="JavaDoc 0.9.1">JavaDoc 0.9.1</a>
+                                                                    <a href="apidocs-0.10/index.html" title="JavaDoc 0.10">JavaDoc 0.10</a>
                                                                                                                         <ul>
                                                     </ul>
                                     </li>
@@ -59,6 +59,16 @@
                                     </li>
                                                                                         <li>
                                                                     <a href="changes-report.html" title="Release History">Release History</a>
+                                                                                                                        <ul>
+                                                    </ul>
+                                    </li>
+                                                                </ul>
+                                    </li>
+                            <li>
+                    Examples
+                                            <ul>
+                                                                            <li>
+                                                                    <a href="example-collection.html" title="XML Collection">XML Collection</a>
                                                                                                                         <ul>
                                                     </ul>
                                     </li>
@@ -92,14 +102,16 @@
                         <p>
                 
                 13-Oct-2013
-                0.9.1
+                0.10
             </p>
             <article>
                 <h1>Assembly for XML</h1>
-<p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to XSLT and XQuery. For example:</p>
+<p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to <a class="externalLink" href="http://www.w3.org/TR/xslt">XSLT</a> and <a class="externalLink" href="http://www.w3.org/TR/xquery">XQuery</a>.</p>
+<p>For example:</p>
 
 <div class="source">
-<pre>ADDIF 'orders';
+<pre>XPATH '/root';
+ADDIF 'orders';
 ADD 'order';
 ATTR 'id', '55';
 ADD 'amount';
@@ -120,7 +132,7 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
   &lt;/orders&gt;
 &lt;/root&gt;
 </pre></div>
-<p>Xembly program (similar to Assembly program) consists of &#x201c;directives&#x201d;. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the root node of the document.</p>
+<p>Xembly program (similar to Assembly program) consists of &#x201c;directives&#x201d;. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the <tt>Document</tt> as the only current node.</p>
 <p>Arguments may be wrapped into single or double quotes.</p>
 <div class="section">
 <h2>Directives<a name="Directives"></a></h2>
