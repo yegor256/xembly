@@ -21,7 +21,7 @@ SET "$140.00";
 ```
 
 It is much simpler and compact than
-[XSLT](http://www.w3.org/TR/xslt) or [XQuery](http://www.w3.org/TR/xquery/).
+[XSLT](http://www.w3.org/TR/xslt) or [XQuery](http://www.w3.org/TR/xquery).
 
 This Java package implements Xembly:
 

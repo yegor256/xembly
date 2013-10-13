@@ -2,7 +2,9 @@
 
 Xembly is an imperative language for data manipulations in
 an XML document. It is a much simplier alternative to
-XSLT and XQuery. For example:
+[XSLT](http://www.w3.org/TR/xslt) and [XQuery](http://www.w3.org/TR/xquery).
+
+For example:
 
 ```
 ADDIF 'orders';
