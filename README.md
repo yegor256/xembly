@@ -28,9 +28,8 @@ This Java package implements Xembly:
 ```java
 Document document = DocumentBuilderFactory.newInstance()
   .newDocumentBuilder().newDocument();
-dom.appendChild(dom.createElement("orders"));
 Iterable<Directive> dirs = new Directives(
-  "ADD 'order'; ATTR 'id', '553'; SET '$140.00';"
+  "ADD 'orders'; ADD 'order'; ATTR 'id', '553'; SET '$140.00';"
 );
 new Xembler(dirs).apply(document);
 ```
@@ -40,11 +39,11 @@ Since version 0.9 you can directly transform directives to XML:
 ```java
 String xml = new Xembler(
   new Directives()
-    .xpath("/root")
+    .add("root")
     .add("order")
     .attr("id", "553")
     .set("$140.00")
-).xml("root");
+).xml();
 ```
 
 ## Download and Maven Dependency
