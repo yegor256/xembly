@@ -7,6 +7,7 @@ an XML document. It is a much simplier alternative to
 For example:
 
 ```
+XPATH '/root';
 ADDIF 'orders';
 ADD 'order';
 ATTR 'id', '55';
