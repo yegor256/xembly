@@ -126,7 +126,7 @@ public final class XemblerTest {
     public void rendersXmlDeclaration() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(new Directives("ADD 'f';")).xml(),
-            Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?><f/>")
+            Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<f/>")
         );
     }
 
