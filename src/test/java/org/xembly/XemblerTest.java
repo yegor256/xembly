@@ -32,6 +32,7 @@ package org.xembly;
 import com.rexsl.test.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -117,6 +118,18 @@ public final class XemblerTest {
                 new Directives().add("hey-you").add("hoy").set("\u20ac")
             ).xml("bbb"),
             XhtmlMatchers.hasXPath("/bbb/hey-you/hoy[.='\u20ac']")
+        );
+    }
+
+    /**
+     * Xembler can show XML declaration line.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void rendersXmlDeclaration() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(new Directives()).xml("f"),
+            Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?><f/>")
         );
     }
 
