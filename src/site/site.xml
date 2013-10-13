@@ -55,6 +55,9 @@
             <item name="Test Coverage" href="./cobertura/index.html"/>
             <item name="Release History" href="./changes-report.html"/>
         </menu>
+        <menu name="Examples">
+            <item name="XML Collection" href="./example-collection.html"/>
+        </menu>
         <menu ref="modules"/>
         <menu ref="reports"/>
     </body>
