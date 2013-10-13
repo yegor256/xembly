@@ -113,4 +113,16 @@ public final class DirectivesTest {
         );
     }
 
+    /**
+     * Directives can ignore empty input.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void ingoresEmptyInput() throws Exception {
+        MatcherAssert.assertThat(
+            new Directives("\n\t   \r"),
+            Matchers.empty()
+        );
+    }
+
 }
