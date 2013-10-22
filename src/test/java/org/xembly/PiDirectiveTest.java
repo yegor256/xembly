@@ -33,6 +33,7 @@ import com.rexsl.test.XhtmlMatchers;
 import java.util.Collection;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -55,9 +56,12 @@ public final class PiDirectiveTest {
     @Test
     public void addsProcessingInstructionsToDom() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            // @checkstyle StringLiteralsConcatenation (2 lines)
-            "XPATH '/root'; PI 'ab' 'boom \u20ac';"
-            + "ADD 'test'; PI 'foo' 'some data \u20ac';"
+            StringUtils.join(
+                new String[] {
+                    "XPATH '/root'; PI 'ab' 'boom \u20ac';",
+                    "ADD 'test'; PI 'foo' 'some data \u20ac';",
+                }
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();

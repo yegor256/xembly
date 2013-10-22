@@ -33,6 +33,7 @@ import com.rexsl.test.XhtmlMatchers;
 import java.util.Collection;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -53,9 +54,12 @@ public final class AttrDirectiveTest {
     @Test
     public void addsAttributesToCurrentNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            // @checkstyle StringLiteralsConcatenation (2 lines)
-            "ADD 'root'; ADD 'foo'; UP; ADD 'foo';"
-            + "XPATH '//*'; ATTR 'bar', 'test';"
+            StringUtils.join(
+                new String[]{
+                    "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
+                    "XPATH '//*'; ATTR 'bar', 'test';",
+                }
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();

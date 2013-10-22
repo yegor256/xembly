@@ -32,6 +32,7 @@ package org.xembly;
 import com.rexsl.test.XhtmlMatchers;
 import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -50,9 +51,12 @@ public final class StrictDirectiveTest {
     @Test
     public void checksNumberOfCurrentNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            // @checkstyle StringLiteralsConcatenation (2 lines)
-            "ADD 'root'; ADD 'foo'; ADD 'bar';"
-            + "ADD 'boom'; XPATH '//*'; STRICT '4';"
+            StringUtils.join(
+                new String[]{
+                    "ADD 'root'; ADD 'foo'; ADD 'bar';",
+                    "ADD 'boom'; XPATH '//*'; STRICT '4';",
+                }
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();

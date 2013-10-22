@@ -31,6 +31,7 @@ package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -53,12 +54,15 @@ public final class XemblerTest {
             .newDocumentBuilder().newDocument();
         new Xembler(
             new Directives(
-                // @checkstyle StringLiteralsConcatenation (5 lines)
-                "ADD 'root'; STRICT '1'; ADD 'order';"
-                + "ATTR 'tag', 'hello, world!';"
-                + "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;"
-                + "XPATH '//order[price=&apos;$29.99&apos;]/price';"
-                + "SET '$39.99';"
+                StringUtils.join(
+                    new String[] {
+                        "ADD 'root'; STRICT '1'; ADD 'order';",
+                        "ATTR 'tag', 'hello, world!';",
+                        "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;",
+                        "XPATH '//order[price=&apos;$29.99&apos;]/price';",
+                        "SET '$39.99';",
+                    }
+                )
             )
         ).apply(dom);
         MatcherAssert.assertThat(

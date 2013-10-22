@@ -33,6 +33,7 @@ import com.rexsl.test.XhtmlMatchers;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -53,9 +54,13 @@ public final class SetDirectiveTest {
     @Test
     public void setsTextContentOfNodes() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            // @checkstyle StringLiteralsConcatenation (2 lines)
-            "ADD 'root'; ADD 'foo'; SET '&quot;Bonnie &amp; Clyde&quot;';"
-            + "UP; ADD 'cops'; SET 'everywhere';"
+            StringUtils.join(
+                new String[] {
+                    "ADD 'root'; ADD 'foo';",
+                    "SET '&quot;Bonnie &amp; Clyde&quot;';",
+                    "UP; ADD 'cops'; SET 'everywhere';",
+                }
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();

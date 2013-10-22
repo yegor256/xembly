@@ -33,6 +33,7 @@ import com.rexsl.test.XhtmlMatchers;
 import java.util.Collection;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -54,9 +55,12 @@ public final class XpathDirectiveTest {
     @Test
     public void findsNodesWithXpathExpression() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            // @checkstyle StringLiteralsConcatenation (2 lines)
-            "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';"
-            + "XPATH '//*[@bar=1]'; ADD 'test';"
+            StringUtils.join(
+                new String[] {
+                    "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';",
+                    "XPATH '//*[@bar=1]'; ADD 'test';",
+                }
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -105,7 +109,8 @@ public final class XpathDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         MatcherAssert.assertThat(
-            new XpathDirective("/*").exec(dom,
+            new XpathDirective("/*").exec(
+                dom,
                 Collections.<Node>singletonList(first)
             ),
             Matchers.hasItem(root)
