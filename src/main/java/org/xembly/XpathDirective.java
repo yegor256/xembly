@@ -31,8 +31,8 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -65,7 +65,7 @@ final class XpathDirective implements Directive {
      * @param path XPath
      * @throws XmlContentException If invalid input
      */
-    protected XpathDirective(final String path) throws XmlContentException {
+    XpathDirective(final String path) throws XmlContentException {
         this.expr = new Arg(path);
     }
 
@@ -80,10 +80,10 @@ final class XpathDirective implements Directive {
         ignore = ImpossibleModificationException.class
     )
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) throws ImpossibleModificationException {
+        final Collection<Node> current) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
-        final Collection<Node> dests = new HashSet<Node>(0);
-        for (Node node : this.roots(dom, nodes)) {
+        final Collection<Node> targets = new HashSet<Node>(0);
+        for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
             try {
                 list = NodeList.class.cast(
@@ -98,11 +98,12 @@ final class XpathDirective implements Directive {
                     String.format("invalid XPath expr '%s'", this.expr), ex
                 );
             }
-            for (int idx = 0; idx < list.getLength(); ++idx) {
-                dests.add(list.item(idx));
+            final int len = list.getLength();
+            for (int idx = 0; idx < len; ++idx) {
+                targets.add(list.item(idx));
             }
         }
-        return dests;
+        return targets;
     }
 
     /**
@@ -111,11 +112,11 @@ final class XpathDirective implements Directive {
      * @param nodes Current nodes
      * @return Root nodes to start searching from
      */
-    private Collection<Node> roots(final Document dom,
+    private static Iterable<Node> roots(final Document dom,
         final Collection<Node> nodes) {
         final Collection<Node> roots;
         if (nodes.isEmpty()) {
-            roots = Arrays.<Node>asList(dom.getDocumentElement());
+            roots = Collections.<Node>singletonList(dom.getDocumentElement());
         } else {
             roots = nodes;
         }

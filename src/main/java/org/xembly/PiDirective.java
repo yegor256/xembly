@@ -66,7 +66,7 @@ final class PiDirective implements Directive {
      * @param dat Data
      * @throws XmlContentException If invalid input
      */
-    protected PiDirective(final String tgt, final String dat)
+    PiDirective(final String tgt, final String dat)
         throws XmlContentException {
         this.target = new Arg(tgt.toLowerCase(Locale.ENGLISH));
         this.data = new Arg(dat);
@@ -79,18 +79,18 @@ final class PiDirective implements Directive {
 
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
+        final Collection<Node> current) {
         final Node instr = dom.createProcessingInstruction(
             this.target.raw(), this.data.raw()
         );
-        if (nodes.isEmpty()) {
+        if (current.isEmpty()) {
             dom.insertBefore(instr, dom.getDocumentElement());
         } else {
-            for (Node node : nodes) {
+            for (final Node node : current) {
                 node.appendChild(instr);
             }
         }
-        return Collections.unmodifiableCollection(nodes);
+        return Collections.unmodifiableCollection(current);
     }
 
 }

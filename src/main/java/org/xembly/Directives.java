@@ -44,6 +44,7 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
+import org.apache.commons.lang3.CharUtils;
 
 /**
  * Collection of {@link Directive}s, instantiable from {@link String}.
@@ -108,10 +109,10 @@ public final class Directives extends AbstractCollection<Directive> {
     /**
      * Public ctor.
      * @param text Xembly script
-     * @throws XemblySyntaxException If syntax is broken
+     * @throws SyntaxException If syntax is broken
      */
     public Directives(@NotNull(message = "xembly script can't be NULL")
-        final String text) throws XemblySyntaxException {
+        final String text) throws SyntaxException {
         this(Directives.parse(text));
     }
 
@@ -127,14 +128,14 @@ public final class Directives extends AbstractCollection<Directive> {
 
     @Override
     public String toString() {
-        final StringBuilder text = new StringBuilder();
+        final StringBuilder text = new StringBuilder(0);
         int width = 0;
-        for (Directive dir : this.all) {
+        for (final Directive dir : this.all) {
             final String txt = dir.toString();
             text.append(txt).append(';');
             width += txt.length();
             if (width > Directives.MARGIN) {
-                text.append('\n');
+                text.append(CharUtils.LF);
                 width = 0;
             }
         }
@@ -207,7 +208,7 @@ public final class Directives extends AbstractCollection<Directive> {
     public <K, V> Directives add(
         @NotNull(message = "map can't be NULL") final Map<K, V> nodes) {
         try {
-            for (Map.Entry<K, V> entry : nodes.entrySet()) {
+            for (final Map.Entry<K, V> entry : nodes.entrySet()) {
                 this.all.addAll(
                     Arrays.asList(
                         new AddDirective(entry.getKey().toString()),
@@ -362,10 +363,10 @@ public final class Directives extends AbstractCollection<Directive> {
      * Parse script.
      * @param script Script to parse
      * @return Collection of directives
-     * @throws XemblySyntaxException If can't parse
+     * @throws SyntaxException If can't parse
      */
     private static Collection<Directive> parse(final String script)
-        throws XemblySyntaxException {
+        throws SyntaxException {
         final CharStream input = new ANTLRStringStream(script);
         final XemblyLexer lexer = new XemblyLexer(input);
         final TokenStream tokens = new CommonTokenStream(lexer);
@@ -373,9 +374,9 @@ public final class Directives extends AbstractCollection<Directive> {
         try {
             return parser.directives();
         } catch (RecognitionException ex) {
-            throw new XemblySyntaxException(script, ex);
+            throw new SyntaxException(script, ex);
         } catch (ParsingException ex) {
-            throw new XemblySyntaxException(script, ex);
+            throw new SyntaxException(script, ex);
         }
     }
 

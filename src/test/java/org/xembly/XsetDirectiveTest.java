@@ -30,8 +30,8 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -88,7 +88,7 @@ public final class XsetDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new XsetDirective("sum(/xxx/*/text()) + 5").exec(
-            dom, Arrays.<Node>asList(first)
+            dom, Collections.<Node>singletonList(first)
         );
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

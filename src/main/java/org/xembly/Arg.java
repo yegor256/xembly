@@ -55,20 +55,18 @@ final class Arg {
      * @param val Value of it
      * @throws XmlContentException If fails
      */
-    protected Arg(final String val) throws XmlContentException {
-        for (char chr : val.toCharArray()) {
-            Arg.legal(chr);
+    Arg(final String val) throws XmlContentException {
+        for (final char chr : val.toCharArray()) {
+            Arg.legal((int) chr);
         }
         this.value = val;
     }
 
     @Override
     public String toString() {
-        return new StringBuilder()
-            .append('"')
-            .append(Arg.escape(this.value))
-            .append('"')
-            .toString();
+        final String escaped = Arg.escape(this.value);
+        return new StringBuilder(this.value.length() + 2 + escaped.length())
+            .append('"').append(escaped).append('"').toString();
     }
 
     /**
@@ -95,7 +93,8 @@ final class Arg {
                 "internal error, argument can't be shorter than 2 chars"
             );
         }
-        for (int idx = 1; idx < chars.length - 1; ++idx) {
+        final int len = chars.length - 1;
+        for (int idx = 1; idx < len; ++idx) {
             if (chars[idx] == '&') {
                 final StringBuilder sbuf = new StringBuilder();
                 while (chars[idx] != ';') {
@@ -122,8 +121,8 @@ final class Arg {
      * @return Clean text
      */
     private static String escape(final String text) {
-        final StringBuilder output = new StringBuilder();
-        for (char chr : text.toCharArray()) {
+        final StringBuilder output = new StringBuilder(text.length());
+        for (final char chr : text.toCharArray()) {
             if (chr < ' ') {
                 output.append("&#").append((int) chr).append(';');
             } else if (chr == '"') {
@@ -151,18 +150,18 @@ final class Arg {
      */
     private static char symbol(final String symbol) throws XmlContentException {
         final char chr;
-        if (symbol.charAt(0) == '#') {
+        if ('#' == symbol.charAt(0)) {
             final int num = Integer.parseInt(symbol.substring(1));
             chr = (char) Arg.legal(num);
-        } else if ("apos".equals(symbol)) {
+        } else if ("apos".equalsIgnoreCase(symbol)) {
             chr = '\'';
-        } else if ("quot".equals(symbol)) {
+        } else if ("quot".equalsIgnoreCase(symbol)) {
             chr = '"';
-        } else if ("lt".equals(symbol)) {
+        } else if ("lt".equalsIgnoreCase(symbol)) {
             chr = '<';
-        } else if ("gt".equals(symbol)) {
+        } else if ("gt".equalsIgnoreCase(symbol)) {
             chr = '>';
-        } else if ("amp".equals(symbol)) {
+        } else if ("amp".equalsIgnoreCase(symbol)) {
             chr = '&';
         } else {
             throw new XmlContentException(

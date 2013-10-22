@@ -30,8 +30,8 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -84,7 +84,9 @@ public final class AttrDirectiveTest {
         final Element second = dom.createElement("b");
         root.appendChild(second);
         dom.appendChild(root);
-        new AttrDirective("x", "y").exec(dom, Arrays.<Node>asList(second));
+        new AttrDirective("x", "y").exec(
+            dom, Collections.<Node>singletonList(second)
+        );
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("/xxx/b[@x='y']")

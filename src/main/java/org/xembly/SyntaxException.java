@@ -30,34 +30,25 @@
 package org.xembly;
 
 /**
- * When further modification is impossible.
+ * When syntax is broken.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.3
  */
-public final class ImpossibleModificationException extends Exception {
+public final class SyntaxException extends Exception {
 
     /**
      * Serialization marker.
      */
-    private static final long serialVersionUID = 0x654739998af6efb9L;
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
-    ImpossibleModificationException(final String cause) {
-        super(cause);
-    }
+    private static final long serialVersionUID = 0x6547f9e98af6efb9L;
 
     /**
      * Public ctor.
      * @param cause Cause of it
      * @param thr Original throwable
      */
-    ImpossibleModificationException(final String cause,
-        final Throwable thr) {
+    SyntaxException(final String cause, final Throwable thr) {
         super(cause, thr);
     }
 

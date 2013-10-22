@@ -62,7 +62,7 @@ final class AddIfDirective implements Directive {
      * @param node Name of node to add
      * @throws XmlContentException If invalid input
      */
-    protected AddIfDirective(final String node) throws XmlContentException {
+    AddIfDirective(final String node) throws XmlContentException {
         this.name = new Arg(node.toLowerCase(Locale.ENGLISH));
     }
 
@@ -73,25 +73,27 @@ final class AddIfDirective implements Directive {
 
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
-        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
-        for (Node node : nodes) {
-            final NodeList childs = node.getChildNodes();
-            Node dest = null;
-            for (int idx = 0; idx < childs.getLength(); ++idx) {
-                if (childs.item(idx).getNodeName()
-                    .toLowerCase(Locale.ENGLISH).equals(this.name.raw())) {
-                    dest = childs.item(idx);
+        final Collection<Node> current) {
+        final Collection<Node> targets = new ArrayList<Node>(current.size());
+        final String label = this.name.raw();
+        for (final Node node : current) {
+            final NodeList kids = node.getChildNodes();
+            Node target = null;
+            final int len = kids.getLength();
+            for (int idx = 0; idx < len; ++idx) {
+                if (kids.item(idx).getNodeName()
+                    .compareToIgnoreCase(label) == 0) {
+                    target = kids.item(idx);
                     break;
                 }
             }
-            if (dest == null) {
-                dest = dom.createElement(this.name.raw());
-                node.appendChild(dest);
+            if (target == null) {
+                target = dom.createElement(this.name.raw());
+                node.appendChild(target);
             }
-            dests.add(dest);
+            targets.add(target);
         }
-        return Collections.unmodifiableCollection(dests);
+        return Collections.unmodifiableCollection(targets);
     }
 
 }

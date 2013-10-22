@@ -61,9 +61,9 @@ final class UpDirective implements Directive {
         ignore = ImpossibleModificationException.class
     )
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) throws ImpossibleModificationException {
+        final Collection<Node> current) throws ImpossibleModificationException {
         final Collection<Node> parents = new HashSet<Node>(0);
-        for (Node node : nodes) {
+        for (final Node node : current) {
             final Node parent = node.getParentNode();
             if (parent == null) {
                 throw new ImpossibleModificationException(

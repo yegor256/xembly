@@ -30,8 +30,8 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -77,12 +77,16 @@ public final class XpathDirectiveTest {
     @Test
     public void ignoresEmptySearches() throws Exception {
         final Collection<Directive> dirs = new Directives(
-            "XPATH '/nothing'; XPATH '/top'; STRICT '1';"
+            "XPATH '/nothing'; XPATH '/top'; STRICT '1'; ADD 'hey';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("top"));
         new Xembler(dirs).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/top/hey")
+        );
     }
 
     /**
@@ -101,7 +105,9 @@ public final class XpathDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         MatcherAssert.assertThat(
-            new XpathDirective("/*").exec(dom, Arrays.<Node>asList(first)),
+            new XpathDirective("/*").exec(dom,
+                Collections.<Node>singletonList(first)
+            ),
             Matchers.hasItem(root)
         );
     }

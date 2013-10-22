@@ -73,7 +73,7 @@ public final class SetDirectiveTest {
      * SetDirective can reject invalid content.
      * @throws Exception If some problem inside
      */
-    @Test(expected = XemblySyntaxException.class)
+    @Test(expected = SyntaxException.class)
     public void rejectsContentWithInvalidXmlCharacters() throws Exception {
         new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';");
     }

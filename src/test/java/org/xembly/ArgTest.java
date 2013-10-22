@@ -53,7 +53,7 @@ public final class ArgTest {
             "test \u20ac привет & <>'\"",
             "how are you there,\t\n\rтоварищ? &#0D;",
         };
-        for (String text : texts) {
+        for (final String text : texts) {
             MatcherAssert.assertThat(
                 Arg.unescape(new Arg(text).toString()),
                 Matchers.equalTo(text)

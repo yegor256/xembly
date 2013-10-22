@@ -66,7 +66,7 @@ final class XsetDirective implements Directive {
      * @param val Text value to set
      * @throws XmlContentException If invalid input
      */
-    protected XsetDirective(final String val) throws XmlContentException {
+    XsetDirective(final String val) throws XmlContentException {
         this.expr = new Arg(val);
     }
 
@@ -77,11 +77,11 @@ final class XsetDirective implements Directive {
 
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) throws ImpossibleModificationException {
+        final Collection<Node> current) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
         final ConcurrentMap<Node, String> values =
             new ConcurrentHashMap<Node, String>(0);
-        for (Node node : nodes) {
+        for (final Node node : current) {
             try {
                 values.put(
                     node,
@@ -95,10 +95,10 @@ final class XsetDirective implements Directive {
                 );
             }
         }
-        for (Map.Entry<Node, String> entry : values.entrySet()) {
+        for (final Map.Entry<Node, String> entry : values.entrySet()) {
             entry.getKey().setTextContent(entry.getValue());
         }
-        return Collections.unmodifiableCollection(nodes);
+        return Collections.unmodifiableCollection(current);
     }
 
 }

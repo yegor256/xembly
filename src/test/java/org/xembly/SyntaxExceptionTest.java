@@ -29,36 +29,28 @@
  */
 package org.xembly;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
 /**
- * When syntax is broken.
+ * Test case for {@link SyntaxException}.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.3
+ * @since 1.0
  */
-public final class XemblySyntaxException extends Exception {
+public final class SyntaxExceptionTest {
 
     /**
-     * Serialization marker.
+     * SyntaxException can be instantiated.
      */
-    private static final long serialVersionUID = 0x6547f9e98af6efb9L;
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
-    public XemblySyntaxException(final String cause) {
-        super(cause);
-    }
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     * @param thr Original throwable
-     */
-    public XemblySyntaxException(final String cause,
-        final Throwable thr) {
-        super(cause, thr);
+    @Test
+    public void instantiatesException() {
+        MatcherAssert.assertThat(
+            new SyntaxException("", new IllegalStateException("")),
+            Matchers.notNullValue()
+        );
     }
 
 }

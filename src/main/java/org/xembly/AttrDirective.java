@@ -67,7 +67,7 @@ final class AttrDirective implements Directive {
      * @param val Text value to set
      * @throws XmlContentException If invalid input
      */
-    protected AttrDirective(final String attr, final String val)
+    AttrDirective(final String attr, final String val)
         throws XmlContentException {
         this.name = new Arg(attr.toLowerCase(Locale.ENGLISH));
         this.value = new Arg(val);
@@ -80,13 +80,13 @@ final class AttrDirective implements Directive {
 
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
-        for (Node node : nodes) {
-            Element.class.cast(node).setAttribute(
-                this.name.raw(), this.value.raw()
-            );
+        final Collection<Node> current) {
+        final String key = this.name.raw();
+        final String val = this.value.raw();
+        for (final Node node : current) {
+            Element.class.cast(node).setAttribute(key, val);
         }
-        return Collections.unmodifiableCollection(nodes);
+        return Collections.unmodifiableCollection(current);
     }
 
 }

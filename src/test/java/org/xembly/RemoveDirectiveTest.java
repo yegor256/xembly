@@ -30,8 +30,8 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -84,7 +84,7 @@ public final class RemoveDirectiveTest {
         final Element second = dom.createElement("b");
         root.appendChild(second);
         dom.appendChild(root);
-        new RemoveDirective().exec(dom, Arrays.<Node>asList(first));
+        new RemoveDirective().exec(dom, Collections.<Node>singletonList(first));
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("/xxx[b and not(a)]")

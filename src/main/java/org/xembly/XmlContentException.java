@@ -47,7 +47,7 @@ final class XmlContentException extends Exception {
      * Public ctor.
      * @param cause Cause of it
      */
-    protected XmlContentException(final String cause) {
+    XmlContentException(final String cause) {
         super(cause);
     }
 
@@ -56,7 +56,7 @@ final class XmlContentException extends Exception {
      * @param cause Cause of it
      * @param thr Original throwable
      */
-    protected XmlContentException(final String cause, final Throwable thr) {
+    XmlContentException(final String cause, final Throwable thr) {
         super(cause, thr);
     }
 

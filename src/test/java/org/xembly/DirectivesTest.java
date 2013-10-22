@@ -63,7 +63,7 @@ public final class DirectivesTest {
      * Directives can throw when grammar is broken.
      * @throws Exception If some problem inside
      */
-    @Test(expected = XemblySyntaxException.class)
+    @Test(expected = SyntaxException.class)
     public void throwsOnBrokenGrammar() throws Exception {
         new Directives("not a xembly at all");
     }
@@ -72,7 +72,7 @@ public final class DirectivesTest {
      * Directives can throw when XML content is broken.
      * @throws Exception If some problem inside
      */
-    @Test(expected = XemblySyntaxException.class)
+    @Test(expected = SyntaxException.class)
     public void throwsOnBrokenXmlContent() throws Exception {
         new Directives("ADD '\u001b';");
     }
@@ -81,7 +81,7 @@ public final class DirectivesTest {
      * Directives can throw when escaped XML content is broken.
      * @throws Exception If some problem inside
      */
-    @Test(expected = XemblySyntaxException.class)
+    @Test(expected = SyntaxException.class)
     public void throwsOnBrokenEscapedXmlContent() throws Exception {
         new Directives("ADD '&#27;';");
     }
@@ -89,7 +89,7 @@ public final class DirectivesTest {
     /**
      * Directives can add map of values.
      * @throws Exception If some problem inside
-     * @param 0.8
+     * @since 0.8
      */
     @Test
     public void addsMapOfValues() throws Exception {

@@ -62,7 +62,7 @@ final class AddDirective implements Directive {
      * @param node Name of node to add
      * @throws XmlContentException If invalid input
      */
-    protected AddDirective(final String node) throws XmlContentException {
+    AddDirective(final String node) throws XmlContentException {
         this.name = new Arg(node.toLowerCase(Locale.ENGLISH));
     }
 
@@ -73,14 +73,15 @@ final class AddDirective implements Directive {
 
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
-        final Collection<Node> dests = new ArrayList<Node>(nodes.size());
-        for (Node node : nodes) {
-            final Element element = dom.createElement(this.name.raw());
+        final Collection<Node> current) {
+        final Collection<Node> targets = new ArrayList<Node>(current.size());
+        final String label = this.name.raw();
+        for (final Node node : current) {
+            final Element element = dom.createElement(label);
             node.appendChild(element);
-            dests.add(element);
+            targets.add(element);
         }
-        return Collections.unmodifiableCollection(dests);
+        return Collections.unmodifiableCollection(targets);
     }
 
 }

@@ -57,9 +57,9 @@ final class RemoveDirective implements Directive {
 
     @Override
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) {
+        final Collection<Node> current) {
         final Collection<Node> parents = new HashSet<Node>(0);
-        for (Node node : nodes) {
+        for (final Node node : current) {
             final Node parent = node.getParentNode();
             parents.add(parent);
             parent.removeChild(node);

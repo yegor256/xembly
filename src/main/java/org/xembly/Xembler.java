@@ -33,8 +33,8 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.immutable.Array;
 import java.io.StringWriter;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import javax.validation.constraints.NotNull;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -112,9 +112,9 @@ public final class Xembler {
     )
     public void apply(@NotNull(message = "DOM can't be NULL")
         final Document dom) throws ImpossibleModificationException {
-        Collection<Node> ptr = Arrays.<Node>asList(dom);
+        Collection<Node> ptr = Collections.<Node>singletonList(dom);
         int pos = 1;
-        for (Directive dir : this.directives) {
+        for (final Directive dir : this.directives) {
             try {
                 ptr = dir.exec(dom, ptr);
             } catch (ImpossibleModificationException ex) {

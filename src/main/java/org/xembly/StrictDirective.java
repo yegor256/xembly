@@ -58,7 +58,7 @@ final class StrictDirective implements Directive {
      * Public ctor.
      * @param nodes Number of node expected
      */
-    protected StrictDirective(final int nodes) {
+    StrictDirective(final int nodes) {
         this.number = nodes;
     }
 
@@ -73,31 +73,31 @@ final class StrictDirective implements Directive {
         ignore = ImpossibleModificationException.class
     )
     public Collection<Node> exec(final Document dom,
-        final Collection<Node> nodes) throws ImpossibleModificationException {
-        if (nodes.size() != this.number) {
-            if (nodes.isEmpty()) {
+        final Collection<Node> current) throws ImpossibleModificationException {
+        if (current.size() != this.number) {
+            if (current.isEmpty()) {
                 throw new ImpossibleModificationException(
                     String.format(
                         "no current nodes while %d expected", this.number
                     )
                 );
             }
-            if (nodes.size() == 1) {
+            if (current.size() == 1) {
                 throw new ImpossibleModificationException(
                     String.format(
                         "one current node '%s' while strictly %d expected",
-                        nodes.iterator().next().getNodeName(), this.number
+                        current.iterator().next().getNodeName(), this.number
                     )
                 );
             }
             throw new ImpossibleModificationException(
                 String.format(
                     "%d current nodes [%s] while strictly %d expected",
-                    nodes.size(), this.names(nodes), this.number
+                    current.size(), this.names(current), this.number
                 )
             );
         }
-        return Collections.unmodifiableCollection(nodes);
+        return Collections.unmodifiableCollection(current);
     }
 
     /**
@@ -105,9 +105,9 @@ final class StrictDirective implements Directive {
      * @param nodes Collection of nodes
      * @return Text presentation of them
      */
-    private String names(final Collection<Node> nodes) {
-        final StringBuilder text = new StringBuilder();
-        for (Node node : nodes) {
+    private String names(final Iterable<Node> nodes) {
+        final StringBuilder text = new StringBuilder(0);
+        for (final Node node : nodes) {
             if (text.length() > 0) {
                 text.append(", ");
             }

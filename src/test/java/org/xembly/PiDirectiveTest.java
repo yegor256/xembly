@@ -30,8 +30,8 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -82,7 +82,7 @@ public final class PiDirectiveTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");
         dom.appendChild(root);
-        new PiDirective("x", "y").exec(dom, Arrays.<Node>asList());
+        new PiDirective("x", "y").exec(dom, Collections.<Node>emptyList());
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("/processing-instruction('x')")
