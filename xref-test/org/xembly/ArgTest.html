@@ -63,7 +63,7 @@
 <a class="jxr_linenumber" name="53" href="#53">53</a>              <span class="jxr_string">"test \u20ac привет &amp; &lt;&gt;'\&quot;"</span>,
 <a class="jxr_linenumber" name="54" href="#54">54</a>              <span class="jxr_string">"how are you there,\t\n\rтоварищ? &amp;#0D;"</span>,
 <a class="jxr_linenumber" name="55" href="#55">55</a>          };
-<a class="jxr_linenumber" name="56" href="#56">56</a>          <strong class="jxr_keyword">for</strong> (String text : texts) {
+<a class="jxr_linenumber" name="56" href="#56">56</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String text : texts) {
 <a class="jxr_linenumber" name="57" href="#57">57</a>              MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="58" href="#58">58</a>                  Arg.unescape(<strong class="jxr_keyword">new</strong> Arg(text).toString()),
 <a class="jxr_linenumber" name="59" href="#59">59</a>                  Matchers.equalTo(text)

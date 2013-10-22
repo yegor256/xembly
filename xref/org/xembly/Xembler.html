@@ -43,8 +43,8 @@
 <a class="jxr_linenumber" name="33" href="#33">33</a>  <strong class="jxr_keyword">import</strong> com.jcabi.aspects.Loggable;
 <a class="jxr_linenumber" name="34" href="#34">34</a>  <strong class="jxr_keyword">import</strong> com.jcabi.immutable.Array;
 <a class="jxr_linenumber" name="35" href="#35">35</a>  <strong class="jxr_keyword">import</strong> java.io.StringWriter;
-<a class="jxr_linenumber" name="36" href="#36">36</a>  <strong class="jxr_keyword">import</strong> java.util.Arrays;
-<a class="jxr_linenumber" name="37" href="#37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
+<a class="jxr_linenumber" name="36" href="#36">36</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
+<a class="jxr_linenumber" name="37" href="#37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Collections;
 <a class="jxr_linenumber" name="38" href="#38">38</a>  <strong class="jxr_keyword">import</strong> javax.validation.constraints.NotNull;
 <a class="jxr_linenumber" name="39" href="#39">39</a>  <strong class="jxr_keyword">import</strong> javax.xml.parsers.DocumentBuilderFactory;
 <a class="jxr_linenumber" name="40" href="#40">40</a>  <strong class="jxr_keyword">import</strong> javax.xml.parsers.ParserConfigurationException;
@@ -122,9 +122,9 @@
 <a class="jxr_linenumber" name="112" href="#112">112</a>     )
 <a class="jxr_linenumber" name="113" href="#113">113</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> apply(@NotNull(message = <span class="jxr_string">"DOM can't be NULL"</span>)
 <a class="jxr_linenumber" name="114" href="#114">114</a>         <strong class="jxr_keyword">final</strong> Document dom) <strong class="jxr_keyword">throws</strong> ImpossibleModificationException {
-<a class="jxr_linenumber" name="115" href="#115">115</a>         Collection&lt;Node&gt; ptr = Arrays.&lt;Node&gt;asList(dom);
+<a class="jxr_linenumber" name="115" href="#115">115</a>         Collection&lt;Node&gt; ptr = Collections.&lt;Node&gt;singletonList(dom);
 <a class="jxr_linenumber" name="116" href="#116">116</a>         <strong class="jxr_keyword">int</strong> pos = 1;
-<a class="jxr_linenumber" name="117" href="#117">117</a>         <strong class="jxr_keyword">for</strong> (Directive dir : <strong class="jxr_keyword">this</strong>.directives) {
+<a class="jxr_linenumber" name="117" href="#117">117</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Directive dir : <strong class="jxr_keyword">this</strong>.directives) {
 <a class="jxr_linenumber" name="118" href="#118">118</a>             <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="119" href="#119">119</a>                 ptr = dir.exec(dom, ptr);
 <a class="jxr_linenumber" name="120" href="#120">120</a>             } <strong class="jxr_keyword">catch</strong> (ImpossibleModificationException ex) {
