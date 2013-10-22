@@ -125,9 +125,6 @@ public final class Directives extends AbstractCollection<Directive> {
         this.all.addAll(dirs);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         final StringBuilder text = new StringBuilder();
@@ -144,17 +141,11 @@ public final class Directives extends AbstractCollection<Directive> {
         return text.toString().trim();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Iterator<Directive> iterator() {
         return this.all.iterator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int size() {
         return this.all.size();

@@ -50,17 +50,11 @@ import org.w3c.dom.Node;
 @Loggable(Loggable.DEBUG)
 final class UpDirective implements Directive {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return "UP";
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @Loggable(
         value = Loggable.DEBUG,

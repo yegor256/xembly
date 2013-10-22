@@ -73,17 +73,11 @@ final class AttrDirective implements Directive {
         this.value = new Arg(val);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("ATTR %s, %s", this.name, this.value);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {

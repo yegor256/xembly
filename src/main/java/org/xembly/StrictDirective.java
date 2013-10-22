@@ -62,17 +62,11 @@ final class StrictDirective implements Directive {
         this.number = nodes;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("STRICT \"%d\"", this.number);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @Loggable(
         value = Loggable.DEBUG,

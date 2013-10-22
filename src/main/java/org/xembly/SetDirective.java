@@ -63,17 +63,11 @@ final class SetDirective implements Directive {
         this.value = new Arg(val);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("SET %s", this.value);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {

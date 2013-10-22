@@ -66,17 +66,11 @@ final class AddIfDirective implements Directive {
         this.name = new Arg(node.toLowerCase(Locale.ENGLISH));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("ADDIF %s", this.name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {

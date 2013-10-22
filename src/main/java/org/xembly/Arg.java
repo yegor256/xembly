@@ -62,9 +62,6 @@ final class Arg {
         this.value = val;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return new StringBuilder()

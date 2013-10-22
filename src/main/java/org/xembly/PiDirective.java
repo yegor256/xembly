@@ -72,17 +72,11 @@ final class PiDirective implements Directive {
         this.data = new Arg(dat);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("PI %s, %s", this.target, this.data);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {

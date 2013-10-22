@@ -69,17 +69,11 @@ final class XpathDirective implements Directive {
         this.expr = new Arg(path);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("XPATH %s", this.expr);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @Loggable(
         value = Loggable.DEBUG,

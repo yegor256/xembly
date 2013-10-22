@@ -50,17 +50,11 @@ import org.w3c.dom.Node;
 @Loggable(Loggable.DEBUG)
 final class RemoveDirective implements Directive {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return "REMOVE";
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) {

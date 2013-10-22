@@ -70,17 +70,11 @@ final class XsetDirective implements Directive {
         this.expr = new Arg(val);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return String.format("XSET %s", this.expr);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> nodes) throws ImpossibleModificationException {
