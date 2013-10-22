@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -49,7 +48,6 @@ import org.w3c.dom.NodeList;
  */
 @Immutable
 @EqualsAndHashCode(of = "name")
-@Loggable(Loggable.DEBUG)
 final class AddIfDirective implements Directive {
 
     /**

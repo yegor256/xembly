@@ -53,7 +53,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode(of = "expr")
-@Loggable(Loggable.DEBUG)
 final class XsetDirective implements Directive {
 
     /**

@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Loggable;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,7 +82,6 @@ import org.antlr.runtime.TokenStream;
  * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
 @EqualsAndHashCode(callSuper = false, of = "all")
-@Loggable(Loggable.DEBUG)
 @SuppressWarnings("PMD.TooManyMethods")
 public final class Directives extends AbstractCollection<Directive> {
 

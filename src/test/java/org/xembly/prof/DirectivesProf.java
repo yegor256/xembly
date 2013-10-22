@@ -27,54 +27,37 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.xembly;
+package org.xembly.prof;
 
-import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import lombok.EqualsAndHashCode;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
+import com.jcabi.aspects.Tv;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+import org.xembly.Directives;
 
 /**
- * UP directive.
- *
+ * Prof case for {@link Directives}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
  */
-@Immutable
-@EqualsAndHashCode
-final class UpDirective implements Directive {
+@Loggable(Loggable.INFO)
+public final class DirectivesProf {
 
-    @Override
-    public String toString() {
-        return "UP";
-    }
-
-    @Override
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
-    public Collection<Node> exec(final Document dom,
-        final Collection<Node> current) throws ImpossibleModificationException {
-        final Collection<Node> parents = new HashSet<Node>(0);
-        for (final Node node : current) {
-            final Node parent = node.getParentNode();
-            if (parent == null) {
-                throw new ImpossibleModificationException(
-                    String.format(
-                        "there is no parent node of '%s' (%s), can't go UP",
-                        node.getNodeName(), node.getNodeType()
-                    )
-                );
-            }
-            parents.add(parent);
+    /**
+     * Directives can parse long program.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void parsesLongProgram() throws Exception {
+        final StringBuilder program = new StringBuilder("ADD 'root';");
+        for (int idx = 0; idx < Tv.TEN * Tv.THOUSAND; ++idx) {
+            program.append("XPATH '/root'; ADDIF 'node';")
+                .append("SET '").append(idx).append("';")
+                .append("ADD 'x';").append("REMOVE;");
         }
-        return Collections.unmodifiableCollection(parents);
+        final Directives dirs = new Directives(program.toString());
+        MatcherAssert.assertThat(dirs, Matchers.notNullValue());
     }
 
 }

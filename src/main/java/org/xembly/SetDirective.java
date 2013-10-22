@@ -46,7 +46,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode(of = "value")
-@Loggable(Loggable.DEBUG)
 final class SetDirective implements Directive {
 
     /**

@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -42,7 +41,6 @@ import lombok.EqualsAndHashCode;
  */
 @Immutable
 @EqualsAndHashCode(of = "value")
-@Loggable(Loggable.DEBUG)
 final class Arg {
 
     /**

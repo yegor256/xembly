@@ -46,7 +46,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode(of = "number")
-@Loggable(Loggable.DEBUG)
 final class StrictDirective implements Directive {
 
     /**

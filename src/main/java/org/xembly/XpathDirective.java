@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -52,7 +51,6 @@ import org.w3c.dom.NodeList;
  */
 @Immutable
 @EqualsAndHashCode(of = "expr")
-@Loggable(Loggable.DEBUG)
 final class XpathDirective implements Directive {
 
     /**
@@ -75,10 +73,6 @@ final class XpathDirective implements Directive {
     }
 
     @Override
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
     public Collection<Node> exec(final Document dom,
         final Collection<Node> current) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();

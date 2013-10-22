@@ -49,7 +49,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode(of = "name")
-@Loggable(Loggable.DEBUG)
 final class AddDirective implements Directive {
 
     /**

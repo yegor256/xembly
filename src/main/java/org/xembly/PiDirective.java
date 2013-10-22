@@ -47,7 +47,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode(of = { "target", "data" })
-@Loggable(Loggable.DEBUG)
 final class PiDirective implements Directive {
 
     /**

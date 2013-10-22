@@ -47,7 +47,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode
-@Loggable(Loggable.DEBUG)
 final class RemoveDirective implements Directive {
 
     @Override

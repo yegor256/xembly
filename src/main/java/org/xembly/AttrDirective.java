@@ -48,7 +48,6 @@ import org.w3c.dom.Node;
  */
 @Immutable
 @EqualsAndHashCode(of = { "name", "value" })
-@Loggable(Loggable.DEBUG)
 final class AttrDirective implements Directive {
 
     /**
