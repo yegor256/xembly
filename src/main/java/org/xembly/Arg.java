@@ -30,6 +30,7 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
+import com.jcabi.aspects.Tv;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -55,7 +56,7 @@ final class Arg {
      */
     Arg(final String val) throws XmlContentException {
         for (final char chr : val.toCharArray()) {
-            Arg.legal((int) chr);
+            Arg.legal(chr);
         }
         this.value = val;
     }
@@ -84,7 +85,7 @@ final class Arg {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public static String unescape(final String text)
         throws XmlContentException {
-        final StringBuilder output = new StringBuilder();
+        final StringBuilder output = new StringBuilder(text.length());
         final char[] chars = text.toCharArray();
         if (chars.length < 2) {
             throw new IllegalArgumentException(
@@ -94,7 +95,7 @@ final class Arg {
         final int len = chars.length - 1;
         for (int idx = 1; idx < len; ++idx) {
             if (chars[idx] == '&') {
-                final StringBuilder sbuf = new StringBuilder();
+                final StringBuilder sbuf = new StringBuilder(Tv.TEN);
                 while (chars[idx] != ';') {
                     // @checkstyle ModifiedControlVariable (1 line)
                     ++idx;
@@ -150,7 +151,7 @@ final class Arg {
         final char chr;
         if ('#' == symbol.charAt(0)) {
             final int num = Integer.parseInt(symbol.substring(1));
-            chr = (char) Arg.legal(num);
+            chr = Arg.legal((char) num);
         } else if ("apos".equalsIgnoreCase(symbol)) {
             chr = '\'';
         } else if ("quot".equalsIgnoreCase(symbol)) {
@@ -171,35 +172,35 @@ final class Arg {
 
     /**
      * Validate char number and throw exception if it's not legal.
-     * @param number Char number
+     * @param chr Char number
      * @return The same number
      * @throws XmlContentException If illegal
      */
-    private static int legal(final int number) throws XmlContentException {
+    private static char legal(final char chr) throws XmlContentException {
         // @checkstyle MagicNumber (5 lines)
-        Arg.range(number, 0x00, 0x08);
-        Arg.range(number, 0x0B, 0x0C);
-        Arg.range(number, 0x0E, 0x1F);
-        Arg.range(number, 0x7F, 0x84);
-        Arg.range(number, 0x86, 0x9F);
-        return number;
+        Arg.range(chr, 0x00, 0x08);
+        Arg.range(chr, 0x0B, 0x0C);
+        Arg.range(chr, 0x0E, 0x1F);
+        Arg.range(chr, 0x7F, 0x84);
+        Arg.range(chr, 0x86, 0x9F);
+        return chr;
     }
 
     /**
      * Throw if number is in the range.
-     * @param number Char number
+     * @param chr Char number
      * @param left Left number (inclusive)
      * @param right Right number (inclusive)
      * @throws XmlContentException If illegal
      */
-    private static void range(final int number, final int left, final int right)
+    private static void range(final char chr, final int left, final int right)
         throws XmlContentException {
-        if (number >= left && number <= right) {
+        if (chr >= left && chr <= right) {
             throw new XmlContentException(
                 String.format(
                     // @checkstyle LineLength (1 line)
                     "Character #%02X is in restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets",
-                    number, left, right
+                    (int) chr, left, right
                 )
             );
         }
