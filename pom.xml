@@ -33,7 +33,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.10.3</version>
+        <version>0.11</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
@@ -122,6 +122,12 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.rultor</groupId>
+                <artifactId>rultor-maven-plugin</artifactId>
+                <version>0.2</version>
+                <inherited>false</inherited>
+            </plugin>
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
                 <configuration>
