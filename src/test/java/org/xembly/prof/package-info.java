@@ -27,68 +27,12 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.xembly;
-
-import com.jcabi.aspects.Immutable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Locale;
-import lombok.EqualsAndHashCode;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 
 /**
- * PI directive.
+ * Test cases for profiling.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.9
+ * @since 0.10.1
  */
-@Immutable
-@EqualsAndHashCode(of = { "target", "data" })
-final class PiDirective implements Directive {
-
-    /**
-     * Target name.
-     */
-    private final transient Arg target;
-
-    /**
-     * Data.
-     */
-    private final transient Arg data;
-
-    /**
-     * Public ctor.
-     * @param tgt Target
-     * @param dat Data
-     * @throws XmlContentException If invalid input
-     */
-    PiDirective(final String tgt, final String dat)
-        throws XmlContentException {
-        this.target = new Arg(tgt.toLowerCase(Locale.ENGLISH));
-        this.data = new Arg(dat);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("PI %s, %s", this.target, this.data);
-    }
-
-    @Override
-    public Collection<Node> exec(final Document dom,
-        final Collection<Node> current) {
-        final Node instr = dom.createProcessingInstruction(
-            this.target.raw(), this.data.raw()
-        );
-        if (current.isEmpty()) {
-            dom.insertBefore(instr, dom.getDocumentElement());
-        } else {
-            for (final Node node : current) {
-                node.appendChild(instr);
-            }
-        }
-        return Collections.unmodifiableCollection(current);
-    }
-
-}
+package org.xembly.prof;

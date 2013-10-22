@@ -43,6 +43,7 @@ import org.xembly.Xembler;
  * Prof case for {@link Xembler}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.10.1
  */
 @Loggable(Loggable.INFO)
 public final class XemblerProf {

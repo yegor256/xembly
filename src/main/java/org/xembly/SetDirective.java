@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import java.util.Collection;
 import java.util.Collections;
 import lombok.EqualsAndHashCode;

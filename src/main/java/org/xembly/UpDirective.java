@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -55,10 +54,6 @@ final class UpDirective implements Directive {
     }
 
     @Override
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
     public Collection<Node> exec(final Document dom,
         final Collection<Node> current) throws ImpossibleModificationException {
         final Collection<Node> parents = new HashSet<Node>(0);

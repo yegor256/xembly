@@ -40,6 +40,7 @@ import org.xembly.Directives;
  * Prof case for {@link Directives}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.10.1
  */
 @Loggable(Loggable.INFO)
 public final class DirectivesProf {

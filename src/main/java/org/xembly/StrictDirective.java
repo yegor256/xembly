@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Loggable;
 import java.util.Collection;
 import java.util.Collections;
 import lombok.EqualsAndHashCode;
@@ -67,10 +66,6 @@ final class StrictDirective implements Directive {
     }
 
     @Override
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
     public Collection<Node> exec(final Document dom,
         final Collection<Node> current) throws ImpossibleModificationException {
         if (current.size() != this.number) {
