@@ -82,12 +82,13 @@ final class XpathDirective implements Directive {
         final Collection<Node> current) throws ImpossibleModificationException {
         final XPath xpath = XpathDirective.FACTORY.newXPath();
         final Collection<Node> targets = new HashSet<Node>(0);
-        final String query = this.expr.raw();
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
             try {
                 list = NodeList.class.cast(
-                    xpath.evaluate(query, node, XPathConstants.NODESET)
+                    xpath.evaluate(
+                        this.expr.raw(), node, XPathConstants.NODESET
+                    )
                 );
             } catch (XPathExpressionException ex) {
                 throw new ImpossibleModificationException(

@@ -57,6 +57,7 @@ public final class XemblerProf {
         final StringBuilder program = new StringBuilder("ADD 'root';");
         for (int idx = 0; idx < Tv.FIFTY * Tv.THOUSAND; ++idx) {
             program.append("XPATH '/root'; ADDIF 'node';")
+                .append("ADD 'temp'; REMOVE;")
                 .append("SET '").append(idx).append("';");
         }
         final Directives dirs = new Directives(program.toString());
