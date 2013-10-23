@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,7 +82,7 @@ import org.antlr.runtime.TokenStream;
  */
 @EqualsAndHashCode(callSuper = false, of = "all")
 @SuppressWarnings("PMD.TooManyMethods")
-public final class Directives extends AbstractCollection<Directive> {
+public final class Directives implements Collection<Directive> {
 
     /**
      * Right margin.
@@ -145,19 +144,63 @@ public final class Directives extends AbstractCollection<Directive> {
     }
 
     @Override
+    public Object[] toArray() {
+        return this.all.toArray();
+    }
+
+    @Override
+    public <T> T[] toArray(final T[] array) {
+        return this.all.toArray(array);
+    }
+
+    @Override
+    public boolean add(final Directive directive) {
+        return this.all.add(directive);
+    }
+
+    @Override
+    public boolean remove(final Object directive) {
+        return this.all.remove(directive);
+    }
+
+    @Override
+    public boolean containsAll(final Collection<?> list) {
+        return this.containsAll(list);
+    }
+
+    @Override
+    public boolean addAll(final Collection<? extends Directive> list) {
+        return this.all.addAll(list);
+    }
+
+    @Override
+    public boolean removeAll(final Collection<?> list) {
+        return this.all.removeAll(list);
+    }
+
+    @Override
+    public boolean retainAll(final Collection<?> list) {
+        return this.all.retainAll(list);
+    }
+
+    @Override
+    public void clear() {
+        this.all.clear();
+    }
+
+    @Override
     public int size() {
         return this.all.size();
     }
 
-    /**
-     * Add more directives to the end of the list.
-     * @param list List of them
-     * @return This object
-     * @since 0.5
-     */
-    public Directives append(final Collection<Directive> list) {
-        this.all.addAll(list);
-        return this;
+    @Override
+    public boolean isEmpty() {
+        return this.all.isEmpty();
+    }
+
+    @Override
+    public boolean contains(final Object list) {
+        return this.all.contains(list);
     }
 
     /**
