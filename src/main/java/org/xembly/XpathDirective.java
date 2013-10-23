@@ -33,6 +33,8 @@ import com.jcabi.aspects.Immutable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -59,6 +61,12 @@ final class XpathDirective implements Directive {
     private static final XPathFactory FACTORY = XPathFactory.newInstance();
 
     /**
+     * Pattern to match root-only XPath queries.
+     */
+    private static final Pattern ROOT_ONLY =
+        Pattern.compile("/([^/\\(\\[\\{:]+)");
+
+    /**
      * XPath to use.
      */
     private final transient Arg expr;
@@ -80,19 +88,58 @@ final class XpathDirective implements Directive {
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> current) throws ImpossibleModificationException {
+        final Collection<Node> targets;
+        final String query = this.expr.raw();
+        final Matcher matcher = XpathDirective.ROOT_ONLY.matcher(query);
+        if (matcher.matches()) {
+            targets = XpathDirective.rootOnly(matcher.group(1), dom);
+        } else {
+            targets = XpathDirective.traditional(query, dom, current);
+        }
+        return targets;
+    }
+
+    /**
+     * Fetches only root node.
+     * @param root Root node name
+     * @param dom Document
+     * @return Found nodes
+     */
+    private static Collection<Node> rootOnly(final String root,
+        final Document dom) {
+        final Collection<Node> targets;
+        final Node target = dom.getDocumentElement();
+        if (root != null
+            && ("*".equals(root) || target.getNodeName().equals(root))) {
+            targets = Collections.singletonList(target);
+        } else {
+            targets = Collections.emptyList();
+        }
+        return targets;
+    }
+
+    /**
+     * Fetch them in traditional way.
+     * @param query XPath query
+     * @param dom Document
+     * @param current Nodes we're currently at
+     * @return Found nodes
+     * @throws ImpossibleModificationException If fails
+     */
+    private static Collection<Node> traditional(final String query,
+        final Document dom, final Collection<Node> current)
+        throws ImpossibleModificationException {
         final XPath xpath = XpathDirective.FACTORY.newXPath();
         final Collection<Node> targets = new HashSet<Node>(0);
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
             try {
                 list = NodeList.class.cast(
-                    xpath.evaluate(
-                        this.expr.raw(), node, XPathConstants.NODESET
-                    )
+                    xpath.evaluate(query, node, XPathConstants.NODESET)
                 );
             } catch (XPathExpressionException ex) {
                 throw new ImpossibleModificationException(
-                    String.format("invalid XPath expr '%s'", this.expr), ex
+                    String.format("invalid XPath expr '%s'", query), ex
                 );
             }
             final int len = list.getLength();
