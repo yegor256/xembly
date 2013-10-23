@@ -88,6 +88,18 @@ import org.w3c.dom.Node;
 public final class Xembler {
 
     /**
+     * Builder factory.
+     */
+    private static final DocumentBuilderFactory BFACTORY =
+        DocumentBuilderFactory.newInstance();
+
+    /**
+     * Transformer factory.
+     */
+    private static final TransformerFactory TFACTORY =
+        TransformerFactory.newInstance();
+
+    /**
      * Array of directives.
      */
     private final transient Array<Directive> directives;
@@ -145,8 +157,7 @@ public final class Xembler {
     public Document dom() throws ImpossibleModificationException {
         final Document dom;
         try {
-            dom = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().newDocument();
+            dom = Xembler.BFACTORY.newDocumentBuilder().newDocument();
         } catch (ParserConfigurationException ex) {
             throw new IllegalStateException(ex);
         }
@@ -167,7 +178,7 @@ public final class Xembler {
     public String xml() throws ImpossibleModificationException {
         final Transformer transformer;
         try {
-            transformer = TransformerFactory.newInstance().newTransformer();
+            transformer = Xembler.TFACTORY.newTransformer();
         } catch (TransformerConfigurationException ex) {
             throw new IllegalStateException(ex);
         }
