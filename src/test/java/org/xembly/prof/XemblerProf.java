@@ -55,7 +55,7 @@ public final class XemblerProf {
     @Test
     public void modifiesDom() throws Exception {
         final StringBuilder program = new StringBuilder("ADD 'root';");
-        for (int idx = 0; idx < Tv.THOUSAND; ++idx) {
+        for (int idx = 0; idx < Tv.FIFTY * Tv.THOUSAND; ++idx) {
             program.append("XPATH '/root'; ADDIF 'node';")
                 .append("SET '").append(idx).append("';");
         }
@@ -65,7 +65,7 @@ public final class XemblerProf {
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPath("/root/node[.='999']")
+            XhtmlMatchers.hasXPath("/root/node[.='49999']")
         );
     }
 

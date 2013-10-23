@@ -54,6 +54,11 @@ import org.w3c.dom.NodeList;
 final class XpathDirective implements Directive {
 
     /**
+     * XPath factory.
+     */
+    private static final XPathFactory FACTORY = XPathFactory.newInstance();
+
+    /**
      * XPath to use.
      */
     private final transient Arg expr;
@@ -75,7 +80,7 @@ final class XpathDirective implements Directive {
     @Override
     public Collection<Node> exec(final Document dom,
         final Collection<Node> current) throws ImpossibleModificationException {
-        final XPath xpath = XPathFactory.newInstance().newXPath();
+        final XPath xpath = XpathDirective.FACTORY.newXPath();
         final Collection<Node> targets = new HashSet<Node>(0);
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
