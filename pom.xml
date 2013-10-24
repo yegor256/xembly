@@ -118,6 +118,16 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <!-- https://github.com/github/maven-plugins/issues/54 -->
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.8</version>
+            </plugin>
+        </plugins>
+    </build>
     <profiles>
         <profile>
             <id>prof</id>
