@@ -12,7 +12,7 @@ ADDIF 'orders';
 ADD 'order';
 ATTR 'id', '55';
 ADD 'amount';
-SET '$29.99';
+SET '29.99';
 UP;
 ADD "summary";
 SET "free &quot;subscription&quot;";
@@ -24,7 +24,7 @@ Will transform `<root/>` into:
 <root>
   <orders>
     <order id="55">
-      <amount>$29.99</amount>
+      <amount>29.99</amount>
       <summary>free "subscription"</summary>
     </order>
   </orders>
@@ -36,6 +36,16 @@ directive may have a few or zero arguments. Every directive is executed at
 current node(s). Program starts at the `Document` as the only current node.
 
 Arguments may be wrapped into single or double quotes.
+
+The only dependency you need is:
+
+```xml
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.artifactId}</artifactId>
+  <version>${project.version}</version>
+</dependency>
+```
 
 ## Directives
 
