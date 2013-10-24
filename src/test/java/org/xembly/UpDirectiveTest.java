@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;

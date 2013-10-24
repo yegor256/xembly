@@ -31,7 +31,6 @@ package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
 import java.util.Arrays;
-import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
