@@ -48,7 +48,7 @@
                                                     </ul>
                                     </li>
                                                                                         <li>
-                                                                    <a href="apidocs-0.10.2/index.html" title="JavaDoc 0.10.2">JavaDoc 0.10.2</a>
+                                                                    <a href="apidocs-0.11/index.html" title="JavaDoc 0.11">JavaDoc 0.11</a>
                                                                                                                         <ul>
                                                     </ul>
                                     </li>
@@ -82,7 +82,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </li>
                                                                                         <li>
                                                                     <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                 </ul>
                                     </li>
                     </ul>
@@ -101,8 +101,8 @@
             </a>
                         <p>
                 
-                23-Oct-2013
-                0.10.2
+                24-Oct-2013
+                0.11
             </p>
             <article>
                 <h1>Assembly for XML</h1>
@@ -115,7 +115,7 @@ ADDIF 'orders';
 ADD 'order';
 ATTR 'id', '55';
 ADD 'amount';
-SET '$29.99';
+SET '29.99';
 UP;
 ADD &quot;summary&quot;;
 SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
@@ -126,7 +126,7 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
 <pre>&lt;root&gt;
   &lt;orders&gt;
     &lt;order id=&quot;55&quot;&gt;
-      &lt;amount&gt;$29.99&lt;/amount&gt;
+      &lt;amount&gt;29.99&lt;/amount&gt;
       &lt;summary&gt;free &quot;subscription&quot;&lt;/summary&gt;
     &lt;/order&gt;
   &lt;/orders&gt;
@@ -134,11 +134,16 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
 </pre></div>
 <p>Xembly program (similar to Assembly program) consists of &#x201c;directives&#x201d;. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the <tt>Document</tt> as the only current node.</p>
 <p>Arguments may be wrapped into single or double quotes.</p>
-<div class="section">
-<h2>Directives<a name="Directives"></a></h2>
+<p>The only dependency you need is:</p>
+
+<div class="source">
+<pre>&lt;dependency&gt;
+  &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
+  &lt;artifactId&gt;xembly&lt;/artifactId&gt;
+  &lt;version&gt;0.11&lt;/version&gt;
+&lt;/dependency&gt;
+</pre></div>
 <p>Full list of supported directives in the current version:</p>
-<div class="section">
-<h3>ADD<a name="ADD"></a></h3>
 <p><tt>ADD</tt> directive adds a new node to every node in the current node set. <tt>ADD</tt> expects exactly one mandatory argument, which is the name of a new node to be added (case insensitive):</p>
 
 <div class="source">
@@ -146,67 +151,51 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
 ADD 'order';
 </pre></div>
 <p>Even if the node with the same name already exists, a new node will be added. Use <tt>ADDIF</tt> if you need to add only if the same-name node is absent.</p>
-<p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p></div>
-<div class="section">
-<h3>ADDIF<a name="ADDIF"></a></h3>
+<p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p>
 <p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if it&#x2019;s absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case insensitive):</p>
 
 <div class="source">
 <pre>ADD 'orders';
 ADDIF 'order';
 </pre></div>
-<p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p></div>
-<div class="section">
-<h3>SET<a name="SET"></a></h3>
+<p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p>
 <p><tt>SET</tt> changes text content of all current nodes, and expects exactly one argument, which is the text content to set:</p>
 
 <div class="source">
 <pre>ADD &quot;employee&quot;;
 SET &quot;John Smith&quot;;
-</pre></div></div>
-<div class="section">
-<h3>XSET<a name="XSET"></a></h3>
+</pre></div>
 <p><tt>XSET</tt> changes text content of all current nodes to a value calculated with XPath expression:</p>
 
 <div class="source">
 <pre>ADD &quot;product-1&quot;;
 ADD &quot;price&quot;;
 XSET &quot;sum(/products/price) div count(/products)&quot;;
-</pre></div></div>
-<div class="section">
-<h3>UP<a name="UP"></a></h3>
-<p><tt>UP</tt> moves all current nodes to their parents.</p></div>
-<div class="section">
-<h3>XPATH<a name="XPATH"></a></h3>
+</pre></div>
+<p><tt>UP</tt> moves all current nodes to their parents.</p>
 <p><tt>XPATH</tt> changes current nodes to the all found by XPath expression:</p>
 
 <div class="source">
 <pre>XPATH &quot;//employee[@id='234' and name='John Smith']/name&quot;;
 SET &quot;John R. Smith&quot;;
-</pre></div></div>
-<div class="section">
-<h3>REMOVE<a name="REMOVE"></a></h3>
+</pre></div>
 <p><tt>REMOVE</tt> removes current nodes and jumps to their parents:</p>
 
 <div class="source">
 <pre>ADD &quot;employee&quot;;
 REMOVE;
-</pre></div></div>
-<div class="section">
-<h3>STRICT<a name="STRICT"></a></h3>
+</pre></div>
 <p><tt>STRICT</tt> checks that there is certain number of current nodes:</p>
 
 <div class="source">
 <pre>XPATH &quot;/root/employee[name='John Doe']&quot;;
 STRICT &quot;1&quot;;
-</pre></div></div>
-<div class="section">
-<h3>PI<a name="PI"></a></h3>
+</pre></div>
 <p><tt>PI</tt> directives add a new processing directive to the XML:</p>
 
 <div class="source">
 <pre>PI &quot;xsl-stylesheet&quot; &quot;href='http://example.com'&quot;;
-</pre></div></div></div>
+</pre></div>
             </article>
             <p style="margin-bottom: 3em; margin-top: 2em;">
                 Copyright &#169;

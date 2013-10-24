@@ -63,7 +63,7 @@
 <a class="jxr_linenumber" name="53" href="#53">53</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="54" href="#54">54</a>      @Test
 <a class="jxr_linenumber" name="55" href="#55">55</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> removesCurrentNodes() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="56" href="#56">56</a>          <strong class="jxr_keyword">final</strong> Collection&lt;Directive&gt; dirs = <strong class="jxr_keyword">new</strong> Directives(
+<a class="jxr_linenumber" name="56" href="#56">56</a>          <strong class="jxr_keyword">final</strong> Iterable&lt;Directive&gt; dirs = <strong class="jxr_keyword">new</strong> Directives(
 <a class="jxr_linenumber" name="57" href="#57">57</a>              StringUtils.join(
 <a class="jxr_linenumber" name="58" href="#58">58</a>                  <strong class="jxr_keyword">new</strong> String[] {
 <a class="jxr_linenumber" name="59" href="#59">59</a>                      <span class="jxr_string">"ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';"</span>,
