@@ -54,7 +54,7 @@ public final class XpathDirectiveTest {
      */
     @Test
     public void findsNodesWithXpathExpression() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
                     "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';",
@@ -80,7 +80,7 @@ public final class XpathDirectiveTest {
      */
     @Test
     public void ignoresEmptySearches() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "XPATH '/nothing'; XPATH '/top'; STRICT '1'; ADD 'hey';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()

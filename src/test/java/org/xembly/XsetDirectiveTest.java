@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Collection;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
@@ -53,7 +52,7 @@ public final class XsetDirectiveTest {
      */
     @Test
     public void setsTextContentOfNodes() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{
                     "ADD 'root'; ADD 'foo';",

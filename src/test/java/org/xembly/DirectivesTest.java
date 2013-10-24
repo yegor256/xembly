@@ -121,7 +121,7 @@ public final class DirectivesTest {
     public void ingoresEmptyInput() throws Exception {
         MatcherAssert.assertThat(
             new Directives("\n\t   \r"),
-            Matchers.empty()
+            Matchers.emptyIterable()
         );
     }
 

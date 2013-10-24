@@ -33,7 +33,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.11.2</version>
+        <version>0.12</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
@@ -87,9 +87,6 @@
             <url>http://www.xembly.org</url>
         </site>
     </distributionManagement>
-    <properties>
-        <github.global.server>github</github.global.server>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -98,6 +95,7 @@
         <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-aspects</artifactId>
+            <version>0.12</version>
         </dependency>
         <dependency>
             <groupId>org.antlr</groupId>
@@ -120,63 +118,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <configuration>
-                    <skipDeploy>true</skipDeploy>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <version>0.8</version>
-                <configuration>
-                    <message>site for ${project.version}</message>
-                    <path></path>
-                    <merge>true</merge>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>site-deploy</phase>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
     <profiles>
-        <profile>
-            <id>site</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <artifactId>maven-site-plugin</artifactId>
-                            <inherited>false</inherited>
-                            <configuration>
-                                <reportPlugins combine.children="append">
-                                    <plugin>
-                                        <artifactId>maven-changes-plugin</artifactId>
-                                        <reportSets>
-                                            <reportSet>
-                                                <reports>
-                                                    <report>github-report</report>
-                                                    <report>changes-report</report>
-                                                </reports>
-                                            </reportSet>
-                                        </reportSets>
-                                    </plugin>
-                                </reportPlugins>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
         <profile>
             <id>prof</id>
             <build>

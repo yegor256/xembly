@@ -29,9 +29,9 @@
  */
 package org.xembly;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -82,7 +82,7 @@ import org.antlr.runtime.TokenStream;
  */
 @EqualsAndHashCode(callSuper = false, of = "all")
 @SuppressWarnings("PMD.TooManyMethods")
-public final class Directives implements Collection<Directive> {
+public final class Directives implements Iterable<Directive> {
 
     /**
      * Right margin.
@@ -99,7 +99,7 @@ public final class Directives implements Collection<Directive> {
      * Public ctor.
      */
     public Directives() {
-        this(new ArrayList<Directive>(0));
+        this(Collections.<Directive>emptyList());
     }
 
     /**
@@ -117,9 +117,8 @@ public final class Directives implements Collection<Directive> {
      * @param dirs Directives
      */
     public Directives(@NotNull(message = "directives can't be NULL")
-        final Collection<Directive> dirs) {
-        super();
-        this.all.addAll(dirs);
+        final Iterable<Directive> dirs) {
+        this.append(dirs);
     }
 
     @Override
@@ -143,64 +142,19 @@ public final class Directives implements Collection<Directive> {
         return this.all.iterator();
     }
 
-    @Override
-    public Object[] toArray() {
-        return this.all.toArray();
-    }
-
-    @Override
-    public <T> T[] toArray(final T[] array) {
-        return this.all.toArray(array);
-    }
-
-    @Override
-    public boolean add(final Directive directive) {
-        return this.all.add(directive);
-    }
-
-    @Override
-    public boolean remove(final Object directive) {
-        return this.all.remove(directive);
-    }
-
-    @Override
-    public boolean containsAll(final Collection<?> list) {
-        return this.containsAll(list);
-    }
-
-    @Override
-    public boolean addAll(final Collection<? extends Directive> list) {
-        return this.all.addAll(list);
-    }
-
-    @Override
-    public boolean removeAll(final Collection<?> list) {
-        return this.all.removeAll(list);
-    }
-
-    @Override
-    public boolean retainAll(final Collection<?> list) {
-        return this.all.retainAll(list);
-    }
-
-    @Override
-    public void clear() {
-        this.all.clear();
-    }
-
-    @Override
-    public int size() {
-        return this.all.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.all.isEmpty();
-    }
-
-    @Override
-    public boolean contains(final Object list) {
-        return this.all.contains(list);
+    /**
+     * Append all directives.
+     * @param dirs Directives to append
+     * @return This object
+     * @since 0.11
+     */
+    public Directives append(
+        @NotNull(message = "list of directives can't be NULL")
+        final Iterable<Directive> dirs) {
+        for (final Directive dir : dirs) {
+            this.all.add(dir);
+        }
+        return this;
     }
 
     /**

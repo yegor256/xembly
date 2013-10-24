@@ -49,7 +49,7 @@ public final class UpDirectiveTest {
      */
     @Test
     public void jumpsToParentsWhenTheyExist() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -67,7 +67,7 @@ public final class UpDirectiveTest {
      */
     @Test(expected = ImpossibleModificationException.class)
     public void throwsWhenNoParents() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'foo'; UP; UP; UP;"
         );
         final Document dom = DocumentBuilderFactory.newInstance()

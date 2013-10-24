@@ -109,7 +109,7 @@ public final class Xembler {
      * @param dirs Directives
      */
     public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Collection<Directive> dirs) {
+        final Iterable<Directive> dirs) {
         this.directives = new Array<Directive>(dirs);
     }
 

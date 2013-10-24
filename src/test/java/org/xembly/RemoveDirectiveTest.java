@@ -53,7 +53,7 @@ public final class RemoveDirectiveTest {
      */
     @Test
     public void removesCurrentNodes() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
                     "ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';",

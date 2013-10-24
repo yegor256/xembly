@@ -49,7 +49,7 @@ public final class AddIfDirectiveTest {
      */
     @Test
     public void addsNodesToCurrentNodes() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; UP; ADDIF 'bar'; UP; ADDIF 'bar';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()

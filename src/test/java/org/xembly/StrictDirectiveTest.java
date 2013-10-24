@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
@@ -50,7 +49,7 @@ public final class StrictDirectiveTest {
      */
     @Test
     public void checksNumberOfCurrentNodes() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{
                     "ADD 'root'; ADD 'foo'; ADD 'bar';",
@@ -76,7 +75,7 @@ public final class StrictDirectiveTest {
      */
     @Test(expected = ImpossibleModificationException.class)
     public void failsWhenNumberOfCurrentNodesIsTooBig() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -91,7 +90,7 @@ public final class StrictDirectiveTest {
      */
     @Test(expected = ImpossibleModificationException.class)
     public void failsWhenNumberOfCurrentNodesIsZero() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -106,7 +105,7 @@ public final class StrictDirectiveTest {
      */
     @Test(expected = ImpossibleModificationException.class)
     public void failsWhenNumberOfCurrentNodesIsTooSmall() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'bar'; STRICT '2';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()

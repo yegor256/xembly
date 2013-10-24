@@ -53,7 +53,7 @@ public final class AttrDirectiveTest {
      */
     @Test
     public void addsAttributesToCurrentNodes() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{
                     "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",

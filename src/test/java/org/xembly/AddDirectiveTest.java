@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Collection;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
@@ -49,7 +48,7 @@ public final class AddDirectiveTest {
      */
     @Test
     public void addsNodesToCurrentNodes() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; UP; ADD 'bar'; UP; ADD 'bar';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()

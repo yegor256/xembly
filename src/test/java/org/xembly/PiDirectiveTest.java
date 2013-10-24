@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
-import java.util.Collection;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
@@ -55,7 +54,7 @@ public final class PiDirectiveTest {
      */
     @Test
     public void addsProcessingInstructionsToDom() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
                     "XPATH '/root'; PI 'ab' 'boom \u20ac';",
@@ -99,7 +98,7 @@ public final class PiDirectiveTest {
      */
     @Test
     public void addsProcessingInstructionsToDomRoot() throws Exception {
-        final Collection<Directive> dirs = new Directives(
+        final Iterable<Directive> dirs = new Directives(
             "XPATH '/'; PI 'alpha' 'beta \u20ac';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
