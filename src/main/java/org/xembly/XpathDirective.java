@@ -109,7 +109,7 @@ final class XpathDirective implements Directive {
         final Document dom) {
         final Collection<Node> targets;
         final Node target = dom.getDocumentElement();
-        if (root != null
+        if (root != null && target != null
             && ("*".equals(root) || target.getNodeName().equals(root))) {
             targets = Collections.singletonList(target);
         } else {
