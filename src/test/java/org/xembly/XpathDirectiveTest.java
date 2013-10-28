@@ -116,4 +116,21 @@ public final class XpathDirectiveTest {
         );
     }
 
+    /**
+     * XpathDirective can find nodes in empty DOM.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void findsNodesInEmptyDom() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        MatcherAssert.assertThat(
+            new XpathDirective("/some-root").exec(
+                dom,
+                Collections.<Node>emptyList()
+            ),
+            Matchers.emptyIterable()
+        );
+    }
+
 }

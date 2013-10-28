@@ -33,11 +33,11 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.12</version>
+        <version>0.13.1</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
-    <version>0.11</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>xembly</name>
     <description>Assembly for XML</description>
@@ -95,7 +95,6 @@
         <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-aspects</artifactId>
-            <version>0.12</version>
         </dependency>
         <dependency>
             <groupId>org.antlr</groupId>
@@ -109,7 +108,7 @@
         <dependency>
             <groupId>com.rexsl</groupId>
             <artifactId>rexsl-test</artifactId>
-            <version>0.5.1</version>
+            <version>0.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -118,16 +117,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <!-- https://github.com/github/maven-plugins/issues/54 -->
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <version>0.8</version>
-            </plugin>
-        </plugins>
-    </build>
     <profiles>
         <profile>
             <id>prof</id>
