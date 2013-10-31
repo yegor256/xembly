@@ -155,7 +155,7 @@ SEMICOLON:
 
 TEXT
     :
-    '"' ('\\"' | ~'"')* '"'
+    '"' (~'"')* '"'
     {
         try {
             this.setText(Arg.unescape(this.getText()));
@@ -164,7 +164,7 @@ TEXT
         }
     }
     |
-    '\'' ('\\\'' | ~'\'')* '\''
+    '\'' (~'\'')* '\''
     {
         try {
             this.setText(Arg.unescape(this.getText()));

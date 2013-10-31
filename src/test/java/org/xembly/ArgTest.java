@@ -50,7 +50,7 @@ public final class ArgTest {
         final String[] texts = new String[] {
             "",
             "123",
-            "test \u20ac привет & <>'\"",
+            "test \u20ac привет & <>'\"\\",
             "how are you there,\t\n\rтоварищ? &#0D;",
         };
         for (final String text : texts) {
