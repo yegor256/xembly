@@ -125,4 +125,28 @@ public final class DirectivesTest {
         );
     }
 
+    /**
+     * Directives can build a correct modification programme.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void performsFullScaleModifications() throws Exception {
+        final String script = new Directives()
+            .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
+            .add("body")
+            .add("p")
+            .set("\u20ac \\")
+            .toString();
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(new Directives(script)).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/xhtml:html",
+                "/xhtml:html/body/p[.='\u20ac \\']"
+            )
+        );
+    }
+
 }
