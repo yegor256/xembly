@@ -123,7 +123,7 @@ public final class Xembler {
         ignore = ImpossibleModificationException.class
     )
     public void apply(@NotNull(message = "DOM can't be NULL")
-        final Document dom) throws ImpossibleModificationException {
+        final Node dom) throws ImpossibleModificationException {
         Collection<Node> ptr = Collections.<Node>singletonList(dom);
         int pos = 1;
         for (final Directive dir : this.directives) {

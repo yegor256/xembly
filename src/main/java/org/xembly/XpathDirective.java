@@ -86,7 +86,7 @@ final class XpathDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) throws ImpossibleModificationException {
         final Collection<Node> targets;
         final String query = this.expr.raw();
@@ -106,9 +106,14 @@ final class XpathDirective implements Directive {
      * @return Found nodes
      */
     private static Collection<Node> rootOnly(final String root,
-        final Document dom) {
+        final Node dom) {
+        final Node target;
+        if (dom.getOwnerDocument() == null) {
+            target = Document.class.cast(dom).getDocumentElement();
+        } else {
+            target = dom.getOwnerDocument().getDocumentElement();
+        }
         final Collection<Node> targets;
-        final Node target = dom.getDocumentElement();
         if (root != null && target != null
             && ("*".equals(root) || target.getNodeName().equals(root))) {
             targets = Collections.singletonList(target);
@@ -127,7 +132,7 @@ final class XpathDirective implements Directive {
      * @throws ImpossibleModificationException If fails
      */
     private static Collection<Node> traditional(final String query,
-        final Document dom, final Collection<Node> current)
+        final Node dom, final Collection<Node> current)
         throws ImpossibleModificationException {
         final XPath xpath = XpathDirective.FACTORY.newXPath();
         final Collection<Node> targets = new HashSet<Node>(0);
@@ -156,11 +161,17 @@ final class XpathDirective implements Directive {
      * @param nodes Current nodes
      * @return Root nodes to start searching from
      */
-    private static Iterable<Node> roots(final Document dom,
+    private static Iterable<Node> roots(final Node dom,
         final Collection<Node> nodes) {
         final Collection<Node> roots;
         if (nodes.isEmpty()) {
-            roots = Collections.<Node>singletonList(dom.getDocumentElement());
+            if (dom.getOwnerDocument() == null) {
+                roots = Collections.singletonList(dom);
+            } else {
+                roots = Collections.<Node>singletonList(
+                    dom.getOwnerDocument().getDocumentElement()
+                );
+            }
         } else {
             roots = nodes;
         }

@@ -70,12 +70,18 @@ final class AddDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) {
         final Collection<Node> targets = new ArrayList<Node>(current.size());
         final String label = this.name.raw();
+        final Document doc;
+        if (dom.getOwnerDocument() == null) {
+            doc = Document.class.cast(dom);
+        } else {
+            doc = dom.getOwnerDocument();
+        }
         for (final Node node : current) {
-            final Element element = dom.createElement(label);
+            final Element element = doc.createElement(label);
             node.appendChild(element);
             targets.add(element);
         }

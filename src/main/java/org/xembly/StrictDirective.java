@@ -33,7 +33,6 @@ import com.jcabi.aspects.Immutable;
 import java.util.Collection;
 import java.util.Collections;
 import lombok.EqualsAndHashCode;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -66,7 +65,7 @@ final class StrictDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) throws ImpossibleModificationException {
         if (current.size() != this.number) {
             if (current.isEmpty()) {

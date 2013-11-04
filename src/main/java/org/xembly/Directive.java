@@ -31,7 +31,6 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import java.util.Collection;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -51,7 +50,7 @@ public interface Directive {
      * @return New current nodes
      * @throws ImpossibleModificationException If can't do it
      */
-    Collection<Node> exec(Document dom, Collection<Node> current)
+    Collection<Node> exec(Node dom, Collection<Node> current)
         throws ImpossibleModificationException;
 
 }

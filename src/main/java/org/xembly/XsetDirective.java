@@ -40,7 +40,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import lombok.EqualsAndHashCode;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -74,7 +73,7 @@ final class XsetDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
         final ConcurrentMap<Node, String> values =

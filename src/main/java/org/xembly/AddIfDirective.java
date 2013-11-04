@@ -70,7 +70,7 @@ final class AddIfDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) {
         final Collection<Node> targets = new ArrayList<Node>(current.size());
         final String label = this.name.raw();
@@ -86,7 +86,13 @@ final class AddIfDirective implements Directive {
                 }
             }
             if (target == null) {
-                target = dom.createElement(this.name.raw());
+                final Document doc;
+                if (dom.getOwnerDocument() == null) {
+                    doc = Document.class.cast(dom);
+                } else {
+                    doc = dom.getOwnerDocument();
+                }
+                target = doc.createElement(this.name.raw());
                 node.appendChild(target);
             }
             targets.add(target);

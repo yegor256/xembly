@@ -76,13 +76,19 @@ final class PiDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) {
-        final Node instr = dom.createProcessingInstruction(
+        final Document doc;
+        if (dom.getOwnerDocument() == null) {
+            doc = Document.class.cast(dom);
+        } else {
+            doc = dom.getOwnerDocument();
+        }
+        final Node instr = doc.createProcessingInstruction(
             this.target.raw(), this.data.raw()
         );
         if (current.isEmpty()) {
-            dom.insertBefore(instr, dom.getDocumentElement());
+            dom.insertBefore(instr, doc.getDocumentElement());
         } else {
             for (final Node node : current) {
                 node.appendChild(instr);

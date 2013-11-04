@@ -34,7 +34,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import lombok.EqualsAndHashCode;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
@@ -54,7 +53,7 @@ final class RemoveDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Document dom,
+    public Collection<Node> exec(final Node dom,
         final Collection<Node> current) {
         final Collection<Node> parents = new HashSet<Node>(0);
         for (final Node node : current) {
