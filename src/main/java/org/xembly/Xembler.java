@@ -114,15 +114,16 @@ public final class Xembler {
     }
 
     /**
-     * Apply all changes to the document.
-     * @param dom DOM document
+     * Apply all changes to the document/node.
+     * @param dom DOM document/node
+     * @return The same document/node
      * @throws ImpossibleModificationException If can't modify
      */
     @Loggable(
         value = Loggable.DEBUG,
         ignore = ImpossibleModificationException.class
     )
-    public void apply(@NotNull(message = "DOM can't be NULL")
+    public Node apply(@NotNull(message = "DOM can't be NULL")
         final Node dom) throws ImpossibleModificationException {
         Collection<Node> ptr = Collections.<Node>singletonList(dom);
         int pos = 1;
@@ -142,6 +143,7 @@ public final class Xembler {
             }
             ++pos;
         }
+        return dom;
     }
 
     /**
