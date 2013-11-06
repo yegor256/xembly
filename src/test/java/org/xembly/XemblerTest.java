@@ -60,7 +60,7 @@ public final class XemblerTest {
                         "ATTR 'tag', 'hello, world!';",
                         "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;",
                         "XPATH '//order[price=&apos;$29.99&apos;]/price';",
-                        "SET '$39.99';",
+                        "SET ' $39.99 ';",
                     }
                 )
             )
@@ -69,7 +69,7 @@ public final class XemblerTest {
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root/order[@tag='hello, world!']",
-                "/root/order[price='$39.99']"
+                "/root/order[price=' $39.99 ']"
             )
         );
     }
