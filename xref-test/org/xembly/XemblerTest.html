@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="60" href="#60">60</a>                          <span class="jxr_string">"ATTR 'tag', 'hello, world!';"</span>,
 <a class="jxr_linenumber" name="61" href="#61">61</a>                          <span class="jxr_string">"ADD 'price'; SET \&quot;$29.99\&quot;; STRICT '1'; UP; UP;"</span>,
 <a class="jxr_linenumber" name="62" href="#62">62</a>                          <span class="jxr_string">"XPATH '//order[price=&amp;apos;$29.99&amp;apos;]/price';"</span>,
-<a class="jxr_linenumber" name="63" href="#63">63</a>                          <span class="jxr_string">"SET '$39.99';"</span>,
+<a class="jxr_linenumber" name="63" href="#63">63</a>                          <span class="jxr_string">"SET ' $39.99 ';"</span>,
 <a class="jxr_linenumber" name="64" href="#64">64</a>                      }
 <a class="jxr_linenumber" name="65" href="#65">65</a>                  )
 <a class="jxr_linenumber" name="66" href="#66">66</a>              )
@@ -79,7 +79,7 @@
 <a class="jxr_linenumber" name="69" href="#69">69</a>              XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="70" href="#70">70</a>              XhtmlMatchers.hasXPaths(
 <a class="jxr_linenumber" name="71" href="#71">71</a>                  <span class="jxr_string">"/root/order[@tag='hello, world!']"</span>,
-<a class="jxr_linenumber" name="72" href="#72">72</a>                  <span class="jxr_string">"/root/order[price='$39.99']"</span>
+<a class="jxr_linenumber" name="72" href="#72">72</a>                  <span class="jxr_string">"/root/order[price=' $39.99 ']"</span>
 <a class="jxr_linenumber" name="73" href="#73">73</a>              )
 <a class="jxr_linenumber" name="74" href="#74">74</a>          );
 <a class="jxr_linenumber" name="75" href="#75">75</a>      }

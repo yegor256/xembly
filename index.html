@@ -48,7 +48,7 @@
                                                     </ul>
                                     </li>
                                                                                         <li>
-                                                                    <a href="apidocs-0.12/index.html" title="JavaDoc 0.12">JavaDoc 0.12</a>
+                                                                    <a href="apidocs-0.13/index.html" title="JavaDoc 0.13">JavaDoc 0.13</a>
                                                                                                                         <ul>
                                                     </ul>
                                     </li>
@@ -101,8 +101,8 @@
             </a>
                         <p>
                 
-                04-Nov-2013
-                0.12
+                01-Dec-2013
+                0.13
             </p>
             <article>
                 <h1>Assembly for XML</h1>
@@ -140,7 +140,7 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
   &lt;artifactId&gt;xembly&lt;/artifactId&gt;
-  &lt;version&gt;0.12&lt;/version&gt;
+  &lt;version&gt;0.13&lt;/version&gt;
 &lt;/dependency&gt;
 </pre></div>
 <p>Full list of supported directives in the current version:</p>
@@ -196,6 +196,23 @@ STRICT &quot;1&quot;;
 <div class="source">
 <pre>PI &quot;xsl-stylesheet&quot; &quot;href='http://example.com'&quot;;
 </pre></div>
+<p>Xembly is not intended to be a replacement of XSL or XQuery. It is a lightweight (!) instrument for XML manipulations. There are a few things that can&#x2019;t be done by means of Xembly:</p>
+
+<ul>
+  
+<li>
+<p>You can&#x2019;t add, remove, or modify XML comments  (but you can find them with XPath)</p></li>
+  
+<li>
+<p>You can&#x2019;t add <tt>CDATA</tt>, but you can find them with XPath</p></li>
+  
+<li>
+<p>DTD section can&#x2019;t be modified</p></li>
+  
+<li>
+<p>Namespaces are not supported (should be fixed soon)</p></li>
+</ul>
+<p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p>
             </article>
             <p style="margin-bottom: 3em; margin-top: 2em;">
                 Copyright &#169;
