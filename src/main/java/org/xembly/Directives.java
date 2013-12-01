@@ -42,6 +42,7 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
+import org.w3c.dom.Node;
 
 /**
  * Collection of {@link Directive}s, instantiable from {@link String}.
@@ -140,6 +141,35 @@ public final class Directives implements Iterable<Directive> {
     @Override
     public Iterator<Directive> iterator() {
         return this.all.iterator();
+    }
+
+    /**
+     * Create a collection of directives, which can create a copy
+     * of provided node.
+     *
+     * <p>For example, you already have a node in an XML document,
+     * which you'd like to add to another XML document:
+     *
+     * <pre> Document target = parse("&lt;root/&gt;");
+     * Node node = parse("&lt;user name='Jeffrey'/&gt;");
+     * new Xembler(
+     *   new Directives()
+     *     .xpath("/*")
+     *     .add("jeff")
+     *     .append(Directives.copyOf(node))
+     * ).apply(target);
+     * assert print(target).equals(
+     *   "&lt;root&gt;&lt;jeff name='Jeffrey'&gt;&lt;/root&gt;"
+     * );
+     * </pre>
+     *
+     * @param node Node to analyze
+     * @return Collection of directives
+     * @since 0.13
+     */
+    public static Iterable<Directive> copyOf(
+        @NotNull(message = "node can't be NULL") final Node node) {
+        return new Directives();
     }
 
     /**

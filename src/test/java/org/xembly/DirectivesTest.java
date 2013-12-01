@@ -36,6 +36,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * Test case for {@link Directives}.
@@ -145,6 +146,37 @@ public final class DirectivesTest {
             XhtmlMatchers.hasXPaths(
                 "/xhtml:html",
                 "/xhtml:html/body/p[.='\u20ac \\']"
+            )
+        );
+    }
+
+    /**
+     * Directives can copy an existing node.
+     * @throws Exception If some problem inside
+     * @since 0.13
+     */
+    @Test
+    public void copiesExistingNode() throws Exception {
+        final Document dude = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dude.createElement("temp-dude");
+        dude.appendChild(root);
+        root.setAttribute("name", "Jeffrey");
+        root.appendChild(dude.createElement("first"));
+        root.appendChild(dude.createElement("second"));
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives()
+                .add("dudes")
+                .add("dude")
+                .append(Directives.copyOf(root))
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/dudes/dude[@name = 'Jeffrey']",
+                "/dudes/dude[first and second]"
             )
         );
     }
