@@ -42,7 +42,10 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenStream;
+import org.w3c.dom.Attr;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Collection of {@link Directive}s, instantiable from {@link String}.
@@ -80,9 +83,10 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.1
  * @checkstyle ClassDataAbstractionCoupling (500 lines)
+ * @checkstyle ClassFanOutComplexity (500 lines)
  */
 @EqualsAndHashCode(callSuper = false, of = "all")
-@SuppressWarnings("PMD.TooManyMethods")
+@SuppressWarnings({ "PMD.TooManyMethods", "PMD.CyclomaticComplexity" })
 public final class Directives implements Iterable<Directive> {
 
     /**
@@ -166,10 +170,54 @@ public final class Directives implements Iterable<Directive> {
      * @param node Node to analyze
      * @return Collection of directives
      * @since 0.13
+     * @checkstyle CyclomaticComplexity (50 lines)
      */
     public static Iterable<Directive> copyOf(
         @NotNull(message = "node can't be NULL") final Node node) {
-        return new Directives();
+        final Directives dirs = new Directives();
+        if (node.hasAttributes()) {
+            final NamedNodeMap attrs = node.getAttributes();
+            final int len = attrs.getLength();
+            for (int idx = 0; idx < len; ++idx) {
+                final Attr attr = Attr.class.cast(attrs.item(idx));
+                dirs.attr(attr.getNodeName(), attr.getNodeValue());
+            }
+        }
+        if (node.hasChildNodes()) {
+            final NodeList children = node.getChildNodes();
+            final int len = children.getLength();
+            for (int idx = 0; idx < len; ++idx) {
+                final Node child = children.item(idx);
+                switch (child.getNodeType()) {
+                    case Node.ELEMENT_NODE:
+                        dirs.add(child.getNodeName())
+                            .append(Directives.copyOf(child))
+                            .up();
+                        break;
+                    case Node.ATTRIBUTE_NODE:
+                        dirs.attr(child.getNodeName(), child.getNodeValue());
+                        break;
+                    case Node.TEXT_NODE:
+                    case Node.CDATA_SECTION_NODE:
+                        dirs.set(child.getTextContent());
+                        break;
+                    case Node.PROCESSING_INSTRUCTION_NODE:
+                        dirs.pi(child.getNodeName(), child.getNodeValue());
+                        break;
+                    case Node.ENTITY_NODE:
+                    case Node.COMMENT_NODE:
+                        break;
+                    default:
+                        throw new IllegalArgumentException(
+                            String.format(
+                                "unsupported type %d of node %s",
+                                child.getNodeType(), child.getNodeName()
+                            )
+                        );
+                }
+            }
+        }
+        return dirs;
     }
 
     /**

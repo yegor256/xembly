@@ -30,13 +30,14 @@
 package org.xembly;
 
 import com.jcabi.immutable.ArrayMap;
+import com.jcabi.xml.XMLDocument;
 import com.rexsl.test.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  * Test case for {@link Directives}.
@@ -157,26 +158,29 @@ public final class DirectivesTest {
      */
     @Test
     public void copiesExistingNode() throws Exception {
-        final Document dude = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        final Element root = dude.createElement("temp-dude");
-        dude.appendChild(root);
-        root.setAttribute("name", "Jeffrey");
-        root.appendChild(dude.createElement("first"));
-        root.appendChild(dude.createElement("second"));
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         new Xembler(
-            new Directives()
-                .add("dudes")
-                .add("dude")
-                .append(Directives.copyOf(root))
+            new Directives().add("dudes").append(
+                Directives.copyOf(
+                    new XMLDocument(
+                        StringUtils.join(
+                            "<jeff name='Jeffrey'><first/><second/>",
+                            "<?some-pi test?>",
+                            "<file a='x'><f><name>\u20ac</name></f></file>",
+                            "<!-- some comment -->",
+                            "<x><![CDATA[hey you]]></x></jeff>"
+                        )
+                    ).node()
+                )
+            )
         ).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
-                "/dudes/dude[@name = 'Jeffrey']",
-                "/dudes/dude[first and second]"
+                "/dudes/jeff[@name = 'Jeffrey']",
+                "/dudes/jeff[first and second]",
+                "/dudes/jeff/file[@a='x']/f[name='\u20ac']"
             )
         );
     }

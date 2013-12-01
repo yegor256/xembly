@@ -143,4 +143,21 @@ STRICT "1";
 PI "xsl-stylesheet" "href='http://example.com'";
 ```
 
+## Known Limitations
 
+Xembly is not intended to be a replacement of XSL or XQuery. It is
+a lightweight (!) instrument for XML manipulations. There are a few things
+that can't be done by means of Xembly:
+
+ * You can't add, remove, or modify XML comments
+   (but you can find them with XPath)
+
+ * You can't add `CDATA`, but you can find them with XPath
+
+ * DTD section can't be modified
+
+ * Namespaces are not supported (should be fixed soon)
+
+Some of these limitations may be removed in the next versions. Please,
+submit a request to our
+[issue tracker in Github](https://github.com/yegor256/xembly/issues).

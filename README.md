@@ -54,14 +54,14 @@ Just use this dependency in Maven:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.11</version>
+  <version>0.13</version>
 </dependency>
 ```
 
 Or download the latest release
 [here](https://github.com/yegor256/xembly/releases).
 
-## How to contribute
+## How To Contribute
 
 Fork repository, make changes, send us a pull request. We will review
 your changes and apply them to the `master` branch shortly, provided

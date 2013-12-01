@@ -87,6 +87,9 @@
             <url>http://www.xembly.org</url>
         </site>
     </distributionManagement>
+    <properties>
+        <saxon.version>9.1.0.8</saxon.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -108,12 +111,31 @@
         <dependency>
             <groupId>com.rexsl</groupId>
             <artifactId>rexsl-test</artifactId>
+            <version>0.10</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-xml</artifactId>
             <version>0.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>${saxon.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>${saxon.version}</version>
+            <classifier>dom</classifier>
             <scope>test</scope>
         </dependency>
     </dependencies>
