@@ -199,7 +199,17 @@ public final class Directives implements Iterable<Directive> {
                         break;
                     case Node.TEXT_NODE:
                     case Node.CDATA_SECTION_NODE:
-                        dirs.set(child.getTextContent());
+                        if (len == 1) {
+                            dirs.set(child.getTextContent());
+                        } else if (!child.getTextContent().trim().isEmpty()) {
+                            throw new IllegalArgumentException(
+                                String.format(
+                                    // @checkstyle LineLength (1 line)
+                                    "TEXT node #%d is not allowed together with other %d nodes in %s",
+                                    idx, len, child.getNodeName()
+                                )
+                            );
+                        }
                         break;
                     case Node.PROCESSING_INSTRUCTION_NODE:
                         dirs.pi(child.getNodeName(), child.getNodeValue());
