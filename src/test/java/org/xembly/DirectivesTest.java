@@ -169,7 +169,7 @@ public final class DirectivesTest {
                             "<?some-pi test?>",
                             "<file a='x'><f><name>\u20ac</name></f></file>",
                             "<!-- some comment -->",
-                            "<x><![CDATA[hey you]]></x></jeff>"
+                            "<x><![CDATA[hey you]]></x>  </jeff>"
                         )
                     ).node()
                 )
