@@ -209,6 +209,9 @@ public final class Xembler {
      * @param text Text to escape
      * @return The same text with escaped characters, which are not XML-legal
      * @since 0.14
+     * @checkstyle MagicNumber (20 lines)
+     * @checkstyle CyclomaticComplexity (20 lines)
+     * @checkstyle BooleanExpressionComplexity (20 lines)
      */
     public static String escape(final String text) {
         final StringBuilder output = new StringBuilder(text.length());
@@ -220,7 +223,7 @@ public final class Xembler {
                 || chr >= 0x7F && chr <= 0x84
                 || chr >= 0x86 && chr <= 0x9F;
             if (illegal) {
-                output.append("\\u").append(String.format("%04x", (int) chr));
+                output.append(String.format("\\u%04x", (int) chr));
             } else {
                 output.append(chr);
             }
