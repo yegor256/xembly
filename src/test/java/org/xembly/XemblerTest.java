@@ -134,4 +134,17 @@ public final class XemblerTest {
         );
     }
 
+    /**
+     * Xembler can escape broken text.
+     * @throws Exception If some problem inside
+     * @since 0.14
+     */
+    @Test
+    public void escapesBrokenText() throws Exception {
+        MatcherAssert.assertThat(
+            Xembler.escape("привет hello \u0000"),
+            Matchers.equalTo("привет hello \\u0000")
+        );
+    }
+
 }

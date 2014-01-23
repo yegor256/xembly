@@ -197,4 +197,35 @@ public final class Xembler {
         return writer.toString();
     }
 
+    /**
+     * Utility method to escape text before using it as a text value
+     * in XML.
+     *
+     * <p>Use it like this, in order to avoid runtime exceptions:
+     *
+     * <pre>new Directives().xpath("/test")
+     *   .set(Xembler.escape("illegal: \u0000"));</pre>
+     *
+     * @param text Text to escape
+     * @return The same text with escaped characters, which are not XML-legal
+     * @since 0.14
+     */
+    public static String escape(final String text) {
+        final StringBuilder output = new StringBuilder(text.length());
+        final char[] chars = text.toCharArray();
+        for (final char chr : chars) {
+            final boolean illegal = chr >= 0x00 && chr <= 0x08
+                || chr >= 0x0B && chr <= 0x0C
+                || chr >= 0x0E && chr <= 0x1F
+                || chr >= 0x7F && chr <= 0x84
+                || chr >= 0x86 && chr <= 0x9F;
+            if (illegal) {
+                output.append("\\u").append(String.format("%04x", (int) chr));
+            } else {
+                output.append(chr);
+            }
+        }
+        return output.toString();
+    }
+
 }
