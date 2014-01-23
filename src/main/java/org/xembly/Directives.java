@@ -280,6 +280,10 @@ public final class Directives implements Iterable<Directive> {
      *   .add("second");
      * </pre>
      *
+     * <p>If a value provided contains illegal XML characters, a runtime
+     * exception will be thrown. To avoid this, it is recommended to use
+     * {@link Xembler#escape(String)}.
+     *
      * @param <K> Type of key
      * @param <V> Type of value
      * @param nodes Names and values of nodes to add
@@ -333,6 +337,11 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Set attribute.
+     *
+     * <p>If a value provided contains illegal XML characters, a runtime
+     * exception will be thrown. To avoid this, it is recommended to use
+     * {@link Xembler#escape(String)}.
+     *
      * @param name Name of the attribute
      * @param value Value to set
      * @return This object
@@ -351,6 +360,11 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Add processing instruction.
+     *
+     * <p>If a value provided contains illegal XML characters, a runtime
+     * exception will be thrown. To avoid this, it is recommended to use
+     * {@link Xembler#escape(String)}.
+     *
      * @param target PI name
      * @param data Data to set
      * @return This object
@@ -371,6 +385,11 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Set text content.
+     *
+     * <p>If a value provided contains illegal XML characters, a runtime
+     * exception will be thrown. To avoid this, it is recommended to use
+     * {@link Xembler#escape(String)}.
+     *
      * @param text Text to set
      * @return This object
      * @since 0.5
