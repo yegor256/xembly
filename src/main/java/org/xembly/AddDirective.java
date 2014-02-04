@@ -33,7 +33,6 @@ import com.jcabi.aspects.Immutable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -61,7 +60,7 @@ final class AddDirective implements Directive {
      * @throws XmlContentException If invalid input
      */
     AddDirective(final String node) throws XmlContentException {
-        this.name = new Arg(node.toLowerCase(Locale.ENGLISH));
+        this.name = new Arg(node);
     }
 
     @Override
