@@ -18,7 +18,7 @@ public class XemblyExample {
     for (String name : names) {
       directives.add("actor").set(name).up();
     }
-    System.out.println(new Xembler(directives));
+    System.out.println(new Xembler(directives).xml());
   }
 }
 ```
