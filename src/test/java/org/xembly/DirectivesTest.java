@@ -185,4 +185,20 @@ public final class DirectivesTest {
         );
     }
 
+    /**
+     * Directives can understand case.
+     * @throws Exception If some problem inside
+     * @since 0.14.1
+     */
+    @Test
+    public void addsElementsCaseSensitively() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(new Directives().add("Html").addIf("Body")).xml(),
+            XhtmlMatchers.hasXPaths(
+                "/Html",
+                "/Html/Body"
+            )
+        );
+    }
+
 }
