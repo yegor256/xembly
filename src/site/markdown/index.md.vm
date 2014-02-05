@@ -54,7 +54,7 @@ Full list of supported directives in the current version:
 
 `ADD` directive adds a new node to every node in the current node set.
 `ADD` expects exactly one mandatory argument, which is the name of
-a new node to be added (case insensitive):
+a new node to be added (case sensitive):
 
 ```
 ADD 'orders';
@@ -70,7 +70,7 @@ added.
 
 `ADDIF` directive adds a new node to every node of the current set,
 only if it's absent. `ADDIF` expects exactly one argument, which
-is the name of the node to be added (case insensitive):
+is the name of the node to be added (case sensitive):
 
 ```
 ADD 'orders';
