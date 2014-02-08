@@ -76,3 +76,7 @@ $ mvn clean install -Pqulice
 
 If you have questions or general suggestions, don't hesitate to submit
 a new [Github issue](https://github.com/yegor256/xembly/issues/new).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yegor256/xembly/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
