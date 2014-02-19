@@ -54,7 +54,7 @@ Just use this dependency in Maven:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.13</version>
+  <version>0.15</version>
 </dependency>
 ```
 
