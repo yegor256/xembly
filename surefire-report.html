@@ -24,6 +24,7 @@
                                             <link rel="stylesheet" href="./css/highlight.css" />
         <script src="./js/jquery-1.8.3.min.js"></script>
         <script src="./js/highlight-7.3.min.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
@@ -32,142 +33,185 @@
                             hljs.highlightBlock(element);
                         }
                     );
+                    $(".menu-button").click(
+                        function() {
+                            if ($("#here-goes-menu").attr("class") == "menu-off") {
+                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
+                                $("#here-goes-menu").attr("class", "menu-on");
+                            } else {
+                                $(".mobile-menu").hide();
+                                $("#here-goes-menu").attr("class", "menu-off");
+                            }
+                        }
+                    );
                 }
             );
         </script>
+        <style>
+            @import url("./css/wide.css") (min-width: 1200px) and (max-width:5000px);
+            @import url("./css/900-1199.css") (min-width: 900px) and (max-width:1199px);
+            @import url("./css/600-899.css") (min-width: 600px) and (max-width:899px);
+            @import url("./css/100-599.css") (min-width: 100px) and (max-width:599px);
+        </style>
     </head>
-    <body>
+    <body style="background: url('./images/background.png') fixed;">
+                <div class="page">
+            <div class="menu-section">
                 <ul id="menu">
-                                                    <li>
-                    Overview
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="index.html" title="Introduction">Introduction</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="apidocs-0.15/index.html" title="JavaDoc 0.15">JavaDoc 0.15</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="changes-report.html" title="Release History">Release History</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Examples
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="example-collection.html" title="XML Collection">XML Collection</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Project Documentation
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                                        <li>
-                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
-                                                                            <li>
-                                                                    <a href="rempl.html" title="REMPL">REMPL</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="xref/index.html" title="Source Xref">Source Xref</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                            <strong>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
+                                                                                    <li>
+                            Overview
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="index.html" title="Introduction">Introduction</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="apidocs-0.15/index.html" title="JavaDoc 0.15">JavaDoc 0.15</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="changes-report.html" title="Release History">Release History</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Examples
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="example-collection.html" title="XML Collection">XML Collection</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Project Documentation
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                        <li>
+                                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="rempl.html" title="REMPL">REMPL</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="xref/index.html" title="Source Xref">Source Xref</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                            <strong>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
         </strong>
-                                                                                                                <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="changelog.html" title="Change Log">Change Log</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="file-activity.html" title="File Activity">File Activity</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="apidocs-0.15/index.html" title="JavaDocs">JavaDocs</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="github-report.html" title="GitHub Report">GitHub Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                    </ul>
-        <div id="content">
-                            <a href="https://github.com/yegor256/xembly">
-                    <img style="position: absolute; top: 0; right: 0; border: 0; width: 100px; height: 100px;"
-                        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-                        alt="Fork me on GitHub" />
-                </a>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="changelog.html" title="Change Log">Change Log</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="file-activity.html" title="File Activity">File Activity</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="apidocs-0.15/index.html" title="JavaDocs">JavaDocs</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="github-report.html" title="GitHub Report">GitHub Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                    </ul>
+            </div>
+            <div id="right-side">
+                <div id="content">
+                    <i class="menu-button fa fa-align-justify"></i>
+                    <div class="logo-section">
                         <a href="http://www.xembly.org/" title="${decoration.bannerLeft.title}">
-                <img src="http://img.xembly.org/logo-256x256.png"
-                    alt="xembly.org"
-                                            width="64"
-                                                                height="64"
-                                    />
-            </a>
-                        <p>
-                
-                04-Feb-2014
-                0.15
-            </p>
-            <article>
-                <script type="text/javascript">
+                            <img src="http://img.xembly.org/logo-256x256.png"
+                                alt="xembly.org"
+                                                                    width="64"
+                                                                                                    height="64"
+                                                            />
+                        </a>
+                    </div>
+                    <div class="date">
+                        <div class="date-numbers">
+                            
+                            02-Mar-2014
+                            0.15
+                        </div>
+                                                                            <div class="github">
+                                <iframe
+                                    class="github-large"
+                                    src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=large"
+                                    allowtransparency="true"
+                                    frameborder="0"
+                                    scrolling="0"
+                                    width="170"
+                                    height="30">
+                                </iframe>
+                                <iframe
+                                    class="github-small"
+                                    src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=small"
+                                    allowtransparency="true"
+                                    frameborder="0"
+                                    scrolling="0"
+                                    width="170"
+                                    height="30">
+                                </iframe>
+                            </div>
+                                            </div>
+                    <div id="here-goes-menu"></div>
+                    <article>
+                        <div class="section">
+                            <script type="text/javascript">
 //<![CDATA[
 function toggleDisplay(elementId) {
  var elm = document.getElementById(elementId + 'error');
@@ -203,7 +247,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>4.244</td></tr></table><br />
+<td>6.443</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
@@ -224,7 +268,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>4.244</td></tr></table><br />
+<td>6.443</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3>org.xembly<a name="org.xembly"></a></h3><a name="org.xembly"></a>
@@ -246,7 +290,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.035</td></tr>
+<td>0.18</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyAddIfDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyAddIfDirectiveTest">AddIfDirectiveTest</a></td>
@@ -255,7 +299,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.803</td></tr>
+<td>0.266</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyArgTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyArgTest">ArgTest</a></td>
@@ -264,7 +308,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.259</td></tr>
+<td>0.008</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyAttrDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyAttrDirectiveTest">AttrDirectiveTest</a></td>
@@ -273,7 +317,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.116</td></tr>
+<td>0.149</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyDirectivesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyDirectivesTest">DirectivesTest</a></td>
@@ -282,7 +326,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.651</td></tr>
+<td>1.794</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyPiDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyPiDirectiveTest">PiDirectiveTest</a></td>
@@ -291,7 +335,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.101</td></tr>
+<td>0.753</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyRemoveDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyRemoveDirectiveTest">RemoveDirectiveTest</a></td>
@@ -300,7 +344,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.098</td></tr>
+<td>0.537</td></tr>
 <tr class="a">
 <td><a href="#org.xemblySetDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblySetDirectiveTest">SetDirectiveTest</a></td>
@@ -309,7 +353,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.04</td></tr>
+<td>0.67</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyStrictDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyStrictDirectiveTest">StrictDirectiveTest</a></td>
@@ -327,7 +371,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.012</td></tr>
+<td>0.017</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyUpDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyUpDirectiveTest">UpDirectiveTest</a></td>
@@ -336,7 +380,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.886</td></tr>
+<td>0.025</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyXemblerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyXemblerTest">XemblerTest</a></td>
@@ -345,7 +389,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.925</td></tr>
+<td>1.368</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyXpathDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyXpathDirectiveTest">XpathDirectiveTest</a></td>
@@ -354,7 +398,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.184</td></tr>
+<td>0.566</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyXsetDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyXsetDirectiveTest">XsetDirectiveTest</a></td>
@@ -363,7 +407,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.085</td></tr></table></div><br /></div>
+<td>0.061</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
@@ -373,226 +417,229 @@ function toggleDisplay(elementId) {
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsNodesToCurrentNodes</td>
-<td>0.035</td></tr></table></div>
+<td>0.18</td></tr></table></div>
 <div class="section">
 <h3>AddIfDirectiveTest<a name="AddIfDirectiveTest"></a></h3><a name="org.xemblyAddIfDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsNodesToCurrentNodes</td>
-<td>0.803</td></tr></table></div>
+<td>0.266</td></tr></table></div>
 <div class="section">
 <h3>ArgTest<a name="ArgTest"></a></h3><a name="org.xemblyArgTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>escapesAndUnescaped</td>
-<td>0.124</td></tr>
+<td>0.005</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>rejectsToEscapeInvalidXmlChars</td>
-<td>0.108</td></tr>
+<td>0.002</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>rejectsToUnEscapeInvalidXmlChars</td>
-<td>0.027</td></tr></table></div>
+<td>0.001</td></tr></table></div>
 <div class="section">
 <h3>AttrDirectiveTest<a name="AttrDirectiveTest"></a></h3><a name="org.xemblyAttrDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsDomAttributesDirectly</td>
-<td>0.05</td></tr>
+<td>0.108</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsAttributesToCurrentNodes</td>
-<td>0.066</td></tr></table></div>
+<td>0.041</td></tr></table></div>
 <div class="section">
 <h3>DirectivesTest<a name="DirectivesTest"></a></h3><a name="org.xemblyDirectivesTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsOnBrokenEscapedXmlContent</td>
-<td>0.009</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsMapOfValues</td>
-<td>0.067</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>copiesExistingNode</td>
-<td>0.241</td></tr>
+<td>0.372</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsElementsCaseSensitively</td>
-<td>0.225</td></tr>
+<td>throwsOnBrokenGrammar</td>
+<td>0.091</td></tr>
 <tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>throwsOnBrokenXmlContent</td>
+<td>0.134</td></tr>
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>performsFullScaleModifications</td>
-<td>0.063</td></tr>
+<td>0.271</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>throwsOnBrokenEscapedXmlContent</td>
+<td>0.061</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>parsesIncomingGrammar</td>
-<td>0.006</td></tr>
+<td>0.162</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsOnBrokenGrammar</td>
-<td>0.001</td></tr>
+<td>addsMapOfValues</td>
+<td>0.266</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsOnBrokenXmlContent</td>
-<td>0.001</td></tr>
+<td>addsElementsCaseSensitively</td>
+<td>0.367</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>ingoresEmptyInput</td>
-<td>0.038</td></tr></table></div>
+<td>0.07</td></tr></table></div>
 <div class="section">
 <h3>PiDirectiveTest<a name="PiDirectiveTest"></a></h3><a name="org.xemblyPiDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsProcessingInstructionsToDom</td>
-<td>0.049</td></tr>
+<td>addsProcessingInstructionsDirectlyToDom</td>
+<td>0.272</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsProcessingInstructionsDirectlyToDom</td>
-<td>0.026</td></tr>
+<td>addsProcessingInstructionsToDom</td>
+<td>0.266</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>prependsProcessingInstructionsToDomRoot</td>
-<td>0.016</td></tr>
+<td>0.094</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsProcessingInstructionsToDomRoot</td>
-<td>0.01</td></tr></table></div>
+<td>0.121</td></tr></table></div>
 <div class="section">
 <h3>RemoveDirectiveTest<a name="RemoveDirectiveTest"></a></h3><a name="org.xemblyRemoveDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>removesDomNodesDirectly</td>
-<td>0.049</td></tr>
+<td>0.271</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>removesCurrentNodes</td>
-<td>0.049</td></tr></table></div>
+<td>0.266</td></tr></table></div>
 <div class="section">
 <h3>SetDirectiveTest<a name="SetDirectiveTest"></a></h3><a name="org.xemblySetDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>rejectsContentWithInvalidXmlCharacters</td>
-<td>0.004</td></tr>
+<td>0.136</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>setsTextDirectlyIntoDomNodes</td>
-<td>0.008</td></tr>
+<td>0.267</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>setsTextContentOfNodes</td>
-<td>0.028</td></tr></table></div>
+<td>0.267</td></tr></table></div>
 <div class="section">
 <h3>StrictDirectiveTest<a name="StrictDirectiveTest"></a></h3><a name="org.xemblyStrictDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>checksNumberOfCurrentNodes</td>
-<td>0.032</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>failsWhenNumberOfCurrentNodesIsTooSmall</td>
-<td>0.003</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsWhenNumberOfCurrentNodesIsTooBig</td>
-<td>0.007</td></tr>
+<td>0.022</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsWhenNumberOfCurrentNodesIsZero</td>
-<td>0.007</td></tr></table></div>
+<td>0.006</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>failsWhenNumberOfCurrentNodesIsTooSmall</td>
+<td>0.006</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>checksNumberOfCurrentNodes</td>
+<td>0.015</td></tr></table></div>
 <div class="section">
 <h3>SyntaxExceptionTest<a name="SyntaxExceptionTest"></a></h3><a name="org.xemblySyntaxExceptionTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>instantiatesException</td>
-<td>0.012</td></tr></table></div>
+<td>0.017</td></tr></table></div>
 <div class="section">
 <h3>UpDirectiveTest<a name="UpDirectiveTest"></a></h3><a name="org.xemblyUpDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>jumpsToParentsWhenTheyExist</td>
-<td>0.692</td></tr>
+<td>0.015</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>throwsWhenNoParents</td>
-<td>0.194</td></tr></table></div>
+<td>0.01</td></tr></table></div>
 <div class="section">
 <h3>XemblerTest<a name="XemblerTest"></a></h3><a name="org.xemblyXemblerTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>printsXmlDocument</td>
-<td>0.549</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>escapesBrokenText</td>
-<td>0.066</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>makesChangesToDomDocument</td>
-<td>0.143</td></tr>
+<td>rendersXmlDeclaration</td>
+<td>0.235</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>makesChangesToDomDocumentFromBuilder</td>
-<td>0.135</td></tr>
+<td>0.272</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>rendersXmlDeclaration</td>
-<td>0.032</td></tr></table></div>
+<td>escapesBrokenText</td>
+<td>0.225</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>makesChangesToDomDocument</td>
+<td>0.271</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>printsXmlDocument</td>
+<td>0.365</td></tr></table></div>
 <div class="section">
 <h3>XpathDirectiveTest<a name="XpathDirectiveTest"></a></h3><a name="org.xemblyXpathDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>findsNodesByXpathDirectly</td>
-<td>0.056</td></tr>
+<td>findsNodesInEmptyDom</td>
+<td>0.15</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>findsNodesWithXpathExpression</td>
-<td>0.073</td></tr>
+<td>findsNodesByXpathDirectly</td>
+<td>0.149</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>ignoresEmptySearches</td>
-<td>0.046</td></tr>
+<td>0.137</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>findsNodesInEmptyDom</td>
-<td>0.009</td></tr></table></div>
+<td>findsNodesWithXpathExpression</td>
+<td>0.13</td></tr></table></div>
 <div class="section">
 <h3>XsetDirectiveTest<a name="XsetDirectiveTest"></a></h3><a name="org.xemblyXsetDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>setsTextDirectlyIntoDomNodes</td>
-<td>0.037</td></tr>
+<td>setsTextContentOfNodes</td>
+<td>0.044</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>setsTextContentOfNodes</td>
-<td>0.048</td></tr></table></div><br /></div>
-            </article>
-            <p style="margin-bottom: 3em; margin-top: 2em;">
-                Copyright &#169;
-                                                    2013-2014
-                                Xembly, All Rights Reserved.
-                <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-            </p>
-            <a href="http://maven.apache.org" title="site is built by Apache Maven"
-                style='position: absolute; bottom: 1em; right: 1em;'>
-                <img src='images/built-by-maven.png' style='width: 50px; height: 17px;'
-                    alt='site is built by Apache Maven'/>
-            </a>
+<td>setsTextDirectlyIntoDomNodes</td>
+<td>0.017</td></tr></table></div><br /></div>
+                        </div>
+                    </article>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" style="float:right" width="80px"/>
+                </div>
+                <div class="legal-notes">
+                    <div class="copyright">
+                        Copyright &#169;
+                                                                            2013-2014
+                                                <br/>
+                        Xembly, All Rights Reserved.
+                        <br/>
+                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
