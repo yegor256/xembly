@@ -25,6 +25,7 @@
         <script src="./js/jquery-1.8.3.min.js"></script>
         <script src="./js/highlight-7.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+        <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
@@ -47,14 +48,8 @@
                 }
             );
         </script>
-        <style>
-            @import url("./css/wide.css") (min-width: 1200px) and (max-width:5000px);
-            @import url("./css/900-1199.css") (min-width: 900px) and (max-width:1199px);
-            @import url("./css/600-899.css") (min-width: 600px) and (max-width:899px);
-            @import url("./css/100-599.css") (min-width: 100px) and (max-width:599px);
-        </style>
     </head>
-    <body style="background: url('./images/background.png') fixed;">
+    <body>
                 <div class="page">
             <div class="menu-section">
                 <ul id="menu">
@@ -68,7 +63,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="apidocs-0.15/index.html" title="JavaDoc 0.15">JavaDoc 0.15</a>
+                                                                                    <a href="apidocs-0.15.1/index.html" title="JavaDoc 0.15.1">JavaDoc 0.15.1</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -78,7 +73,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="changes-report.html" title="Release History">Release History</a>
+                                                                                    <a href="releases" title="Release History">Release History</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -122,8 +117,8 @@
                     <div class="date">
                         <div class="date-numbers">
                             
-                            02-Mar-2014
-                            0.15
+                            09-Mar-2014
+                            0.15.1
                         </div>
                                                                             <div class="github">
                                 <iframe
@@ -146,7 +141,7 @@
                                 </iframe>
                             </div>
                                             </div>
-                    <div id="here-goes-menu"></div>
+                    <div id="here-goes-menu" class="menu-off"></div>
                     <article>
                         <div class="section">
                             <h1>Assembly for XML</h1>
@@ -184,13 +179,13 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
   &lt;artifactId&gt;xembly&lt;/artifactId&gt;
-  &lt;version&gt;0.15&lt;/version&gt;
+  &lt;version&gt;0.15.1&lt;/version&gt;
 &lt;/dependency&gt;
 </pre></div>
 <div class="section">
 <h2>Directives<a name="Directives"></a></h2>
 <p>Full list of supported directives in the current version:</p>
-<p><tt>ADD</tt> directive adds a new node to every node in the current node set. <tt>ADD</tt> expects exactly one mandatory argument, which is the name of a new node to be added (case insensitive):</p>
+<p><tt>ADD</tt> directive adds a new node to every node in the current node set. <tt>ADD</tt> expects exactly one mandatory argument, which is the name of a new node to be added (case sensitive):</p>
 
 <div class="source">
 <pre>ADD 'orders';
@@ -198,7 +193,7 @@ ADD 'order';
 </pre></div>
 <p>Even if the node with the same name already exists, a new node will be added. Use <tt>ADDIF</tt> if you need to add only if the same-name node is absent.</p>
 <p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p>
-<p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if it&#x2019;s absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case insensitive):</p>
+<p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if it&#x2019;s absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case sensitive):</p>
 
 <div class="source">
 <pre>ADD 'orders';
@@ -266,7 +261,8 @@ STRICT &quot;1&quot;;
 <p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p></div>
                         </div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png" style="float:right" width="80px"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png"
+                        alt="built by maven" style="float:right" width="80"/>
                 </div>
                 <div class="legal-notes">
                     <div class="copyright">

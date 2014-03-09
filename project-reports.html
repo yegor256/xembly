@@ -25,6 +25,7 @@
         <script src="./js/jquery-1.8.3.min.js"></script>
         <script src="./js/highlight-7.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+        <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
@@ -47,14 +48,8 @@
                 }
             );
         </script>
-        <style>
-            @import url("./css/wide.css") (min-width: 1200px) and (max-width:5000px);
-            @import url("./css/900-1199.css") (min-width: 900px) and (max-width:1199px);
-            @import url("./css/600-899.css") (min-width: 600px) and (max-width:899px);
-            @import url("./css/100-599.css") (min-width: 100px) and (max-width:599px);
-        </style>
     </head>
-    <body style="background: url('./images/background.png') fixed;">
+    <body>
                 <div class="page">
             <div class="menu-section">
                 <ul id="menu">
@@ -67,7 +62,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="apidocs-0.15/index.html" title="JavaDoc 0.15">JavaDoc 0.15</a>
+                                                                                    <a href="apidocs-0.15.1/index.html" title="JavaDoc 0.15.1">JavaDoc 0.15.1</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -77,7 +72,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="changes-report.html" title="Release History">Release History</a>
+                                                                                    <a href="releases" title="Release History">Release History</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -121,8 +116,8 @@
                     <div class="date">
                         <div class="date-numbers">
                             
-                            02-Mar-2014
-                            0.15
+                            09-Mar-2014
+                            0.15.1
                         </div>
                                                                             <div class="github">
                                 <iframe
@@ -145,7 +140,7 @@
                                 </iframe>
                             </div>
                                             </div>
-                    <div id="here-goes-menu"></div>
+                    <div id="here-goes-menu" class="menu-off"></div>
                     <article>
                         <div class="section">
                             <div class="section">
@@ -185,7 +180,7 @@
 <td><a href="plugin-updates-report.html">Plugin Updates Report</a></td>
 <td>Provides details of the plugins used by this project which have newer versions available.</td></tr>
 <tr class="a">
-<td><a href="apidocs-0.15/index.html">JavaDocs</a></td>
+<td><a href="apidocs-0.15.1/index.html">JavaDocs</a></td>
 <td>JavaDoc API documentation.</td></tr>
 <tr class="b">
 <td><a href="cobertura/index.html">Cobertura Test Coverage</a></td>
@@ -195,7 +190,8 @@
 <td>Report on Issues from GitHub.</td></tr></table></div></div>
                         </div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png" style="float:right" width="80px"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png"
+                        alt="built by maven" style="float:right" width="80"/>
                 </div>
                 <div class="legal-notes">
                     <div class="copyright">
