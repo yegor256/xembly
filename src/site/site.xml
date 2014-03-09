@@ -53,7 +53,7 @@
             <item name="Introduction" href="./index.html"/>
             <item name="JavaDoc ${project.version}" href="./apidocs-${project.version}/index.html"/>
             <item name="Test Coverage" href="./cobertura/index.html"/>
-            <item name="Release History" href="./changes-report.html"/>
+            <item name="Release History" href="https://github.com/yegor256/xembly/releases"/>
         </menu>
         <menu name="Examples">
             <item name="XML Collection" href="./example-collection.html"/>
