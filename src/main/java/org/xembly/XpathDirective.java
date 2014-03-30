@@ -142,7 +142,7 @@ final class XpathDirective implements Directive {
                 list = NodeList.class.cast(
                     xpath.evaluate(query, node, XPathConstants.NODESET)
                 );
-            } catch (XPathExpressionException ex) {
+            } catch (final XPathExpressionException ex) {
                 throw new ImpossibleModificationException(
                     String.format("invalid XPath expr '%s'", query), ex
                 );

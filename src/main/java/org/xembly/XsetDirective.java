@@ -86,7 +86,7 @@ final class XsetDirective implements Directive {
                         this.expr.raw(), node, XPathConstants.STRING
                     ).toString()
                 );
-            } catch (XPathExpressionException ex) {
+            } catch (final XPathExpressionException ex) {
                 throw new ImpossibleModificationException(
                     String.format("invalid XPath expr '%s'", this.expr), ex
                 );

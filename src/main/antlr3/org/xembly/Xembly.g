@@ -70,7 +70,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new XpathDirective($argument.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -79,7 +79,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new SetDirective($argument.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -88,7 +88,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new XsetDirective($argument.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -97,7 +97,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new AttrDirective($name.ret.toString(), $value.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -106,7 +106,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new AddDirective($argument.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -115,7 +115,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new AddIfDirective($argument.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -133,7 +133,7 @@ directive returns [Directive ret]
     {
         try {
             $ret = new PiDirective($target.ret.toString(), $data.ret.toString());
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -159,7 +159,7 @@ TEXT
     {
         try {
             this.setText(Arg.unescape(this.getText()));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }
@@ -168,7 +168,7 @@ TEXT
     {
         try {
             this.setText(Arg.unescape(this.getText()));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new ParsingException(ex);
         }
     }

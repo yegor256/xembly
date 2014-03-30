@@ -130,12 +130,12 @@ public final class Xembler {
         for (final Directive dir : this.directives) {
             try {
                 ptr = dir.exec(dom, ptr);
-            } catch (ImpossibleModificationException ex) {
+            } catch (final ImpossibleModificationException ex) {
                 throw new ImpossibleModificationException(
                     String.format("directive #%d: %s", pos, dir),
                     ex
                 );
-            } catch (DOMException ex) {
+            } catch (final DOMException ex) {
                 throw new ImpossibleModificationException(
                     String.format("DOM exception at dir #%d: %s", pos, dir),
                     ex
@@ -160,7 +160,7 @@ public final class Xembler {
         final Document dom;
         try {
             dom = Xembler.BFACTORY.newDocumentBuilder().newDocument();
-        } catch (ParserConfigurationException ex) {
+        } catch (final ParserConfigurationException ex) {
             throw new IllegalStateException(ex);
         }
         this.apply(dom);
@@ -181,7 +181,7 @@ public final class Xembler {
         final Transformer transformer;
         try {
             transformer = Xembler.TFACTORY.newTransformer();
-        } catch (TransformerConfigurationException ex) {
+        } catch (final TransformerConfigurationException ex) {
             throw new IllegalStateException(ex);
         }
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -191,7 +191,7 @@ public final class Xembler {
                 new DOMSource(this.dom()),
                 new StreamResult(writer)
             );
-        } catch (TransformerException ex) {
+        } catch (final TransformerException ex) {
             throw new IllegalArgumentException(ex);
         }
         return writer.toString();

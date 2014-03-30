@@ -255,7 +255,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "name can't be NULL") final String name) {
         try {
             this.all.add(new AddDirective(name));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -303,7 +303,7 @@ public final class Directives implements Iterable<Directive> {
                     )
                 );
             }
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -319,7 +319,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "name can't be NULL") final String name) {
         try {
             this.all.add(new AddIfDirective(name));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -352,7 +352,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "value can't be NULL") final String value) {
         try {
             this.all.add(new AttrDirective(name, value));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -377,7 +377,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "data can't be NULL") final String data) {
         try {
             this.all.add(new PiDirective(target, data));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -398,7 +398,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "content can't be NULL") final String text) {
         try {
             this.all.add(new SetDirective(text));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -414,7 +414,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "content can't be NULL") final String text) {
         try {
             this.all.add(new XsetDirective(text));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -442,7 +442,7 @@ public final class Directives implements Iterable<Directive> {
         @NotNull(message = "xpath can't be NULL") final String path) {
         try {
             this.all.add(new XpathDirective(path));
-        } catch (XmlContentException ex) {
+        } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(ex);
         }
         return this;
@@ -474,9 +474,9 @@ public final class Directives implements Iterable<Directive> {
         final XemblyParser parser = new XemblyParser(tokens);
         try {
             return parser.directives();
-        } catch (RecognitionException ex) {
+        } catch (final RecognitionException ex) {
             throw new SyntaxException(script, ex);
-        } catch (ParsingException ex) {
+        } catch (final ParsingException ex) {
             throw new SyntaxException(script, ex);
         }
     }
