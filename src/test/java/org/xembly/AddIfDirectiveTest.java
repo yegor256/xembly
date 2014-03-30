@@ -30,10 +30,13 @@
 package org.xembly;
 
 import com.rexsl.test.XhtmlMatchers;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AddIfDirective}.
@@ -60,6 +63,31 @@ public final class AddIfDirectiveTest {
                 "/root/foo",
                 "/root[count(bar) = 1]"
             )
+        );
+    }
+
+    /**
+     * AddIfDirective can add node to a node.
+     * @throws Exception If some problem inside
+     * @since 0.15.2
+     */
+    @Test
+    public void addsDomNodesDirectly() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("xxx");
+        root.appendChild(dom.createElement("a"));
+        root.appendChild(dom.createTextNode("hello"));
+        root.appendChild(dom.createComment("some comment"));
+        root.appendChild(dom.createCDATASection("CDATA"));
+        root.appendChild(dom.createProcessingInstruction("a12", "22"));
+        dom.appendChild(root);
+        new AddIfDirective("b").exec(
+            dom, Collections.<Node>singleton(root)
+        );
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/xxx/b")
         );
     }
 
