@@ -130,14 +130,18 @@ public final class Directives implements Iterable<Directive> {
     public String toString() {
         final StringBuilder text = new StringBuilder(0);
         int width = 0;
+        int idx = 0;
         for (final Directive dir : this.all) {
+            if (idx > 0 && width == 0) {
+                text.append('\n').append(idx).append(':');
+            }
             final String txt = dir.toString();
             text.append(txt).append(';');
             width += txt.length();
             if (width > Directives.MARGIN) {
-                text.append('\n');
                 width = 0;
             }
+            ++idx;
         }
         return text.toString().trim();
     }

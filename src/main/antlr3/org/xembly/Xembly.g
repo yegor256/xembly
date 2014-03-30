@@ -57,6 +57,7 @@ directives returns [Collection<Directive> ret]
     @init { $ret = new LinkedList<Directive>(); }
     :
     (
+        (label COLON)?
         directive
         SEMICOLON
         { $ret.add($directive.ret); }
@@ -145,14 +146,15 @@ argument returns [Object ret]
     { $ret = $TEXT.text; }
     ;
 
-COMMA:
-    ','
+label
+    :
+    DIGIT+
     ;
 
-SEMICOLON:
-    ';'
-    ;
-
+DIGIT: '0'..'9';
+COMMA: ',';
+COLON: ':';
+SEMICOLON: ';';
 TEXT
     :
     '"' (~'"')* '"'
@@ -173,7 +175,6 @@ TEXT
         }
     }
     ;
-
 SPACE
     :
     ( ' ' | '\t' | '\n' | '\r' )+

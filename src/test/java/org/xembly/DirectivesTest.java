@@ -29,6 +29,7 @@
  */
 package org.xembly;
 
+import com.jcabi.aspects.Tv;
 import com.jcabi.immutable.ArrayMap;
 import com.jcabi.xml.XMLDocument;
 import com.rexsl.test.XhtmlMatchers;
@@ -198,6 +199,27 @@ public final class DirectivesTest {
                 "/Html",
                 "/Html/Body"
             )
+        );
+    }
+
+    /**
+     * Directives can convert to string.
+     * @throws Exception If some problem inside
+     * @since 0.15.2
+     */
+    @Test
+    public void convertsToString() throws Exception {
+        final Directives dirs = new Directives();
+        for (int idx = 0; idx < Tv.TEN; ++idx) {
+            dirs.add("HELLO");
+        }
+        MatcherAssert.assertThat(
+            dirs,
+            Matchers.hasToString(Matchers.containsString("8:"))
+        );
+        MatcherAssert.assertThat(
+            new Directives(dirs.toString()),
+            Matchers.not(Matchers.emptyIterable())
         );
     }
 
