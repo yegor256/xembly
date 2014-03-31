@@ -64,7 +64,7 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>              StringUtils.join(
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>                  <strong class="jxr_keyword">new</strong> String[] {
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>                      <span class="jxr_string">"ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';"</span>,
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>                      <span class="jxr_string">"XPATH '/*/foo//*'; REMOVE;"</span>,
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>                      <span class="jxr_string">"XPATH '/*/foo//*'; REMOVE; ADD 'x';"</span>,
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>                  }
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>              )
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          );
@@ -74,8 +74,8 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>              XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>              XhtmlMatchers.hasXPaths(
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  <span class="jxr_string">"/root/foo"</span>,
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>                  <span class="jxr_string">"/root/foo[not(*)]"</span>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>                  <span class="jxr_string">"/root/foo/x"</span>,
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>                  <span class="jxr_string">"/root/foo[not(bar)]"</span>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>              )
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          );
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      }
@@ -95,14 +95,17 @@
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>          <strong class="jxr_keyword">final</strong> Element second = dom.createElement(<span class="jxr_string">"b"</span>);
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>          root.appendChild(second);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>          dom.appendChild(root);
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">new</strong> RemoveDirective().exec(dom, Collections.&lt;Node&gt;singletonList(first));
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              XhtmlMatchers.xhtml(dom),
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>              XhtmlMatchers.hasXPath(<span class="jxr_string">"/xxx[b and not(a)]"</span>)
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>          );
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      }
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  }
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">new</strong> RemoveDirective().exec(
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              dom, <strong class="jxr_keyword">new</strong> DomPointer(Collections.&lt;Node&gt;singletonList(first)),
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">new</strong> DomStack()
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          );
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>              XhtmlMatchers.xhtml(dom),
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>              XhtmlMatchers.hasXPath(<span class="jxr_string">"/xxx[b and not(a)]"</span>)
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          );
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      }
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2014 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>

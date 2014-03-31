@@ -96,15 +96,16 @@
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>          root.appendChild(second);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>          dom.appendChild(root);
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">new</strong> AttrDirective(<span class="jxr_string">"x"</span>, <span class="jxr_string">"y"</span>).exec(
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>              dom, Collections.&lt;Node&gt;singletonList(second)
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>          );
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>              XhtmlMatchers.xhtml(dom),
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>              XhtmlMatchers.hasXPath(<span class="jxr_string">"/xxx/b[@x='y']"</span>)
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          );
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      }
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  }
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              dom, <strong class="jxr_keyword">new</strong> DomPointer(Collections.&lt;Node&gt;singletonList(second)),
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">new</strong> DomStack()
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          );
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>              XhtmlMatchers.xhtml(dom),
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>              XhtmlMatchers.hasXPath(<span class="jxr_string">"/xxx/b[@x='y']"</span>)
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          );
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      }
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2014 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
