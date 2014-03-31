@@ -57,6 +57,7 @@
         </menu>
         <menu name="Examples">
             <item name="XML Collection" href="./example-collection.html"/>
+            <item name="PUSH and POP" href="./example-push-and-pop.html"/>
         </menu>
         <menu ref="modules"/>
         <menu ref="reports"/>
