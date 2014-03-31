@@ -30,8 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -73,12 +71,13 @@ final class XsetDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) throws ImpossibleModificationException {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack)
+        throws ImpossibleModificationException {
         final XPath xpath = XPathFactory.newInstance().newXPath();
         final ConcurrentMap<Node, String> values =
             new ConcurrentHashMap<Node, String>(0);
-        for (final Node node : current) {
+        for (final Node node : ptr) {
             try {
                 values.put(
                     node,
@@ -95,7 +94,7 @@ final class XsetDirective implements Directive {
         for (final Map.Entry<Node, String> entry : values.entrySet()) {
             entry.getKey().setTextContent(entry.getValue());
         }
-        return Collections.unmodifiableCollection(current);
+        return ptr;
     }
 
 }

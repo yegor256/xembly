@@ -30,8 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
@@ -76,8 +74,8 @@ final class PiDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack) {
         final Document doc;
         if (dom.getOwnerDocument() == null) {
             doc = Document.class.cast(dom);
@@ -87,14 +85,14 @@ final class PiDirective implements Directive {
         final Node instr = doc.createProcessingInstruction(
             this.target.raw(), this.data.raw()
         );
-        if (current.isEmpty()) {
+        if (ptr.isEmpty()) {
             dom.insertBefore(instr, doc.getDocumentElement());
         } else {
-            for (final Node node : current) {
+            for (final Node node : ptr) {
                 node.appendChild(instr);
             }
         }
-        return Collections.unmodifiableCollection(current);
+        return ptr;
     }
 
 }

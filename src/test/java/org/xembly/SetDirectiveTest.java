@@ -97,7 +97,10 @@ public final class SetDirectiveTest {
         final Element second = dom.createElement("b");
         root.appendChild(second);
         dom.appendChild(root);
-        new SetDirective("alpha").exec(dom, Arrays.<Node>asList(first, second));
+        new SetDirective("alpha").exec(
+            dom, new DomPointer(Arrays.<Node>asList(first, second)),
+            new DomStack()
+        );
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(

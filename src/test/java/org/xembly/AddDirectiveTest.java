@@ -49,7 +49,7 @@ public final class AddDirectiveTest {
     @Test
     public void addsNodesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
-            "ADD 'root'; ADD 'foo'; UP; ADD 'bar'; UP; ADD 'bar';"
+            "ADD 'root'; ADD 'foo'; ADD 'x'; UP; UP; ADD 'bar'; UP; ADD 'bar';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -57,7 +57,7 @@ public final class AddDirectiveTest {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
-                "/root/foo",
+                "/root/foo/x",
                 "/root[count(bar) = 2]"
             )
         );

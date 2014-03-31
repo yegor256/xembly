@@ -88,7 +88,8 @@ public final class AttrDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new AttrDirective("x", "y").exec(
-            dom, Collections.<Node>singletonList(second)
+            dom, new DomPointer(Collections.<Node>singletonList(second)),
+            new DomStack()
         );
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

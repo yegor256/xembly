@@ -31,7 +31,6 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
@@ -53,10 +52,11 @@ final class UpDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) throws ImpossibleModificationException {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack)
+        throws ImpossibleModificationException {
         final Collection<Node> parents = new HashSet<Node>(0);
-        for (final Node node : current) {
+        for (final Node node : ptr) {
             final Node parent = node.getParentNode();
             if (parent == null) {
                 throw new ImpossibleModificationException(
@@ -68,7 +68,7 @@ final class UpDirective implements Directive {
             }
             parents.add(parent);
         }
-        return Collections.unmodifiableCollection(parents);
+        return new DomPointer(parents);
     }
 
 }

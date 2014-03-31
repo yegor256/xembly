@@ -30,8 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import java.util.Collection;
-import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
 
@@ -65,32 +63,33 @@ final class StrictDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) throws ImpossibleModificationException {
-        if (current.size() != this.number) {
-            if (current.isEmpty()) {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack)
+        throws ImpossibleModificationException {
+        if (ptr.size() != this.number) {
+            if (ptr.isEmpty()) {
                 throw new ImpossibleModificationException(
                     String.format(
                         "no current nodes while %d expected", this.number
                     )
                 );
             }
-            if (current.size() == 1) {
+            if (ptr.size() == 1) {
                 throw new ImpossibleModificationException(
                     String.format(
                         "one current node '%s' while strictly %d expected",
-                        current.iterator().next().getNodeName(), this.number
+                        ptr.iterator().next().getNodeName(), this.number
                     )
                 );
             }
             throw new ImpossibleModificationException(
                 String.format(
                     "%d current nodes [%s] while strictly %d expected",
-                    current.size(), this.names(current), this.number
+                    ptr.size(), this.names(ptr), this.number
                 )
             );
         }
-        return Collections.unmodifiableCollection(current);
+        return ptr;
     }
 
     /**

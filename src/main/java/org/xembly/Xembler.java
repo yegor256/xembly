@@ -33,7 +33,6 @@ import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.immutable.Array;
 import java.io.StringWriter;
-import java.util.Collection;
 import java.util.Collections;
 import javax.validation.constraints.NotNull;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -80,6 +79,7 @@ import org.w3c.dom.Node;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
+ * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  */
 @Immutable
 @ToString
@@ -125,11 +125,14 @@ public final class Xembler {
     )
     public Node apply(@NotNull(message = "DOM can't be NULL")
         final Node dom) throws ImpossibleModificationException {
-        Collection<Node> ptr = Collections.<Node>singletonList(dom);
+        Directive.Pointer ptr = new DomPointer(
+            Collections.singletonList(dom)
+        );
         int pos = 1;
+        final Directive.Stack stack = new DomStack();
         for (final Directive dir : this.directives) {
             try {
-                ptr = dir.exec(dom, ptr);
+                ptr = dir.exec(dom, ptr, stack);
             } catch (final ImpossibleModificationException ex) {
                 throw new ImpossibleModificationException(
                     String.format("directive #%d: %s", pos, dir),

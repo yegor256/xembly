@@ -86,17 +86,18 @@ final class XpathDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) throws ImpossibleModificationException {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack)
+        throws ImpossibleModificationException {
         final Collection<Node> targets;
         final String query = this.expr.raw();
         final Matcher matcher = XpathDirective.ROOT_ONLY.matcher(query);
         if (matcher.matches()) {
             targets = XpathDirective.rootOnly(matcher.group(1), dom);
         } else {
-            targets = XpathDirective.traditional(query, dom, current);
+            targets = XpathDirective.traditional(query, dom, ptr);
         }
-        return targets;
+        return new DomPointer(targets);
     }
 
     /**

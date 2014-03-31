@@ -92,7 +92,8 @@ public final class XsetDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new XsetDirective("sum(/xxx/*/text()) + 5").exec(
-            dom, Collections.<Node>singletonList(first)
+            dom, new DomPointer(Collections.<Node>singletonList(first)),
+            new DomStack()
         );
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

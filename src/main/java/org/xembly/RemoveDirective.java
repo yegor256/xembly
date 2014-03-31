@@ -31,7 +31,6 @@ package org.xembly;
 
 import com.jcabi.aspects.Immutable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
@@ -53,15 +52,15 @@ final class RemoveDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack) {
         final Collection<Node> parents = new HashSet<Node>(0);
-        for (final Node node : current) {
+        for (final Node node : ptr) {
             final Node parent = node.getParentNode();
             parents.add(parent);
             parent.removeChild(node);
         }
-        return Collections.unmodifiableCollection(parents);
+        return new DomPointer(parents);
     }
 
 }

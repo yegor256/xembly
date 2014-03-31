@@ -46,11 +46,36 @@ public interface Directive {
     /**
      * Execute it in the given document with current position at the given node.
      * @param dom Document
-     * @param current Nodes we're currently at
+     * @param ptr Nodes we're currently at
+     * @param stack Execution stack
      * @return New current nodes
      * @throws ImpossibleModificationException If can't do it
      */
-    Collection<Node> exec(Node dom, Collection<Node> current)
-        throws ImpossibleModificationException;
+    Directive.Pointer exec(Node dom, Directive.Pointer ptr,
+        Directive.Stack stack) throws ImpossibleModificationException;
+
+    /**
+     * Pointer.
+     * @since 0.16
+     */
+    interface Pointer extends Collection<Node> {
+    }
+
+    /**
+     * Stack.
+     * @since 0.16
+     */
+    interface Stack {
+        /**
+         * Push pointer (runtime exception if stack is full).
+         * @param ptr Pointer to push
+         */
+        void push(Directive.Pointer ptr);
+        /**
+         * Pop pointer (runtime exception if stack is empty).
+         * @return Pointer recently added
+         */
+        Directive.Pointer pop();
+    }
 
 }

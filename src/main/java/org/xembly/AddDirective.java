@@ -32,7 +32,6 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -69,9 +68,9 @@ final class AddDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) {
-        final Collection<Node> targets = new ArrayList<Node>(current.size());
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack) {
+        final Collection<Node> targets = new ArrayList<Node>(ptr.size());
         final String label = this.name.raw();
         final Document doc;
         if (dom.getOwnerDocument() == null) {
@@ -79,12 +78,12 @@ final class AddDirective implements Directive {
         } else {
             doc = dom.getOwnerDocument();
         }
-        for (final Node node : current) {
+        for (final Node node : ptr) {
             final Element element = doc.createElement(label);
             node.appendChild(element);
             targets.add(element);
         }
-        return Collections.unmodifiableCollection(targets);
+        return new DomPointer(targets);
     }
 
 }

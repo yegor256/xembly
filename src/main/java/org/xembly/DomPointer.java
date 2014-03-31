@@ -29,59 +29,45 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import java.util.Locale;
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import lombok.EqualsAndHashCode;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
- * ATTR directive.
+ * Pointer at DOM.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.16
  */
-@Immutable
-@EqualsAndHashCode(of = { "name", "value" })
-final class AttrDirective implements Directive {
+@EqualsAndHashCode(callSuper = false, of = "nodes")
+final class DomPointer extends
+    AbstractCollection<Node> implements Directive.Pointer {
 
     /**
-     * Attribute name.
+     * Nodes.
      */
-    private final transient Arg name;
-
-    /**
-     * Text value to set.
-     */
-    private final transient Arg value;
+    private final transient Collection<Node> nodes;
 
     /**
      * Public ctor.
-     * @param attr Attribute name
-     * @param val Text value to set
-     * @throws XmlContentException If invalid input
+     * @param nds Nodes to encapsulate
      */
-    AttrDirective(final String attr, final String val)
-        throws XmlContentException {
-        this.name = new Arg(attr.toLowerCase(Locale.ENGLISH));
-        this.value = new Arg(val);
+    DomPointer(final Collection<Node> nds) {
+        super();
+        this.nodes = Collections.unmodifiableCollection(nds);
     }
 
     @Override
-    public String toString() {
-        return String.format("ATTR %s, %s", this.name, this.value);
+    public Iterator<Node> iterator() {
+        return this.nodes.iterator();
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
-        final String key = this.name.raw();
-        final String val = this.value.raw();
-        for (final Node node : ptr) {
-            Element.class.cast(node).setAttribute(key, val);
-        }
-        return ptr;
+    public int size() {
+        return this.nodes.size();
     }
-
 }

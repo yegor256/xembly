@@ -29,59 +29,33 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import java.util.Locale;
+import java.util.LinkedList;
+import java.util.Queue;
 import lombok.EqualsAndHashCode;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
- * ATTR directive.
+ * Stack of DOM pointers.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.1
+ * @since 0.16
  */
-@Immutable
-@EqualsAndHashCode(of = { "name", "value" })
-final class AttrDirective implements Directive {
+@EqualsAndHashCode(of = "ptrs")
+final class DomStack implements Directive.Stack {
 
     /**
-     * Attribute name.
+     * Queue of pointers.
      */
-    private final transient Arg name;
+    private final transient Queue<Directive.Pointer> ptrs =
+        new LinkedList<Directive.Pointer>();
 
-    /**
-     * Text value to set.
-     */
-    private final transient Arg value;
-
-    /**
-     * Public ctor.
-     * @param attr Attribute name
-     * @param val Text value to set
-     * @throws XmlContentException If invalid input
-     */
-    AttrDirective(final String attr, final String val)
-        throws XmlContentException {
-        this.name = new Arg(attr.toLowerCase(Locale.ENGLISH));
-        this.value = new Arg(val);
+    @Override
+    public void push(final Directive.Pointer ptr) {
+        this.ptrs.offer(ptr);
     }
 
     @Override
-    public String toString() {
-        return String.format("ATTR %s, %s", this.name, this.value);
+    public Directive.Pointer pop() {
+        return this.ptrs.poll();
     }
-
-    @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
-        final String key = this.name.raw();
-        final String val = this.value.raw();
-        for (final Node node : ptr) {
-            Element.class.cast(node).setAttribute(key, val);
-        }
-        return ptr;
-    }
-
 }

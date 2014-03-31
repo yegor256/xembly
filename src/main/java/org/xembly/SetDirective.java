@@ -30,8 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import java.util.Collection;
-import java.util.Collections;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
 
@@ -66,13 +64,13 @@ final class SetDirective implements Directive {
     }
 
     @Override
-    public Collection<Node> exec(final Node dom,
-        final Collection<Node> current) {
+    public Directive.Pointer exec(final Node dom,
+        final Directive.Pointer ptr, final Directive.Stack stack) {
         final String val = this.value.raw();
-        for (final Node node : current) {
+        for (final Node node : ptr) {
             node.setTextContent(val);
         }
-        return Collections.unmodifiableCollection(current);
+        return ptr;
     }
 
 }

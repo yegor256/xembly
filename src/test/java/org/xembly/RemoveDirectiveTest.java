@@ -56,7 +56,7 @@ public final class RemoveDirectiveTest {
             StringUtils.join(
                 new String[] {
                     "ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';",
-                    "XPATH '/*/foo//*'; REMOVE;",
+                    "XPATH '/*/foo//*'; REMOVE; ADD 'x';",
                 }
             )
         );
@@ -66,8 +66,8 @@ public final class RemoveDirectiveTest {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
-                "/root/foo",
-                "/root/foo[not(*)]"
+                "/root/foo/x",
+                "/root/foo[not(bar)]"
             )
         );
     }
@@ -87,7 +87,10 @@ public final class RemoveDirectiveTest {
         final Element second = dom.createElement("b");
         root.appendChild(second);
         dom.appendChild(root);
-        new RemoveDirective().exec(dom, Collections.<Node>singletonList(first));
+        new RemoveDirective().exec(
+            dom, new DomPointer(Collections.<Node>singletonList(first)),
+            new DomStack()
+        );
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("/xxx[b and not(a)]")
