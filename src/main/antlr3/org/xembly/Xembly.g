@@ -138,6 +138,16 @@ directive returns [Directive ret]
             throw new ParsingException(ex);
         }
     }
+    |
+    'PUSH'
+    {
+        $ret = new PushDirective();
+    }
+    |
+    'POP'
+    {
+        $ret = new PopDirective();
+    }
     ;
 
 argument returns [Object ret]

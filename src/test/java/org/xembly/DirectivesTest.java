@@ -45,6 +45,7 @@ import org.w3c.dom.Document;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class DirectivesTest {
 
     /**
@@ -220,6 +221,28 @@ public final class DirectivesTest {
         MatcherAssert.assertThat(
             new Directives(dirs.toString()),
             Matchers.not(Matchers.emptyIterable())
+        );
+    }
+
+    /**
+     * Directives can push and pop.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void pushesAndPopsPointer() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(
+                new Directives()
+                    .add("jeff").add("lebowski")
+                    .push()
+                    .xpath("/jeff").add("dude")
+                    .pop()
+                    .add("los-angeles")
+            ).xml(),
+            XhtmlMatchers.hasXPaths(
+                "/jeff/lebowski/los-angeles",
+                "/jeff/dude"
+            )
         );
     }
 

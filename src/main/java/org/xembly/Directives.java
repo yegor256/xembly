@@ -465,6 +465,26 @@ public final class Directives implements Iterable<Directive> {
     }
 
     /**
+     * Push current pointer to stack.
+     * @return This object
+     * @since 0.16
+     */
+    public Directives push() {
+        this.all.add(new PushDirective());
+        return this;
+    }
+
+    /**
+     * Pop pointer to stack and replace current pointer with it.
+     * @return This object
+     * @since 0.16
+     */
+    public Directives pop() {
+        this.all.add(new PopDirective());
+        return this;
+    }
+
+    /**
      * Parse script.
      * @param script Script to parse
      * @return Collection of directives
