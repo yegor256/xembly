@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
+
 # Assembly for XML
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
