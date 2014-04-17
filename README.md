@@ -1,3 +1,5 @@
+<img src="http://img.xembly.org/logo-256x256.png" width="64px" height="64px" />
+
 [![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
 
 # Assembly for XML
