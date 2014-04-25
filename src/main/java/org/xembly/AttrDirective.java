@@ -30,7 +30,6 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
-import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -64,7 +63,7 @@ final class AttrDirective implements Directive {
      */
     AttrDirective(final String attr, final String val)
         throws XmlContentException {
-        this.name = new Arg(attr.toLowerCase(Locale.ENGLISH));
+        this.name = new Arg(attr);
         this.value = new Arg(val);
     }
 
