@@ -97,4 +97,25 @@ public final class AttrDirectiveTest {
         );
     }
 
+    /**
+     * AttrDirective can add case-sensitive attributes.
+     * @throws Exception If some problem inside
+     * @since 0.16.1
+     */
+    @Test
+    public void addsCaseSensitiveAttributesDirectly() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("f");
+        dom.appendChild(root);
+        new AttrDirective("Price", "\u20ac50").exec(
+            dom, new DomPointer(Collections.<Node>singletonList(root)),
+            new DomStack()
+        );
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/f[@Price='\u20ac50']")
+        );
+    }
+
 }
