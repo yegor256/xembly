@@ -180,6 +180,7 @@
                         <configuration>
                             <excludes>
                                 <exclude>findbugs:.*</exclude>
+                                <exclude>xml:/src/it/settings.xml</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
