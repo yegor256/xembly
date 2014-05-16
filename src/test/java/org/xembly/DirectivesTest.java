@@ -31,8 +31,8 @@ package org.xembly;
 
 import com.jcabi.aspects.Tv;
 import com.jcabi.immutable.ArrayMap;
+import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
-import com.rexsl.test.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
@@ -243,6 +243,40 @@ public final class DirectivesTest {
                 "/jeff/lebowski/los-angeles",
                 "/jeff/dude"
             )
+        );
+    }
+
+    /**
+     * Directives can use namespaces.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void addsNamespaces() throws Exception {
+        final String namespace = "http://xembly.org#some-namespace";
+        MatcherAssert.assertThat(
+            new Xembler(
+                new Directives()
+                    .add("main").attr("xmlns", namespace)
+                    .add("item").set("HELLO!")
+            ).xml(),
+            XhtmlMatchers.hasXPath("/ns1:main/item", namespace)
+        );
+    }
+
+    /**
+     * Directives can use namespaces.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void prefixesItemsWithNamespaces() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(
+                new Directives()
+                    .add("body")
+                    .attr("xmlns:x", "http://www.w3.org/1999/xhtml")
+                    .add("x:node").set("HELLO WORLD!")
+            ).xml(),
+            XhtmlMatchers.hasXPath("//xhtml:node")
         );
     }
 
