@@ -53,12 +53,14 @@ public final class XemblerProf {
      * @throws Exception If some problem inside
      */
     @Test
+    @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
     public void modifiesDom() throws Exception {
-        final StringBuilder program = new StringBuilder("ADD 'root';");
+        final StringBuilder program = new StringBuilder(Tv.THOUSAND)
+            .append("ADD 'root';");
         for (int idx = 0; idx < Tv.FIFTY * Tv.THOUSAND; ++idx) {
-            program.append("XPATH '/root'; ADDIF 'node';")
-                .append("ADD 'temp'; REMOVE;")
-                .append("SET '").append(idx).append("';");
+            program.append(
+                "XPATH '/root'; ADDIF 'node';ADD 'temp'; REMOVE;SET '"
+            ).append(idx).append("';");
         }
         final Directives dirs = new Directives(program.toString());
         final Document dom = DocumentBuilderFactory.newInstance()

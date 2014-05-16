@@ -136,6 +136,7 @@ public final class DirectivesTest {
     @Test
     public void performsFullScaleModifications() throws Exception {
         final String script = new Directives()
+            // @checkstyle MultipleStringLiteralsCheck (1 line)
             .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
             .add("body")
             .add("p")
@@ -251,28 +252,11 @@ public final class DirectivesTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void addsNamespaces() throws Exception {
-        final String namespace = "http://xembly.org#some-namespace";
-        MatcherAssert.assertThat(
-            new Xembler(
-                new Directives()
-                    .add("main").attr("xmlns", namespace)
-                    .add("item").set("HELLO!")
-            ).xml(),
-            XhtmlMatchers.hasXPath("/ns1:main/item", namespace)
-        );
-    }
-
-    /**
-     * Directives can use namespaces.
-     * @throws Exception If some problem inside
-     */
-    @Test
     public void prefixesItemsWithNamespaces() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(
                 new Directives()
-                    .add("body")
+                    .add("bbb")
                     .attr("xmlns:x", "http://www.w3.org/1999/xhtml")
                     .add("x:node").set("HELLO WORLD!")
             ).xml(),

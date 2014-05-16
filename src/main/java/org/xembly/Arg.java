@@ -85,7 +85,6 @@ final class Arg {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public static String unescape(final String text)
         throws XmlContentException {
-        final StringBuilder output = new StringBuilder(text.length());
         final char[] chars = text.toCharArray();
         if (chars.length < 2) {
             throw new IllegalArgumentException(
@@ -93,6 +92,7 @@ final class Arg {
             );
         }
         final int len = chars.length - 1;
+        final StringBuilder output = new StringBuilder(text.length());
         for (int idx = 1; idx < len; ++idx) {
             if (chars[idx] == '&') {
                 final StringBuilder sbuf = new StringBuilder(Tv.TEN);

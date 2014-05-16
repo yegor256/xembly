@@ -50,12 +50,13 @@ public final class DirectivesProf {
      * @throws Exception If some problem inside
      */
     @Test
+    @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
     public void parsesLongProgram() throws Exception {
-        final StringBuilder program = new StringBuilder("ADD 'root';");
+        final StringBuilder program = new StringBuilder(Tv.THOUSAND)
+            .append("ADD 'root';");
         for (int idx = 0; idx < Tv.TEN * Tv.THOUSAND; ++idx) {
-            program.append("XPATH '/root'; ADDIF 'node';")
-                .append("SET '").append(idx).append("';")
-                .append("ADD 'x';").append("REMOVE;");
+            program.append("XPATH '/root'; ADDIF 'node';SET '")
+                .append(idx).append("'; ADD 'x'; REMOVE;");
         }
         final Directives dirs = new Directives(program.toString());
         MatcherAssert.assertThat(dirs, Matchers.notNullValue());
