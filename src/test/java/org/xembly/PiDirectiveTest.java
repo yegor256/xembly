@@ -102,11 +102,10 @@ public final class PiDirectiveTest {
     @Test
     public void addsProcessingInstructionsToDomRoot() throws Exception {
         final Iterable<Directive> dirs = new Directives(
-            "XPATH '/'; PI 'alpha' 'beta \u20ac';"
+            "XPATH '/'; PI 'alpha' 'beta \u20ac'; ADD 'x4';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("x4"));
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),

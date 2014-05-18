@@ -196,10 +196,10 @@ public final class DirectivesTest {
     @Test
     public void addsElementsCaseSensitively() throws Exception {
         MatcherAssert.assertThat(
-            new Xembler(new Directives().add("Html").addIf("Body")).xml(),
+            new Xembler(new Directives().add("XHtml").addIf("Body")).xml(),
             XhtmlMatchers.hasXPaths(
-                "/Html",
-                "/Html/Body"
+                "/XHtml",
+                "/XHtml/Body"
             )
         );
     }
