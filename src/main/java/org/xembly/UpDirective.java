@@ -55,7 +55,7 @@ final class UpDirective implements Directive {
     public Directive.Pointer exec(final Node dom,
         final Directive.Pointer ptr, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        final Collection<Node> parents = new HashSet<Node>(0);
+        final Collection<Node> parents = new HashSet<Node>(ptr.size());
         for (final Node node : ptr) {
             final Node parent = node.getParentNode();
             if (parent == null) {

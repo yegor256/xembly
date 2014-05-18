@@ -54,7 +54,7 @@ final class RemoveDirective implements Directive {
     @Override
     public Directive.Pointer exec(final Node dom,
         final Directive.Pointer ptr, final Directive.Stack stack) {
-        final Collection<Node> parents = new HashSet<Node>(0);
+        final Collection<Node> parents = new HashSet<Node>(ptr.size());
         for (final Node node : ptr) {
             final Node parent = node.getParentNode();
             parents.add(parent);
