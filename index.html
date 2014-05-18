@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<!--
- * Copyright (c) 2012-2013, JCabi.com
- * All rights reserved.
- -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>xembly - </title>
+        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                             <script>
                 var _gaq = _gaq || [];
@@ -21,19 +18,10 @@
             </script>
                                                                                                                 
 <link rel="shortcut icon" href="http://img.xembly.org/favicon.ico"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-        <link href="./css/jcabi.css" rel="stylesheet"/>
+                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
         <script>
             $(document).ready(
                 function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
                     $(".menu-button").click(
                         function() {
                             if ($("#here-goes-menu").attr("class") == "menu-off") {
@@ -50,31 +38,34 @@
         </script>
     </head>
     <body>
-                <div class="page">
-            <div class="menu-section">
-                <ul id="menu">
+                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section" role="navigation">
+                <ul class="menu">
                                                                                     <li>
                             Overview
                                                             <ul>
-                                                                                                    <li>
-                                                            <strong>                        <a href="index.html" title="Introduction">Introduction</a>
-        </strong>
+                                                                                                    <li  class='active' >
+                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="apidocs-0.16.2/index.html" title="JavaDoc 0.16.2">JavaDoc 0.16.2</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="apidocs-0.16.3/index.html" title="JavaDoc 0.16.3">JavaDoc 0.16.3</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="releases" title="Release History">Release History</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="releases" title="Release History">Release History</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -82,14 +73,16 @@
                                             <li>
                             Examples
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="example-collection.html" title="XML Collection">XML Collection</a>
-                                                                                                                                                                        <ul>
+                                                                                                    <li >
+                            <span>                        <a href="example-collection.html" title="XML Collection">XML Collection</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="example-push-and-pop.html" title="PUSH and POP">PUSH and POP</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="example-push-and-pop.html" title="PUSH and POP">PUSH and POP</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -97,58 +90,52 @@
                                             <li>
                             Project Documentation
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
-                                                                                                                        <li>
-                                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                    <li >
+                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                                         </ul>
                                                     </li>
                                     </ul>
-            </div>
-            <div id="right-side">
-                <div id="content">
-                    <i class="menu-button fa fa-align-justify"></i>
-                    <div class="logo-section">
-                        <a href="http://www.xembly.org/" title="${decoration.bannerLeft.title}">
-                            <img src="http://img.xembly.org/logo-256x256.png"
-                                alt="xembly.org"
-                                                                    width="64"
-                                                                                                    height="64"
-                                                            />
-                        </a>
-                    </div>
-                    <div class="date">
-                        <div class="date-numbers">
-                            <strong>0.16.2</strong>
-                            
-                            27-Apr-2014
-                        </div>
-                                                                            <div class="github">
-                                <iframe
-                                    class="github-large"
-                                    src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=large"
-                                    allowtransparency="true"
-                                    frameborder="0"
-                                    scrolling="0"
-                                    width="170"
-                                    height="30">
-                                </iframe>
-                                <iframe
-                                    class="github-small"
-                                    src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=small"
-                                    allowtransparency="true"
-                                    frameborder="0"
-                                    scrolling="0"
-                                    width="170"
-                                    height="30">
-                                </iframe>
+            </nav>
+            <div class="right-side">
+                <main role="main">
+                    <div class="content">
+                        <header>
+                            <i class="menu-button fa fa-align-justify"></i>
+                            <div class="logo">
+                                <a href="http://www.xembly.org/"
+                                    title=" logo ">
+                                    <img src="http://img.xembly.org/logo-256x256.png"
+                                        alt="xembly.org"
+                                                                                    width="64"
+                                                                                                                            height="64"
+                                                                                itemprop="image"
+                                    />
+                                </a>
                             </div>
-                                            </div>
-                    <div id="here-goes-menu" class="menu-off"></div>
-                    <article>
-                        <div class="section">
+                            <div class="date">
+                                <div class="date-numbers">
+                                    <strong itemprop="version">0.16.3</strong>
+                                    
+                                    <time itemprop="datePublished" datetime="2014-05-18T01:57:30Z">
+                                        
+                                        18-May-2014
+                                    </time>
+                                </div>
+                                                                                                    <div>
+                                        <iframe src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=large"
+                                            style="border-width:0px;overflow:hidden;width:170px;height:30px;">
+                                        </iframe>
+                                    </div>
+                                                            </div>
+                            <div id="here-goes-menu" class="menu-off"></div>
+                        </header>
+                        <article role="article" itemprop="articleBody">
                             <h1>Assembly for XML</h1>
 <p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to <a class="externalLink" href="http://www.w3.org/TR/xslt">XSLT</a> and <a class="externalLink" href="http://www.w3.org/TR/xquery">XQuery</a>.</p>
 <p>For example:</p>
@@ -184,7 +171,7 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
   &lt;artifactId&gt;xembly&lt;/artifactId&gt;
-  &lt;version&gt;0.16.2&lt;/version&gt;
+  &lt;version&gt;0.16.3&lt;/version&gt;
 &lt;/dependency&gt;
 </pre></div>
 <div class="section">
@@ -265,22 +252,19 @@ STRICT &quot;1&quot;;
 <p>Elements and text content can&#x2019;t be mixed, e.g.  this structure is not supported: <tt>&lt;test&gt;hello &lt;b&gt;friend&lt;/a&gt;&lt;/test&gt;</tt></p></li>
 </ul>
 <p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p></div>
-                        </div>
-                    </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png"
-                        alt="built by maven" style="float:right" width="80"/>
-                </div>
-                <div class="legal-notes">
-                    <div class="copyright">
+                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
+                        </article>
+                    </div>
+                </main>
+                <footer class="legal-notes">
+                    <div>
                         Copyright &#169;
                                                                             2013-2014
-                                                <br/>
-                        Xembly, All Rights Reserved.
-                        <br/>
-                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-                    </div>
-                </div>
+                                            </div>
+                    <div>Xembly, All Rights Reserved.</div>
+                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                </footer>
             </div>
-        </div>
+        </section>
     </body>
 </html>

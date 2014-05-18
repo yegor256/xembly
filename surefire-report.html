@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<!--
- * Copyright (c) 2012-2013, JCabi.com
- * All rights reserved.
- -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>xembly - Surefire Report</title>
+        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                             <script>
                 var _gaq = _gaq || [];
@@ -21,19 +18,10 @@
             </script>
                                                                                                                 
 <link rel="shortcut icon" href="http://img.xembly.org/favicon.ico"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-        <link href="./css/jcabi.css" rel="stylesheet"/>
+                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
         <script>
             $(document).ready(
                 function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
                     $(".menu-button").click(
                         function() {
                             if ($("#here-goes-menu").attr("class") == "menu-off") {
@@ -50,30 +38,34 @@
         </script>
     </head>
     <body>
-                <div class="page">
-            <div class="menu-section">
-                <ul id="menu">
+                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section" role="navigation">
+                <ul class="menu">
                                                                                     <li>
                             Overview
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="index.html" title="Introduction">Introduction</a>
-                                                                                                                                                                        <ul>
+                                                                                                    <li >
+                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="apidocs-0.16.2/index.html" title="JavaDoc 0.16.2">JavaDoc 0.16.2</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="apidocs-0.16.3/index.html" title="JavaDoc 0.16.3">JavaDoc 0.16.3</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="releases" title="Release History">Release History</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="releases" title="Release History">Release History</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -81,14 +73,16 @@
                                             <li>
                             Examples
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="example-collection.html" title="XML Collection">XML Collection</a>
-                                                                                                                                                                        <ul>
+                                                                                                    <li >
+                            <span>                        <a href="example-collection.html" title="XML Collection">XML Collection</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="example-push-and-pop.html" title="PUSH and POP">PUSH and POP</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="example-push-and-pop.html" title="PUSH and POP">PUSH and POP</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -96,71 +90,66 @@
                                             <li>
                             Project Documentation
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
-                                                                                                                        <li>
-                                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
-                                                                                                    <li>
-                                                                                    <a href="rempl.html" title="REMPL">REMPL</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                                                    <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                                                    <a href="xref/index.html" title="Source Xref">Source Xref</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                            <strong>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-        </strong>
+                                                                                                    <li >
+                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="rempl.html" title="REMPL">REMPL</a>
+        </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="changelog.html" title="Change Log">Change Log</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="xref/index.html" title="Source Xref">Source Xref</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="file-activity.html" title="File Activity">File Activity</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li  class='active' >
+                            <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="apidocs-0.16.2/index.html" title="JavaDocs">JavaDocs</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="apidocs-0.16.3/index.html" title="JavaDocs">JavaDocs</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="github-report.html" title="GitHub Report">GitHub Report</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="github-report.html" title="GitHub Report">GitHub Report</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -168,49 +157,41 @@
                                                                                         </ul>
                                                     </li>
                                     </ul>
-            </div>
-            <div id="right-side">
-                <div id="content">
-                    <i class="menu-button fa fa-align-justify"></i>
-                    <div class="logo-section">
-                        <a href="http://www.xembly.org/" title="${decoration.bannerLeft.title}">
-                            <img src="http://img.xembly.org/logo-256x256.png"
-                                alt="xembly.org"
-                                                                    width="64"
-                                                                                                    height="64"
-                                                            />
-                        </a>
-                    </div>
-                    <div class="date">
-                        <div class="date-numbers">
-                            <strong>0.16.2</strong>
-                            
-                            27-Apr-2014
-                        </div>
-                                                                            <div class="github">
-                                <iframe
-                                    class="github-large"
-                                    src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=large"
-                                    allowtransparency="true"
-                                    frameborder="0"
-                                    scrolling="0"
-                                    width="170"
-                                    height="30">
-                                </iframe>
-                                <iframe
-                                    class="github-small"
-                                    src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=small"
-                                    allowtransparency="true"
-                                    frameborder="0"
-                                    scrolling="0"
-                                    width="170"
-                                    height="30">
-                                </iframe>
+            </nav>
+            <div class="right-side">
+                <main role="main">
+                    <div class="content">
+                        <header>
+                            <i class="menu-button fa fa-align-justify"></i>
+                            <div class="logo">
+                                <a href="http://www.xembly.org/"
+                                    title=" logo ">
+                                    <img src="http://img.xembly.org/logo-256x256.png"
+                                        alt="xembly.org"
+                                                                                    width="64"
+                                                                                                                            height="64"
+                                                                                itemprop="image"
+                                    />
+                                </a>
                             </div>
-                                            </div>
-                    <div id="here-goes-menu" class="menu-off"></div>
-                    <article>
-                        <div class="section">
+                            <div class="date">
+                                <div class="date-numbers">
+                                    <strong itemprop="version">0.16.3</strong>
+                                    
+                                    <time itemprop="datePublished" datetime="2014-05-18T01:57:32Z">
+                                        
+                                        18-May-2014
+                                    </time>
+                                </div>
+                                                                                                    <div>
+                                        <iframe src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=large"
+                                            style="border-width:0px;overflow:hidden;width:170px;height:30px;">
+                                        </iframe>
+                                    </div>
+                                                            </div>
+                            <div id="here-goes-menu" class="menu-off"></div>
+                        </header>
+                        <article role="article" itemprop="articleBody">
                             <script type="text/javascript">
 //<![CDATA[
 function toggleDisplay(elementId) {
@@ -242,12 +223,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>46</td>
+<td>50</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>7.389</td></tr></table><br />
+<td>6.956</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
@@ -263,12 +244,12 @@ function toggleDisplay(elementId) {
 <th>Time</th></tr>
 <tr class="b">
 <td><a href="#org.xembly">org.xembly</a></td>
-<td>46</td>
+<td>50</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>7.389</td></tr></table><br />
+<td>6.956</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3>org.xembly<a name="org.xembly"></a></h3><a name="org.xembly"></a>
@@ -290,7 +271,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.023</td></tr>
+<td>0.297</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyAddIfDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyAddIfDirectiveTest">AddIfDirectiveTest</a></td>
@@ -299,16 +280,16 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.602</td></tr>
+<td>0.039</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyArgTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyArgTest">ArgTest</a></td>
-<td>2</td>
+<td>3</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.377</td></tr>
+<td>0.335</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyAttrDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyAttrDirectiveTest">AttrDirectiveTest</a></td>
@@ -317,16 +298,16 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.929</td></tr>
+<td>0.828</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyDirectivesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyDirectivesTest">DirectivesTest</a></td>
-<td>11</td>
+<td>12</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>1.139</td></tr>
+<td>0.321</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyPiDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyPiDirectiveTest">PiDirectiveTest</a></td>
@@ -335,7 +316,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>1.215</td></tr>
+<td>0.87</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyRemoveDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyRemoveDirectiveTest">RemoveDirectiveTest</a></td>
@@ -344,7 +325,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.038</td></tr>
+<td>0.579</td></tr>
 <tr class="a">
 <td><a href="#org.xemblySetDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblySetDirectiveTest">SetDirectiveTest</a></td>
@@ -353,7 +334,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.324</td></tr>
+<td>0.065</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyStrictDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyStrictDirectiveTest">StrictDirectiveTest</a></td>
@@ -362,7 +343,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.979</td></tr>
+<td>0.671</td></tr>
 <tr class="a">
 <td><a href="#org.xemblySyntaxExceptionTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblySyntaxExceptionTest">SyntaxExceptionTest</a></td>
@@ -371,7 +352,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.005</td></tr>
+<td>0.02</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyUpDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyUpDirectiveTest">UpDirectiveTest</a></td>
@@ -380,16 +361,16 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.53</td></tr>
+<td>0.508</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyXemblerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyXemblerTest">XemblerTest</a></td>
-<td>5</td>
+<td>7</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.986</td></tr>
+<td>1.358</td></tr>
 <tr class="b">
 <td><a href="#org.xemblyXpathDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyXpathDirectiveTest">XpathDirectiveTest</a></td>
@@ -398,7 +379,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.047</td></tr>
+<td>0.926</td></tr>
 <tr class="a">
 <td><a href="#org.xemblyXsetDirectiveTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#org.xemblyXsetDirectiveTest">XsetDirectiveTest</a></td>
@@ -407,7 +388,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.195</td></tr></table></div><br /></div>
+<td>0.139</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
@@ -417,242 +398,255 @@ function toggleDisplay(elementId) {
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsNodesToCurrentNodes</td>
-<td>0.023</td></tr></table></div>
+<td>0.297</td></tr></table></div>
 <div class="section">
 <h3>AddIfDirectiveTest<a name="AddIfDirectiveTest"></a></h3><a name="org.xemblyAddIfDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsDomNodesDirectly</td>
-<td>0.301</td></tr>
+<td>addsNodesToCurrentNodes</td>
+<td>0.022</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsNodesToCurrentNodes</td>
-<td>0.301</td></tr></table></div>
+<td>addsDomNodesDirectly</td>
+<td>0.017</td></tr></table></div>
 <div class="section">
 <h3>ArgTest<a name="ArgTest"></a></h3><a name="org.xemblyArgTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>escapesAndUnescaped</td>
-<td>0.196</td></tr>
+<td>rejectsToUnEscapeInvalidXmlChars</td>
+<td>0.042</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>rejectsToEscapeInvalidXmlChars</td>
-<td>0.181</td></tr></table></div>
+<td>0.139</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>escapesAndUnescaped</td>
+<td>0.154</td></tr></table></div>
 <div class="section">
 <h3>AttrDirectiveTest<a name="AttrDirectiveTest"></a></h3><a name="org.xemblyAttrDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsAttributesToCurrentNodes</td>
-<td>0.31</td></tr>
+<td>0.3</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsDomAttributesDirectly</td>
-<td>0.31</td></tr>
+<td>0.263</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsCaseSensitiveAttributesDirectly</td>
-<td>0.309</td></tr></table></div>
+<td>0.265</td></tr></table></div>
 <div class="section">
 <h3>DirectivesTest<a name="DirectivesTest"></a></h3><a name="org.xemblyDirectivesTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>performsFullScaleModifications</td>
-<td>0.316</td></tr>
+<td>throwsOnBrokenEscapedXmlContent</td>
+<td>0.001</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsOnBrokenEscapedXmlContent</td>
-<td>0.107</td></tr>
+<td>performsFullScaleModifications</td>
+<td>0.058</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsMapOfValues</td>
-<td>0.094</td></tr>
+<td>0.05</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>pushesAndPopsPointer</td>
-<td>0.195</td></tr>
+<td>0.048</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsElementsCaseSensitively</td>
-<td>0.194</td></tr>
+<td>0.024</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>copiesExistingNode</td>
-<td>0.171</td></tr>
+<td>0.062</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>parsesIncomingGrammar</td>
-<td>0.007</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsOnBrokenGrammar</td>
-<td>0.007</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>convertsToString</td>
+<td>prefixesItemsWithNamespaces</td>
 <td>0.034</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsOnBrokenXmlContent</td>
-<td>0.001</td></tr>
+<td>parsesIncomingGrammar</td>
+<td>0.013</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>throwsOnBrokenGrammar</td>
+<td>0.011</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>convertsToString</td>
+<td>0.018</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>throwsOnBrokenXmlContent</td>
+<td>0.001</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>ingoresEmptyInput</td>
-<td>0.013</td></tr></table></div>
+<td>0.001</td></tr></table></div>
 <div class="section">
 <h3>PiDirectiveTest<a name="PiDirectiveTest"></a></h3><a name="org.xemblyPiDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>addsProcessingInstructionsToDomRoot</td>
-<td>0.315</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsProcessingInstructionsToDom</td>
-<td>0.309</td></tr>
-<tr class="a">
+<td>0.295</td></tr>
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>addsProcessingInstructionsDirectlyToDom</td>
-<td>0.31</td></tr>
-<tr class="b">
+<td>0.262</td></tr>
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>prependsProcessingInstructionsToDomRoot</td>
-<td>0.281</td></tr></table></div>
+<td>0.255</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>addsProcessingInstructionsToDomRoot</td>
+<td>0.058</td></tr></table></div>
 <div class="section">
 <h3>RemoveDirectiveTest<a name="RemoveDirectiveTest"></a></h3><a name="org.xemblyRemoveDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>removesDomNodesDirectly</td>
-<td>0.022</td></tr>
+<td>removesCurrentNodes</td>
+<td>0.306</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>removesCurrentNodes</td>
-<td>0.016</td></tr></table></div>
+<td>removesDomNodesDirectly</td>
+<td>0.273</td></tr></table></div>
 <div class="section">
 <h3>SetDirectiveTest<a name="SetDirectiveTest"></a></h3><a name="org.xemblySetDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>setsTextContentOfNodes</td>
-<td>0.183</td></tr>
+<td>0.028</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>setsTextDirectlyIntoDomNodes</td>
-<td>0.127</td></tr>
+<td>0.034</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>rejectsContentWithInvalidXmlCharacters</td>
-<td>0.014</td></tr></table></div>
+<td>0.003</td></tr></table></div>
 <div class="section">
 <h3>StrictDirectiveTest<a name="StrictDirectiveTest"></a></h3><a name="org.xemblyStrictDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>failsWhenNumberOfCurrentNodesIsZero</td>
-<td>0.223</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>checksNumberOfCurrentNodes</td>
-<td>0.316</td></tr>
-<tr class="a">
+<td>0.301</td></tr>
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsWhenNumberOfCurrentNodesIsTooSmall</td>
-<td>0.221</td></tr>
-<tr class="b">
+<td>0.229</td></tr>
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsWhenNumberOfCurrentNodesIsTooBig</td>
-<td>0.219</td></tr></table></div>
+<td>0.072</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>failsWhenNumberOfCurrentNodesIsZero</td>
+<td>0.069</td></tr></table></div>
 <div class="section">
 <h3>SyntaxExceptionTest<a name="SyntaxExceptionTest"></a></h3><a name="org.xemblySyntaxExceptionTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>instantiatesException</td>
-<td>0.005</td></tr></table></div>
+<td>0.02</td></tr></table></div>
 <div class="section">
 <h3>UpDirectiveTest<a name="UpDirectiveTest"></a></h3><a name="org.xemblyUpDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>throwsWhenNoParents</td>
-<td>0.221</td></tr>
+<td>jumpsToParentsWhenTheyExist</td>
+<td>0.281</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>jumpsToParentsWhenTheyExist</td>
-<td>0.309</td></tr></table></div>
+<td>throwsWhenNoParents</td>
+<td>0.227</td></tr></table></div>
 <div class="section">
 <h3>XemblerTest<a name="XemblerTest"></a></h3><a name="org.xemblyXemblerTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>makesChangesToDomDocumentFromBuilder</td>
-<td>0.316</td></tr>
+<td>0.327</td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>makesChangesToDomDocument</td>
-<td>0.315</td></tr>
-<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>escapesBrokenText</td>
-<td>0.248</td></tr>
+<td>0.209</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>makesChangesToDomDocument</td>
+<td>0.228</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>rendersXmlDeclaration</td>
-<td>0.007</td></tr>
+<td>replacesRootNode</td>
+<td>0.212</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>printsXmlDocument</td>
-<td>0.1</td></tr></table></div>
+<td>0.155</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>rendersXmlDeclaration</td>
+<td>0.107</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>modifiesClonedNode</td>
+<td>0.12</td></tr></table></div>
 <div class="section">
 <h3>XpathDirectiveTest<a name="XpathDirectiveTest"></a></h3><a name="org.xemblyXpathDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>findsNodesWithXpathExpression</td>
-<td>0.019</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>ignoresEmptySearches</td>
-<td>0.009</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>findsNodesInEmptyDom</td>
-<td>0.01</td></tr>
+<td>0.316</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>findsNodesByXpathDirectly</td>
-<td>0.009</td></tr></table></div>
+<td>0.159</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>findsNodesInEmptyDom</td>
+<td>0.16</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>ignoresEmptySearches</td>
+<td>0.291</td></tr></table></div>
 <div class="section">
 <h3>XsetDirectiveTest<a name="XsetDirectiveTest"></a></h3><a name="org.xemblyXsetDirectiveTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>setsTextContentOfNodes</td>
-<td>0.105</td></tr>
+<td>0.088</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>setsTextDirectlyIntoDomNodes</td>
-<td>0.09</td></tr></table></div><br /></div>
-                        </div>
-                    </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png"
-                        alt="built by maven" style="float:right" width="80"/>
-                </div>
-                <div class="legal-notes">
-                    <div class="copyright">
+<td>0.051</td></tr></table></div><br /></div>
+                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
+                        </article>
+                    </div>
+                </main>
+                <footer class="legal-notes">
+                    <div>
                         Copyright &#169;
                                                                             2013-2014
-                                                <br/>
-                        Xembly, All Rights Reserved.
-                        <br/>
-                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-                    </div>
-                </div>
+                                            </div>
+                    <div>Xembly, All Rights Reserved.</div>
+                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                </footer>
             </div>
-        </div>
+        </section>
     </body>
 </html>
