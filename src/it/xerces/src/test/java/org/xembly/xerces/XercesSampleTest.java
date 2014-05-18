@@ -70,12 +70,13 @@ public final class XercesSampleTest {
         final Node node = new XMLDocument("<doc/>").node();
         new Xembler(
             new Directives().xpath("/doc")
+                .remove().xpath("/").add("hello")
                 .add("second")
                 .addIf("sub").set("hey")
         ).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
-            XhtmlMatchers.hasXPath("/doc/second[sub='hey']")
+            XhtmlMatchers.hasXPath("/hello/second[sub='hey']")
         );
     }
 

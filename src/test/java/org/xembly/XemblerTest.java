@@ -163,4 +163,18 @@ public final class XemblerTest {
         );
     }
 
+    /**
+     * Xembler can remove root node and add a new one.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void replacesRootNode() throws Exception {
+        final Node node = new XMLDocument("<e/>").node();
+        new Xembler(new Directives().xpath("/e").remove().add("p")).apply(node);
+        MatcherAssert.assertThat(
+            new XMLDocument(node),
+            XhtmlMatchers.hasXPath("/p")
+        );
+    }
+
 }
