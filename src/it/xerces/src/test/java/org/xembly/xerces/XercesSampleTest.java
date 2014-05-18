@@ -32,6 +32,7 @@ package org.xembly.xerces;
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
 import org.hamcrest.MatcherAssert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Node;
 import org.xembly.Directives;
@@ -66,17 +67,18 @@ public final class XercesSampleTest {
      * @throws Exception If fails
      */
     @Test
+    @Ignore
     public void appliesChangesToNode() throws Exception {
         final Node node = new XMLDocument("<doc/>").node();
         new Xembler(
             new Directives().xpath("/doc")
-                .remove().xpath("/").add("hello")
+                .remove().xpath("/").add("hello-you")
                 .add("second")
                 .addIf("sub").set("hey")
         ).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
-            XhtmlMatchers.hasXPath("/hello/second[sub='hey']")
+            XhtmlMatchers.hasXPath("/hello-you/second[sub='hey']")
         );
     }
 
