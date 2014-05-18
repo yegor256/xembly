@@ -53,9 +53,11 @@ public final class SaxonSampleTest {
     public void buildsDocument() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(
-                new Directives().add("root").add("node").set("hello")
+                new Directives().add("root")
+                    .addIf("first")
+                    .add("node").set("hello")
             ).xml(),
-            XhtmlMatchers.hasXPath("/root[node='hello']")
+            XhtmlMatchers.hasXPath("/root/first[node='hello']")
         );
     }
 
@@ -67,11 +69,13 @@ public final class SaxonSampleTest {
     public void appliesChangesToNode() throws Exception {
         final Node node = new XMLDocument("<doc/>").node();
         new Xembler(
-            new Directives().xpath("/doc").add("sub").set("hey")
+            new Directives().xpath("/doc")
+                .add("second")
+                .addIf("sub").set("hey")
         ).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
-            XhtmlMatchers.hasXPath("/doc[sub='hey']")
+            XhtmlMatchers.hasXPath("/doc/second[sub='hey']")
         );
     }
 

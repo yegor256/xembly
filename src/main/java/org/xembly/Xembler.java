@@ -32,6 +32,7 @@ package org.xembly;
 import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
 import com.jcabi.immutable.Array;
+import com.jcabi.log.Logger;
 import java.io.StringWriter;
 import java.util.Collections;
 import javax.validation.constraints.NotNull;
@@ -103,6 +104,19 @@ public final class Xembler {
      * Array of directives.
      */
     private final transient Array<Directive> directives;
+
+    static {
+        Logger.debug(
+            Xembler.class,
+            "DocumentBuilderFactory: %s",
+            Xembler.BFACTORY.getClass().getName()
+        );
+        Logger.debug(
+            Xembler.class,
+            "TransformerFactory: %s",
+            Xembler.TFACTORY.getClass().getName()
+        );
+    }
 
     /**
      * Public ctor.

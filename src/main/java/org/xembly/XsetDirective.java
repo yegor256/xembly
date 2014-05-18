@@ -52,6 +52,11 @@ import org.w3c.dom.Node;
 final class XsetDirective implements Directive {
 
     /**
+     * XPath factory.
+     */
+    private static final XPathFactory FACTORY = XPathFactory.newInstance();
+
+    /**
      * XPath to use.
      */
     private final transient Arg expr;
@@ -74,7 +79,7 @@ final class XsetDirective implements Directive {
     public Directive.Pointer exec(final Node dom,
         final Directive.Pointer ptr, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        final XPath xpath = XPathFactory.newInstance().newXPath();
+        final XPath xpath = XsetDirective.FACTORY.newXPath();
         final ConcurrentMap<Node, String> values =
             new ConcurrentHashMap<Node, String>(0);
         for (final Node node : ptr) {

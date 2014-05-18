@@ -30,6 +30,7 @@
 package org.xembly;
 
 import com.jcabi.aspects.Immutable;
+import com.jcabi.log.Logger;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -70,6 +71,14 @@ final class XpathDirective implements Directive {
      * XPath to use.
      */
     private final transient Arg expr;
+
+    static {
+        Logger.debug(
+            XpathDirective.class,
+            "XPathFactory: %s",
+            XpathDirective.FACTORY.getClass().getName()
+        );
+    }
 
     /**
      * Public ctor.
