@@ -30,12 +30,14 @@
 package org.xembly;
 
 import com.jcabi.matchers.XhtmlMatchers;
+import com.jcabi.xml.XMLDocument;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 /**
  * Test case for {@link Xembler}.
@@ -144,6 +146,20 @@ public final class XemblerTest {
         MatcherAssert.assertThat(
             Xembler.escape("привет hello \u0000"),
             Matchers.equalTo("привет hello \\u0000")
+        );
+    }
+
+    /**
+     * Xembler can modify a cloned node.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void modifiesClonedNode() throws Exception {
+        final Node node = new XMLDocument("<t/>").node().cloneNode(true);
+        new Xembler(new Directives().xpath("/t").add("x")).apply(node);
+        MatcherAssert.assertThat(
+            new XMLDocument(node),
+            XhtmlMatchers.hasXPath("/t/x")
         );
     }
 
