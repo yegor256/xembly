@@ -1,6 +1,7 @@
 <img src="http://img.xembly.org/logo-256x256.png" width="64px" height="64px" />
 
 [![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 
 # Assembly for XML
 
@@ -49,21 +50,6 @@ String xml = new Xembler(
     .set("$140.00")
 ).xml();
 ```
-
-## Download and Maven Dependency
-
-Just use this dependency in Maven:
-
-```xml
-<dependency>
-  <groupId>com.jcabi.incubator</groupId>
-  <artifactId>xembly</artifactId>
-  <version>0.16.2</version>
-</dependency>
-```
-
-Or download the latest release
-[here](https://github.com/yegor256/xembly/releases).
 
 ## How To Contribute
 
