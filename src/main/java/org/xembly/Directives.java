@@ -487,6 +487,27 @@ public final class Directives implements Iterable<Directive> {
     }
 
     /**
+     * Set CDATA section.
+     *
+     * <p>If a value provided contains illegal XML characters, a runtime
+     * exception will be thrown. To avoid this, it is recommended to use
+     * {@link Xembler#escape(String)}.
+     *
+     * @param text Text to set
+     * @return This object
+     * @since 0.17
+     */
+    public Directives cdata(
+        @NotNull(message = "CDATA section can't be NULL") final String text) {
+        try {
+            this.all.add(new CdataDirective(text));
+        } catch (final XmlContentException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        return this;
+    }
+
+    /**
      * Parse script.
      * @param script Script to parse
      * @return Collection of directives

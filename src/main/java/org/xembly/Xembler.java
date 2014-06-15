@@ -106,6 +106,10 @@ public final class Xembler {
     private final transient Array<Directive> directives;
 
     static {
+        Xembler.BFACTORY.setNamespaceAware(true);
+        Xembler.BFACTORY.setValidating(false);
+        Xembler.BFACTORY.setCoalescing(false);
+        Xembler.BFACTORY.setExpandEntityReferences(false);
         Logger.debug(
             Xembler.class,
             "DocumentBuilderFactory: %s",
@@ -202,6 +206,7 @@ public final class Xembler {
             throw new IllegalStateException(ex);
         }
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         final StringWriter writer = new StringWriter();
         try {
             transformer.transform(

@@ -122,13 +122,19 @@ directive returns [Directive ret]
     }
     |
     'REMOVE'
-    { $ret = new RemoveDirective(); }
+    {
+        $ret = new RemoveDirective();
+    }
     |
     'STRICT' argument
-    { $ret = new StrictDirective(Integer.parseInt($argument.ret.toString())); }
+    {
+        $ret = new StrictDirective(Integer.parseInt($argument.ret.toString()));
+    }
     |
     'UP'
-    { $ret = new UpDirective(); }
+    {
+        $ret = new UpDirective();
+    }
     |
     'PI' target=argument data=argument
     {
@@ -147,6 +153,15 @@ directive returns [Directive ret]
     'POP'
     {
         $ret = new PopDirective();
+    }
+    |
+    'CDATA' argument
+    {
+        try {
+            $ret = new CdataDirective($argument.ret.toString());
+        } catch (final XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
     }
     ;
 

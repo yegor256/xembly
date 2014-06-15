@@ -49,6 +49,30 @@ import org.w3c.dom.Document;
 public final class DirectivesTest {
 
     /**
+     * Directives can make an XML document.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void makesXmlDocument() throws Exception {
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(
+                new Xembler(
+                    new Directives()
+                        .pi("xml-stylesheet", "none")
+                        .add("page")
+                        .attr("the-name", "with \u20ac")
+                        .add("child-node").set(" the text\n").up()
+                        .add("big_text").cdata("<<hello\n\n!!!>>").up()
+                ).xml()
+            ),
+            XhtmlMatchers.hasXPaths(
+                "/page[@the-name]",
+                "/page/big_text[.='<<hello\n\n!!!>>']"
+            )
+        );
+    }
+
+    /**
      * Directives can parse xembly grammar.
      * @throws Exception If some problem inside
      */
