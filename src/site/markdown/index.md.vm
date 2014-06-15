@@ -139,8 +139,6 @@ that can't be done by means of Xembly:
  * You can't add, remove, or modify XML comments
    (but you can find them with XPath)
 
- * You can't add `CDATA`, but you can find them with XPath
-
  * DTD section can't be modified
 
  * Namespaces are not supported (should be fixed soon)
