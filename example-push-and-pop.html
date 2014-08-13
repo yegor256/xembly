@@ -4,7 +4,6 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>xembly - </title>
-        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                             <script>
                 var _gaq = _gaq || [];
@@ -42,7 +41,7 @@
             <nav class="menu-section" role="navigation">
                 <ul class="menu" id="menu">
                                                                                     <li>
-                            Overview
+                            <span>Overview</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="index.html" title="Introduction">Introduction</a>
@@ -51,7 +50,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.17/index.html" title="JavaDoc 0.17">JavaDoc 0.17</a>
+                            <span>                        <a href="apidocs-0.17.1/index.html" title="JavaDoc 0.17.1">JavaDoc 0.17.1</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -71,7 +70,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Examples
+                            <span>Examples</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="example-collection.html" title="XML Collection">XML Collection</a>
@@ -88,7 +87,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Project Documentation
+                            <span>Project Documentation</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
@@ -97,7 +96,7 @@
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                                         </ul>
                                                     </li>
                                     </ul>
@@ -106,7 +105,6 @@
                 <main role="main">
                     <div class="content">
                         <header>
-                            <i class="menu-button fa fa-align-justify"></i>
                             <div class="logo">
                                 <a href="http://www.xembly.org/"
                                     title=" logo ">
@@ -118,24 +116,30 @@
                                     />
                                 </a>
                             </div>
-                            <div class="date">
-                                <div class="date-numbers">
-                                    <strong itemprop="version">0.17</strong>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.17.1</strong>
+                                </li>
+                                <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-06-15T10:38:51Z">
+                                    <time itemprop="datePublished" datetime="2014-08-13T08:53:26Z">
                                         
-                                        15-Jun-2014
+                                        13-Aug-2014
                                     </time>
-                                </div>
-                                                                                                    <div>
-                                        <iframe src="http://ghbtns.com/github-btn.html?user=yegor256&amp;repo=xembly&amp;type=watch&amp;count=true&amp;size=large"
-                                            style="border-width:0px;overflow:hidden;width:170px;height:30px;">
-                                        </iframe>
-                                    </div>
-                                                            </div>
-                            <div id="here-goes-menu" class="menu-off"></div>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
                         </header>
-                        <article role="article" itemprop="articleBody">
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                            <a href="https://github.com/yegor256/xembly">
+                                <img src="http://img.jcabi.com/fork-me.svg" class="fork-me"/>
+                            </a>
+                                                <article role="article" itemprop="articleBody">
                             <h1>PUSH and POP</h1>
 <p>Let&#x2019;s say you start your Xembly manipulations from a place in DOM, which location is not determined for you. After your manipulations are done, you want to get back to exactly the same place. You should use <tt>PUSH</tt> to save your current location and <tt>POP</tt> to restore it back, when manipulations are finished, for example:</p>
 
@@ -145,7 +149,6 @@ ADD 'name';
 SET 'Jeff';
 POP;
 </pre></div>
-                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
                         </article>
                     </div>
                 </main>
