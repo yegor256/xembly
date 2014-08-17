@@ -77,6 +77,12 @@ import org.w3c.dom.Node;
  *     .attr("id", 6564)
  * ).xml("root");</pre>
  *
+ * <p>Since version 0.18 you can convert directives to XML without
+ * a necessity to catch checked exceptions.
+ * Use {@code *Quietly()} methods for that:
+ * {@link #xmlQuietly()}, {@link #domQuietly()},
+ * and {@link #applyQuietly(org.w3c.dom.Node)}.
+ *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.1
@@ -132,6 +138,20 @@ public final class Xembler {
     }
 
     /**
+     * Apply all changes to the document/node, without any checked exceptions.
+     * @param dom DOM document/node
+     * @return The same document/node
+     * @since 0.18
+     */
+    public Node applyQuietly(final Node dom) {
+        try {
+            return this.apply(dom);
+        } catch (final ImpossibleModificationException ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
+
+    /**
      * Apply all changes to the document/node.
      * @param dom DOM document/node
      * @return The same document/node
@@ -168,6 +188,19 @@ public final class Xembler {
     }
 
     /**
+     * Apply all changes to an empty DOM, without checked exceptions.
+     * @return DOM created
+     * @since 0.18
+     */
+    public Document domQuietly() {
+        try {
+            return this.dom();
+        } catch (final ImpossibleModificationException ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
+
+    /**
      * Apply all changes to an empty DOM.
      * @return DOM created
      * @throws ImpossibleModificationException If can't modify
@@ -186,6 +219,19 @@ public final class Xembler {
         }
         this.apply(dom);
         return dom;
+    }
+
+    /**
+     * Convert to XML document, without checked exceptions.
+     * @return XML document
+     * @since 0.18
+     */
+    public String xmlQuietly() {
+        try {
+            return this.xml();
+        } catch (final ImpossibleModificationException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
 
     /**

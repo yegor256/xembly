@@ -100,7 +100,7 @@ public final class XemblerTest {
             .up()
             .xpath("/top/employees/employee[@id='<443>']/name")
             .set("\"Юра Лермонтов\"");
-        new Xembler(new Directives(builder.toString())).apply(dom);
+        new Xembler(new Directives(builder.toString())).applyQuietly(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
@@ -131,7 +131,7 @@ public final class XemblerTest {
     @Test
     public void rendersXmlDeclaration() throws Exception {
         MatcherAssert.assertThat(
-            new Xembler(new Directives("ADD 'f';")).xml(),
+            new Xembler(new Directives("ADD 'f';")).xmlQuietly(),
             Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<f/>")
         );
     }
