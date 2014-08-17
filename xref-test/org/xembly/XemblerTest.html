@@ -108,7 +108,7 @@
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>             .up()
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>             .xpath(<span class="jxr_string">"/top/employees/employee[@id='&lt;443&gt;']/name"</span>)
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>             .set(<span class="jxr_string">"\&quot;Юра Лермонтов\&quot;"</span>);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">new</strong> Xembler(<strong class="jxr_keyword">new</strong> Directives(builder.toString())).apply(dom);
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">new</strong> Xembler(<strong class="jxr_keyword">new</strong> Directives(builder.toString())).applyQuietly(dom);
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>             XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>             XhtmlMatchers.hasXPaths(
@@ -139,7 +139,7 @@
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>     @Test
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> rendersXmlDeclaration() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>             <strong class="jxr_keyword">new</strong> Xembler(<strong class="jxr_keyword">new</strong> Directives(<span class="jxr_string">"ADD 'f';"</span>)).xml(),
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>             <strong class="jxr_keyword">new</strong> Xembler(<strong class="jxr_keyword">new</strong> Directives(<span class="jxr_string">"ADD 'f';"</span>)).xmlQuietly(),
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>             Matchers.equalTo(<span class="jxr_string">"&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&lt;f/&gt;"</span>)
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>         );
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>     }
