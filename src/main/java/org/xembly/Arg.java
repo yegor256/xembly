@@ -199,7 +199,7 @@ final class Arg {
             throw new XmlContentException(
                 String.format(
                     // @checkstyle LineLength (1 line)
-                    "Character #%02X is in restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets",
+                    "Character #%02X is in the restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets",
                     (int) chr, left, right
                 )
             );
