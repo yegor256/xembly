@@ -35,7 +35,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.27.1</version>
+        <version>0.29</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
@@ -126,7 +126,6 @@
         <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-xml</artifactId>
-            <version>0.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
