@@ -3,8 +3,10 @@
 Xembly is an imperative language for data manipulations in
 an XML document. It is a much simplier alternative to
 [XSLT](http://www.w3.org/TR/xslt) and [XQuery](http://www.w3.org/TR/xquery).
+Read this blog post for a more detailed explanation:
+[Xembly, an Assembly for XML](http://www.yegor256.com/2014/04/09/xembly-intro.html).
 
-For example:
+This is a sample Xembly script:
 
 ```
 XPATH '/root';
