@@ -6,11 +6,12 @@
 [![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 
-# Assembly for XML
-
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
-for data manipulation in XML documents. For example, you have an XML document:
+for data manipulation in XML documents. Read this blog post
+for a more detailed explanation: [Xembly, an Assembly for XML](http://www.yegor256.com/2014/04/09/xembly-intro.html).
+
+For example, you have an XML document:
 
 ```xml
 <orders>
@@ -69,7 +70,4 @@ $ mvn clean install -Pqulice
 
 If you have questions or general suggestions, don't hesitate to submit
 a new [Github issue](https://github.com/yegor256/xembly/issues/new).
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yegor256/xembly/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
