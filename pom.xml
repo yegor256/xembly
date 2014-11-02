@@ -39,7 +39,7 @@
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.19.1</version>
     <packaging>jar</packaging>
     <name>xembly</name>
     <description>Assembly for XML</description>
@@ -86,7 +86,7 @@
     <distributionManagement>
         <site>
             <id>github-pages</id>
-            <url>http://www.xembly.org</url>
+            <url>https://github.com/yegor256/xembly</url>
         </site>
     </distributionManagement>
     <properties>

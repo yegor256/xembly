@@ -1,9 +1,17 @@
-# Building Collection in XML
+  ---
+  Building Collection in XML
+  ---
+  Yegor Bugayenko
+  ---
+  2014-11-02
+  ---
 
-Let's say you want to build an XML document with a collection
-of names:
+Building Collection in XML
 
-```java
+  Let's say you want to build an XML document with a collection
+  of names:
+
++--
 package org.xembly.example;
 import org.xembly.Directives;
 import org.xembly.Xembler;
@@ -21,15 +29,15 @@ public class XemblyExample {
     System.out.println(new Xembler(directives).xml());
   }
 }
-```
++--
 
-Standard output will contains this text:
+  Standard output will contains this text:
 
-```xml
++--
 <?xml version="1.0" encoding="UTF-8"?>
 <actors>
   <actor>Jeffrey Lebowski</actor>
   <actor>Walter Sobchak</actor>
   <actor>Theodore Donald &apos;Donny&apos; Kerabatsos</actor>
 </actors>
-```
++--
