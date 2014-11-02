@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>xembly - </title>
+        <title>xembly &#x2013; Building Collection in XML</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
+        <link media="all" rel="stylesheet" type="text/css" href="./ico/ico.css"/>
+                    <meta name="author" content="Yegor Bugayenko" />
                             <script>
                 var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-1963507-29']);
@@ -17,24 +19,8 @@
             </script>
                                                                                                                 
 <link rel="shortcut icon" href="http://img.xembly.org/favicon.ico"/>
-                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-        <script>
-            $(document).ready(
-                function() {
-                    $(".menu-button").click(
-                        function() {
-                            if ($("#here-goes-menu").attr("class") == "menu-off") {
-                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
-                                $("#here-goes-menu").attr("class", "menu-on");
-                            } else {
-                                $(".mobile-menu").hide();
-                                $("#here-goes-menu").attr("class", "menu-off");
-                            }
-                        }
-                    );
-                }
-            );
-        </script>
+                                            <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="./js/jcabi.js"></script>
     </head>
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
@@ -50,7 +36,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.18/index.html" title="JavaDoc 0.18">JavaDoc 0.18</a>
+                            <span>                        <a href="apidocs-0.19.1/index.html" title="JavaDoc 0.19.1">JavaDoc 0.19.1</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -123,26 +109,60 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.18</strong>
+                                    <strong itemprop="version">0.19.1</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-08-17T03:32:16Z">
+                                    <time itemprop="datePublished" datetime="2014-11-02T06:19:06Z">
                                         
-                                        17-Aug-2014
+                                        02-Nov-2014
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
                             </ul>
+                            <div class="social">
+                                <a href="http://www.facebook.com/sharer/sharer.php?u=URL"
+                                    title="Share on Facebook" class="ico">
+                                    <i class="icon-facebook"></i>
+                                </a>
+                                <a href="https://twitter.com/share?url=URL&amp;text=TITLE"
+                                    title="Share on Twitter" class="ico">
+                                    <i class="icon-twitter"></i>
+                                </a>
+                                <a href="https://plus.google.com/share?url=URL"
+                                    title="Share on Google+" class="ico">
+                                    <i class="icon-googleplus"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/cws/share?url=URL"
+                                    title="Share on LinkedIn" class="ico">
+                                    <i class="icon-linkedin"></i>
+                                </a>
+                                <a href="http://www.stumbleupon.com/submit?url=URL&amp;title=TITLE"
+                                    title="Share on StumbleUpon" class="ico">
+                                    <i class="icon-stumbleupon"></i>
+                                </a>
+                                <a href="http://digg.com/submit?phase=2&amp;url=URL&amp;title=TITLE"
+                                    title="Share on Digg" class="ico">
+                                    <i class="icon-digg"></i>
+                                </a>
+                                <a href="http://reddit.com/submit?url=URL&amp;title=TITLE"
+                                    title="Share on Reddit" class="ico">
+                                    <i class="icon-reddit"></i>
+                                </a>
+                                <a href="http://news.ycombinator.com/submitlink?u=URL&amp;t=TITLE"
+                                    title="Share on Hacker News" class="ico">
+                                    <i class="icon-hackernews"></i>
+                                </a>
+                            </div>
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                             <a href="https://github.com/yegor256/xembly">
                                 <img src="http://img.jcabi.com/fork-me.svg" class="fork-me"/>
                             </a>
                                                 <article role="article" itemprop="articleBody">
-                            <h1>Building Collection in XML</h1>
-<p>Let&#x2019;s say you want to build an XML document with a collection of names:</p>
-
+                            <div class="section">
+<h2><a name="Building_Collection_in_XML"></a>Building Collection in XML</h2>
+<p>Let's say you want to build an XML document with a collection of names:</p>
 <div class="source">
 <pre>package org.xembly.example;
 import org.xembly.Directives;
@@ -160,18 +180,15 @@ public class XemblyExample {
     }
     System.out.println(new Xembler(directives).xml());
   }
-}
-</pre></div>
+}</pre></div>
 <p>Standard output will contains this text:</p>
-
 <div class="source">
 <pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;actors&gt;
   &lt;actor&gt;Jeffrey Lebowski&lt;/actor&gt;
   &lt;actor&gt;Walter Sobchak&lt;/actor&gt;
   &lt;actor&gt;Theodore Donald &amp;apos;Donny&amp;apos; Kerabatsos&lt;/actor&gt;
-&lt;/actors&gt;
-</pre></div>
+&lt;/actors&gt;</pre></div></div>
                         </article>
                     </div>
                 </main>

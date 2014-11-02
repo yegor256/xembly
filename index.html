@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>xembly - </title>
+        <title>xembly &#x2013; Assembly for XML</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
+        <link media="all" rel="stylesheet" type="text/css" href="./ico/ico.css"/>
+                    <meta name="author" content="Yegor Bugayenko" />
                             <script>
                 var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-1963507-29']);
@@ -17,24 +19,8 @@
             </script>
                                                                                                                 
 <link rel="shortcut icon" href="http://img.xembly.org/favicon.ico"/>
-                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-        <script>
-            $(document).ready(
-                function() {
-                    $(".menu-button").click(
-                        function() {
-                            if ($("#here-goes-menu").attr("class") == "menu-off") {
-                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
-                                $("#here-goes-menu").attr("class", "menu-on");
-                            } else {
-                                $(".mobile-menu").hide();
-                                $("#here-goes-menu").attr("class", "menu-off");
-                            }
-                        }
-                    );
-                }
-            );
-        </script>
+                                            <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript" src="./js/jcabi.js"></script>
     </head>
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
@@ -50,7 +36,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.18/index.html" title="JavaDoc 0.18">JavaDoc 0.18</a>
+                            <span>                        <a href="apidocs-0.19.1/index.html" title="JavaDoc 0.19.1">JavaDoc 0.19.1</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -123,27 +109,61 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.18</strong>
+                                    <strong itemprop="version">0.19.1</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-08-17T03:32:16Z">
+                                    <time itemprop="datePublished" datetime="2014-11-02T06:19:06Z">
                                         
-                                        17-Aug-2014
+                                        02-Nov-2014
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
                             </ul>
+                            <div class="social">
+                                <a href="http://www.facebook.com/sharer/sharer.php?u=URL"
+                                    title="Share on Facebook" class="ico">
+                                    <i class="icon-facebook"></i>
+                                </a>
+                                <a href="https://twitter.com/share?url=URL&amp;text=TITLE"
+                                    title="Share on Twitter" class="ico">
+                                    <i class="icon-twitter"></i>
+                                </a>
+                                <a href="https://plus.google.com/share?url=URL"
+                                    title="Share on Google+" class="ico">
+                                    <i class="icon-googleplus"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/cws/share?url=URL"
+                                    title="Share on LinkedIn" class="ico">
+                                    <i class="icon-linkedin"></i>
+                                </a>
+                                <a href="http://www.stumbleupon.com/submit?url=URL&amp;title=TITLE"
+                                    title="Share on StumbleUpon" class="ico">
+                                    <i class="icon-stumbleupon"></i>
+                                </a>
+                                <a href="http://digg.com/submit?phase=2&amp;url=URL&amp;title=TITLE"
+                                    title="Share on Digg" class="ico">
+                                    <i class="icon-digg"></i>
+                                </a>
+                                <a href="http://reddit.com/submit?url=URL&amp;title=TITLE"
+                                    title="Share on Reddit" class="ico">
+                                    <i class="icon-reddit"></i>
+                                </a>
+                                <a href="http://news.ycombinator.com/submitlink?u=URL&amp;t=TITLE"
+                                    title="Share on Hacker News" class="ico">
+                                    <i class="icon-hackernews"></i>
+                                </a>
+                            </div>
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                             <a href="https://github.com/yegor256/xembly">
                                 <img src="http://img.jcabi.com/fork-me.svg" class="fork-me"/>
                             </a>
                                                 <article role="article" itemprop="articleBody">
-                            <h1>Assembly for XML</h1>
-<p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to <a class="externalLink" href="http://www.w3.org/TR/xslt">XSLT</a> and <a class="externalLink" href="http://www.w3.org/TR/xquery">XQuery</a>.</p>
-<p>For example:</p>
-
+                            <div class="section">
+<h2><a name="Assembly_for_XML"></a>Assembly for XML</h2>
+<p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to <a class="externalLink" href="http://www.w3.org/TR/xslt">XSLT</a> and <a class="externalLink" href="http://www.w3.org/TR/xquery">XQuery</a>. Read this blog post for a more detailed explanation: <a class="externalLink" href="http://www.yegor256.com/2014/04/09/xembly-intro.html">Xembly, an Assembly for XML</a>.</p>
+<p>This is a sample Xembly script:</p>
 <div class="source">
 <pre>XPATH '/root';
 ADDIF 'orders';
@@ -153,10 +173,8 @@ ADD 'amount';
 SET '29.99';
 UP;
 ADD &quot;summary&quot;;
-SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
-</pre></div>
-<p>Will transform <tt>&lt;root/&gt;</tt> into:</p>
-
+SET &quot;free &amp;quot;subscription&amp;quot;&quot;;</pre></div>
+<p>Will transform <tt>&lt;root/</tt>&gt; into:</p>
 <div class="source">
 <pre>&lt;root&gt;
   &lt;orders&gt;
@@ -165,94 +183,65 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;
       &lt;summary&gt;free &quot;subscription&quot;&lt;/summary&gt;
     &lt;/order&gt;
   &lt;/orders&gt;
-&lt;/root&gt;
-</pre></div>
-<p>Xembly program (similar to Assembly program) consists of &#x201c;directives&#x201d;. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the <tt>Document</tt> as the only current node.</p>
+&lt;/root&gt;</pre></div>
+<p>Xembly program (similar to Assembly program) consists of &quot;directives&quot;. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the <tt>Document</tt> as the only current node.</p>
 <p>Arguments may be wrapped into single or double quotes.</p>
 <p>The only dependency you need is:</p>
-
 <div class="source">
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
   &lt;artifactId&gt;xembly&lt;/artifactId&gt;
-  &lt;version&gt;0.18&lt;/version&gt;
-&lt;/dependency&gt;
-</pre></div>
+  &lt;version&gt;0.19.1&lt;/version&gt;
+&lt;/dependency&gt;</pre></div>
 <div class="section">
-<h2>Directives<a name="Directives"></a></h2>
+<h3><a name="Directives"></a>Directives</h3>
 <p>Full list of supported directives in the current version:</p>
 <p><tt>ADD</tt> directive adds a new node to every node in the current node set. <tt>ADD</tt> expects exactly one mandatory argument, which is the name of a new node to be added (case sensitive):</p>
-
 <div class="source">
 <pre>ADD 'orders';
-ADD 'order';
-</pre></div>
+ADD 'order';</pre></div>
 <p>Even if the node with the same name already exists, a new node will be added. Use <tt>ADDIF</tt> if you need to add only if the same-name node is absent.</p>
 <p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p>
-<p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if it&#x2019;s absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case sensitive):</p>
-
+<p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if it's absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case sensitive):</p>
 <div class="source">
 <pre>ADD 'orders';
-ADDIF 'order';
-</pre></div>
+ADDIF 'order';</pre></div>
 <p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p>
 <p><tt>SET</tt> changes text content of all current nodes, and expects exactly one argument, which is the text content to set:</p>
-
 <div class="source">
 <pre>ADD &quot;employee&quot;;
-SET &quot;John Smith&quot;;
-</pre></div>
+SET &quot;John Smith&quot;;</pre></div>
 <p><tt>XSET</tt> changes text content of all current nodes to a value calculated with XPath expression:</p>
-
 <div class="source">
 <pre>ADD &quot;product-1&quot;;
 ADD &quot;price&quot;;
-XSET &quot;sum(/products/price) div count(/products)&quot;;
-</pre></div>
+XSET &quot;sum(/products/price) div count(/products)&quot;;</pre></div>
 <p><tt>UP</tt> moves all current nodes to their parents.</p>
 <p><tt>XPATH</tt> changes current nodes to the all found by XPath expression:</p>
-
 <div class="source">
 <pre>XPATH &quot;//employee[@id='234' and name='John Smith']/name&quot;;
-SET &quot;John R. Smith&quot;;
-</pre></div>
+SET &quot;John R. Smith&quot;;</pre></div>
 <p><tt>REMOVE</tt> removes current nodes and jumps to their parents:</p>
-
 <div class="source">
 <pre>ADD &quot;employee&quot;;
-REMOVE;
-</pre></div>
+REMOVE;</pre></div>
 <p><tt>STRICT</tt> checks that there is certain number of current nodes:</p>
-
 <div class="source">
 <pre>XPATH &quot;/root/employee[name='John Doe']&quot;;
-STRICT &quot;1&quot;;
-</pre></div>
+STRICT &quot;1&quot;;</pre></div>
 <p><tt>PI</tt> directive add a new processing directive to the XML:</p>
-
 <div class="source">
-<pre>PI &quot;xsl-stylesheet&quot; &quot;href='http://example.com'&quot;;
-</pre></div>
+<pre>PI &quot;xsl-stylesheet&quot; &quot;href='http://example.com'&quot;;</pre></div>
 <p><tt>PUSH</tt> and <tt>POP</tt> directives saves current DOM position to stack and restores it from there, see <a href="./example-push-and-pop.html">this example</a>.</p></div>
 <div class="section">
-<h2>Known Limitations<a name="Known_Limitations"></a></h2>
-<p>Xembly is not intended to be a replacement of XSL or XQuery. It is a lightweight (!) instrument for XML manipulations. There are a few things that can&#x2019;t be done by means of Xembly:</p>
-
+<h3><a name="Known_Limitations"></a>Known Limitations</h3>
+<p>Xembly is not intended to be a replacement of XSL or XQuery. It is a lightweight (!) instrument for XML manipulations. There are a few things that can't be done by means of Xembly:</p>
 <ul>
-  
-<li>
-<p>You can&#x2019;t add, remove, or modify XML comments  (but you can find them with XPath)</p></li>
-  
-<li>
-<p>DTD section can&#x2019;t be modified</p></li>
-  
-<li>
-<p>Namespaces are not supported (should be fixed soon)</p></li>
-  
-<li>
-<p>Elements and text content can&#x2019;t be mixed, e.g.  this structure is not supported: <tt>&lt;test&gt;hello &lt;b&gt;friend&lt;/a&gt;&lt;/test&gt;</tt></p></li>
-</ul>
-<p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p></div>
+<li>You can't add, remove, or modify XML comments (but you can find them with XPath)</li>
+<li>DTD section can't be modified</li>
+<li>Namespaces are not supported (should be fixed soon)</li>
+<li>Elements and text content can't be mixed, e.g. this structure is not supported: <tt>&lt;test&gt;hello &lt;b&gt;friend&lt;/a&gt;&lt;/test</tt>&gt;</li></ul>
+<p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p></div></div>
                         </article>
                     </div>
                 </main>
