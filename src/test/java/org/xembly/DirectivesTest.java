@@ -29,10 +29,12 @@
  */
 package org.xembly;
 
+import com.jcabi.aspects.Parallel;
 import com.jcabi.aspects.Tv;
 import com.jcabi.immutable.ArrayMap;
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
+import java.util.concurrent.Callable;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
@@ -285,6 +287,32 @@ public final class DirectivesTest {
                     .add("x:node").set("HELLO WORLD!")
             ).xml(),
             XhtmlMatchers.hasXPath("//xhtml:node")
+        );
+    }
+
+    /**
+     * Directives can accept directives from multiple threads.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void acceptsFromMultipleThreads() throws Exception {
+        final Directives dirs = new Directives().add("mt6");
+        new Callable<Void>() {
+            @Parallel(threads = Tv.FIFTY)
+            @Override
+            public Void call() throws Exception {
+                dirs.append(
+                    new Directives()
+                        .add("fo9").attr("yu", "").set("some text 90")
+                        .add("tr4").attr("s2w3", "").set("some other text 76")
+                        .up().up()
+                );
+                return null;
+            }
+        }.call();
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(new Xembler(dirs).xml()),
+            XhtmlMatchers.hasXPath("/mt6[count(fo9[@yu])=50]")
         );
     }
 
