@@ -309,7 +309,7 @@ public final class DirectivesTest {
                 );
                 return null;
             }
-        }.call();
+        } .call();
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(new Xembler(dirs).xml()),
             XhtmlMatchers.hasXPath("/mt6[count(fo9[@yu])=50]")

@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.validation.constraints.NotNull;
@@ -245,9 +246,11 @@ public final class Directives implements Iterable<Directive> {
     public Directives append(
         @NotNull(message = "list of directives can't be NULL")
         final Iterable<Directive> dirs) {
+        final Collection<Directive> list = new LinkedList<Directive>();
         for (final Directive dir : dirs) {
-            this.all.add(dir);
+            list.add(dir);
         }
+        this.all.addAll(list);
         return this;
     }
 
