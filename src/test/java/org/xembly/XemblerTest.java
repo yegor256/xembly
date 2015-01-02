@@ -31,10 +31,18 @@ package org.xembly;
 
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -177,4 +185,67 @@ public final class XemblerTest {
         );
     }
 
+    /**
+     * Test that concurrent invocations on shared DOM.
+     * doesn't ruin executing thread
+     * @todo #34
+     *  I assumed that Xembler should be a thread-safe and
+     *  this test must pass, but this assumption might be wrong and
+     *  this test case is not an issue
+     * @throws Exception If some problem inside
+     */
+    @Test
+    @Ignore
+    public void concurrentInvocationWithNoExceptions() throws Exception {
+        final ExecutorService service = Executors.newFixedThreadPool(
+                Runtime.getRuntime().availableProcessors()
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+        final Xembler xembler = new Xembler(
+            new Directives(
+                "ADD 'root';ADDIF 'blow';"
+            )
+        );
+        final int capacity = 10000;
+        final Collection<Callable<Document>> tasks =
+            new ArrayList<Callable<Document>>(
+                    capacity
+            );
+        for (int idx = 0; idx < capacity; ++idx) {
+            final Callable<Document> callable = XemblerTest.buildCallable(
+                    xembler, dom
+            );
+            tasks.add(callable);
+        }
+        final List<Future<Document>> futures = service.invokeAll(tasks);
+        for (final Future<Document> future : futures) {
+            final Document document = future.get();
+            MatcherAssert.assertThat(
+                XhtmlMatchers.xhtml(document),
+                XhtmlMatchers.hasXPaths(
+                        "/root[count(blow) = 1]"
+                )
+            );
+        }
+        service.shutdown();
+    }
+
+    /**
+     * Builds up callable object.
+     * @param xembler Xembler's instance
+     * @param document DOM object
+     * @return Callable object
+     */
+    private static Callable<Document> buildCallable(
+            final Xembler xembler, final Document document
+    ) {
+        return new Callable<Document>() {
+            @Override
+            public Document call() throws Exception {
+                xembler.apply(document);
+                return document;
+            }
+        };
+    }
 }
