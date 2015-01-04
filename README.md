@@ -4,6 +4,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
 
 [![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
+[![Build status](https://ci.appveyor.com/api/projects/status/e5sbjdlhbrpahr8b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/xembly/branch/master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
