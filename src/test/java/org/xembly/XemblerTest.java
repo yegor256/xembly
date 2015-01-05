@@ -198,10 +198,10 @@ public final class XemblerTest {
     @Ignore
     public void concurrentInvocationWithNoExceptions() throws Exception {
         final ExecutorService service = Executors.newFixedThreadPool(
-                Runtime.getRuntime().availableProcessors()
+            Runtime.getRuntime().availableProcessors()
         );
         final Document dom = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().newDocument();
+            .newDocumentBuilder().newDocument();
         final Xembler xembler = new Xembler(
             new Directives(
                 "ADD 'root';ADDIF 'blow';"
@@ -210,11 +210,11 @@ public final class XemblerTest {
         final int capacity = 10000;
         final Collection<Callable<Document>> tasks =
             new ArrayList<Callable<Document>>(
-                    capacity
+                capacity
             );
         for (int idx = 0; idx < capacity; ++idx) {
-            final Callable<Document> callable = XemblerTest.buildCallable(
-                    xembler, dom
+            final Callable<Document> callable = XemblerTest.callable(
+                xembler, dom
             );
             tasks.add(callable);
         }
@@ -224,7 +224,7 @@ public final class XemblerTest {
             MatcherAssert.assertThat(
                 XhtmlMatchers.xhtml(document),
                 XhtmlMatchers.hasXPaths(
-                        "/root[count(blow) = 1]"
+                    "/root[count(blow) = 1]"
                 )
             );
         }
@@ -237,8 +237,8 @@ public final class XemblerTest {
      * @param document DOM object
      * @return Callable object
      */
-    private static Callable<Document> buildCallable(
-            final Xembler xembler, final Document document
+    private static Callable<Document> callable(
+        final Xembler xembler, final Document document
     ) {
         return new Callable<Document>() {
             @Override
