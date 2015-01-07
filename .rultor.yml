@@ -20,7 +20,6 @@ merge:
 deploy:
   script: |
     mvn clean deploy -Pqulice --errors --settings ../settings.xml
-    gem install pdd
     mvn clean
     pdd --source=$(pwd) --verbose --file=xembly.xml
     s3cmd --no-progress put xembly.xml --config=../s3cfg s3://pdd.teamed.io/xembly.xml
