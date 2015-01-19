@@ -10,7 +10,15 @@ env:
 install:
   - sudo gem install pdd
 
+architect:
+  - yegor256
+  - davvd
+
 merge:
+  commanders:
+    - carlosmiranda
+    - yegor256
+    - krzyk
   script: |
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
