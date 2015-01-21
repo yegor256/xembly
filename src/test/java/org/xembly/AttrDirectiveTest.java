@@ -118,4 +118,20 @@ public final class AttrDirectiveTest {
         );
     }
 
+    @Test
+    public void test() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("f");
+        dom.appendChild(root);
+        new AttrDirective("xmlns", "\u20ac50").exec(
+            dom, new DomPointer(Collections.<Node>singletonList(root)),
+            new DomStack()
+        );
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/f[@Price='\u20ac50']")
+        );
+
+    }
 }
