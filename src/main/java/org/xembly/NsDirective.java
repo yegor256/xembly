@@ -64,7 +64,7 @@ final class NsDirective implements Directive {
     }
 
     @Override
-    public final Pointer exec(final Node dom, final Pointer ptr, final Stack stack) {
+    public Pointer exec(final Node dom, final Pointer ptr, final Stack stack) {
         try {
             final AttrDirective attr = new AttrDirective(
                 "xmlns",
