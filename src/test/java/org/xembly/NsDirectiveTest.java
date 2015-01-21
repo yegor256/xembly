@@ -39,11 +39,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
+ * Validates NsDirective class.
  * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
  * @since 1.0
  */
-public class NsDirectiveTest {
+public final class NsDirectiveTest {
     /**
      * Verifies that NsDirective appends a namespace to a node.
      * @throws Exception Thrown in case of an error.
@@ -58,7 +59,9 @@ public class NsDirectiveTest {
             dom, new DomPointer(Collections.<Node>singletonList(root)),
             new DomStack()
         );
-        MatcherAssert.assertThat(new XMLDocument(dom).toString(),
-            org.hamcrest.Matchers.containsString("<f xmlns=\"somens\"/>"));
+        MatcherAssert.assertThat(
+            new XMLDocument(dom).toString(),
+            org.hamcrest.Matchers.containsString("<f xmlns=\"somens\"/>")
+        );
     }
 }

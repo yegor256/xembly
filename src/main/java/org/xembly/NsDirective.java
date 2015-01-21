@@ -42,23 +42,34 @@ import org.w3c.dom.Node;
 @Immutable
 @EqualsAndHashCode(of = { "namespace" })
 final class NsDirective implements Directive {
+    /**
+     * Namespace, which should be added to a node.
+     */
     private final transient String namespace;
 
-    public NsDirective(final String ns) {
-        this.namespace = ns;
+    /**
+     * Creates an instance of NsDirective.
+     * @param nsp Namespace, which should be added to a node.
+     */
+    public NsDirective(final String nsp) {
+        this.namespace = nsp;
     }
 
     @Override
     public String toString() {
-        return String.format("NS %s", this.namespace);
+        return String.format(
+            "NS %s",
+            this.namespace
+        );
     }
 
     @Override
-    public Pointer exec(final Node dom, final Pointer ptr, final Stack stack) {
-        try
-        {
-            final AttrDirective attr = new AttrDirective("xmlns",
-                this.namespace);
+    public final Pointer exec(final Node dom, final Pointer ptr, final Stack stack) {
+        try {
+            final AttrDirective attr = new AttrDirective(
+                "xmlns",
+                this.namespace
+            );
             return attr.exec(dom, ptr, stack);
         } catch (final XmlContentException exception) {
             exception.printStackTrace();
