@@ -37,7 +37,7 @@ import org.w3c.dom.Node;
  * Namespace directive.
  * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
- * @since 1.0
+ * @since 0.19.3
  */
 @Immutable
 @EqualsAndHashCode(of = { "namespace" })
@@ -72,8 +72,7 @@ final class NsDirective implements Directive {
             );
             return attr.exec(dom, ptr, stack);
         } catch (final XmlContentException exception) {
-            exception.printStackTrace();
+            throw new IllegalArgumentException(exception);
         }
-        return ptr;
     }
 }

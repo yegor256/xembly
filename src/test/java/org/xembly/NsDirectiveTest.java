@@ -42,7 +42,7 @@ import org.w3c.dom.Node;
  * Validates NsDirective class.
  * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
- * @since 1.0
+ * @since 0.19.3
  */
 public final class NsDirectiveTest {
     /**
