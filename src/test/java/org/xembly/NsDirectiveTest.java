@@ -50,7 +50,7 @@ public final class NsDirectiveTest {
      * @throws Exception Thrown in case of an error.
      */
     @Test
-    public void exec() throws Exception {
+    public void setsNsAttr() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");
