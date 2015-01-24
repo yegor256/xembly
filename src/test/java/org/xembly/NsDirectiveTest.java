@@ -44,6 +44,7 @@ import org.w3c.dom.Node;
  * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
  * @since 0.19.3
+ * @checkstyle MultipleStringLiteralsCheck (500 lines)
  */
 public final class NsDirectiveTest {
     /**
