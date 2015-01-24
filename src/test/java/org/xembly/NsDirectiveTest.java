@@ -55,7 +55,7 @@ public final class NsDirectiveTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");
         dom.appendChild(root);
-        new NsDirective("somens").exec(
+        new NsDirective(new Arg("somens")).exec(
             dom, new DomPointer(Collections.<Node>singletonList(root)),
             new DomStack()
         );

@@ -45,13 +45,13 @@ final class NsDirective implements Directive {
     /**
      * Namespace, which should be added to a node.
      */
-    private final transient String namespace;
+    private final transient Arg namespace;
 
     /**
      * Creates an instance of NsDirective.
      * @param nsp Namespace, which should be added to a node.
      */
-    public NsDirective(final String nsp) {
+    public NsDirective(final Arg nsp) {
         this.namespace = nsp;
     }
 
@@ -68,7 +68,7 @@ final class NsDirective implements Directive {
         try {
             final AttrDirective attr = new AttrDirective(
                 "xmlns",
-                this.namespace
+                this.namespace.toString()
             );
             return attr.exec(dom, ptr, stack);
         } catch (final XmlContentException exception) {
