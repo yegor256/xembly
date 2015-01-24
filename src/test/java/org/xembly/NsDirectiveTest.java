@@ -29,11 +29,11 @@
  */
 package org.xembly;
 
+import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -62,7 +62,7 @@ public final class NsDirectiveTest {
         );
         MatcherAssert.assertThat(
             new XMLDocument(dom).toString(),
-            Matchers.containsString("<f xmlns=\"somens\"/>")
+            XhtmlMatchers.hasXPath("/ns1:f", "somens")
         );
     }
 }
