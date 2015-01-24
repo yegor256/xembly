@@ -68,7 +68,7 @@ final class NsDirective implements Directive {
         try {
             final AttrDirective attr = new AttrDirective(
                 "xmlns",
-                this.namespace.toString()
+                this.namespace.raw()
             );
             return attr.exec(dom, ptr, stack);
         } catch (final XmlContentException exception) {
