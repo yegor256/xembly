@@ -138,6 +138,13 @@ PI "xsl-stylesheet" "href='http://example.com'";
   <<<PUSH>>> and <<<POP>>> directives saves current DOM position to stack
   and restores it from there, see {{{./example-push-and-pop.html}this example}}.
 
+  <<<NS>>> adds a namespace attribute to a node.
+
+
++--
+NS "http://www.w3.org/TR/html4/";
++--
+
 * Known Limitations
 
   Xembly is not intended to be a replacement of XSL or XQuery. It is
