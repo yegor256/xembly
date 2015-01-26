@@ -36,7 +36,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.19.2/index.html" title="JavaDoc 0.19.2">JavaDoc 0.19.2</a>
+                            <span>                        <a href="apidocs-0.20/index.html" title="JavaDoc 0.20">JavaDoc 0.20</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -109,13 +109,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.19.2</strong>
+                                    <strong itemprop="version">0.20</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-11-23T05:29:23Z">
+                                    <time itemprop="datePublished" datetime="2015-01-26T12:57:50Z">
                                         
-                                        23-Nov-2014
+                                        26-Jan-2015
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -191,7 +191,7 @@ SET &quot;free &amp;quot;subscription&amp;quot;&quot;;</pre></div>
 <pre>&lt;dependency&gt;
   &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
   &lt;artifactId&gt;xembly&lt;/artifactId&gt;
-  &lt;version&gt;0.19.2&lt;/version&gt;
+  &lt;version&gt;0.20&lt;/version&gt;
 &lt;/dependency&gt;</pre></div>
 <div class="section">
 <h3><a name="Directives"></a>Directives</h3>
@@ -232,14 +232,16 @@ STRICT &quot;1&quot;;</pre></div>
 <p><tt>PI</tt> directive add a new processing directive to the XML:</p>
 <div class="source">
 <pre>PI &quot;xsl-stylesheet&quot; &quot;href='http://example.com'&quot;;</pre></div>
-<p><tt>PUSH</tt> and <tt>POP</tt> directives saves current DOM position to stack and restores it from there, see <a href="./example-push-and-pop.html">this example</a>.</p></div>
+<p><tt>PUSH</tt> and <tt>POP</tt> directives saves current DOM position to stack and restores it from there, see <a href="./example-push-and-pop.html">this example</a>.</p>
+<p><tt>NS</tt> adds a namespace attribute to a node.</p>
+<div class="source">
+<pre>NS &quot;http://www.w3.org/TR/html4/&quot;;</pre></div></div>
 <div class="section">
 <h3><a name="Known_Limitations"></a>Known Limitations</h3>
 <p>Xembly is not intended to be a replacement of XSL or XQuery. It is a lightweight (!) instrument for XML manipulations. There are a few things that can't be done by means of Xembly:</p>
 <ul>
 <li>You can't add, remove, or modify XML comments (but you can find them with XPath)</li>
 <li>DTD section can't be modified</li>
-<li>Namespaces are not supported (should be fixed soon)</li>
 <li>Elements and text content can't be mixed, e.g. this structure is not supported: <tt>&lt;test&gt;hello &lt;b&gt;friend&lt;/a&gt;&lt;/test</tt>&gt;</li></ul>
 <p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p></div></div>
                         </article>
@@ -248,7 +250,7 @@ STRICT &quot;1&quot;;</pre></div>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2013-2014
+                                                                            2013-2015
                                             </div>
                     <div>Xembly, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
