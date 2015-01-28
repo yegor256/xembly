@@ -138,6 +138,13 @@ PI "xsl-stylesheet" "href='http://example.com'";
   <<<PUSH>>> and <<<POP>>> directives saves current DOM position to stack
   and restores it from there, see {{{./example-push-and-pop.html}this example}}.
 
+  <<<NS>>> adds a namespace attribute to a node.
+
+
++--
+NS "http://www.w3.org/TR/html4/";
++--
+
 * Known Limitations
 
   Xembly is not intended to be a replacement of XSL or XQuery. It is
@@ -148,8 +155,6 @@ PI "xsl-stylesheet" "href='http://example.com'";
      (but you can find them with XPath)
 
    * DTD section can't be modified
-
-   * Namespaces are not supported (should be fixed soon)
 
    * Elements and text content can't be mixed, e.g.
      this structure is not supported: <<<<test>hello <b>friend</a></test>>>>

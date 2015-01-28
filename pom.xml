@@ -185,6 +185,7 @@
                                 <exclude>findbugs:.*</exclude>
                                 <exclude>xml:/src/it/settings.xml</exclude>
                             </excludes>
+                            <license>file:${basedir}/LICENSE.txt</license>
                         </configuration>
                     </plugin>
                 </plugins>
