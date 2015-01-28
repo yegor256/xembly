@@ -35,7 +35,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.31</version>
+        <version>0.32.1</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
@@ -185,7 +185,6 @@
                                 <exclude>findbugs:.*</exclude>
                                 <exclude>xml:/src/it/settings.xml</exclude>
                             </excludes>
-                            <license>file:${basedir}/LICENSE.txt</license>
                         </configuration>
                     </plugin>
                 </plugins>
