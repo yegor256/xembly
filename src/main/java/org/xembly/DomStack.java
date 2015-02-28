@@ -29,8 +29,8 @@
  */
 package org.xembly;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.EmptyStackException;
+import java.util.Stack;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -46,27 +46,22 @@ final class DomStack implements Directive.Stack {
     /**
      * Queue of pointers.
      */
-    private final transient Queue<Directive.Pointer> ptrs =
-        new LinkedList<Directive.Pointer>();
+    private final transient Stack<Directive.Pointer> ptrs =
+        new Stack<Directive.Pointer>();
 
     @Override
-    public void push(final Directive.Pointer ptr)
-        throws ImpossibleModificationException {
-        if (!this.ptrs.offer(ptr)) {
-            throw new ImpossibleModificationException(
-                "stack is full or some other issue, can't PUSH"
-            );
-        }
+    public void push(final Directive.Pointer ptr) {
+        this.ptrs.push(ptr);
     }
 
     @Override
     public Directive.Pointer pop() throws ImpossibleModificationException {
-        final Directive.Pointer ptr = this.ptrs.poll();
-        if (ptr == null) {
+        try {
+            return this.ptrs.pop();
+        } catch (final EmptyStackException ex) {
             throw new ImpossibleModificationException(
-                "stack is empty, can't POP"
+                "stack is empty, can't POP", ex
             );
         }
-        return ptr;
     }
 }
