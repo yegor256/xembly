@@ -1,40 +1,34 @@
-assets:
-  settings.xml: "yegor256/home#assets/xembly/settings.xml"
-  pubring.gpg: "yegor256/home#assets/pubring.gpg"
-  secring.gpg: "yegor256/home#assets/secring.gpg"
-  s3cfg: "yegor256/home#assets/s3cfg"
-
-env:
-  MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
-
-install:
-  - sudo gem install pdd
-
-architect:
-  - yegor256
-  - davvd
-
-merge:
-  commanders:
-    - carlosmiranda
-    - yegor256
-    - krzyk
-  script: |
-    mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
-    mvn clean site -Psite --errors --settings ../settings.xml
-    mvn clean
-    pdd --source=$(pwd) --verbose --file=/dev/null
-
-deploy:
-  script: |
-    mvn clean deploy -Pqulice --errors --settings ../settings.xml
-    mvn clean
-    pdd --source=$(pwd) --verbose --file=xembly.xml
-    s3cmd --no-progress put xembly.xml --config=../s3cfg s3://pdd.teamed.io/xembly.xml
-
-release:
-  script: |
-    mvn versions:set "-DnewVersion=${tag}"
-    git commit -am "${tag}"
-    mvn clean deploy -Pxembly -Psonatype --errors --settings ../settings.xml
-    mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml
+architect: 
+- yegor256
+- davvd
+install: 
+- sudo gem install pdd
+assets: 
+   secring.gpg: yegor256/home#assets/secring.gpg
+   settings.xml: yegor256/home#assets/xembly/settings.xml
+   pubring.gpg: yegor256/home#assets/pubring.gpg
+   s3cfg: yegor256/home#assets/s3cfg
+merge: 
+   commanders: 
+   - carlosmiranda
+   - yegor256
+   - krzyk
+   script: |-
+      mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
+      mvn clean site -Psite --errors --settings ../settings.xml
+      mvn clean
+      pdd --source=$(pwd) --verbose --file=/dev/null
+deploy: 
+   script: |-
+      mvn clean deploy -Pqulice --errors --settings ../settings.xml
+      mvn clean
+      pdd --source=$(pwd) --verbose --file=xembly.xml
+      s3cmd --no-progress put xembly.xml --config=../s3cfg s3://pdd.teamed.io/xembly.xml
+env: 
+   MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
+release: 
+   script: |-
+      mvn versions:set "-DnewVersion=${tag}"
+      git commit -am "${tag}"
+      mvn clean deploy -Pxembly -Psonatype --errors --settings ../settings.xml
+      mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml

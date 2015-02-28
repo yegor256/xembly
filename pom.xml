@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
- * Copyright (c) 2013-2014, xembly.org
+ * Copyright (c) 2013-2015, xembly.org
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.31</version>
+        <version>0.32.1</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>

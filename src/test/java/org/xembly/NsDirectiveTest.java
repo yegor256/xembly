@@ -29,34 +29,41 @@
  */
 package org.xembly;
 
+import com.jcabi.matchers.XhtmlMatchers;
+import com.jcabi.xml.XMLDocument;
+import java.util.Collections;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.hamcrest.MatcherAssert;
+import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 /**
- * When parsing of directives is impossible.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Validates NsDirective class.
+ * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
- * @since 0.6
+ * @since 0.19.3
+ * @checkstyle MultipleStringLiteralsCheck (500 lines)
  */
-final class ParsingException extends RuntimeException {
-
+public final class NsDirectiveTest {
     /**
-     * Serialization marker.
+     * Verifies that NsDirective appends a namespace to a node.
+     * @throws Exception Thrown in case of an error.
      */
-    private static final long serialVersionUID = 0x6547f999eaf6efb9L;
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
-    ParsingException(final String cause) {
-        super(cause);
+    @Test
+    public void setsNsAttr() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        final Element root = dom.createElement("f");
+        dom.appendChild(root);
+        new NsDirective(new Arg("somens")).exec(
+            dom, new DomPointer(Collections.<Node>singletonList(root)),
+            new DomStack()
+        );
+        MatcherAssert.assertThat(
+            new XMLDocument(dom).toString(),
+            XhtmlMatchers.hasXPath("/ns1:f", "somens")
+        );
     }
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
-    ParsingException(final Throwable cause) {
-        super(cause);
-    }
-
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-2014, xembly.org
+ * Copyright (c) 2013-2015, xembly.org
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -117,5 +117,4 @@ public final class AttrDirectiveTest {
             XhtmlMatchers.hasXPath("/f[@Price='\u20ac50']")
         );
     }
-
 }

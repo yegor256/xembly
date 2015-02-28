@@ -29,34 +29,50 @@
  */
 package org.xembly;
 
+import com.jcabi.aspects.Immutable;
+import lombok.EqualsAndHashCode;
+import org.w3c.dom.Node;
+
 /**
- * When parsing of directives is impossible.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Namespace directive.
+ * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
- * @since 0.6
+ * @since 0.19.3
  */
-final class ParsingException extends RuntimeException {
+@Immutable
+@EqualsAndHashCode(of = { "namespace" })
+final class NsDirective implements Directive {
+    /**
+     * Namespace, which should be added to a node.
+     */
+    private final transient Arg namespace;
 
     /**
-     * Serialization marker.
+     * Creates an instance of NsDirective.
+     * @param nsp Namespace, which should be added to a node.
      */
-    private static final long serialVersionUID = 0x6547f999eaf6efb9L;
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
-    ParsingException(final String cause) {
-        super(cause);
+    public NsDirective(final Arg nsp) {
+        this.namespace = nsp;
     }
 
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
-    ParsingException(final Throwable cause) {
-        super(cause);
+    @Override
+    public String toString() {
+        return String.format(
+            "NS %s",
+            this.namespace
+        );
     }
 
+    @Override
+    public Pointer exec(final Node dom, final Pointer ptr, final Stack stack) {
+        try {
+            final AttrDirective attr = new AttrDirective(
+                "xmlns",
+                this.namespace.raw()
+            );
+            return attr.exec(dom, ptr, stack);
+        } catch (final XmlContentException exception) {
+            throw new IllegalArgumentException(exception);
+        }
+    }
 }
