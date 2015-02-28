@@ -51,7 +51,8 @@ final class PopDirective implements Directive {
 
     @Override
     public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
+        final Directive.Pointer ptr, final Directive.Stack stack)
+        throws ImpossibleModificationException {
         return stack.pop();
     }
 

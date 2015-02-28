@@ -258,16 +258,19 @@ public final class DirectivesTest {
     @Test
     public void pushesAndPopsPointer() throws Exception {
         MatcherAssert.assertThat(
-            new Xembler(
-                new Directives()
-                    .add("jeff").add("lebowski")
-                    .push()
-                    .xpath("/jeff").add("dude")
-                    .pop()
-                    .add("los-angeles")
-            ).xml(),
+            XhtmlMatchers.xhtml(
+                new Xembler(
+                    new Directives()
+                        .add("jeff")
+                        .push().add("lebowski")
+                        .push().xpath("/jeff").add("dude").pop()
+                        .attr("birthday", "today").pop()
+                        .add("los-angeles")
+                ).xml()
+            ),
             XhtmlMatchers.hasXPaths(
-                "/jeff/lebowski/los-angeles",
+                "/jeff/lebowski[@birthday]",
+                "/jeff/los-angeles",
                 "/jeff/dude"
             )
         );

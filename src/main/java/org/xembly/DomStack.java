@@ -50,12 +50,23 @@ final class DomStack implements Directive.Stack {
         new LinkedList<Directive.Pointer>();
 
     @Override
-    public void push(final Directive.Pointer ptr) {
-        this.ptrs.offer(ptr);
+    public void push(final Directive.Pointer ptr)
+        throws ImpossibleModificationException {
+        if (!this.ptrs.offer(ptr)) {
+            throw new ImpossibleModificationException(
+                "stack is full or some other issue, can't PUSH"
+            );
+        }
     }
 
     @Override
-    public Directive.Pointer pop() {
-        return this.ptrs.poll();
+    public Directive.Pointer pop() throws ImpossibleModificationException {
+        final Directive.Pointer ptr = this.ptrs.poll();
+        if (ptr == null) {
+            throw new ImpossibleModificationException(
+                "stack is empty, can't POP"
+            );
+        }
+        return ptr;
     }
 }

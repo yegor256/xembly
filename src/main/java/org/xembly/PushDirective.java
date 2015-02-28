@@ -51,7 +51,8 @@ final class PushDirective implements Directive {
 
     @Override
     public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
+        final Directive.Pointer ptr, final Directive.Stack stack)
+        throws ImpossibleModificationException {
         stack.push(ptr);
         return ptr;
     }

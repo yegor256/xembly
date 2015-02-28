@@ -69,13 +69,15 @@ public interface Directive {
         /**
          * Push pointer (runtime exception if stack is full).
          * @param ptr Pointer to push
+         * @throws ImpossibleModificationException If fails
          */
-        void push(Directive.Pointer ptr);
+        void push(Directive.Pointer ptr) throws ImpossibleModificationException;
         /**
          * Pop pointer (runtime exception if stack is empty).
          * @return Pointer recently added
+         * @throws ImpossibleModificationException If fails
          */
-        Directive.Pointer pop();
+        Directive.Pointer pop() throws ImpossibleModificationException;
     }
 
 }
