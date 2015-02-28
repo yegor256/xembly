@@ -37,8 +37,8 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">package</strong> org.xembly;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.util.LinkedList;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.Queue;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> java.util.EmptyStackException;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.Stack;
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> lombok.EqualsAndHashCode;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">/**</em>
@@ -54,19 +54,25 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">     * Queue of pointers.</em>
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> Queue&lt;Directive.Pointer&gt; ptrs =
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">new</strong> LinkedList&lt;Directive.Pointer&gt;();
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> Stack&lt;Directive.Pointer&gt; ptrs =
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">new</strong> Stack&lt;Directive.Pointer&gt;();
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      @Override
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> push(<strong class="jxr_keyword">final</strong> Directive.Pointer ptr) {
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">this</strong>.ptrs.offer(ptr);
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">this</strong>.ptrs.push(ptr);
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      @Override
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">public</strong> Directive.Pointer pop() {
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.ptrs.poll();
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      }
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  }
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">public</strong> Directive.Pointer pop() <strong class="jxr_keyword">throws</strong> ImpossibleModificationException {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>              <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.ptrs.pop();
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>          } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> EmptyStackException ex) {
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../org/xembly/ImpossibleModificationException.html">ImpossibleModificationException</a>(
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>                  <span class="jxr_string">"stack is empty, can't POP"</span>, ex
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>              );
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          }
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2015 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>

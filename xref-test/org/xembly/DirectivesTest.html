@@ -266,65 +266,68 @@
 <a class="jxr_linenumber" name="L258" href="#L258">258</a>     @Test
 <a class="jxr_linenumber" name="L259" href="#L259">259</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> pushesAndPopsPointer() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L260" href="#L260">260</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L261" href="#L261">261</a>             <strong class="jxr_keyword">new</strong> Xembler(
-<a class="jxr_linenumber" name="L262" href="#L262">262</a>                 <strong class="jxr_keyword">new</strong> Directives()
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>                     .add(<span class="jxr_string">"jeff"</span>).add(<span class="jxr_string">"lebowski"</span>)
-<a class="jxr_linenumber" name="L264" href="#L264">264</a>                     .push()
-<a class="jxr_linenumber" name="L265" href="#L265">265</a>                     .xpath(<span class="jxr_string">"/jeff"</span>).add(<span class="jxr_string">"dude"</span>)
-<a class="jxr_linenumber" name="L266" href="#L266">266</a>                     .pop()
-<a class="jxr_linenumber" name="L267" href="#L267">267</a>                     .add(<span class="jxr_string">"los-angeles"</span>)
-<a class="jxr_linenumber" name="L268" href="#L268">268</a>             ).xml(),
-<a class="jxr_linenumber" name="L269" href="#L269">269</a>             XhtmlMatchers.hasXPaths(
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>                 <span class="jxr_string">"/jeff/lebowski/los-angeles"</span>,
-<a class="jxr_linenumber" name="L271" href="#L271">271</a>                 <span class="jxr_string">"/jeff/dude"</span>
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>             )
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>         );
-<a class="jxr_linenumber" name="L274" href="#L274">274</a>     }
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> 
-<a class="jxr_linenumber" name="L276" href="#L276">276</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">     * Directives can use namespaces.</em>
-<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     * @throws Exception If some problem inside</em>
-<a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>     @Test
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> prefixesItemsWithNamespaces() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L283" href="#L283">283</a>             <strong class="jxr_keyword">new</strong> Xembler(
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>                 <strong class="jxr_keyword">new</strong> Directives()
-<a class="jxr_linenumber" name="L285" href="#L285">285</a>                     .add(<span class="jxr_string">"bbb"</span>)
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>                     .attr(<span class="jxr_string">"xmlns:x"</span>, <span class="jxr_string">"http://www.w3.org/1999/xhtml"</span>)
-<a class="jxr_linenumber" name="L287" href="#L287">287</a>                     .add(<span class="jxr_string">"x:node"</span>).set(<span class="jxr_string">"HELLO WORLD!"</span>)
-<a class="jxr_linenumber" name="L288" href="#L288">288</a>             ).xml(),
-<a class="jxr_linenumber" name="L289" href="#L289">289</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"//xhtml:node"</span>)
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>         );
-<a class="jxr_linenumber" name="L291" href="#L291">291</a>     }
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> 
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">     * Directives can accept directives from multiple threads.</em>
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> <em class="jxr_javadoccomment">     * @throws Exception If some problem inside</em>
-<a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L297" href="#L297">297</a>     @Test
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsFromMultipleThreads() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>         <strong class="jxr_keyword">final</strong> Directives dirs = <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"mt6"</span>);
-<a class="jxr_linenumber" name="L300" href="#L300">300</a>         <strong class="jxr_keyword">new</strong> Callable&lt;Void&gt;() {
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>             @Parallel(threads = Tv.FIFTY)
-<a class="jxr_linenumber" name="L302" href="#L302">302</a>             @Override
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>             <strong class="jxr_keyword">public</strong> Void call() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>                 dirs.append(
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>                     <strong class="jxr_keyword">new</strong> Directives()
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>                         .add(<span class="jxr_string">"fo9"</span>).attr(<span class="jxr_string">"yu"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some text 90"</span>)
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>                         .add(<span class="jxr_string">"tr4"</span>).attr(<span class="jxr_string">"s2w3"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some other text 76"</span>)
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>                         .up().up()
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>                 );
-<a class="jxr_linenumber" name="L310" href="#L310">310</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>             }
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>         } .call();
-<a class="jxr_linenumber" name="L313" href="#L313">313</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L314" href="#L314">314</a>             XhtmlMatchers.xhtml(<strong class="jxr_keyword">new</strong> Xembler(dirs).xml()),
-<a class="jxr_linenumber" name="L315" href="#L315">315</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"/mt6[count(fo9[@yu])=50]"</span>)
-<a class="jxr_linenumber" name="L316" href="#L316">316</a>         );
-<a class="jxr_linenumber" name="L317" href="#L317">317</a>     }
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> 
-<a class="jxr_linenumber" name="L319" href="#L319">319</a> }
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>             XhtmlMatchers.xhtml(
+<a class="jxr_linenumber" name="L262" href="#L262">262</a>                 <strong class="jxr_keyword">new</strong> Xembler(
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>                     <strong class="jxr_keyword">new</strong> Directives()
+<a class="jxr_linenumber" name="L264" href="#L264">264</a>                         .add(<span class="jxr_string">"jeff"</span>)
+<a class="jxr_linenumber" name="L265" href="#L265">265</a>                         .push().add(<span class="jxr_string">"lebowski"</span>)
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>                         .push().xpath(<span class="jxr_string">"/jeff"</span>).add(<span class="jxr_string">"dude"</span>).pop()
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>                         .attr(<span class="jxr_string">"birthday"</span>, <span class="jxr_string">"today"</span>).pop()
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>                         .add(<span class="jxr_string">"los-angeles"</span>)
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>                 ).xml()
+<a class="jxr_linenumber" name="L270" href="#L270">270</a>             ),
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>             XhtmlMatchers.hasXPaths(
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>                 <span class="jxr_string">"/jeff/lebowski[@birthday]"</span>,
+<a class="jxr_linenumber" name="L273" href="#L273">273</a>                 <span class="jxr_string">"/jeff/los-angeles"</span>,
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>                 <span class="jxr_string">"/jeff/dude"</span>
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>             )
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>         );
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>     }
+<a class="jxr_linenumber" name="L278" href="#L278">278</a> 
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">     * Directives can use namespaces.</em>
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">     * @throws Exception If some problem inside</em>
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>     @Test
+<a class="jxr_linenumber" name="L284" href="#L284">284</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> prefixesItemsWithNamespaces() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L286" href="#L286">286</a>             <strong class="jxr_keyword">new</strong> Xembler(
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>                 <strong class="jxr_keyword">new</strong> Directives()
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>                     .add(<span class="jxr_string">"bbb"</span>)
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>                     .attr(<span class="jxr_string">"xmlns:x"</span>, <span class="jxr_string">"http://www.w3.org/1999/xhtml"</span>)
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>                     .add(<span class="jxr_string">"x:node"</span>).set(<span class="jxr_string">"HELLO WORLD!"</span>)
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>             ).xml(),
+<a class="jxr_linenumber" name="L292" href="#L292">292</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"//xhtml:node"</span>)
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>         );
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>     }
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> 
+<a class="jxr_linenumber" name="L296" href="#L296">296</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">     * Directives can accept directives from multiple threads.</em>
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">     * @throws Exception If some problem inside</em>
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L300" href="#L300">300</a>     @Test
+<a class="jxr_linenumber" name="L301" href="#L301">301</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsFromMultipleThreads() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>         <strong class="jxr_keyword">final</strong> Directives dirs = <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"mt6"</span>);
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>         <strong class="jxr_keyword">new</strong> Callable&lt;Void&gt;() {
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>             @Parallel(threads = Tv.FIFTY)
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>             @Override
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>             <strong class="jxr_keyword">public</strong> Void call() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>                 dirs.append(
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>                     <strong class="jxr_keyword">new</strong> Directives()
+<a class="jxr_linenumber" name="L309" href="#L309">309</a>                         .add(<span class="jxr_string">"fo9"</span>).attr(<span class="jxr_string">"yu"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some text 90"</span>)
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>                         .add(<span class="jxr_string">"tr4"</span>).attr(<span class="jxr_string">"s2w3"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some other text 76"</span>)
+<a class="jxr_linenumber" name="L311" href="#L311">311</a>                         .up().up()
+<a class="jxr_linenumber" name="L312" href="#L312">312</a>                 );
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L314" href="#L314">314</a>             }
+<a class="jxr_linenumber" name="L315" href="#L315">315</a>         } .call();
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L317" href="#L317">317</a>             XhtmlMatchers.xhtml(<strong class="jxr_keyword">new</strong> Xembler(dirs).xml()),
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"/mt6[count(fo9[@yu])=50]"</span>)
+<a class="jxr_linenumber" name="L319" href="#L319">319</a>         );
+<a class="jxr_linenumber" name="L320" href="#L320">320</a>     }
+<a class="jxr_linenumber" name="L321" href="#L321">321</a> 
+<a class="jxr_linenumber" name="L322" href="#L322">322</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2015 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
