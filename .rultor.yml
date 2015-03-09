@@ -1,9 +1,18 @@
-architect: [yegor256, davvd]
-install: [sudo gem install pdd]
-assets: {secring.gpg: yegor256/home#assets/secring.gpg, settings.xml: yegor256/home#assets/xembly/settings.xml,
-  pubring.gpg: yegor256/home#assets/pubring.gpg, s3cfg: yegor256/home#assets/s3cfg}
+architect:
+- yegor256
+- davvd
+install:
+- sudo gem install pdd
+assets:
+  secring.gpg: yegor256/home#assets/secring.gpg
+  settings.xml: yegor256/home#assets/xembly/settings.xml
+  pubring.gpg: yegor256/home#assets/pubring.gpg
+  s3cfg: yegor256/home#assets/s3cfg
 merge:
-  commanders: [carlosmiranda, yegor256, krzyk]
+  commanders:
+  - carlosmiranda
+  - yegor256
+  - krzyk
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
@@ -15,7 +24,8 @@ deploy:
     mvn clean
     pdd --source=$(pwd) --verbose --file=xembly.xml
     s3cmd --no-progress put xembly.xml --config=../s3cfg s3://pdd.teamed.io/xembly.xml
-env: {MAVEN_OPTS: '-XX:MaxPermSize=256m -Xmx1g'}
+env:
+  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"
