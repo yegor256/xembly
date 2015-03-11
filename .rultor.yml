@@ -11,8 +11,11 @@ assets:
 merge:
   commanders:
   - carlosmiranda
-  - yegor256
+  - ggajos
   - krzyk
+  - longtimeago
+  - pinaf
+  - yegor256
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
