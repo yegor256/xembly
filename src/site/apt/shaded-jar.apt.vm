@@ -1,0 +1,32 @@
+  ---
+  Shaded Xembly JAR With Dependencies
+  ---
+  Yegor Bugayenko
+  ---
+  2015-03-27
+  ---
+
+Shaded Xembly JAR With Dependencies
+
+  Usually, you're supposed to use this dependency in your <<<pom.xml>>>:
+
++--
+<dependency>
+  <groupId>com.jcabi.incubator</groupId>
+  <artifactId>xembly</artifactId>
+  <version>${project.version}</version>
+</dependency>
++--
+
+  However, if you have conflicts between dependencies, you can
+  use our shaded JAR, that includes all dependencies:
+
++--
+<dependency>
+  <groupId>com.jcabi.incubator</groupId>
+  <artifactId>xembly</artifactId>
+  <version>${project.version}</version>
+  <classifier>jar-with-dependencies</classifier>
+</dependency>
++--
+

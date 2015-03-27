@@ -62,7 +62,9 @@
             <item name="XML Collection" href="./example-collection.html"/>
             <item name="PUSH and POP" href="./example-push-and-pop.html"/>
         </menu>
-        <menu ref="modules"/>
+        <menu name="Integration">
+            <item name="Shaded JAR" href="./shaded-jar.html"/>
+        </menu>
         <menu ref="reports"/>
     </body>
 </project>
