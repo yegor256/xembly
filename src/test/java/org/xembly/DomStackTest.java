@@ -63,4 +63,13 @@ public final class DomStackTest {
         );
     }
 
+    /**
+     * DomStack throws ImpossibleModificationException when
+     * trying to pop an empty stack.
+     * @throws Exception If some problem inside
+     */
+    @Test(expected = ImpossibleModificationException.class)
+    public void throwsExceptionOnEmpty() throws Exception {
+        new DomStack().pop();
+    }
 }

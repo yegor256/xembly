@@ -29,8 +29,9 @@
  */
 package org.xembly;
 
-import java.util.EmptyStackException;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.NoSuchElementException;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -46,8 +47,8 @@ final class DomStack implements Directive.Stack {
     /**
      * Queue of pointers.
      */
-    private final transient Stack<Directive.Pointer> ptrs =
-        new Stack<Directive.Pointer>();
+    private final transient Deque<Directive.Pointer> ptrs =
+        new ConcurrentLinkedDeque<Directive.Pointer>();
 
     @Override
     public void push(final Directive.Pointer ptr) {
@@ -58,7 +59,7 @@ final class DomStack implements Directive.Stack {
     public Directive.Pointer pop() throws ImpossibleModificationException {
         try {
             return this.ptrs.pop();
-        } catch (final EmptyStackException ex) {
+        } catch (final NoSuchElementException ex) {
             throw new ImpossibleModificationException(
                 "stack is empty, can't POP", ex
             );
