@@ -115,7 +115,6 @@ public final class Xembler {
         Xembler.BFACTORY.setNamespaceAware(true);
         Xembler.BFACTORY.setValidating(false);
         Xembler.BFACTORY.setCoalescing(false);
-        Xembler.BFACTORY.setExpandEntityReferences(false);
         Logger.debug(
             Xembler.class,
             "DocumentBuilderFactory: %s",
