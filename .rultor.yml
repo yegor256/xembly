@@ -9,7 +9,8 @@ assets:
   pubring.gpg: yegor256/home#assets/pubring.gpg
   s3cfg: yegor256/home#assets/s3cfg
 merge:
-  commanders: []
+  commanders:
+  - yegor256
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
