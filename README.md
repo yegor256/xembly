@@ -6,6 +6,7 @@
 [![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
 [![Build status](https://ci.appveyor.com/api/projects/status/e5sbjdlhbrpahr8b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/xembly/branch/master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
+[![JavaDoc](https://img.shields.io/badge/javadoc-html-blue.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
