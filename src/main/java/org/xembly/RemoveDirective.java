@@ -33,6 +33,8 @@ import com.jcabi.aspects.Immutable;
 import java.util.Collection;
 import java.util.HashSet;
 import lombok.EqualsAndHashCode;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -56,9 +58,16 @@ final class RemoveDirective implements Directive {
         final Directive.Pointer ptr, final Directive.Stack stack) {
         final Collection<Node> parents = new HashSet<Node>(ptr.size());
         for (final Node node : ptr) {
-            final Node parent = node.getParentNode();
+            final Node parent;
+            if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
+                final Attr attr = Attr.class.cast(node);
+                parent = attr.getOwnerElement();
+                Element.class.cast(parent).removeAttributeNode(attr);
+            } else {
+                parent = node.getParentNode();
+                parent.removeChild(node);
+            }
             parents.add(parent);
-            parent.removeChild(node);
         }
         return new DomPointer(parents);
     }

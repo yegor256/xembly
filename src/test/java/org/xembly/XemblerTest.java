@@ -52,6 +52,7 @@ import org.w3c.dom.Node;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class XemblerTest {
 
     /**
@@ -182,6 +183,26 @@ public final class XemblerTest {
         MatcherAssert.assertThat(
             new XMLDocument(node),
             XhtmlMatchers.hasXPath("/p")
+        );
+    }
+
+    /**
+     * Xembler can remove attribute node.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void removesAttribute() throws Exception {
+        final Node node = new XMLDocument("<i8 a6='foo'/>").node();
+        new Xembler(
+            new Directives()
+                .xpath("/i8/@a6")
+                .strict(1)
+                .remove()
+                .attr("a7", "foo-9")
+        ).apply(node);
+        MatcherAssert.assertThat(
+            new XMLDocument(node),
+            XhtmlMatchers.hasXPath("/i8[@a7='foo-9' and not(@a6)]")
         );
     }
 
