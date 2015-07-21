@@ -65,6 +65,11 @@ final class RemoveDirective implements Directive {
                 Element.class.cast(parent).removeAttributeNode(attr);
             } else {
                 parent = node.getParentNode();
+                if (parent == null) {
+                    throw new IllegalArgumentException(
+                        "you can't delete root document element form XML"
+                    );
+                }
                 parent.removeChild(node);
             }
             parents.add(parent);

@@ -207,6 +207,22 @@ public final class XemblerTest {
     }
 
     /**
+     * Xembler can remove root node.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void removesRootNode() throws Exception {
+        final Node node = new XMLDocument("<old/>").node();
+        new Xembler(
+            new Directives().xpath("/old").remove().add("new")
+        ).apply(node);
+        MatcherAssert.assertThat(
+            new XMLDocument(node),
+            XhtmlMatchers.hasXPath("/new")
+        );
+    }
+
+    /**
      * Test that concurrent invocations on shared DOM.
      * doesn't ruin executing thread
      * @todo #34
