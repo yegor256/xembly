@@ -87,9 +87,15 @@ import org.w3c.dom.NodeList;
  * @checkstyle ClassFanOutComplexity (500 lines)
  */
 @EqualsAndHashCode(callSuper = false, of = "all")
-@SuppressWarnings({
-    "PMD.TooManyMethods", "PMD.CyclomaticComplexity", "PMD.GodClass"
-})
+@SuppressWarnings
+    (
+        {
+            "PMD.TooManyMethods",
+            "PMD.CyclomaticComplexity",
+            "PMD.GodClass",
+            "PMD.StdCyclomaticComplexity"
+        }
+    )
 public final class Directives implements Iterable<Directive> {
 
     /**
@@ -179,6 +185,7 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.13
      * @checkstyle CyclomaticComplexity (50 lines)
      */
+    @SuppressWarnings("PMD.StdCyclomaticComplexity")
     public static Iterable<Directive> copyOf(
         @NotNull(message = "node can't be NULL") final Node node) {
         final Directives dirs = new Directives();

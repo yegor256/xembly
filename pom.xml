@@ -35,7 +35,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.32.1</version>
+        <version>0.37.1</version>
     </parent>
     <groupId>com.jcabi.incubator</groupId>
     <artifactId>xembly</artifactId>
@@ -89,9 +89,6 @@
             <url>https://github.com/yegor256/xembly</url>
         </site>
     </distributionManagement>
-    <properties>
-        <saxon.version>9.1.0.8</saxon.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -136,13 +133,13 @@
         <dependency>
             <groupId>net.sourceforge.saxon</groupId>
             <artifactId>saxon</artifactId>
-            <version>${saxon.version}</version>
+            <version>9.1.0.8</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.saxon</groupId>
             <artifactId>saxon</artifactId>
-            <version>${saxon.version}</version>
+            <version>9.1.0.8</version>
             <classifier>dom</classifier>
             <scope>test</scope>
         </dependency>

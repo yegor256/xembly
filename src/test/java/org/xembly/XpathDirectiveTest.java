@@ -135,4 +135,24 @@ public final class XpathDirectiveTest {
         );
     }
 
+    /**
+     * XpathDirective can find root in cloned document.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void findsRootInClonedNode() throws Exception {
+        final Iterable<Directive> dirs = new Directives(
+            "XPATH '/*'; STRICT '1'; ADD 'boom-5';"
+        );
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        dom.appendChild(dom.createElement("high"));
+        final Node clone = dom.cloneNode(true);
+        new Xembler(dirs).apply(clone);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(clone),
+            XhtmlMatchers.hasXPath("/high/boom-5")
+        );
+    }
+
 }

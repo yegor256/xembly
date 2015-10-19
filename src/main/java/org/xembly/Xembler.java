@@ -156,10 +156,11 @@ public final class Xembler {
      * @return The same document/node
      * @throws ImpossibleModificationException If can't modify
      */
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
+    @Loggable
+        (
+            value = Loggable.DEBUG,
+            ignore = ImpossibleModificationException.class
+        )
     public Node apply(@NotNull(message = "DOM can't be NULL")
         final Node dom) throws ImpossibleModificationException {
         Directive.Pointer ptr = new DomPointer(
@@ -205,10 +206,11 @@ public final class Xembler {
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
      */
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
+    @Loggable
+        (
+            value = Loggable.DEBUG,
+            ignore = ImpossibleModificationException.class
+        )
     public Document dom() throws ImpossibleModificationException {
         final Document dom;
         try {
@@ -239,10 +241,11 @@ public final class Xembler {
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
      */
-    @Loggable(
-        value = Loggable.DEBUG,
-        ignore = ImpossibleModificationException.class
-    )
+    @Loggable
+        (
+            value = Loggable.DEBUG,
+            ignore = ImpossibleModificationException.class
+        )
     public String xml() throws ImpossibleModificationException {
         final Transformer transformer;
         try {
