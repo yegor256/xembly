@@ -30,8 +30,8 @@
 package org.xembly;
 
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -50,17 +50,21 @@ final class DomStack implements Directive.Stack {
      * Queue of cursors.
      */
     private final transient Deque<Directive.Cursor> cursors =
-        new ConcurrentLinkedDeque<Directive.Cursor>();
+        new LinkedList<Directive.Cursor>();
 
     @Override
     public void push(final Directive.Cursor cursor) {
-        this.cursors.push(cursor);
+        synchronized (this.cursors) {
+            this.cursors.push(cursor);
+        }
     }
 
     @Override
     public Directive.Cursor pop() throws ImpossibleModificationException {
         try {
-            return this.cursors.pop();
+            synchronized (this.cursors) {
+                return this.cursors.pop();
+            }
         } catch (final NoSuchElementException ex) {
             throw new ImpossibleModificationException(
                 "stack is empty, can't POP", ex
