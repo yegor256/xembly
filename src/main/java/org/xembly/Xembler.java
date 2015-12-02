@@ -128,7 +128,13 @@ public final class Xembler {
         try {
             return this.apply(dom);
         } catch (final ImpossibleModificationException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException(
+                String.format(
+                    "failed to apply to DOM quietly: %s",
+                    this.directives
+                ),
+                ex
+            );
         }
     }
 
@@ -173,7 +179,10 @@ public final class Xembler {
             return this.dom();
         } catch (final ImpossibleModificationException ex) {
             throw new IllegalStateException(
-                "failed to create DOM quietly",
+                String.format(
+                    "failed to create DOM quietly: %s",
+                    this.directives
+                ),
                 ex
             );
         }
@@ -209,7 +218,10 @@ public final class Xembler {
             return this.xml();
         } catch (final ImpossibleModificationException ex) {
             throw new IllegalStateException(
-                "failed to build XML quietly",
+                String.format(
+                    "failed to build XML quietly: %s",
+                    this.directives
+                ),
                 ex
             );
         }
