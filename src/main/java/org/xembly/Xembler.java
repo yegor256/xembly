@@ -128,7 +128,7 @@ public final class Xembler {
         try {
             return this.apply(dom);
         } catch (final ImpossibleModificationException ex) {
-            throw new IllegalStateException(
+            throw new IllegalArgumentException(
                 String.format(
                     "failed to apply to DOM quietly: %s",
                     this.directives
@@ -200,7 +200,10 @@ public final class Xembler {
             dom = Xembler.BFACTORY.newDocumentBuilder().newDocument();
         } catch (final ParserConfigurationException ex) {
             throw new IllegalStateException(
-                "failed to obtain a new DOM document from Document factory",
+                String.format(
+                    "failed to obtain a new DOM document from %s",
+                    Xembler.BFACTORY.getClass().getCanonicalName()
+                ),
                 ex
             );
         }
@@ -239,7 +242,10 @@ public final class Xembler {
             transformer = Xembler.TFACTORY.newTransformer();
         } catch (final TransformerConfigurationException ex) {
             throw new IllegalStateException(
-                "failed to create new Transformer",
+                String.format(
+                    "failed to create new Transformer at %s",
+                    Xembler.TFACTORY.getClass().getCanonicalName()
+                ),
                 ex
             );
         }
@@ -253,7 +259,10 @@ public final class Xembler {
             );
         } catch (final TransformerException ex) {
             throw new IllegalArgumentException(
-                "failed to transform DOM to text",
+                String.format(
+                    "failed to transform DOM to text by %s",
+                    transformer.getClass().getCanonicalName()
+                ),
                 ex
             );
         }
