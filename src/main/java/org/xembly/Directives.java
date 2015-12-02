@@ -492,7 +492,7 @@ public final class Directives implements Iterable<Directive> {
     }
 
     /**
-     * Push current pointer to stack.
+     * Push current cursor to stack.
      * @return This object
      * @since 0.16
      */
@@ -502,7 +502,7 @@ public final class Directives implements Iterable<Directive> {
     }
 
     /**
-     * Pop pointer to stack and replace current pointer with it.
+     * Pop cursor to stack and replace current cursor with it.
      * @return This object
      * @since 0.16
      */

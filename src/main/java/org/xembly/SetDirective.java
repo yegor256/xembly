@@ -62,13 +62,13 @@ final class SetDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
+    public Directive.Cursor exec(final Node dom,
+        final Directive.Cursor cursor, final Directive.Stack stack) {
         final String val = this.value.raw();
-        for (final Node node : ptr) {
+        for (final Node node : cursor) {
             node.setTextContent(val);
         }
-        return ptr;
+        return cursor;
     }
 
 }

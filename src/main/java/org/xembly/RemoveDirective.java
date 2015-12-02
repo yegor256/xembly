@@ -52,10 +52,10 @@ final class RemoveDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
-        final Collection<Node> parents = new HashSet<Node>(ptr.size());
-        for (final Node node : ptr) {
+    public Directive.Cursor exec(final Node dom,
+        final Directive.Cursor cursor, final Directive.Stack stack) {
+        final Collection<Node> parents = new HashSet<Node>(cursor.size());
+        for (final Node node : cursor) {
             final Node parent;
             if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
                 final Attr attr = Attr.class.cast(node);
@@ -72,7 +72,7 @@ final class RemoveDirective implements Directive {
             }
             parents.add(parent);
         }
-        return new DomPointer(parents);
+        return new DomCursor(parents);
     }
 
 }

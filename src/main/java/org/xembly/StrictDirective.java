@@ -61,33 +61,33 @@ final class StrictDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack)
+    public Directive.Cursor exec(final Node dom,
+        final Directive.Cursor cursor, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        if (ptr.size() != this.number) {
-            if (ptr.isEmpty()) {
+        if (cursor.size() != this.number) {
+            if (cursor.isEmpty()) {
                 throw new ImpossibleModificationException(
                     String.format(
                         "no current nodes while %d expected", this.number
                     )
                 );
             }
-            if (ptr.size() == 1) {
+            if (cursor.size() == 1) {
                 throw new ImpossibleModificationException(
                     String.format(
                         "one current node '%s' while strictly %d expected",
-                        ptr.iterator().next().getNodeName(), this.number
+                        cursor.iterator().next().getNodeName(), this.number
                     )
                 );
             }
             throw new ImpossibleModificationException(
                 String.format(
                     "%d current nodes [%s] while strictly %d expected",
-                    ptr.size(), this.names(ptr), this.number
+                    cursor.size(), this.names(cursor), this.number
                 )
             );
         }
-        return ptr;
+        return cursor;
     }
 
     /**

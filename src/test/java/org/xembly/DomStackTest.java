@@ -49,8 +49,8 @@ public final class DomStackTest {
     @Test
     public void addsAndRetrieves() throws Exception {
         final Directive.Stack stack = new DomStack();
-        final Directive.Pointer first = Mockito.mock(Directive.Pointer.class);
-        final Directive.Pointer second = Mockito.mock(Directive.Pointer.class);
+        final Directive.Cursor first = Mockito.mock(Directive.Cursor.class);
+        final Directive.Cursor second = Mockito.mock(Directive.Cursor.class);
         stack.push(first);
         stack.push(second);
         MatcherAssert.assertThat(

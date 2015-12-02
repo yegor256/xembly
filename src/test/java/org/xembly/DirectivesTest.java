@@ -256,7 +256,7 @@ public final class DirectivesTest {
      * @throws Exception If some problem inside
      */
     @Test
-    public void pushesAndPopsPointer() throws Exception {
+    public void pushesAndPopsCursor() throws Exception {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(
                 new Xembler(

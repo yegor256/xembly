@@ -110,7 +110,7 @@ public final class XpathDirectiveTest {
         MatcherAssert.assertThat(
             new XpathDirective("/*").exec(
                 dom,
-                new DomPointer(Collections.<Node>singletonList(first)),
+                new DomCursor(Collections.<Node>singletonList(first)),
                 new DomStack()
             ),
             Matchers.hasItem(root)
@@ -128,7 +128,7 @@ public final class XpathDirectiveTest {
         MatcherAssert.assertThat(
             new XpathDirective("/some-root").exec(
                 dom,
-                new DomPointer(Collections.<Node>emptyList()),
+                new DomCursor(Collections.<Node>emptyList()),
                 new DomStack()
             ),
             Matchers.emptyIterable()

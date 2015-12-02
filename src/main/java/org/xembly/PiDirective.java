@@ -72,8 +72,8 @@ final class PiDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
+    public Directive.Cursor exec(final Node dom,
+        final Directive.Cursor cursor, final Directive.Stack stack) {
         final Document doc;
         if (dom.getOwnerDocument() == null) {
             doc = Document.class.cast(dom);
@@ -83,14 +83,14 @@ final class PiDirective implements Directive {
         final Node instr = doc.createProcessingInstruction(
             this.target.raw(), this.data.raw()
         );
-        if (ptr.isEmpty()) {
+        if (cursor.isEmpty()) {
             dom.insertBefore(instr, doc.getDocumentElement());
         } else {
-            for (final Node node : ptr) {
+            for (final Node node : cursor) {
                 node.appendChild(instr);
             }
         }
-        return ptr;
+        return cursor;
     }
 
 }

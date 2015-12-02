@@ -37,15 +37,15 @@ import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
 
 /**
- * Pointer at DOM.
+ * Cursor at DOM.
  *
  * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.16
  */
 @EqualsAndHashCode(callSuper = false, of = "nodes")
-final class DomPointer extends
-    AbstractCollection<Node> implements Directive.Pointer {
+final class DomCursor extends
+    AbstractCollection<Node> implements Directive.Cursor {
 
     /**
      * Nodes.
@@ -56,7 +56,7 @@ final class DomPointer extends
      * Public ctor.
      * @param nds Nodes to encapsulate
      */
-    DomPointer(final Collection<Node> nds) {
+    DomCursor(final Collection<Node> nds) {
         super();
         this.nodes = Collections.unmodifiableCollection(nds);
     }

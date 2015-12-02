@@ -35,7 +35,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 import lombok.EqualsAndHashCode;
 
 /**
- * Stack of DOM pointers.
+ * Stack of DOM cursors.
  *
  * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
@@ -45,18 +45,18 @@ import lombok.EqualsAndHashCode;
 final class DomStack implements Directive.Stack {
 
     /**
-     * Queue of pointers.
+     * Queue of cursors.
      */
-    private final transient Deque<Directive.Pointer> ptrs =
-        new ConcurrentLinkedDeque<Directive.Pointer>();
+    private final transient Deque<Directive.Cursor> ptrs =
+        new ConcurrentLinkedDeque<Directive.Cursor>();
 
     @Override
-    public void push(final Directive.Pointer ptr) {
+    public void push(final Directive.Cursor ptr) {
         this.ptrs.push(ptr);
     }
 
     @Override
-    public Directive.Pointer pop() throws ImpossibleModificationException {
+    public Directive.Cursor pop() throws ImpossibleModificationException {
         try {
             return this.ptrs.pop();
         } catch (final NoSuchElementException ex) {

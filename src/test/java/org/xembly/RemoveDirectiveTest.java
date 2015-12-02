@@ -88,7 +88,7 @@ public final class RemoveDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new RemoveDirective().exec(
-            dom, new DomPointer(Collections.<Node>singletonList(first)),
+            dom, new DomCursor(Collections.<Node>singletonList(first)),
             new DomStack()
         );
         MatcherAssert.assertThat(

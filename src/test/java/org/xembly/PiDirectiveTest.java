@@ -86,7 +86,7 @@ public final class PiDirectiveTest {
         final Element root = dom.createElement("xxx");
         dom.appendChild(root);
         new PiDirective("x", "y").exec(
-            dom, new DomPointer(Collections.<Node>emptyList()),
+            dom, new DomCursor(Collections.<Node>emptyList()),
             new DomStack()
         );
         MatcherAssert.assertThat(

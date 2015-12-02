@@ -88,7 +88,7 @@ public final class AttrDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new AttrDirective("x", "y").exec(
-            dom, new DomPointer(Collections.<Node>singletonList(second)),
+            dom, new DomCursor(Collections.<Node>singletonList(second)),
             new DomStack()
         );
         MatcherAssert.assertThat(
@@ -109,7 +109,7 @@ public final class AttrDirectiveTest {
         final Element root = dom.createElement("f");
         dom.appendChild(root);
         new AttrDirective("Price", "\u20ac50").exec(
-            dom, new DomPointer(Collections.<Node>singletonList(root)),
+            dom, new DomCursor(Collections.<Node>singletonList(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(

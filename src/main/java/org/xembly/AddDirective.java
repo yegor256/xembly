@@ -66,9 +66,9 @@ final class AddDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack) {
-        final Collection<Node> targets = new ArrayList<Node>(ptr.size());
+    public Directive.Cursor exec(final Node dom,
+        final Directive.Cursor cursor, final Directive.Stack stack) {
+        final Collection<Node> targets = new ArrayList<Node>(cursor.size());
         final String label = this.name.raw();
         final Document doc;
         if (dom.getOwnerDocument() == null) {
@@ -76,12 +76,12 @@ final class AddDirective implements Directive {
         } else {
             doc = dom.getOwnerDocument();
         }
-        for (final Node node : ptr) {
+        for (final Node node : cursor) {
             final Element element = doc.createElement(label);
             node.appendChild(element);
             targets.add(element);
         }
-        return new DomPointer(targets);
+        return new DomCursor(targets);
     }
 
 }

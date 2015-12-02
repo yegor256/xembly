@@ -62,14 +62,14 @@ final class NsDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom, final Directive.Pointer ptr,
+    public Directive.Cursor exec(final Node dom, final Directive.Cursor cursor,
         final Directive.Stack stack) {
         try {
             final AttrDirective attr = new AttrDirective(
                 "xmlns",
                 this.namespace.raw()
             );
-            return attr.exec(dom, ptr, stack);
+            return attr.exec(dom, cursor, stack);
         } catch (final XmlContentException exception) {
             throw new IllegalArgumentException(exception);
         }

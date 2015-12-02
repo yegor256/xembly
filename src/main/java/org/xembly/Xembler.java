@@ -139,7 +139,7 @@ public final class Xembler {
      * @throws ImpossibleModificationException If can't modify
      */
     public Node apply(final Node dom) throws ImpossibleModificationException {
-        Directive.Pointer ptr = new DomPointer(
+        Directive.Cursor ptr = new DomCursor(
             Collections.singletonList(dom)
         );
         int pos = 1;

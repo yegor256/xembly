@@ -98,7 +98,7 @@ public final class SetDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new SetDirective("alpha").exec(
-            dom, new DomPointer(Arrays.<Node>asList(first, second)),
+            dom, new DomCursor(Arrays.<Node>asList(first, second)),
             new DomStack()
         );
         MatcherAssert.assertThat(

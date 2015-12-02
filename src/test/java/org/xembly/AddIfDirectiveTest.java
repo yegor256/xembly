@@ -83,7 +83,7 @@ public final class AddIfDirectiveTest {
         root.appendChild(dom.createProcessingInstruction("a12", "22"));
         dom.appendChild(root);
         new AddIfDirective("b").exec(
-            dom, new DomPointer(Collections.<Node>singleton(root)),
+            dom, new DomCursor(Collections.<Node>singleton(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(

@@ -58,7 +58,7 @@ public final class NsDirectiveTest {
         final Element root = dom.createElement("f");
         dom.appendChild(root);
         new NsDirective(new Arg("somens")).exec(
-            dom, new DomPointer(Collections.<Node>singletonList(root)),
+            dom, new DomCursor(Collections.<Node>singletonList(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(

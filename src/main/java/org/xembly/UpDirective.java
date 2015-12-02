@@ -50,11 +50,11 @@ final class UpDirective implements Directive {
     }
 
     @Override
-    public Directive.Pointer exec(final Node dom,
-        final Directive.Pointer ptr, final Directive.Stack stack)
+    public Directive.Cursor exec(final Node dom,
+        final Directive.Cursor cursor, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        final Collection<Node> parents = new HashSet<Node>(ptr.size());
-        for (final Node node : ptr) {
+        final Collection<Node> parents = new HashSet<Node>(cursor.size());
+        for (final Node node : cursor) {
             final Node parent = node.getParentNode();
             if (parent == null) {
                 throw new ImpossibleModificationException(
@@ -66,7 +66,7 @@ final class UpDirective implements Directive {
             }
             parents.add(parent);
         }
-        return new DomPointer(parents);
+        return new DomCursor(parents);
     }
 
 }

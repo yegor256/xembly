@@ -53,14 +53,14 @@ public interface Directive {
      * @return New current nodes
      * @throws ImpossibleModificationException If can't do it
      */
-    Directive.Pointer exec(Node dom, Directive.Pointer ptr,
+    Directive.Cursor exec(Node dom, Directive.Cursor ptr,
         Directive.Stack stack) throws ImpossibleModificationException;
 
     /**
-     * Pointer.
+     * Cursor.
      * @since 0.16
      */
-    interface Pointer extends Collection<Node> {
+    interface Cursor extends Collection<Node> {
     }
 
     /**
@@ -69,17 +69,17 @@ public interface Directive {
      */
     interface Stack {
         /**
-         * Push pointer (runtime exception if stack is full).
-         * @param ptr Pointer to push
+         * Push cursor (runtime exception if stack is full).
+         * @param ptr Cursor to push
          * @throws ImpossibleModificationException If fails
          */
-        void push(Directive.Pointer ptr) throws ImpossibleModificationException;
+        void push(Directive.Cursor ptr) throws ImpossibleModificationException;
         /**
-         * Pop pointer (runtime exception if stack is empty).
-         * @return Pointer recently added
+         * Pop cursor (runtime exception if stack is empty).
+         * @return Cursor recently added
          * @throws ImpossibleModificationException If fails
          */
-        Directive.Pointer pop() throws ImpossibleModificationException;
+        Directive.Cursor pop() throws ImpossibleModificationException;
     }
 
 }
