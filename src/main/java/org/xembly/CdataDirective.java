@@ -35,7 +35,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * SET directive.
+ * CDATA directive.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$

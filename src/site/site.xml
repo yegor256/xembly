@@ -40,7 +40,7 @@
     <googleAnalyticsAccountId>UA-1963507-29</googleAnalyticsAccountId>
     <bannerLeft>
         <name>xembly.org</name>
-        <src>http://img.xembly.org/logo-256x256.png</src>
+        <src>/logo.png</src>
         <href>http://www.xembly.org/</href>
         <width>64</width>
         <height>64</height>
@@ -57,13 +57,6 @@
             <item name="JavaDoc ${project.version}" href="./apidocs-${project.version}/index.html"/>
             <item name="Test Coverage" href="./cobertura/index.html"/>
             <item name="Release History" href="https://github.com/yegor256/xembly/releases"/>
-        </menu>
-        <menu name="Examples">
-            <item name="XML Collection" href="./example-collection.html"/>
-            <item name="PUSH and POP" href="./example-push-and-pop.html"/>
-        </menu>
-        <menu name="Integration">
-            <item name="Shaded JAR" href="./shaded-jar.html"/>
         </menu>
         <menu ref="reports"/>
     </body>
