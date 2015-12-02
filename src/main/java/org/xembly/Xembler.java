@@ -145,14 +145,14 @@ public final class Xembler {
      * @throws ImpossibleModificationException If can't modify
      */
     public Node apply(final Node dom) throws ImpossibleModificationException {
-        Directive.Cursor ptr = new DomCursor(
+        Directive.Cursor cursor = new DomCursor(
             Collections.singletonList(dom)
         );
         int pos = 1;
         final Directive.Stack stack = new DomStack();
         for (final Directive dir : this.directives) {
             try {
-                ptr = dir.exec(dom, ptr, stack);
+                cursor = dir.exec(dom, cursor, stack);
             } catch (final ImpossibleModificationException ex) {
                 throw new ImpossibleModificationException(
                     String.format("directive #%d: %s", pos, dir),

@@ -43,24 +43,24 @@ import lombok.EqualsAndHashCode;
  * @version $Id$
  * @since 0.16
  */
-@EqualsAndHashCode(of = "ptrs")
+@EqualsAndHashCode(of = "cursors")
 final class DomStack implements Directive.Stack {
 
     /**
      * Queue of cursors.
      */
-    private final transient Deque<Directive.Cursor> ptrs =
+    private final transient Deque<Directive.Cursor> cursors =
         new ConcurrentLinkedDeque<Directive.Cursor>();
 
     @Override
-    public void push(final Directive.Cursor ptr) {
-        this.ptrs.push(ptr);
+    public void push(final Directive.Cursor cursor) {
+        this.cursors.push(cursor);
     }
 
     @Override
     public Directive.Cursor pop() throws ImpossibleModificationException {
         try {
-            return this.ptrs.pop();
+            return this.cursors.pop();
         } catch (final NoSuchElementException ex) {
             throw new ImpossibleModificationException(
                 "stack is empty, can't POP", ex

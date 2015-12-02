@@ -48,12 +48,12 @@ public interface Directive {
     /**
      * Execute it in the given document with current position at the given node.
      * @param dom Document
-     * @param ptr Nodes we're currently at
+     * @param cursor Nodes we're currently at
      * @param stack Execution stack
      * @return New current nodes
      * @throws ImpossibleModificationException If can't do it
      */
-    Directive.Cursor exec(Node dom, Directive.Cursor ptr,
+    Directive.Cursor exec(Node dom, Directive.Cursor cursor,
         Directive.Stack stack) throws ImpossibleModificationException;
 
     /**
@@ -70,16 +70,18 @@ public interface Directive {
     interface Stack {
         /**
          * Push cursor (runtime exception if stack is full).
-         * @param ptr Cursor to push
+         * @param cursor Cursor to push
          * @throws ImpossibleModificationException If fails
          */
-        void push(Directive.Cursor ptr) throws ImpossibleModificationException;
+        void push(Directive.Cursor cursor)
+            throws ImpossibleModificationException;
         /**
          * Pop cursor (runtime exception if stack is empty).
          * @return Cursor recently added
          * @throws ImpossibleModificationException If fails
          */
-        Directive.Cursor pop() throws ImpossibleModificationException;
+        Directive.Cursor pop()
+            throws ImpossibleModificationException;
     }
 
 }
