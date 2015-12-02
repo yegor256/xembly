@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
 
@@ -40,7 +39,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.3
  */
-@Immutable
 @EqualsAndHashCode(of = "number")
 final class StrictDirective implements Directive {
 

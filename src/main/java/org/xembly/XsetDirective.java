@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -47,7 +46,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.1
  */
-@Immutable
 @EqualsAndHashCode(of = "expr")
 final class XsetDirective implements Directive {
 

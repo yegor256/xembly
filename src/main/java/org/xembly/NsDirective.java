@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
 
@@ -39,7 +38,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.19.3
  */
-@Immutable
 @EqualsAndHashCode(of = { "namespace" })
 final class NsDirective implements Directive {
     /**
@@ -51,7 +49,7 @@ final class NsDirective implements Directive {
      * Creates an instance of NsDirective.
      * @param nsp Namespace, which should be added to a node.
      */
-    public NsDirective(final Arg nsp) {
+    NsDirective(final Arg nsp) {
         this.namespace = nsp;
     }
 
@@ -64,7 +62,8 @@ final class NsDirective implements Directive {
     }
 
     @Override
-    public Pointer exec(final Node dom, final Pointer ptr, final Stack stack) {
+    public Directive.Pointer exec(final Node dom, final Directive.Pointer ptr,
+        final Directive.Stack stack) {
         try {
             final AttrDirective attr = new AttrDirective(
                 "xmlns",

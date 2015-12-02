@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Loggable;
 import java.io.StringWriter;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -86,7 +85,6 @@ import org.w3c.dom.Node;
  */
 @ToString
 @EqualsAndHashCode(of = "directives")
-@Loggable(Loggable.DEBUG)
 public final class Xembler {
 
     /**
@@ -140,11 +138,6 @@ public final class Xembler {
      * @return The same document/node
      * @throws ImpossibleModificationException If can't modify
      */
-    @Loggable
-        (
-            value = Loggable.DEBUG,
-            ignore = ImpossibleModificationException.class
-        )
     public Node apply(final Node dom) throws ImpossibleModificationException {
         Directive.Pointer ptr = new DomPointer(
             Collections.singletonList(dom)
@@ -192,11 +185,6 @@ public final class Xembler {
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
      */
-    @Loggable
-        (
-            value = Loggable.DEBUG,
-            ignore = ImpossibleModificationException.class
-        )
     public Document dom() throws ImpossibleModificationException {
         final Document dom;
         try {
@@ -233,11 +221,6 @@ public final class Xembler {
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
      */
-    @Loggable
-        (
-            value = Loggable.DEBUG,
-            ignore = ImpossibleModificationException.class
-        )
     public String xml() throws ImpossibleModificationException {
         final Transformer transformer;
         try {

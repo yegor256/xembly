@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import java.util.Collection;
 import org.w3c.dom.Node;
 
@@ -44,7 +43,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.1
  */
-@Immutable
 public interface Directive {
 
     /**

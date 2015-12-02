@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import java.util.Collection;
 import java.util.HashSet;
 import lombok.EqualsAndHashCode;
@@ -42,7 +41,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.1
  */
-@Immutable
 @EqualsAndHashCode
 final class UpDirective implements Directive {
 

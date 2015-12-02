@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -51,7 +50,6 @@ import org.w3c.dom.NodeList;
  * @version $Id$
  * @since 0.1
  */
-@Immutable
 @EqualsAndHashCode(of = "expr")
 final class XpathDirective implements Directive {
 

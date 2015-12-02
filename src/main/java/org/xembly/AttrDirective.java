@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,7 +40,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.1
  */
-@Immutable
 @EqualsAndHashCode(of = { "name", "value" })
 final class AttrDirective implements Directive {
 

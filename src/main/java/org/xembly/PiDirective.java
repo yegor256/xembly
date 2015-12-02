@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
@@ -42,7 +41,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.9
  */
-@Immutable
 @EqualsAndHashCode(of = { "target", "data" })
 final class PiDirective implements Directive {
 

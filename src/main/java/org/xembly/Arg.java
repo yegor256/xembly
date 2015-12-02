@@ -29,8 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
-import com.jcabi.aspects.Tv;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -40,7 +38,6 @@ import lombok.EqualsAndHashCode;
  * @version $Id$
  * @since 0.1
  */
-@Immutable
 @EqualsAndHashCode(of = "value")
 final class Arg {
 
@@ -95,7 +92,7 @@ final class Arg {
         final StringBuilder output = new StringBuilder(text.length());
         for (int idx = 1; idx < len; ++idx) {
             if (chars[idx] == '&') {
-                final StringBuilder sbuf = new StringBuilder(Tv.TEN);
+                final StringBuilder sbuf = new StringBuilder(0);
                 while (chars[idx] != ';') {
                     // @checkstyle ModifiedControlVariable (1 line)
                     ++idx;

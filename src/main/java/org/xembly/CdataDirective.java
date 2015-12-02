@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -41,7 +40,6 @@ import org.w3c.dom.Node;
  * @version $Id$
  * @since 0.17
  */
-@Immutable
 @EqualsAndHashCode(of = "value")
 final class CdataDirective implements Directive {
 
