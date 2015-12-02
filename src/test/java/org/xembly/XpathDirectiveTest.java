@@ -42,7 +42,7 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link XpathDirective}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  */
 public final class XpathDirectiveTest {

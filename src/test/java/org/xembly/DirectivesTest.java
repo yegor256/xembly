@@ -44,7 +44,7 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link Directives}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  */
 @SuppressWarnings("PMD.TooManyMethods")

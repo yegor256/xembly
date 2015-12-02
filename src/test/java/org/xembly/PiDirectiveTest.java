@@ -42,7 +42,7 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link PiDirective}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.9
  */

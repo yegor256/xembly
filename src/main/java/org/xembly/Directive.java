@@ -36,7 +36,11 @@ import org.w3c.dom.Node;
 /**
  * Directive.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * <p>Use {@link Directives} to create a collection of them. You don't
+ * need to use this interface directly and make instances of it. Everything
+ * is done through {@link Directives} and {@link Xembler}.
+ *
+ * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.1
  */

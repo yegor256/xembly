@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
 /**
  * XSET directive.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.1
  */

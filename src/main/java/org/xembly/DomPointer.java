@@ -39,7 +39,7 @@ import org.w3c.dom.Node;
 /**
  * Pointer at DOM.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.16
  */
