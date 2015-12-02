@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -305,26 +304,11 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.8
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public <K, V> Directives add(final Map<K, V> nodes) {
-        try {
-            for (final Map.Entry<K, V> entry : nodes.entrySet()) {
-                this.all.addAll(
-                    Arrays.asList(
-                        new AddDirective(entry.getKey().toString()),
-                        new SetDirective(entry.getValue().toString()),
-                        new UpDirective()
-                    )
-                );
-            }
-        } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(
-                String.format(
-                    "failed to understand XML content, ADD(map:%s)",
-                    nodes
-                ),
-                ex
-            );
+        for (final Map.Entry<K, V> entry : nodes.entrySet()) {
+            this.add(entry.getKey().toString())
+                .set(entry.getValue().toString())
+                .up();
         }
         return this;
     }
