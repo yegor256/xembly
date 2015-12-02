@@ -265,7 +265,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new AddDirective(name));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, ADD(%s)",
+                    name
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -312,7 +318,13 @@ public final class Directives implements Iterable<Directive> {
                 );
             }
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, ADD(map:%s)",
+                    nodes
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -327,7 +339,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new AddIfDirective(name));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, ADDIF(%s)",
+                    name
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -358,7 +376,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new AttrDirective(name, value));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, ATTR(%s, %s)",
+                    name, value
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -381,7 +405,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new PiDirective(target, data));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, PI(%s, %s)",
+                    target, data
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -401,7 +431,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new SetDirective(text));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, SET(%s)",
+                    text
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -416,7 +452,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new XsetDirective(text));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, XSET(%s)",
+                    text
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -443,7 +485,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new XpathDirective(path));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, XPATH(%s)",
+                    path
+                ),
+                ex
+            );
         }
         return this;
     }
@@ -494,7 +542,13 @@ public final class Directives implements Iterable<Directive> {
         try {
             this.all.add(new CdataDirective(text));
         } catch (final XmlContentException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                String.format(
+                    "failed to understand XML content, CDATA(%s)",
+                    text
+                ),
+                ex
+            );
         }
         return this;
     }

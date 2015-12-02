@@ -179,7 +179,10 @@ public final class Xembler {
         try {
             return this.dom();
         } catch (final ImpossibleModificationException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException(
+                "failed to create DOM quietly",
+                ex
+            );
         }
     }
 
@@ -199,7 +202,10 @@ public final class Xembler {
         try {
             dom = Xembler.BFACTORY.newDocumentBuilder().newDocument();
         } catch (final ParserConfigurationException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException(
+                "failed to obtain a new DOM document from Document factory",
+                ex
+            );
         }
         this.apply(dom);
         return dom;
@@ -214,7 +220,10 @@ public final class Xembler {
         try {
             return this.xml();
         } catch (final ImpossibleModificationException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException(
+                "failed to build XML quietly",
+                ex
+            );
         }
     }
 
@@ -234,7 +243,10 @@ public final class Xembler {
         try {
             transformer = Xembler.TFACTORY.newTransformer();
         } catch (final TransformerConfigurationException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException(
+                "failed to create new Transformer",
+                ex
+            );
         }
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
@@ -245,7 +257,10 @@ public final class Xembler {
                 new StreamResult(writer)
             );
         } catch (final TransformerException ex) {
-            throw new IllegalArgumentException(ex);
+            throw new IllegalArgumentException(
+                "failed to transform DOM to text",
+                ex
+            );
         }
         return writer.toString();
     }
