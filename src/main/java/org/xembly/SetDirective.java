@@ -35,6 +35,8 @@ import org.w3c.dom.Node;
 /**
  * SET directive.
  *
+ * <p>The class is immutable and thread-safe.
+ *
  * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.1

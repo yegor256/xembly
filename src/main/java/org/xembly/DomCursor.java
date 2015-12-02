@@ -39,6 +39,8 @@ import org.w3c.dom.Node;
 /**
  * Cursor at DOM.
  *
+ * <p>The class is immutable and thread-safe.
+ *
  * @author Yegor Bugayenko (yegor@teamed.io)
  * @version $Id$
  * @since 0.16
