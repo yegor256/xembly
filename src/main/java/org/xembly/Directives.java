@@ -36,7 +36,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
-import javax.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
@@ -121,8 +120,7 @@ public final class Directives implements Iterable<Directive> {
      * @param text Xembly script
      * @throws SyntaxException If syntax is broken
      */
-    public Directives(@NotNull(message = "xembly script can't be NULL")
-        final String text) throws SyntaxException {
+    public Directives(final String text) throws SyntaxException {
         this(Directives.parse(text));
     }
 
@@ -130,8 +128,7 @@ public final class Directives implements Iterable<Directive> {
      * Public ctor.
      * @param dirs Directives
      */
-    public Directives(@NotNull(message = "directives can't be NULL")
-        final Iterable<Directive> dirs) {
+    public Directives(final Iterable<Directive> dirs) {
         this.append(dirs);
     }
 
@@ -186,8 +183,7 @@ public final class Directives implements Iterable<Directive> {
      * @checkstyle CyclomaticComplexity (50 lines)
      */
     @SuppressWarnings("PMD.StdCyclomaticComplexity")
-    public static Iterable<Directive> copyOf(
-        @NotNull(message = "node can't be NULL") final Node node) {
+    public static Iterable<Directive> copyOf(final Node node) {
         final Directives dirs = new Directives();
         if (node.hasAttributes()) {
             final NamedNodeMap attrs = node.getAttributes();
@@ -250,9 +246,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.11
      */
-    public Directives append(
-        @NotNull(message = "list of directives can't be NULL")
-        final Iterable<Directive> dirs) {
+    public Directives append(final Iterable<Directive> dirs) {
         final Collection<Directive> list = new LinkedList<Directive>();
         for (final Directive dir : dirs) {
             list.add(dir);
@@ -267,8 +261,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives add(
-        @NotNull(message = "name can't be NULL") final String name) {
+    public Directives add(final String name) {
         try {
             this.all.add(new AddDirective(name));
         } catch (final XmlContentException ex) {
@@ -307,8 +300,7 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.8
      */
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public <K, V> Directives add(
-        @NotNull(message = "map can't be NULL") final Map<K, V> nodes) {
+    public <K, V> Directives add(final Map<K, V> nodes) {
         try {
             for (final Map.Entry<K, V> entry : nodes.entrySet()) {
                 this.all.addAll(
@@ -331,8 +323,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives addIf(
-        @NotNull(message = "name can't be NULL") final String name) {
+    public Directives addIf(final String name) {
         try {
             this.all.add(new AddIfDirective(name));
         } catch (final XmlContentException ex) {
@@ -363,9 +354,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives attr(
-        @NotNull(message = "attr name can't be NULL") final String name,
-        @NotNull(message = "value can't be NULL") final String value) {
+    public Directives attr(final String name, final String value) {
         try {
             this.all.add(new AttrDirective(name, value));
         } catch (final XmlContentException ex) {
@@ -388,9 +377,7 @@ public final class Directives implements Iterable<Directive> {
      * @checkstyle MethodName (3 lines)
      */
     @SuppressWarnings("PMD.ShortMethodName")
-    public Directives pi(
-        @NotNull(message = "target can't be NULL") final String target,
-        @NotNull(message = "data can't be NULL") final String data) {
+    public Directives pi(final String target, final String data) {
         try {
             this.all.add(new PiDirective(target, data));
         } catch (final XmlContentException ex) {
@@ -410,8 +397,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives set(
-        @NotNull(message = "content can't be NULL") final String text) {
+    public Directives set(final String text) {
         try {
             this.all.add(new SetDirective(text));
         } catch (final XmlContentException ex) {
@@ -426,8 +412,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.7
      */
-    public Directives xset(
-        @NotNull(message = "content can't be NULL") final String text) {
+    public Directives xset(final String text) {
         try {
             this.all.add(new XsetDirective(text));
         } catch (final XmlContentException ex) {
@@ -454,8 +439,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives xpath(
-        @NotNull(message = "xpath can't be NULL") final String path) {
+    public Directives xpath(final String path) {
         try {
             this.all.add(new XpathDirective(path));
         } catch (final XmlContentException ex) {
@@ -470,8 +454,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives strict(
-        @NotNull(message = "number can't be NULL") final int number) {
+    public Directives strict(final int number) {
         this.all.add(new StrictDirective(number));
         return this;
     }
@@ -507,8 +490,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.17
      */
-    public Directives cdata(
-        @NotNull(message = "CDATA section can't be NULL") final String text) {
+    public Directives cdata(final String text) {
         try {
             this.all.add(new CdataDirective(text));
         } catch (final XmlContentException ex) {

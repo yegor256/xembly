@@ -29,13 +29,9 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Immutable;
 import com.jcabi.aspects.Loggable;
-import com.jcabi.immutable.Array;
-import com.jcabi.log.Logger;
 import java.io.StringWriter;
 import java.util.Collections;
-import javax.validation.constraints.NotNull;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -88,7 +84,6 @@ import org.w3c.dom.Node;
  * @since 0.1
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  */
-@Immutable
 @ToString
 @EqualsAndHashCode(of = "directives")
 @Loggable(Loggable.DEBUG)
@@ -109,31 +104,20 @@ public final class Xembler {
     /**
      * Array of directives.
      */
-    private final transient Array<Directive> directives;
+    private final transient Iterable<Directive> directives;
 
     static {
         Xembler.BFACTORY.setNamespaceAware(true);
         Xembler.BFACTORY.setValidating(false);
         Xembler.BFACTORY.setCoalescing(false);
-        Logger.debug(
-            Xembler.class,
-            "DocumentBuilderFactory: %s",
-            Xembler.BFACTORY.getClass().getName()
-        );
-        Logger.debug(
-            Xembler.class,
-            "TransformerFactory: %s",
-            Xembler.TFACTORY.getClass().getName()
-        );
     }
 
     /**
      * Public ctor.
      * @param dirs Directives
      */
-    public Xembler(@NotNull(message = "collection of directives can't be NULL")
-        final Iterable<Directive> dirs) {
-        this.directives = new Array<Directive>(dirs);
+    public Xembler(final Iterable<Directive> dirs) {
+        this.directives = dirs;
     }
 
     /**
@@ -161,8 +145,7 @@ public final class Xembler {
             value = Loggable.DEBUG,
             ignore = ImpossibleModificationException.class
         )
-    public Node apply(@NotNull(message = "DOM can't be NULL")
-        final Node dom) throws ImpossibleModificationException {
+    public Node apply(final Node dom) throws ImpossibleModificationException {
         Directive.Pointer ptr = new DomPointer(
             Collections.singletonList(dom)
         );

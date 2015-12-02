@@ -350,6 +350,11 @@ This static utility method `copyOf()` converts an instance of class
 `org.w3c.dom.Node` into a collection of Xembly directives. Then,
 method `append()` adds them all together to the main list.
 
+Unfortunately, not every valid XML document can be parsed by `copyOf()`. For
+example, this one will lead to a runtime exception:
+`<car>2015<name>BMW</name></car>`. Read more about Xembly limitations,
+a few paragraphs below.
+
 ## Escaping Invalid XML Text
 
 XML, as standard, doesn't allow certain characters in its body. For example,
