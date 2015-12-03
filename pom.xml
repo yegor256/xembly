@@ -286,7 +286,7 @@
                                 <configuration>
                                     <repoToken>${coveralls.token}</repoToken>
                                     <sourceDirectories>
-                                        <dir>${project.build.directory}/generated-sources</dir>
+                                        <dir>${project.build.directory}/generated-sources/antlr3</dir>
                                     </sourceDirectories>
                                 </configuration>
                             </execution>
