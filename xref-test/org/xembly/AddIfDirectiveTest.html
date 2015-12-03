@@ -48,8 +48,8 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> * Test case for {@link AddIfDirective}.</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * @author Yegor Bugayenko (yegor@tpc2.com)</em>
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * @version $Id$</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * @author Yegor Bugayenko (yegor@teamed.io)</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * @version $Id: ef7006c0c4c9ced7c6df470c5d0fc0a2349e016c $</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../org/xembly/AddIfDirectiveTest.html">AddIfDirectiveTest</a> {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
@@ -91,7 +91,7 @@
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>          root.appendChild(dom.createProcessingInstruction(<span class="jxr_string">"a12"</span>, <span class="jxr_string">"22"</span>));
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>          dom.appendChild(root);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">new</strong> AddIfDirective(<span class="jxr_string">"b"</span>).exec(
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>              dom, <strong class="jxr_keyword">new</strong> DomPointer(Collections.&lt;Node&gt;singleton(root)),
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>              dom, <strong class="jxr_keyword">new</strong> DomCursor(Collections.&lt;Node&gt;singleton(root)),
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>              <strong class="jxr_keyword">new</strong> DomStack()
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>          );
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>          MatcherAssert.assertThat(

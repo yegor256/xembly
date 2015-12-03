@@ -50,7 +50,7 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * Validates NsDirective class.</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * @author Dmitri Pisarenko (dp@altruix.co)</em>
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> * @version $Id$</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> * @version $Id: 078f8ea1dfd13aee6b12ee60f82242371ccf0785 $</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> * @since 0.19.3</em>
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> * @checkstyle MultipleStringLiteralsCheck (500 lines)</em>
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment"> */</em>
@@ -66,7 +66,7 @@
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">final</strong> Element root = dom.createElement(<span class="jxr_string">"f"</span>);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>          dom.appendChild(root);
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>          <strong class="jxr_keyword">new</strong> NsDirective(<strong class="jxr_keyword">new</strong> Arg(<span class="jxr_string">"somens"</span>)).exec(
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>              dom, <strong class="jxr_keyword">new</strong> DomPointer(Collections.&lt;Node&gt;singletonList(root)),
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>              dom, <strong class="jxr_keyword">new</strong> DomCursor(Collections.&lt;Node&gt;singletonList(root)),
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>              <strong class="jxr_keyword">new</strong> DomStack()
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>          );
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          MatcherAssert.assertThat(
