@@ -285,6 +285,9 @@
                                 </goals>
                                 <configuration>
                                     <repoToken>${coveralls.token}</repoToken>
+                                    <sourceDirectories>
+                                        <dir>${project.build.directory}/generated-sources</dir>
+                                    </sourceDirectories>
                                 </configuration>
                             </execution>
                         </executions>
