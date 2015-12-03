@@ -1,272 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<html>
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>xembly &#x2013; Assembly for XML</title>
-        <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-        <link media="all" rel="stylesheet" type="text/css" href="./ico/ico.css"/>
-                    <meta name="author" content="Yegor Bugayenko" />
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-29']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                                                                                                
-<link rel="shortcut icon" href="http://img.xembly.org/favicon.ico"/>
-                                            <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-        <script type="text/javascript" src="./js/jcabi.js"></script>
+        <meta charset="utf-8"/>
+        <title>xembly.org</title>
+        <meta name="description" content="Xembly, an Assembly for XML"/>
+        <meta name="keywords" content="XML, XML modification, XML manipulations, XML library"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" href="/logo.png"/>
+        <link rel="author" href="http://plus.google.com/u/0/114792568016408327418?rel=author"/>
+        <style>
+        * {
+            font-family: monospace;
+            font-size: 24px;
+        }
+        .center {
+            text-align: center;
+            width: 20em;
+            height: 20em;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        </style>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-1963507-29', 'auto');
+            ga('send', 'pageview');
+        </script>
     </head>
     <body>
-                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
-            <nav class="menu-section" role="navigation">
-                <ul class="menu" id="menu">
-                                                                                    <li>
-                            <span>Overview</span>
-                                                            <ul>
-                                                                                                    <li  class='active' >
-                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="apidocs-0.21.1/index.html" title="JavaDoc 0.21.1">JavaDoc 0.21.1</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="cobertura/index.html" title="Test Coverage">Test Coverage</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="releases" title="Release History">Release History</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                        </ul>
-                                                    </li>
-                                            <li>
-                            <span>Examples</span>
-                                                            <ul>
-                                                                                                    <li >
-                            <span>                        <a href="example-collection.html" title="XML Collection">XML Collection</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="example-push-and-pop.html" title="PUSH and POP">PUSH and POP</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                        </ul>
-                                                    </li>
-                                            <li>
-                            <span>Integration</span>
-                                                            <ul>
-                                                                                                    <li >
-                            <span>                        <a href="shaded-jar.html" title="Shaded JAR">Shaded JAR</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                        </ul>
-                                                    </li>
-                                            <li>
-                            <span>Project Documentation</span>
-                                                            <ul>
-                                                                                                    <li >
-                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
-        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
-        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                                        </ul>
-                                                    </li>
-                                    </ul>
-            </nav>
-            <div class="right-side">
-                <main role="main">
-                    <div class="content">
-                        <header>
-                            <div class="logo">
-                                <a href="http://www.xembly.org/"
-                                    title=" logo ">
-                                    <img src="http://img.xembly.org/logo-256x256.png"
-                                        alt="xembly.org"
-                                                                                    width="64"
-                                                                                                                            height="64"
-                                                                                itemprop="image"
-                                    />
-                                </a>
-                            </div>
-                            <div class="teamed">
-                                <a href="http://www.teamed.io">
-                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
-                                </a>
-                            </div>
-                            <ul class="badges">
-                                <li>
-                                    <strong itemprop="version">0.21.1</strong>
-                                </li>
-                                <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2015-07-21T06:38:58Z">
-                                        
-                                        21-Jul-2015
-                                    </time>
-                                </li>
-                                <li class="menu-button">menu</li>
-                            </ul>
-                            <div class="social">
-                                <a href="http://www.facebook.com/sharer/sharer.php?u=URL"
-                                    title="Share on Facebook" class="ico">
-                                    <i class="icon-facebook"></i>
-                                </a>
-                                <a href="https://twitter.com/share?url=URL&amp;text=TITLE"
-                                    title="Share on Twitter" class="ico">
-                                    <i class="icon-twitter"></i>
-                                </a>
-                                <a href="https://plus.google.com/share?url=URL"
-                                    title="Share on Google+" class="ico">
-                                    <i class="icon-googleplus"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/cws/share?url=URL"
-                                    title="Share on LinkedIn" class="ico">
-                                    <i class="icon-linkedin"></i>
-                                </a>
-                                <a href="http://www.stumbleupon.com/submit?url=URL&amp;title=TITLE"
-                                    title="Share on StumbleUpon" class="ico">
-                                    <i class="icon-stumbleupon"></i>
-                                </a>
-                                <a href="http://digg.com/submit?phase=2&amp;url=URL&amp;title=TITLE"
-                                    title="Share on Digg" class="ico">
-                                    <i class="icon-digg"></i>
-                                </a>
-                                <a href="http://reddit.com/submit?url=URL&amp;title=TITLE"
-                                    title="Share on Reddit" class="ico">
-                                    <i class="icon-reddit"></i>
-                                </a>
-                                <a href="http://news.ycombinator.com/submitlink?u=URL&amp;t=TITLE"
-                                    title="Share on Hacker News" class="ico">
-                                    <i class="icon-hackernews"></i>
-                                </a>
-                            </div>
-                        </header>
-                        <div id="here-goes-menu" class="menu-off"></div>
-                                                                            <a href="https://github.com/yegor256/xembly">
-                                <img src="http://img.jcabi.com/fork-me.svg" class="fork-me"/>
-                            </a>
-                                                <article role="article" itemprop="articleBody">
-                            <div class="section">
-<h2><a name="Assembly_for_XML"></a>Assembly for XML</h2>
-<p>Xembly is an imperative language for data manipulations in an XML document. It is a much simplier alternative to <a class="externalLink" href="http://www.w3.org/TR/xslt">XSLT</a> and <a class="externalLink" href="http://www.w3.org/TR/xquery">XQuery</a>. Read this blog post for a more detailed explanation: <a class="externalLink" href="http://www.yegor256.com/2014/04/09/xembly-intro.html">Xembly, an Assembly for XML</a>.</p>
-<p>This is a sample Xembly script:</p>
-<div class="source">
-<pre>XPATH '/root';
-ADDIF 'orders';
-ADD 'order';
-ATTR 'id', '55';
-ADD 'amount';
-SET '29.99';
-UP;
-ADD &quot;summary&quot;;
-SET &quot;free &amp;quot;subscription&amp;quot;&quot;;</pre></div>
-<p>Will transform <tt>&lt;root/</tt>&gt; into:</p>
-<div class="source">
-<pre>&lt;root&gt;
-  &lt;orders&gt;
-    &lt;order id=&quot;55&quot;&gt;
-      &lt;amount&gt;29.99&lt;/amount&gt;
-      &lt;summary&gt;free &quot;subscription&quot;&lt;/summary&gt;
-    &lt;/order&gt;
-  &lt;/orders&gt;
-&lt;/root&gt;</pre></div>
-<p>Xembly program (similar to Assembly program) consists of &quot;directives&quot;. Each directive may have a few or zero arguments. Every directive is executed at current node(s). Program starts at the <tt>Document</tt> as the only current node.</p>
-<p>Arguments may be wrapped into single or double quotes.</p>
-<p>The only dependency you need is:</p>
-<div class="source">
-<pre>&lt;dependency&gt;
-  &lt;groupId&gt;com.jcabi.incubator&lt;/groupId&gt;
-  &lt;artifactId&gt;xembly&lt;/artifactId&gt;
-  &lt;version&gt;0.21.1&lt;/version&gt;
-&lt;/dependency&gt;</pre></div>
-<div class="section">
-<h3><a name="Directives"></a>Directives</h3>
-<p>Full list of supported directives in the current version:</p>
-<p><tt>ADD</tt> directive adds a new node to every node in the current node set. <tt>ADD</tt> expects exactly one mandatory argument, which is the name of a new node to be added (case sensitive):</p>
-<div class="source">
-<pre>ADD 'orders';
-ADD 'order';</pre></div>
-<p>Even if the node with the same name already exists, a new node will be added. Use <tt>ADDIF</tt> if you need to add only if the same-name node is absent.</p>
-<p>After execution, <tt>ADD</tt> directive changes current nodes to the nodes just added.</p>
-<p><tt>ADDIF</tt> directive adds a new node to every node of the current set, only if it's absent. <tt>ADDIF</tt> expects exactly one argument, which is the name of the node to be added (case sensitive):</p>
-<div class="source">
-<pre>ADD 'orders';
-ADDIF 'order';</pre></div>
-<p>After execution, <tt>ADDIF</tt> directive changes current nodes to the ones just added.</p>
-<p><tt>SET</tt> changes text content of all current nodes, and expects exactly one argument, which is the text content to set:</p>
-<div class="source">
-<pre>ADD &quot;employee&quot;;
-SET &quot;John Smith&quot;;</pre></div>
-<p><tt>XSET</tt> changes text content of all current nodes to a value calculated with XPath expression:</p>
-<div class="source">
-<pre>ADD &quot;product-1&quot;;
-ADD &quot;price&quot;;
-XSET &quot;sum(/products/price) div count(/products)&quot;;</pre></div>
-<p><tt>UP</tt> moves all current nodes to their parents.</p>
-<p><tt>XPATH</tt> changes current nodes to the all found by XPath expression:</p>
-<div class="source">
-<pre>XPATH &quot;//employee[@id='234' and name='John Smith']/name&quot;;
-SET &quot;John R. Smith&quot;;</pre></div>
-<p><tt>REMOVE</tt> removes current nodes and jumps to their parents:</p>
-<div class="source">
-<pre>ADD &quot;employee&quot;;
-REMOVE;</pre></div>
-<p><tt>STRICT</tt> checks that there is certain number of current nodes:</p>
-<div class="source">
-<pre>XPATH &quot;/root/employee[name='John Doe']&quot;;
-STRICT &quot;1&quot;;</pre></div>
-<p><tt>PI</tt> directive add a new processing directive to the XML:</p>
-<div class="source">
-<pre>PI &quot;xsl-stylesheet&quot; &quot;href='http://example.com'&quot;;</pre></div>
-<p><tt>PUSH</tt> and <tt>POP</tt> directives saves current DOM position to stack and restores it from there, see <a href="./example-push-and-pop.html">this example</a>.</p>
-<p><tt>NS</tt> adds a namespace attribute to a node.</p>
-<div class="source">
-<pre>NS &quot;http://www.w3.org/TR/html4/&quot;;</pre></div></div>
-<div class="section">
-<h3><a name="Known_Limitations"></a>Known Limitations</h3>
-<p>Xembly is not intended to be a replacement of XSL or XQuery. It is a lightweight (!) instrument for XML manipulations. There are a few things that can't be done by means of Xembly:</p>
-<ul>
-<li>You can't add, remove, or modify XML comments (but you can find them with XPath)</li>
-<li>DTD section can't be modified</li>
-<li>Elements and text content can't be mixed, e.g. this structure is not supported: <tt>&lt;test&gt;hello &lt;b&gt;friend&lt;/a&gt;&lt;/test</tt>&gt;</li></ul>
-<p>Some of these limitations may be removed in the next versions. Please, submit a request to our <a class="externalLink" href="https://github.com/yegor256/xembly/issues">issue tracker in Github</a>.</p></div></div>
-                        </article>
-                    </div>
-                </main>
-                <footer class="legal-notes">
-                    <div>
-                        Copyright &#169;
-                                                                            2013-2015
-                                            </div>
-                    <div>Xembly, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
-                </footer>
-            </div>
-        </section>
+        <div class="center">
+            <p><img src="http://www.xembly.org/logo.png" style="width:150px;height:150px;" alt="logo"/></p>
+            <p>
+                <strong>Xembly</strong> is an "Assembly for XML",
+                an imperative language for building and modifying XML documents.
+                Current version is <strong>1.0-SNAPSHOT</strong>.
+                Check us out at <a href="https://github.com/yegor256/xembly">Github</a>.
+                Here is <a href="/apidocs-1.0-SNAPSHOT/index.html">JavaDoc</a>.
+                See also <a href="/cobertura/index.html">test coverage</a>.
+            </p>
+        </div>
     </body>
 </html>
+
