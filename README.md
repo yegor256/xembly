@@ -439,6 +439,28 @@ $ mvn clean install -Pqulice
 You must fix all static analysis issues, otherwise we won't be able
 to merge your pull request. The build must be "clean".
 
+## Delivery Pipeline
+
+Git `master` branch is our cutting edge of development. It always contains
+the latest version of the product, always in `-SNAPSHOT` suffixed version. Nobody
+is allowed to commit directly to `master` &mdash; this branch is basically
+[read-only](). Everybody contributes changes via pull requrests. We are
+using [rultor](http://www.rultor.com), a hosted chatbot, in order to merge
+pull requests into `master`. Only our architect is allowed to send pull
+requests to @rultor for merge, using `merge` command.
+Before it happens, a mandatory code review must be performed for a pull request.
+
+After each successful merge of a pull request, our project manager
+gives `deploy` command to @rultor. The code from `master` branch is
+tested, packaged, and deployed to Sonatype, in version `1.0-SNAPSHOT`.
+
+Every once in a while, the architect may decide that it's time to release
+a new [minor/major](http://www.semver.org) version of the product. When
+it happens, he gives `release` command to @rultor. The code from `master`
+branch is tested, versioned, packaged, and deployed to Sonatype and Maven Central.
+A new Git tag is created. A new GitHub release is created and briefly documented.
+All this is done automatically by @rultor.
+
 ## Got questions?
 
 If you have questions or general suggestions, don't hesitate to submit
