@@ -444,20 +444,25 @@ to merge your pull request. The build must be "clean".
 Git `master` branch is our cutting edge of development. It always contains
 the latest version of the product, always in `-SNAPSHOT` suffixed version. Nobody
 is allowed to commit directly to `master` &mdash; this branch is basically
-[read-only](). Everybody contributes changes via pull requrests. We are
-using [rultor](http://www.rultor.com), a hosted chatbot, in order to merge
-pull requests into `master`. Only our architect is allowed to send pull
+[read-only](http://www.yegor256.com/2014/07/21/read-only-master-branch.html).
+Everybody contributes changes via
+[pull requrests](http://www.yegor256.com/2014/04/15/github-guidelines.html). We are
+using [rultor](http://www.rultor.com), a hosted
+[chatbot](http://www.yegor256.com/2015/11/03/chatbot-better-than-ui-for-microservice.html),
+in order to merge pull requests into `master`. Only our architect is allowed to send pull
 requests to @rultor for merge, using `merge` command.
 Before it happens, a mandatory code review must be performed for a pull request.
 
 After each successful merge of a pull request, our project manager
 gives `deploy` command to @rultor. The code from `master` branch is
-tested, packaged, and deployed to Sonatype, in version `1.0-SNAPSHOT`.
+tested, packaged, and deployed to [Sonatype](http://central.sonatype.org/),
+in version `*-SNAPSHOT`.
 
 Every once in a while, the architect may decide that it's time to release
 a new [minor/major](http://www.semver.org) version of the product. When
 it happens, he gives `release` command to @rultor. The code from `master`
-branch is tested, versioned, packaged, and deployed to Sonatype and Maven Central.
+branch is tested, versioned, packaged, and deployed to
+[Sonatype](http://central.sonatype.org/) and [Maven Central](http://search.maven.org/).
 A new Git tag is created. A new GitHub release is created and briefly documented.
 All this is done automatically by @rultor.
 
