@@ -87,7 +87,7 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;The class is mutable and thread-safe.</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment"> * @author Yegor Bugayenko (yegor@teamed.io)</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment"> * @version $Id: ea8f17ac2c28d7cc05a19a68d2fc1c44f35a6889 $</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment"> * @version $Id: 75f9a5be283919d89ca46a41c26e3b01015ae2b3 $</em>
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment"> * @since 0.1</em>
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment"> * @checkstyle ClassDataAbstractionCoupling (500 lines)</em>
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment"> * @checkstyle ClassFanOutComplexity (500 lines)</em>
@@ -268,9 +268,9 @@
 <a class="jxr_linenumber" name="L260" href="#L260">260</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L261" href="#L261">261</a> <em class="jxr_javadoccomment">     * @since 0.5</em>
 <a class="jxr_linenumber" name="L262" href="#L262">262</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> add(<strong class="jxr_keyword">final</strong> String name) {
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> add(<strong class="jxr_keyword">final</strong> Object name) {
 <a class="jxr_linenumber" name="L264" href="#L264">264</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L265" href="#L265">265</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/AddDirective.html">AddDirective</a>(name));
+<a class="jxr_linenumber" name="L265" href="#L265">265</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/AddDirective.html">AddDirective</a>(name.toString()));
 <a class="jxr_linenumber" name="L266" href="#L266">266</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L267" href="#L267">267</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L268" href="#L268">268</a>                 String.format(
@@ -327,9 +327,9 @@
 <a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L320" href="#L320">320</a> <em class="jxr_javadoccomment">     * @since 0.5</em>
 <a class="jxr_linenumber" name="L321" href="#L321">321</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L322" href="#L322">322</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> addIf(<strong class="jxr_keyword">final</strong> String name) {
+<a class="jxr_linenumber" name="L322" href="#L322">322</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> addIf(<strong class="jxr_keyword">final</strong> Object name) {
 <a class="jxr_linenumber" name="L323" href="#L323">323</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L324" href="#L324">324</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/AddIfDirective.html">AddIfDirective</a>(name));
+<a class="jxr_linenumber" name="L324" href="#L324">324</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/AddIfDirective.html">AddIfDirective</a>(name.toString()));
 <a class="jxr_linenumber" name="L325" href="#L325">325</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L326" href="#L326">326</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L327" href="#L327">327</a>                 String.format(
@@ -364,9 +364,9 @@
 <a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">     * @since 0.5</em>
 <a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> attr(<strong class="jxr_keyword">final</strong> String name, <strong class="jxr_keyword">final</strong> String value) {
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> attr(<strong class="jxr_keyword">final</strong> Object name, <strong class="jxr_keyword">final</strong> Object value) {
 <a class="jxr_linenumber" name="L360" href="#L360">360</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/AttrDirective.html">AttrDirective</a>(name, value));
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/AttrDirective.html">AttrDirective</a>(name.toString(), value.toString()));
 <a class="jxr_linenumber" name="L362" href="#L362">362</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L363" href="#L363">363</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L364" href="#L364">364</a>                 String.format(
@@ -393,9 +393,9 @@
 <a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * @checkstyle MethodName (3 lines)</em>
 <a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L387" href="#L387">387</a>     @SuppressWarnings(<span class="jxr_string">"PMD.ShortMethodName"</span>)
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> pi(<strong class="jxr_keyword">final</strong> String target, <strong class="jxr_keyword">final</strong> String data) {
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> pi(<strong class="jxr_keyword">final</strong> Object target, <strong class="jxr_keyword">final</strong> Object data) {
 <a class="jxr_linenumber" name="L389" href="#L389">389</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/PiDirective.html">PiDirective</a>(target, data));
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/PiDirective.html">PiDirective</a>(target.toString(), data.toString()));
 <a class="jxr_linenumber" name="L391" href="#L391">391</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L392" href="#L392">392</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L393" href="#L393">393</a>                 String.format(
@@ -419,9 +419,9 @@
 <a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L412" href="#L412">412</a> <em class="jxr_javadoccomment">     * @since 0.5</em>
 <a class="jxr_linenumber" name="L413" href="#L413">413</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> set(<strong class="jxr_keyword">final</strong> String text) {
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> set(<strong class="jxr_keyword">final</strong> Object text) {
 <a class="jxr_linenumber" name="L415" href="#L415">415</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L416" href="#L416">416</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/SetDirective.html">SetDirective</a>(text));
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/SetDirective.html">SetDirective</a>(text.toString()));
 <a class="jxr_linenumber" name="L417" href="#L417">417</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L418" href="#L418">418</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L419" href="#L419">419</a>                 String.format(
@@ -440,9 +440,9 @@
 <a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">     * @since 0.7</em>
 <a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> xset(<strong class="jxr_keyword">final</strong> String text) {
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> xset(<strong class="jxr_keyword">final</strong> Object text) {
 <a class="jxr_linenumber" name="L436" href="#L436">436</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L437" href="#L437">437</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/XsetDirective.html">XsetDirective</a>(text));
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/XsetDirective.html">XsetDirective</a>(text.toString()));
 <a class="jxr_linenumber" name="L438" href="#L438">438</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L439" href="#L439">439</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L440" href="#L440">440</a>                 String.format(
@@ -473,9 +473,9 @@
 <a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * @since 0.5</em>
 <a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L468" href="#L468">468</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> xpath(<strong class="jxr_keyword">final</strong> String path) {
+<a class="jxr_linenumber" name="L468" href="#L468">468</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> xpath(<strong class="jxr_keyword">final</strong> Object path) {
 <a class="jxr_linenumber" name="L469" href="#L469">469</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L470" href="#L470">470</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/XpathDirective.html">XpathDirective</a>(path));
+<a class="jxr_linenumber" name="L470" href="#L470">470</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/XpathDirective.html">XpathDirective</a>(path.toString()));
 <a class="jxr_linenumber" name="L471" href="#L471">471</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L472" href="#L472">472</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L473" href="#L473">473</a>                 String.format(
@@ -530,9 +530,9 @@
 <a class="jxr_linenumber" name="L522" href="#L522">522</a> <em class="jxr_javadoccomment">     * @return This object</em>
 <a class="jxr_linenumber" name="L523" href="#L523">523</a> <em class="jxr_javadoccomment">     * @since 0.17</em>
 <a class="jxr_linenumber" name="L524" href="#L524">524</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L525" href="#L525">525</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> cdata(<strong class="jxr_keyword">final</strong> String text) {
+<a class="jxr_linenumber" name="L525" href="#L525">525</a>     <strong class="jxr_keyword">public</strong> <a href="../../org/xembly/Directives.html">Directives</a> cdata(<strong class="jxr_keyword">final</strong> Object text) {
 <a class="jxr_linenumber" name="L526" href="#L526">526</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L527" href="#L527">527</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/CdataDirective.html">CdataDirective</a>(text));
+<a class="jxr_linenumber" name="L527" href="#L527">527</a>             <strong class="jxr_keyword">this</strong>.all.add(<strong class="jxr_keyword">new</strong> <a href="../../org/xembly/CdataDirective.html">CdataDirective</a>(text.toString()));
 <a class="jxr_linenumber" name="L528" href="#L528">528</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> XmlContentException ex) {
 <a class="jxr_linenumber" name="L529" href="#L529">529</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(
 <a class="jxr_linenumber" name="L530" href="#L530">530</a>                 String.format(
@@ -569,6 +569,6 @@
 <a class="jxr_linenumber" name="L561" href="#L561">561</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2013&#x2013;2015 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2013&#x2013;2016 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
 </body>
 </html>

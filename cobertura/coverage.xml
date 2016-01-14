@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.7620817843866171" branch-rate="0.4827586206896552" lines-covered="820" lines-valid="1076" branches-covered="266" branches-valid="551" complexity="3.4580152671755724" version="2.1.1" timestamp="1449145197108">
+<coverage line-rate="0.7620817843866171" branch-rate="0.4827586206896552" lines-covered="820" lines-valid="1076" branches-covered="266" branches-valid="551" complexity="3.4580152671755724" version="2.1.1" timestamp="1452738619727">
 	<sources>
 		<source>/home/r/repo/src/main/java</source>
 		<source>--source</source>
@@ -26,24 +26,24 @@
 						</method>
 						<method name="exec" signature="(Lorg/w3c/dom/Node;Lorg/xembly/Directive$Cursor;Lorg/xembly/Directive$Stack;)Lorg/xembly/Directive$Cursor;" line-rate="0.9090909090909091" branch-rate="0.75" complexity="0">
 							<lines>
-								<line number="73" hits="179" branch="false"/>
+								<line number="73" hits="178" branch="false"/>
 								<line number="74" hits="179" branch="false"/>
-								<line number="76" hits="179" branch="true" condition-coverage="50% (1/2)">
+								<line number="76" hits="178" branch="true" condition-coverage="50% (1/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="77" hits="179" branch="false"/>
+								<line number="77" hits="178" branch="false"/>
 								<line number="79" hits="0" branch="false"/>
-								<line number="81" hits="179" branch="true" condition-coverage="100% (2/2)">
+								<line number="81" hits="178" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="82" hits="180" branch="false"/>
 								<line number="83" hits="180" branch="false"/>
-								<line number="84" hits="176" branch="false"/>
-								<line number="85" hits="176" branch="false"/>
+								<line number="84" hits="175" branch="false"/>
+								<line number="85" hits="175" branch="false"/>
 								<line number="86" hits="175" branch="false"/>
 							</lines>
 						</method>
@@ -82,24 +82,24 @@
 						<line number="62" hits="210" branch="false"/>
 						<line number="63" hits="209" branch="false"/>
 						<line number="67" hits="31" branch="false"/>
-						<line number="73" hits="179" branch="false"/>
+						<line number="73" hits="178" branch="false"/>
 						<line number="74" hits="179" branch="false"/>
-						<line number="76" hits="179" branch="true" condition-coverage="50% (1/2)">
+						<line number="76" hits="178" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="77" hits="179" branch="false"/>
+						<line number="77" hits="178" branch="false"/>
 						<line number="79" hits="0" branch="false"/>
-						<line number="81" hits="179" branch="true" condition-coverage="100% (2/2)">
+						<line number="81" hits="178" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="82" hits="180" branch="false"/>
 						<line number="83" hits="180" branch="false"/>
-						<line number="84" hits="176" branch="false"/>
-						<line number="85" hits="176" branch="false"/>
+						<line number="84" hits="175" branch="false"/>
+						<line number="85" hits="175" branch="false"/>
 						<line number="86" hits="175" branch="false"/>
 					</lines>
 				</class>
@@ -239,13 +239,13 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/lang/String;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="56" hits="617" branch="false"/>
-								<line number="57" hits="3994" branch="true" condition-coverage="100% (2/2)">
+								<line number="56" hits="616" branch="false"/>
+								<line number="57" hits="3981" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="58" hits="3379" branch="false"/>
+								<line number="58" hits="3364" branch="false"/>
 								<line number="60" hits="615" branch="false"/>
 								<line number="61" hits="615" branch="false"/>
 							</lines>
@@ -318,29 +318,29 @@
 						</method>
 						<method name="legal" signature="(C)C" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="180" hits="3389" branch="false"/>
-								<line number="181" hits="3388" branch="false"/>
-								<line number="182" hits="3388" branch="false"/>
-								<line number="183" hits="3384" branch="false"/>
-								<line number="184" hits="3384" branch="false"/>
-								<line number="185" hits="3384" branch="false"/>
+								<line number="180" hits="3379" branch="false"/>
+								<line number="181" hits="3368" branch="false"/>
+								<line number="182" hits="3366" branch="false"/>
+								<line number="183" hits="3367" branch="false"/>
+								<line number="184" hits="3371" branch="false"/>
+								<line number="185" hits="3373" branch="false"/>
 							</lines>
 						</method>
 						<method name="range" signature="(CII)V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="197" hits="16933" branch="true" condition-coverage="100% (4/4)">
+								<line number="197" hits="16847" branch="true" condition-coverage="100% (4/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 										<condition number="1" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
 								<line number="198" hits="5" branch="false"/>
-								<line number="206" hits="16928" branch="false"/>
+								<line number="206" hits="16748" branch="false"/>
 							</lines>
 						</method>
 						<method name="raw" signature="()Ljava/lang/String;" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="75" hits="571" branch="false"/>
+								<line number="75" hits="570" branch="false"/>
 							</lines>
 						</method>
 						<method name="symbol" signature="(Ljava/lang/String;)C" line-rate="0.9333333333333333" branch-rate="0.9166666666666666" complexity="0">
@@ -445,18 +445,18 @@
 								<condition number="5" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="56" hits="617" branch="false"/>
-						<line number="57" hits="3994" branch="true" condition-coverage="100% (2/2)">
+						<line number="56" hits="616" branch="false"/>
+						<line number="57" hits="3981" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="58" hits="3379" branch="false"/>
+						<line number="58" hits="3364" branch="false"/>
 						<line number="60" hits="615" branch="false"/>
 						<line number="61" hits="615" branch="false"/>
 						<line number="65" hits="45" branch="false"/>
 						<line number="66" hits="45" branch="false"/>
-						<line number="75" hits="571" branch="false"/>
+						<line number="75" hits="570" branch="false"/>
 						<line number="87" hits="130" branch="false"/>
 						<line number="88" hits="130" branch="true" condition-coverage="50% (1/2)">
 							<conditions>
@@ -577,20 +577,20 @@
 						<line number="163" hits="4" branch="false"/>
 						<line number="165" hits="0" branch="false"/>
 						<line number="169" hits="29" branch="false"/>
-						<line number="180" hits="3389" branch="false"/>
-						<line number="181" hits="3388" branch="false"/>
-						<line number="182" hits="3388" branch="false"/>
-						<line number="183" hits="3384" branch="false"/>
-						<line number="184" hits="3384" branch="false"/>
-						<line number="185" hits="3384" branch="false"/>
-						<line number="197" hits="16933" branch="true" condition-coverage="100% (4/4)">
+						<line number="180" hits="3379" branch="false"/>
+						<line number="181" hits="3368" branch="false"/>
+						<line number="182" hits="3366" branch="false"/>
+						<line number="183" hits="3367" branch="false"/>
+						<line number="184" hits="3371" branch="false"/>
+						<line number="185" hits="3373" branch="false"/>
+						<line number="197" hits="16847" branch="true" condition-coverage="100% (4/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 								<condition number="1" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
 						<line number="198" hits="5" branch="false"/>
-						<line number="206" hits="16928" branch="false"/>
+						<line number="206" hits="16748" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.xembly.AttrDirective" filename="org/xembly/AttrDirective.java" line-rate="0.9166666666666666" branch-rate="0.09090909090909091" complexity="1.3333333333333333">
@@ -805,7 +805,7 @@
 								<line number="124" hits="25" branch="false"/>
 							</lines>
 						</method>
-						<method name="add" signature="(Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="add" signature="(Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="265" hits="144" branch="false"/>
 								<line number="266" hits="0" branch="false"/>
@@ -826,7 +826,7 @@
 								<line number="313" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="addIf" signature="(Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="addIf" signature="(Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="324" hits="2" branch="false"/>
 								<line number="325" hits="0" branch="false"/>
@@ -844,12 +844,12 @@
 									</conditions>
 								</line>
 								<line number="251" hits="581" branch="false"/>
-								<line number="252" hits="581" branch="false"/>
+								<line number="252" hits="580" branch="false"/>
 								<line number="253" hits="156" branch="false"/>
 								<line number="254" hits="156" branch="false"/>
 							</lines>
 						</method>
-						<method name="attr" signature="(Ljava/lang/String;Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="attr" signature="(Ljava/lang/Object;Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="361" hits="108" branch="false"/>
 								<line number="362" hits="0" branch="false"/>
@@ -858,7 +858,7 @@
 								<line number="371" hits="108" branch="false"/>
 							</lines>
 						</method>
-						<method name="cdata" signature="(Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="cdata" signature="(Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="527" hits="1" branch="false"/>
 								<line number="528" hits="0" branch="false"/>
@@ -951,7 +951,7 @@
 						<method name="parse" signature="(Ljava/lang/String;)Ljava/util/Collection;" line-rate="0.7777777777777778" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="548" hits="29" branch="false"/>
-								<line number="549" hits="29" branch="false"/>
+								<line number="549" hits="28" branch="false"/>
 								<line number="550" hits="29" branch="false"/>
 								<line number="551" hits="29" branch="false"/>
 								<line number="553" hits="29" branch="false"/>
@@ -961,7 +961,7 @@
 								<line number="557" hits="4" branch="false"/>
 							</lines>
 						</method>
-						<method name="pi" signature="(Ljava/lang/String;Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="pi" signature="(Ljava/lang/Object;Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="390" hits="2" branch="false"/>
 								<line number="391" hits="0" branch="false"/>
@@ -988,7 +988,7 @@
 								<line number="344" hits="4" branch="false"/>
 							</lines>
 						</method>
-						<method name="set" signature="(Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="set" signature="(Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="416" hits="110" branch="false"/>
 								<line number="417" hits="0" branch="false"/>
@@ -1040,7 +1040,7 @@
 								<line number="459" hits="114" branch="false"/>
 							</lines>
 						</method>
-						<method name="xpath" signature="(Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
+						<method name="xpath" signature="(Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="470" hits="8" branch="false"/>
 								<line number="471" hits="0" branch="false"/>
@@ -1049,7 +1049,7 @@
 								<line number="480" hits="8" branch="false"/>
 							</lines>
 						</method>
-						<method name="xset" signature="(Ljava/lang/String;)Lorg/xembly/Directives;" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="xset" signature="(Ljava/lang/Object;)Lorg/xembly/Directives;" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="437" hits="0" branch="false"/>
 								<line number="438" hits="0" branch="false"/>
@@ -1167,7 +1167,7 @@
 							</conditions>
 						</line>
 						<line number="251" hits="581" branch="false"/>
-						<line number="252" hits="581" branch="false"/>
+						<line number="252" hits="580" branch="false"/>
 						<line number="253" hits="156" branch="false"/>
 						<line number="254" hits="156" branch="false"/>
 						<line number="265" hits="144" branch="false"/>
@@ -1229,7 +1229,7 @@
 						<line number="536" hits="1" branch="false"/>
 						<line number="537" hits="1" branch="false"/>
 						<line number="548" hits="29" branch="false"/>
-						<line number="549" hits="29" branch="false"/>
+						<line number="549" hits="28" branch="false"/>
 						<line number="550" hits="29" branch="false"/>
 						<line number="551" hits="29" branch="false"/>
 						<line number="553" hits="29" branch="false"/>
@@ -1243,9 +1243,9 @@
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/util/Collection;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="62" hits="377" branch="false"/>
-								<line number="63" hits="377" branch="false"/>
-								<line number="64" hits="377" branch="false"/>
+								<line number="62" hits="376" branch="false"/>
+								<line number="63" hits="375" branch="false"/>
+								<line number="64" hits="375" branch="false"/>
 							</lines>
 						</method>
 						<method name="canEqual" signature="(Ljava/lang/Object;)Z" line-rate="1.0" branch-rate="1.0" complexity="0">
@@ -1273,12 +1273,12 @@
 						</method>
 						<method name="iterator" signature="()Ljava/util/Iterator;" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="68" hits="568" branch="false"/>
+								<line number="68" hits="567" branch="false"/>
 							</lines>
 						</method>
 						<method name="size" signature="()I" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="73" hits="341" branch="false"/>
+								<line number="73" hits="340" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -1294,11 +1294,11 @@
 								<condition number="6" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="62" hits="377" branch="false"/>
-						<line number="63" hits="377" branch="false"/>
-						<line number="64" hits="377" branch="false"/>
-						<line number="68" hits="568" branch="false"/>
-						<line number="73" hits="341" branch="false"/>
+						<line number="62" hits="376" branch="false"/>
+						<line number="63" hits="375" branch="false"/>
+						<line number="64" hits="375" branch="false"/>
+						<line number="68" hits="567" branch="false"/>
+						<line number="73" hits="340" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.xembly.DomStack" filename="org/xembly/DomStack.java" line-rate="0.9166666666666666" branch-rate="0.0" complexity="2.5">
@@ -2090,14 +2090,14 @@
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="155" hits="580" branch="false"/>
+								<line number="155" hits="579" branch="false"/>
 								<line number="156" hits="0" branch="false"/>
 								<line number="157" hits="0" branch="false"/>
 								<line number="161" hits="4" branch="false"/>
 								<line number="162" hits="4" branch="false"/>
-								<line number="166" hits="576" branch="false"/>
-								<line number="167" hits="576" branch="false"/>
-								<line number="168" hits="576" branch="false"/>
+								<line number="166" hits="574" branch="false"/>
+								<line number="167" hits="574" branch="false"/>
+								<line number="168" hits="574" branch="false"/>
 								<line number="169" hits="30" branch="false"/>
 							</lines>
 						</method>
@@ -2237,14 +2237,14 @@
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="155" hits="580" branch="false"/>
+						<line number="155" hits="579" branch="false"/>
 						<line number="156" hits="0" branch="false"/>
 						<line number="157" hits="0" branch="false"/>
 						<line number="161" hits="4" branch="false"/>
 						<line number="162" hits="4" branch="false"/>
-						<line number="166" hits="576" branch="false"/>
-						<line number="167" hits="576" branch="false"/>
-						<line number="168" hits="576" branch="false"/>
+						<line number="166" hits="574" branch="false"/>
+						<line number="167" hits="574" branch="false"/>
+						<line number="168" hits="574" branch="false"/>
 						<line number="169" hits="30" branch="false"/>
 						<line number="179" hits="0" branch="false"/>
 						<line number="180" hits="0" branch="false"/>
@@ -2514,13 +2514,13 @@
 										<condition number="3" type="jump" coverage="50%"/>
 									</conditions>
 								</line>
-								<line number="490" hits="500" branch="false"/>
-								<line number="493" hits="596" branch="true" condition-coverage="100% (2/2)">
+								<line number="490" hits="496" branch="false"/>
+								<line number="493" hits="592" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="switch" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="497" hits="500" branch="true" condition-coverage="62% (5/8)">
+								<line number="497" hits="497" branch="true" condition-coverage="62% (5/8)">
 									<conditions>
 										<condition number="0" type="jump" coverage="50%"/>
 										<condition number="1" type="jump" coverage="100%"/>
@@ -2704,8 +2704,8 @@
 						</method>
 						<method name="mTokens" signature="()V" line-rate="0.6833333333333333" branch-rate="0.75" complexity="0">
 							<lines>
-								<line number="590" hits="611" branch="false"/>
-								<line number="591" hits="611" branch="true" condition-coverage="92% (13/14)">
+								<line number="590" hits="610" branch="false"/>
+								<line number="591" hits="610" branch="true" condition-coverage="92% (13/14)">
 									<conditions>
 										<condition number="0" type="switch" coverage="92%"/>
 									</conditions>
@@ -3099,13 +3099,13 @@
 								<condition number="3" type="jump" coverage="50%"/>
 							</conditions>
 						</line>
-						<line number="490" hits="500" branch="false"/>
-						<line number="493" hits="596" branch="true" condition-coverage="100% (2/2)">
+						<line number="490" hits="496" branch="false"/>
+						<line number="493" hits="592" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="switch" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="497" hits="500" branch="true" condition-coverage="62% (5/8)">
+						<line number="497" hits="497" branch="true" condition-coverage="62% (5/8)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
 								<condition number="1" type="jump" coverage="100%"/>
@@ -3175,8 +3175,8 @@
 						<line number="581" hits="0" branch="false"/>
 						<line number="583" hits="199" branch="false"/>
 						<line number="584" hits="199" branch="false"/>
-						<line number="590" hits="611" branch="false"/>
-						<line number="591" hits="611" branch="true" condition-coverage="92% (13/14)">
+						<line number="590" hits="610" branch="false"/>
+						<line number="591" hits="610" branch="true" condition-coverage="92% (13/14)">
 							<conditions>
 								<condition number="0" type="switch" coverage="92%"/>
 							</conditions>
