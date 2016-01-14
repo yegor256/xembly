@@ -260,9 +260,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives add(final String name) {
+    public Directives add(final Object name) {
         try {
-            this.all.add(new AddDirective(name));
+            this.all.add(new AddDirective(name.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -319,9 +319,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives addIf(final String name) {
+    public Directives addIf(final Object name) {
         try {
-            this.all.add(new AddIfDirective(name));
+            this.all.add(new AddIfDirective(name.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -356,9 +356,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives attr(final String name, final String value) {
+    public Directives attr(final Object name, final Object value) {
         try {
-            this.all.add(new AttrDirective(name, value));
+            this.all.add(new AttrDirective(name.toString(), value.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -385,9 +385,9 @@ public final class Directives implements Iterable<Directive> {
      * @checkstyle MethodName (3 lines)
      */
     @SuppressWarnings("PMD.ShortMethodName")
-    public Directives pi(final String target, final String data) {
+    public Directives pi(final Object target, final Object data) {
         try {
-            this.all.add(new PiDirective(target, data));
+            this.all.add(new PiDirective(target.toString(), data.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -411,9 +411,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives set(final String text) {
+    public Directives set(final Object text) {
         try {
-            this.all.add(new SetDirective(text));
+            this.all.add(new SetDirective(text.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -432,9 +432,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.7
      */
-    public Directives xset(final String text) {
+    public Directives xset(final Object text) {
         try {
-            this.all.add(new XsetDirective(text));
+            this.all.add(new XsetDirective(text.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -465,9 +465,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives xpath(final String path) {
+    public Directives xpath(final Object path) {
         try {
-            this.all.add(new XpathDirective(path));
+            this.all.add(new XpathDirective(path.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
@@ -522,9 +522,9 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.17
      */
-    public Directives cdata(final String text) {
+    public Directives cdata(final Object text) {
         try {
-            this.all.add(new CdataDirective(text));
+            this.all.add(new CdataDirective(text.toString()));
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
