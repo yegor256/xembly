@@ -20,6 +20,8 @@ It is a much simplier alternative to
 Read this blog post
 for a more detailed explanation: [Xembly, an Assembly for XML](http://www.yegor256.com/2014/04/09/xembly-intro.html).
 
+Here is a command line implementation (as Ruby gem): [xembly-gem](https://github.com/yegor256/xembly-gem)
+
 For example, you have an XML document:
 
 ```xml
