@@ -39,7 +39,7 @@ import org.w3c.dom.Node;
  * need to use this interface directly and make instances of it. Everything
  * is done through {@link Directives} and {@link Xembler}.
  *
- * @author Yegor Bugayenko (yegor@teamed.io)
+ * @author Yegor Bugayenko (yegor256@gmail.com)
  * @version $Id$
  * @since 0.1
  */

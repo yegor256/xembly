@@ -39,7 +39,7 @@ import org.xembly.Xembler;
 
 /**
  * Test of XML features with Saxon.
- * @author Yegor Bugayenko (yegor@teamed.io)
+ * @author Yegor Bugayenko (yegor256@gmail.com)
  * @version $Id$
  * @since 0.17
  */
