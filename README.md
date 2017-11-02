@@ -12,6 +12,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2609eb5f77c24bf7a858f8633b4fbf7d)](https://www.codacy.com/app/github_90/xembly?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yegor256/xembly&amp;utm_campaign=Badge_Grade)
 [![JavaDoc](https://img.shields.io/badge/javadoc-html-blue.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 
+[![jpeek report](http://i.jpeek.org/com.jcabi.incubator/xembly/badge.svg)](http://i.jpeek.org/com.jcabi.incubator/xembly/)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 [![Dependencies](https://www.versioneye.com/user/projects/561a9d24a193340f32000e86/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561a9d24a193340f32000e86)
 
@@ -22,6 +23,16 @@ It is a much simplier alternative to
 [XSLT](http://www.w3.org/TR/xslt) and [XQuery](http://www.w3.org/TR/xquery).
 Read this blog post
 for a more detailed explanation: [Xembly, an Assembly for XML](http://www.yegor256.com/2014/04/09/xembly-intro.html).
+
+You need this dependency:
+
+```xml
+<dependency>
+  <groupId>com.jcabi.incubator</groupId>
+  <artifactId>xembly</artifactId>
+  <version>0.22</version>
+</dependency>
+```
 
 Here is a command line implementation (as Ruby gem): [xembly-gem](https://github.com/yegor256/xembly-gem)
 
