@@ -1,6 +1,6 @@
 <img src="http://www.xembly.org/logo.png" width="64px" height="64px" />
 
-[![Managed by Zerocracy](https://www.0crat.com/badge/C3RUBL5H9.svg)](http://www.0crat.com/p/C3RUBL5H9)
+[![Managed by Zerocracy](https://www.0crat.com/badge/C3RUBL5H9.svg)](https://www.0crat.com/p/C3RUBL5H9)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
 [![We recommend IntelliJ IDEA](http://img.teamed.io/intellij-idea-recommend.svg)](https://www.jetbrains.com/idea/)
 
