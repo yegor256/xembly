@@ -215,6 +215,36 @@ public final class DirectivesTest {
     }
 
     /**
+     * Directives can copy an existing XML.
+     * @throws Exception If some problem inside
+     * @since 1.0
+     */
+    @Test
+    public void copiesExistingXml() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives().add("guys").append(
+                new XMLDocument(
+                    StringUtils.join(
+                        "<joe name='Joey'><first/><second/>",
+                        "<io a='x'><f><name>\u20ac</name></f></io>",
+                        "<x><![CDATA[hey you]]></x>  </joe>"
+                    )
+                )
+            )
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/guys/joe[@name = 'Joey']",
+                "/guys/joe[first and second]",
+                "/guys/joe/io[@a='x']/f[name='\u20ac']"
+            )
+        );
+    }
+
+    /**
      * Directives can understand case.
      * @throws Exception If some problem inside
      * @since 0.14.1
