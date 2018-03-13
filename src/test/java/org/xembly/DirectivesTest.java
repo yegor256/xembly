@@ -215,12 +215,12 @@ public final class DirectivesTest {
     }
 
     /**
-     * Directives can copy an existing XML.
+     * Appends an existing node.
      * @throws Exception If some problem inside
      * @since 1.0
      */
     @Test
-    public void copiesExistingXml() throws Exception {
+    public void appendsExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         new Xembler(
@@ -231,7 +231,7 @@ public final class DirectivesTest {
                         "<io a='x'><f><name>\u20ac</name></f></io>",
                         "<x><![CDATA[hey you]]></x>  </joe>"
                     )
-                )
+                ).node()
             )
         ).apply(dom);
         MatcherAssert.assertThat(

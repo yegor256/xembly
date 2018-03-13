@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.xml.XML;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -256,14 +255,14 @@ public final class Directives implements Iterable<Directive> {
     }
 
     /**
-     * Appends the {@link XML xml}.
-     * @param xml The xml to append
+     * Appends the {@link Node node}.
+     * @param node The node to append
      * @return This object
      * @see #append(java.lang.Iterable)
      * @see Directives#copyOf(org.w3c.dom.Node)
      */
-    public Directives append(final XML xml) {
-        return this.append(Directives.copyOf(xml.node()));
+    public Directives append(final Node node) {
+        return this.append(Directives.copyOf(node));
     }
 
     /**
