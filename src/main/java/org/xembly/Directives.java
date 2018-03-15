@@ -260,6 +260,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @see #append(java.lang.Iterable)
      * @see Directives#copyOf(org.w3c.dom.Node)
+     * @since 0.23
      */
     public Directives append(final Node node) {
         return this.append(Directives.copyOf(node));
