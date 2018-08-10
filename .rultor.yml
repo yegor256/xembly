@@ -13,7 +13,7 @@ merge:
   commanders: []
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
-    mvn clean site -Psite --errors --settings ../settings.xml
+    mvn clean site -Psite --errors --settings ../settings.xml -Dinvoker.skip
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null
 deploy:
