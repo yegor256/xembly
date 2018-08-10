@@ -58,7 +58,13 @@ final class XpathDirective implements Directive {
     /**
      * XPath factory.
      */
-    private static final XPathFactory FACTORY = XPathFactory.newInstance();
+    private static final ThreadLocal<XPathFactory> FACTORY =
+        new ThreadLocal<XPathFactory>() {
+            @Override
+            protected XPathFactory initialValue() {
+                return XPathFactory.newInstance();
+            }
+        };
 
     /**
      * Pattern to match root-only XPath queries.
@@ -135,7 +141,7 @@ final class XpathDirective implements Directive {
     private static Collection<Node> traditional(final String query,
         final Node dom, final Collection<Node> current)
         throws ImpossibleModificationException {
-        final XPath xpath = XpathDirective.FACTORY.newXPath();
+        final XPath xpath = XpathDirective.FACTORY.get().newXPath();
         final Collection<Node> targets = new HashSet<Node>(0);
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
