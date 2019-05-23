@@ -15,7 +15,7 @@
 
 [![jpeek report](http://i.jpeek.org/com.jcabi.incubator/xembly/badge.svg)](http://i.jpeek.org/com.jcabi.incubator/xembly/)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
-[![Dependencies](https://www.versioneye.com/user/projects/561a9d24a193340f32000e86/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561a9d24a193340f32000e86)
+[![Hits-of-Code](https://hitsofcode.com/github/yegor256/xembly)](https://hitsofcode.com/view/github/yegor256/xembly)
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
