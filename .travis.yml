@@ -9,6 +9,7 @@ script:
   - mvn clean
   - pdd --source=$(pwd) --file=/dev/null
   - est --dir=est --file=/dev/null
+  - mvn cobertura:cobertura
 addons:
   apt:
     packages:
@@ -20,6 +21,8 @@ before_install:
 install:
   - gem install pdd
   - gem install est
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 env:
   global:
     - MAVEN_OPTS="-Xmx256m"
