@@ -3,7 +3,7 @@ architect:
 - yegor256
 - davvd
 install:
-- sudo gem install pdd
+- sudo gem install pdd -v 0.20.5
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
   settings.xml: yegor256/home#assets/xembly/settings.xml
