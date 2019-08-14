@@ -55,6 +55,33 @@ import org.w3c.dom.Node;
 @SuppressWarnings("PMD.TooManyMethods")
 public final class XemblerTest {
 
+
+    @Test
+    public void test() throws Exception {
+        Directives dirs = new Directives(
+            StringUtils.join(
+                "ADD 'books'; ADD 'book'; CDATA 'hey';"
+            )
+        );
+        String xml = new Xembler(dirs).xml();
+        System.out.println(xml);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Xembler can change DOM document.
      * @throws Exception If some problem inside
@@ -66,13 +93,11 @@ public final class XemblerTest {
         new Xembler(
             new Directives(
                 StringUtils.join(
-                    new String[] {
-                        "ADD 'root'; STRICT '1'; ADD 'order';",
-                        "ATTR 'tag', 'hello, world!';",
-                        "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;",
-                        "XPATH '//order[price=&apos;$29.99&apos;]/price';",
-                        "SET ' $39.99 ';",
-                    }
+                    "ADD 'root'; STRICT '1'; ADD 'order';",
+                    "ATTR 'tag', 'hello, world!';",
+                    "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;",
+                    "XPATH '//order[price=&apos;$29.99&apos;]/price';",
+                    "SET ' $39.99 ';"
                 )
             )
         ).apply(dom);
