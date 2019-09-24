@@ -411,7 +411,7 @@ public final class Directives implements Iterable<Directive> {
      * @return This object
      * @since 0.5
      */
-    public Directives set(final Object text) {
+    public Directives set(final CharSequence text) {
         try {
             this.all.add(new SetDirective(text.toString()));
         } catch (final XmlContentException ex) {
