@@ -29,6 +29,6 @@ release:
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     mvn clean deploy -Pxembly -Psonatype --errors --settings ../settings.xml
-    mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip
+    # mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip
   commanders:
   - yegor256
