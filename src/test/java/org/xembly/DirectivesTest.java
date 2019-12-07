@@ -319,4 +319,20 @@ public final class DirectivesTest {
         );
     }
 
+    /**
+     * Directives can add comments.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void addsComments() throws Exception {
+        MatcherAssert.assertThat(
+            new Xembler(
+                new Directives()
+                    .add("victory")
+                    .comment(Xembler.escape("Yes, we <win>!"))
+            ).xml(),
+            XhtmlMatchers.hasXPath("//comment()")
+        );
+    }
+
 }

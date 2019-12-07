@@ -163,6 +163,15 @@ directive returns [Directive ret]
             throw new ParsingException(ex);
         }
     }
+    |
+    'COMMENT' argument
+    {
+        try {
+            $ret = new CommentDirective($argument.ret.toString());
+        } catch (final XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
     ;
 
 argument returns [Object ret]

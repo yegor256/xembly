@@ -108,6 +108,7 @@ Full list of supported directives in the current version:
   * `PUSH`: saves cursor in stack
   * `POP`: retrieves cursor from stack
   * `NS`: sets namespace of all current nodes
+  * `COMMENT`: adds XML comment
 
 "Cursor" or "current nodes" is where we're currently located
 in the XML document. When Xembly script starts, the cursor is

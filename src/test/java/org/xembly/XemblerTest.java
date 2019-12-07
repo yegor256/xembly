@@ -55,46 +55,6 @@ import org.w3c.dom.Node;
 @SuppressWarnings("PMD.TooManyMethods")
 public final class XemblerTest {
 
-
-    @Test
-    public void test() throws Exception {
-
-
-        // '<books><book>Object Thinking</book><books>'
-
-        // create "books"
-        // add "book"
-        // change the content of "book" to "Object Thinking"
-
-        final Node node = new XMLDocument(
-            "<books><book>War and Peace</book></books>"
-        ).node();
-        Directives dirs = new Directives()
-            .xpath("/books/book")
-            .strict(1)
-            .remove()
-            .add("book")
-            .set("Elegant Objects:\n\r$40.96")
-            .attr("id", 123);
-        new Xembler(dirs).apply(node);
-        System.out.println(new XMLDocument(node).toString());
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * Xembler can change DOM document.
      * @throws Exception If some problem inside

@@ -528,7 +528,33 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, CDATA(%s)",
+                    "Failed to understand XML content, CDATA(%s)",
+                    text
+                ),
+                ex
+            );
+        }
+        return this;
+    }
+
+    /**
+     * Add an XML comment.
+     *
+     * <p>If a value provided contains illegal XML characters, a runtime
+     * exception will be thrown. To avoid this, it is recommended to use
+     * {@link Xembler#escape(String)}.
+     *
+     * @param text Text to set
+     * @return This object
+     * @since 0.23
+     */
+    public Directives comment(final Object text) {
+        try {
+            this.all.add(new CommentDirective(text.toString()));
+        } catch (final XmlContentException ex) {
+            throw new IllegalArgumentException(
+                String.format(
+                    "Failed to understand XML content, comment(%s)",
                     text
                 ),
                 ex
