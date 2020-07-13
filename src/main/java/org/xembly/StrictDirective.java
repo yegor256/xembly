@@ -95,6 +95,7 @@ final class StrictDirective implements Directive {
      * @param nodes Collection of nodes
      * @return Text presentation of them
      */
+    @SuppressWarnings("aibolit.P13")
     private static String names(final Iterable<Node> nodes) {
         final StringBuilder text = new StringBuilder(0);
         for (final Node node : nodes) {
