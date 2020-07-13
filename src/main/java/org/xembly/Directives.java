@@ -35,11 +35,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
 import org.w3c.dom.Attr;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -116,7 +111,7 @@ public final class Directives implements Iterable<Directive> {
      * @throws SyntaxException If syntax is broken
      */
     public Directives(final String text) throws SyntaxException {
-        this(Directives.parse(text));
+        this(new Verbs(text).directives());
     }
 
     /**
@@ -560,25 +555,6 @@ public final class Directives implements Iterable<Directive> {
             );
         }
         return this;
-    }
-
-    /**
-     * Parse script.
-     * @param script Script to parse
-     * @return Collection of directives
-     * @throws SyntaxException If can't parse
-     */
-    private static Collection<Directive> parse(final String script)
-        throws SyntaxException {
-        final CharStream input = new ANTLRStringStream(script);
-        final XemblyLexer lexer = new XemblyLexer(input);
-        final TokenStream tokens = new CommonTokenStream(lexer);
-        final XemblyParser parser = new XemblyParser(tokens);
-        try {
-            return parser.directives();
-        } catch (final RecognitionException | ParsingException ex) {
-            throw new SyntaxException(script, ex);
-        }
     }
 
     /**
