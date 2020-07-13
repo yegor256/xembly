@@ -89,11 +89,6 @@ import org.w3c.dom.NodeList;
 public final class Directives implements Iterable<Directive> {
 
     /**
-     * Right margin.
-     */
-    private static final int MARGIN = 80;
-
-    /**
      * List of directives.
      */
     private final transient Collection<Directive> all;
@@ -125,22 +120,7 @@ public final class Directives implements Iterable<Directive> {
 
     @Override
     public String toString() {
-        final StringBuilder text = new StringBuilder(0);
-        int width = 0;
-        int idx = 0;
-        for (final Directive dir : this.all) {
-            if (idx > 0 && width == 0) {
-                text.append('\n').append(idx).append(':');
-            }
-            final String txt = dir.toString();
-            text.append(txt).append(';');
-            width += txt.length();
-            if (width > Directives.MARGIN) {
-                width = 0;
-            }
-            ++idx;
-        }
-        return text.toString().trim();
+        return new Print(this.all).toString();
     }
 
     @Override
