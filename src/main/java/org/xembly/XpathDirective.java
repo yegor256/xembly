@@ -152,12 +152,22 @@ final class XpathDirective implements Directive {
                     String.format("invalid XPath expr '%s'", query), ex
                 );
             }
-            final int len = list.getLength();
-            for (int idx = 0; idx < len; ++idx) {
-                targets.add(list.item(idx));
-            }
+            XpathDirective.copyTo(list, targets);
         }
         return targets;
+    }
+
+    /**
+     * Copy nodes from NodeList to a collection.
+     * @param list The list
+     * @param targets Collection
+     */
+    private static void copyTo(final NodeList list,
+        final Collection<Node> targets) {
+        final int len = list.getLength();
+        for (int idx = 0; idx < len; ++idx) {
+            targets.add(list.item(idx));
+        }
     }
 
     /**
