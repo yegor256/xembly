@@ -142,6 +142,7 @@ public final class Xembler {
      * @return The same document/node
      * @throws ImpossibleModificationException If can't modify
      */
+    @SuppressWarnings("aibolit.P15")
     public Node apply(final Node dom) throws ImpossibleModificationException {
         Directive.Cursor cursor = new DomCursor(
             Collections.singletonList(dom)
