@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2013-2020, xembly.org
  * All rights reserved.
  *

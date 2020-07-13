@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2013-2020, xembly.org
  * All rights reserved.
  *
@@ -33,7 +33,7 @@ import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-/**
+/*
  * CDATA directive.
  *
  * <p>The class is immutable and thread-safe.

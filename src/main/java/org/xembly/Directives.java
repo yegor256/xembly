@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2013-2020, xembly.org
  * All rights reserved.
  *
@@ -46,7 +46,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
+/*
  * Collection of {@link Directive}s, instantiable from {@link String}.
  *
  * <p>For example, to fetch directives from a string and apply to the
