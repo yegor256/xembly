@@ -41,8 +41,6 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AddDirective}.
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  */
 public final class AttrDirectiveTest {
 

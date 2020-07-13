@@ -31,8 +31,6 @@
 /**
  * Assembly for XML.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.1
  * @see <a href="http://www.xembly.org">project site www.xembly.org</a>
  * @see <a href="https://github.com/yegor256/xembly">Github project</a>

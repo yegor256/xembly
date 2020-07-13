@@ -39,8 +39,6 @@ import org.xembly.Xembler;
 
 /**
  * Test of XML features with Xerces.
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class XercesSampleTest {

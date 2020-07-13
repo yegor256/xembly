@@ -36,8 +36,6 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link SyntaxException}.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 1.0
  */
 public final class SyntaxExceptionTest {

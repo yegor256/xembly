@@ -38,7 +38,6 @@ import org.w3c.dom.Node;
  * <p>The class is immutable and thread-safe.
  *
  * @author Dmitri Pisarenko (dp@altruix.co)
- * @version $Id$
  * @since 0.19.3
  */
 @EqualsAndHashCode(of = { "namespace" })

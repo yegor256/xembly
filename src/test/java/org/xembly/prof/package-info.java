@@ -31,8 +31,6 @@
 /**
  * Test cases for profiling.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.10.1
  */
 package org.xembly.prof;

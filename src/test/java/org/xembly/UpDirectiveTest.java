@@ -38,8 +38,6 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link UpDirective}.
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  */
 public final class UpDirectiveTest {
 

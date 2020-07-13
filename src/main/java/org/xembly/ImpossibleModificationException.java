@@ -32,8 +32,6 @@ package org.xembly;
 /**
  * When further modification is impossible.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.3
  */
 public final class ImpossibleModificationException extends Exception {

@@ -42,8 +42,6 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link PiDirective}.
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.9
  */
 public final class PiDirectiveTest {

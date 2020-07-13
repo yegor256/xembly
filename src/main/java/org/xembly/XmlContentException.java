@@ -32,8 +32,6 @@ package org.xembly;
 /**
  * When impossible to understand XML content.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.6
  */
 final class XmlContentException extends Exception {

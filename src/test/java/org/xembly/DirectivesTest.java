@@ -46,8 +46,6 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link Directives}.
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public final class DirectivesTest {

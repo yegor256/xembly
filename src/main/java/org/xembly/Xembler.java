@@ -78,8 +78,6 @@ import org.w3c.dom.Node;
  * {@link #xmlQuietly()}, {@link #domQuietly()},
  * and {@link #applyQuietly(org.w3c.dom.Node)}.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.1
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  */

@@ -32,8 +32,6 @@ package org.xembly;
 /**
  * When parsing of directives is impossible.
  *
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  * @since 0.6
  */
 final class ParsingException extends RuntimeException {

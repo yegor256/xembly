@@ -42,8 +42,6 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link SetDirective}.
- * @author Yegor Bugayenko (yegor256@gmail.com)
- * @version $Id$
  */
 public final class SetDirectiveTest {
 
