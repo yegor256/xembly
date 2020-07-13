@@ -3,8 +3,14 @@ sudo: false
 cache:
   directories:
     - $HOME/.m2
-python:
-  - "3.8"
+addons:
+  apt:
+    sources:
+      - deadsnakes
+    packages:
+    - python3.8
+    - libmagic1
+    - libmagic-dev
 script:
   - set -e
   - pip install aibolit==1.2.3rc1
@@ -12,11 +18,6 @@ script:
   - est --dir=est --file=/dev/null
   - aibolit check --folder=src/main
   - mvn clean install -Pqulice --errors --batch-mode
-addons:
-  apt:
-    packages:
-    - libmagic1
-    - libmagic-dev
 before_install:
   - rvm install 2.6.0
   - rvm use 2.6.0
