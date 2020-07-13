@@ -77,9 +77,9 @@ final class XsetDirective implements Directive {
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        final XPath xpath = XsetDirective.FACTORY.newXPath();
         final ConcurrentMap<Node, String> values =
             new ConcurrentHashMap<>(0);
+        final XPath xpath = XsetDirective.FACTORY.newXPath();
         for (final Node node : cursor) {
             try {
                 values.put(
