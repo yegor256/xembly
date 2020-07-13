@@ -55,6 +55,7 @@ final class Print {
     }
 
     @Override
+    @SuppressWarnings("aibolit.P21")
     public String toString() {
         final StringBuilder text = new StringBuilder(0);
         int width = 0;
