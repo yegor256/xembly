@@ -76,7 +76,7 @@ final class Arg {
      * @return Clean text
      * @throws XmlContentException If fails
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops", "aibolit.P32" })
     public static String unescape(final String text)
         throws XmlContentException {
         final char[] chars = text.toCharArray();
