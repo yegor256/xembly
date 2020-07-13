@@ -66,6 +66,7 @@ final class AddDirective implements Directive {
     }
 
     @Override
+    @SuppressWarnings("aibolit.P13")
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack) {
         final Collection<Node> targets = new ArrayList<>(cursor.size());
