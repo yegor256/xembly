@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-2019, xembly.org
+ * Copyright (c) 2013-2020, xembly.org
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
