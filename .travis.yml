@@ -13,7 +13,7 @@ addons:
     - libmagic-dev
 script:
   - set -e
-  - pip install aibolit==1.2.3rc1
+  - pip3 install aibolit==1.2.3rc1
   - pdd --source=$(pwd) --file=/dev/null
   - est --dir=est --file=/dev/null
   - aibolit check --folder=src/main
