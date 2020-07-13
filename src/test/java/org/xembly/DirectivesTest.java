@@ -192,21 +192,19 @@ public final class DirectivesTest {
     public void copiesExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(
-            new Directives().add("dudes").append(
-                Directives.copyOf(
-                    new XMLDocument(
-                        StringUtils.join(
-                            "<jeff name='Jeffrey'><first/><second/>",
-                            "<?some-pi test?>",
-                            "<file a='x'><f><name>\u20ac</name></f></file>",
-                            "<!-- some comment -->",
-                            "<x><![CDATA[hey you]]></x>  </jeff>"
-                        )
-                    ).node()
+        final Iterable<Directive> copy = Directives.copyOf(
+            new XMLDocument(
+                StringUtils.join(
+                    "<jeff name='Jeffrey'><first/><second/>",
+                    "<?some-pi test?>",
+                    "<file a='x'><f><name>\u20ac</name></f></file>",
+                    "<!-- some comment -->",
+                    "<x><![CDATA[hey you]]></x>  </jeff>"
                 )
-            )
-        ).apply(dom);
+            ).node()
+        );
+        MatcherAssert.assertThat(copy, Matchers.iterableWithSize(19));
+        new Xembler(new Directives().add("dudes").append(copy)).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
@@ -336,6 +334,20 @@ public final class DirectivesTest {
                     .comment(Xembler.escape("Yes, we <win>!"))
             ).xml(),
             XhtmlMatchers.hasXPath("//comment()")
+        );
+    }
+
+    /**
+     * Directives can append.
+     * @throws Exception If some problem inside
+     */
+    @Test
+    public void appendsDirs() throws Exception {
+        MatcherAssert.assertThat(
+            new Directives().add("0").append(
+                new Directives().add("1")
+            ).add("2").toString(),
+            Matchers.equalTo("ADD \"0\";ADD \"1\";ADD \"2\";")
         );
     }
 

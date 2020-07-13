@@ -34,7 +34,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.EqualsAndHashCode;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
@@ -102,14 +101,13 @@ public final class Directives implements Iterable<Directive> {
     /**
      * List of directives.
      */
-    private final transient Collection<Directive> all =
-        new CopyOnWriteArrayList<Directive>();
+    private final transient Collection<Directive> all;
 
     /**
      * Public ctor.
      */
     public Directives() {
-        this(Collections.<Directive>emptyList());
+        this(Collections.emptyList());
     }
 
     /**
@@ -125,8 +123,9 @@ public final class Directives implements Iterable<Directive> {
      * Public ctor.
      * @param dirs Directives
      */
+    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public Directives(final Iterable<Directive> dirs) {
-        this.append(dirs);
+        this.all = Directives.toCollection(dirs);
     }
 
     @Override
@@ -244,11 +243,9 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.11
      */
     public Directives append(final Iterable<Directive> dirs) {
-        final Collection<Directive> list = new LinkedList<Directive>();
-        for (final Directive dir : dirs) {
-            list.add(dir);
+        synchronized (this.all) {
+            this.all.addAll(Directives.toCollection(dirs));
         }
-        this.all.addAll(list);
         return this;
     }
 
@@ -575,11 +572,23 @@ public final class Directives implements Iterable<Directive> {
         final XemblyParser parser = new XemblyParser(tokens);
         try {
             return parser.directives();
-        } catch (final RecognitionException ex) {
-            throw new SyntaxException(script, ex);
-        } catch (final ParsingException ex) {
+        } catch (final RecognitionException | ParsingException ex) {
             throw new SyntaxException(script, ex);
         }
+    }
+
+    /**
+     * Iterable to collection.
+     * @param itr Iterable
+     * @param <T> The type
+     * @return Collection
+     */
+    private static <T> Collection<T> toCollection(final Iterable<T> itr) {
+        final Collection<T> col = new LinkedList<>();
+        for (final T item : itr) {
+            col.add(item);
+        }
+        return col;
     }
 
 }
