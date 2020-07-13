@@ -31,7 +31,8 @@ package org.xembly;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 /**
@@ -66,10 +67,11 @@ public final class DomStackTest {
     /**
      * DomStack throws ImpossibleModificationException when
      * trying to pop an empty stack.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = ImpossibleModificationException.class)
-    public void throwsExceptionOnEmpty() throws Exception {
-        new DomStack().pop();
+    @Test
+    public void throwsExceptionOnEmpty() {
+        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
+            new DomStack().pop();
+        });
     }
 }

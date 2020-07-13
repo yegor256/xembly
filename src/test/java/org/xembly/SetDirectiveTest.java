@@ -34,7 +34,8 @@ import java.util.Arrays;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -54,12 +55,9 @@ public final class SetDirectiveTest {
     public void setsTextContentOfNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[] {
-                    "ADD 'root'; ADD 'foo';",
-                    "SET '&quot;Bonnie &amp; Clyde&quot;';",
-                    "UP; ADD 'cops'; SET 'everywhere';",
-                }
-            )
+                "ADD 'root'; ADD 'foo';",
+                "SET '&quot;Bonnie &amp; Clyde&quot;';",
+                "UP; ADD 'cops'; SET 'everywhere';")
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -75,11 +73,12 @@ public final class SetDirectiveTest {
 
     /**
      * SetDirective can reject invalid content.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = SyntaxException.class)
-    public void rejectsContentWithInvalidXmlCharacters() throws Exception {
-        new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';");
+    @Test
+    public void rejectsContentWithInvalidXmlCharacters() {
+        Assertions.assertThrows(SyntaxException.class, () -> {
+            new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';");
+        });
     }
 
     /**

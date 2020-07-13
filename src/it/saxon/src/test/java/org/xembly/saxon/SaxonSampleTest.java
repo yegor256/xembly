@@ -32,7 +32,7 @@ package org.xembly.saxon;
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 import org.xembly.Directives;
 import org.xembly.Xembler;

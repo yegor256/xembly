@@ -34,7 +34,7 @@ import com.jcabi.aspects.Tv;
 import com.jcabi.matchers.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xembly.Directives;
 import org.xembly.Xembler;
@@ -45,7 +45,7 @@ import org.xembly.Xembler;
  * @version $Id$
  * @since 0.10.1
  */
-@Loggable(Loggable.INFO)
+@Loggable
 public final class XemblerProf {
 
     /**

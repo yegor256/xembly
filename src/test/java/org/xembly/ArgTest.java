@@ -31,7 +31,8 @@ package org.xembly;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Arg}.
@@ -47,7 +48,7 @@ public final class ArgTest {
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void escapesAndUnescaped() throws Exception {
-        final String[] texts = new String[] {
+        final String[] texts = {
             "",
             "123",
             "test \u20ac привет & <>'\"\\",
@@ -63,20 +64,22 @@ public final class ArgTest {
 
     /**
      * Arg can reject to escape invalid text.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = XmlContentException.class)
-    public void rejectsToEscapeInvalidXmlChars() throws Exception {
-        new Arg("\u001b\u0000").toString();
+    @Test
+    public void rejectsToEscapeInvalidXmlChars() {
+        Assertions.assertThrows(XmlContentException.class, () -> {
+            new Arg("\u001b\u0000").toString();
+        });
     }
 
     /**
      * Arg can reject to unescape invalid text.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = XmlContentException.class)
-    public void rejectsToUnEscapeInvalidXmlChars() throws Exception {
-        Arg.unescape("&#27;&#0000;");
+    @Test
+    public void rejectsToUnEscapeInvalidXmlChars() {
+        Assertions.assertThrows(XmlContentException.class, () ->
+            Arg.unescape("&#27;&#0000;")
+        );
     }
 
 }

@@ -33,7 +33,7 @@ import com.jcabi.aspects.Loggable;
 import com.jcabi.aspects.Tv;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.xembly.Directives;
 
 /**
@@ -42,7 +42,7 @@ import org.xembly.Directives;
  * @version $Id$
  * @since 0.10.1
  */
-@Loggable(Loggable.INFO)
+@Loggable
 public final class DirectivesProf {
 
     /**

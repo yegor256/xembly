@@ -33,7 +33,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.50.3</version>
+    <version>0.50.4</version>
   </parent>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
@@ -91,7 +91,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.4.0</version>
     </dependency>
     <dependency>
       <groupId>org.antlr</groupId>
@@ -200,8 +204,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0</version>
         <configuration>
+          <source>8</source>
           <tags>
             <tag>
               <name>todo</name>

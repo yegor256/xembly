@@ -33,7 +33,8 @@ import com.jcabi.matchers.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 /**
@@ -51,11 +52,8 @@ public final class StrictDirectiveTest {
     public void checksNumberOfCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[]{
-                    "ADD 'root'; ADD 'foo'; ADD 'bar';",
-                    "ADD 'boom'; XPATH '//*'; STRICT '4';",
-                }
-            )
+                "ADD 'root'; ADD 'foo'; ADD 'bar';",
+                "ADD 'boom'; XPATH '//*'; STRICT '4';")
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -71,47 +69,50 @@ public final class StrictDirectiveTest {
 
     /**
      * StrictDirective can fail when number of current nodes is too big.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = ImpossibleModificationException.class)
-    public void failsWhenNumberOfCurrentNodesIsTooBig() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
-        );
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("f"));
-        new Xembler(dirs).apply(dom);
+    @Test
+    public void failsWhenNumberOfCurrentNodesIsTooBig() {
+        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
+            final Iterable<Directive> dirs = new Directives(
+                "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
+            );
+            final Document dom = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+            dom.appendChild(dom.createElement("f"));
+            new Xembler(dirs).apply(dom);
+        });
     }
 
     /**
      * StrictDirective can fail when number of current nodes is zero.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = ImpossibleModificationException.class)
-    public void failsWhenNumberOfCurrentNodesIsZero() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
-        );
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("z"));
-        new Xembler(dirs).apply(dom);
+    @Test
+    public void failsWhenNumberOfCurrentNodesIsZero() {
+        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
+            final Iterable<Directive> dirs = new Directives(
+                "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
+            );
+            final Document dom = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+            dom.appendChild(dom.createElement("z"));
+            new Xembler(dirs).apply(dom);
+        });
     }
 
     /**
      * StrictDirective can fail when number of current nodes is too small.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = ImpossibleModificationException.class)
-    public void failsWhenNumberOfCurrentNodesIsTooSmall() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'bar'; STRICT '2';"
-        );
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("x"));
-        new Xembler(dirs).apply(dom);
+    @Test
+    public void failsWhenNumberOfCurrentNodesIsTooSmall() {
+        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
+            final Iterable<Directive> dirs = new Directives(
+                "ADD 'bar'; STRICT '2';"
+            );
+            final Document dom = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+            dom.appendChild(dom.createElement("x"));
+            new Xembler(dirs).apply(dom);
+        });
     }
 
 }

@@ -32,7 +32,7 @@ package org.xembly;
 import com.jcabi.matchers.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 /**

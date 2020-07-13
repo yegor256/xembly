@@ -32,7 +32,8 @@ package org.xembly;
 import com.jcabi.matchers.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 /**
@@ -62,17 +63,18 @@ public final class UpDirectiveTest {
 
     /**
      * UpDirective can throw when there are no parents.
-     * @throws Exception If some problem inside
      */
-    @Test(expected = ImpossibleModificationException.class)
-    public void throwsWhenNoParents() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'foo'; UP; UP; UP;"
-        );
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        dom.appendChild(dom.createElement("boom"));
-        new Xembler(dirs).apply(dom);
+    @Test
+    public void throwsWhenNoParents() {
+        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
+            final Iterable<Directive> dirs = new Directives(
+                "ADD 'foo'; UP; UP; UP;"
+            );
+            final Document dom = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder().newDocument();
+            dom.appendChild(dom.createElement("boom"));
+            new Xembler(dirs).apply(dom);
+        });
     }
 
 }
