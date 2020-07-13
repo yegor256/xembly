@@ -53,7 +53,7 @@ final class UpDirective implements Directive {
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        final Collection<Node> parents = new HashSet<Node>(cursor.size());
+        final Collection<Node> parents = new HashSet<>(cursor.size());
         for (final Node node : cursor) {
             final Node parent = node.getParentNode();
             if (parent == null) {

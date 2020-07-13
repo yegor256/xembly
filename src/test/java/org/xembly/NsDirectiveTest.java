@@ -37,11 +37,9 @@ import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Validates NsDirective class.
- * @author Dmitri Pisarenko (dp@altruix.co)
  * @since 0.19.3
  * @checkstyle MultipleStringLiteralsCheck (500 lines)
  */
@@ -56,13 +54,14 @@ public final class NsDirectiveTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");
         dom.appendChild(root);
-        new NsDirective(new Arg("somens")).exec(
-            dom, new DomCursor(Collections.<Node>singletonList(root)),
+        final String name = "somens";
+        new NsDirective(new Arg(name)).exec(
+            dom, new DomCursor(Collections.singletonList(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(
             new XMLDocument(dom).toString(),
-            XhtmlMatchers.hasXPath("/ns1:f", "somens")
+            XhtmlMatchers.hasXPath("/ns1:f", name)
         );
     }
 }

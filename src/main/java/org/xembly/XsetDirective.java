@@ -79,7 +79,7 @@ final class XsetDirective implements Directive {
         throws ImpossibleModificationException {
         final XPath xpath = XsetDirective.FACTORY.newXPath();
         final ConcurrentMap<Node, String> values =
-            new ConcurrentHashMap<Node, String>(0);
+            new ConcurrentHashMap<>(0);
         for (final Node node : cursor) {
             try {
                 values.put(

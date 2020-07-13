@@ -283,6 +283,7 @@ public final class Xembler {
      * @checkstyle CyclomaticComplexity (20 lines)
      * @checkstyle BooleanExpressionComplexity (20 lines)
      */
+    @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
     public static String escape(final String text) {
         final StringBuilder output = new StringBuilder(text.length());
         final char[] chars = text.toCharArray();

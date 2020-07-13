@@ -49,6 +49,8 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link Xembler}.
+ *
+ * @since 0.1
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public final class XemblerTest {

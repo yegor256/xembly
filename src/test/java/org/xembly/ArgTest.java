@@ -36,6 +36,8 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Arg}.
+ *
+ * @since 0.1
  */
 public final class ArgTest {
 
@@ -65,9 +67,10 @@ public final class ArgTest {
      */
     @Test
     public void rejectsToEscapeInvalidXmlChars() {
-        Assertions.assertThrows(XmlContentException.class, () -> {
-            new Arg("\u001b\u0000").toString();
-        });
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> new Arg("\u001b\u0000").toString()
+        );
     }
 
     /**
@@ -75,8 +78,9 @@ public final class ArgTest {
      */
     @Test
     public void rejectsToUnEscapeInvalidXmlChars() {
-        Assertions.assertThrows(XmlContentException.class, () ->
-            Arg.unescape("&#27;&#0000;")
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("&#27;&#0000;")
         );
     }
 

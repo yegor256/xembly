@@ -36,7 +36,7 @@ import java.util.Iterator;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Node;
 
-/*
+/**
  * Cursor at DOM.
  *
  * <p>The class is immutable and thread-safe.

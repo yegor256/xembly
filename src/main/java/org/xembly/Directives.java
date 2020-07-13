@@ -45,7 +45,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/*
+/**
  * Collection of {@link Directive}s, instantiable from {@link String}.
  *
  * <p>For example, to fetch directives from a string and apply to the
@@ -178,7 +178,11 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.13
      * @checkstyle CyclomaticComplexity (50 lines)
      */
-    @SuppressWarnings("PMD.StdCyclomaticComplexity")
+    @SuppressWarnings(
+        {
+            "PMD.StdCyclomaticComplexity", "PMD.InefficientEmptyStringCheck"
+        }
+    )
     public static Iterable<Directive> copyOf(final Node node) {
         final Directives dirs = new Directives();
         if (node.hasAttributes()) {
@@ -293,9 +297,9 @@ public final class Directives implements Iterable<Directive> {
      * exception will be thrown. To avoid this, it is recommended to use
      * {@link Xembler#escape(String)}.
      *
+     * @param nodes Names and values of nodes to add
      * @param <K> Type of key
      * @param <V> Type of value
-     * @param nodes Names and values of nodes to add
      * @return This object
      * @since 0.8
      */

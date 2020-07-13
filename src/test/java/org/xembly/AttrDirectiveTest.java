@@ -41,6 +41,8 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AddDirective}.
+ *
+ * @since 0.1
  */
 public final class AttrDirectiveTest {
 

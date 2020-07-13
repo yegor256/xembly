@@ -38,6 +38,8 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link UpDirective}.
+ *
+ * @since 0.1
  */
 public final class UpDirectiveTest {
 
@@ -64,15 +66,18 @@ public final class UpDirectiveTest {
      */
     @Test
     public void throwsWhenNoParents() {
-        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
-            final Iterable<Directive> dirs = new Directives(
-                "ADD 'foo'; UP; UP; UP;"
-            );
-            final Document dom = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().newDocument();
-            dom.appendChild(dom.createElement("boom"));
-            new Xembler(dirs).apply(dom);
-        });
+        Assertions.assertThrows(
+            ImpossibleModificationException.class,
+            () -> {
+                final Iterable<Directive> dirs = new Directives(
+                    "ADD 'foo'; UP; UP; UP;"
+                );
+                final Document dom = DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().newDocument();
+                dom.appendChild(dom.createElement("boom"));
+                new Xembler(dirs).apply(dom);
+            }
+        );
     }
 
 }

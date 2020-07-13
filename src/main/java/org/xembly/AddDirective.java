@@ -68,7 +68,7 @@ final class AddDirective implements Directive {
     @Override
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack) {
-        final Collection<Node> targets = new ArrayList<Node>(cursor.size());
+        final Collection<Node> targets = new ArrayList<>(cursor.size());
         final String label = this.name.raw();
         final Document doc;
         if (dom.getOwnerDocument() == null) {

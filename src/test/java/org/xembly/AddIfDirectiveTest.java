@@ -40,6 +40,8 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AddIfDirective}.
+ *
+ * @since 0.1
  */
 public final class AddIfDirectiveTest {
 

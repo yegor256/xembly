@@ -42,6 +42,8 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link SetDirective}.
+ *
+ * @since 0.1
  */
 public final class SetDirectiveTest {
 
@@ -55,7 +57,8 @@ public final class SetDirectiveTest {
             StringUtils.join(
                 "ADD 'root'; ADD 'foo';",
                 "SET '&quot;Bonnie &amp; Clyde&quot;';",
-                "UP; ADD 'cops'; SET 'everywhere';")
+                "UP; ADD 'cops'; SET 'everywhere';"
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -74,9 +77,10 @@ public final class SetDirectiveTest {
      */
     @Test
     public void rejectsContentWithInvalidXmlCharacters() {
-        Assertions.assertThrows(SyntaxException.class, () -> {
-            new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';");
-        });
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';")
+        );
     }
 
     /**

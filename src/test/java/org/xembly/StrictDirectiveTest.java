@@ -39,6 +39,8 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link StrictDirective}.
+ *
+ * @since 0.1
  */
 public final class StrictDirectiveTest {
 
@@ -51,7 +53,8 @@ public final class StrictDirectiveTest {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 "ADD 'root'; ADD 'foo'; ADD 'bar';",
-                "ADD 'boom'; XPATH '//*'; STRICT '4';")
+                "ADD 'boom'; XPATH '//*'; STRICT '4';"
+            )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -70,15 +73,18 @@ public final class StrictDirectiveTest {
      */
     @Test
     public void failsWhenNumberOfCurrentNodesIsTooBig() {
-        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
-            final Iterable<Directive> dirs = new Directives(
-                "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
-            );
-            final Document dom = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().newDocument();
-            dom.appendChild(dom.createElement("f"));
-            new Xembler(dirs).apply(dom);
-        });
+        Assertions.assertThrows(
+            ImpossibleModificationException.class,
+            () -> {
+                final Iterable<Directive> dirs = new Directives(
+                    "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
+                );
+                final Document dom = DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().newDocument();
+                dom.appendChild(dom.createElement("f"));
+                new Xembler(dirs).apply(dom);
+            }
+        );
     }
 
     /**
@@ -86,15 +92,18 @@ public final class StrictDirectiveTest {
      */
     @Test
     public void failsWhenNumberOfCurrentNodesIsZero() {
-        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
-            final Iterable<Directive> dirs = new Directives(
-                "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
-            );
-            final Document dom = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().newDocument();
-            dom.appendChild(dom.createElement("z"));
-            new Xembler(dirs).apply(dom);
-        });
+        Assertions.assertThrows(
+            ImpossibleModificationException.class,
+            () -> {
+                final Iterable<Directive> dirs = new Directives(
+                    "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
+                );
+                final Document dom = DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().newDocument();
+                dom.appendChild(dom.createElement("z"));
+                new Xembler(dirs).apply(dom);
+            }
+        );
     }
 
     /**
@@ -102,15 +111,18 @@ public final class StrictDirectiveTest {
      */
     @Test
     public void failsWhenNumberOfCurrentNodesIsTooSmall() {
-        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
-            final Iterable<Directive> dirs = new Directives(
-                "ADD 'bar'; STRICT '2';"
-            );
-            final Document dom = DocumentBuilderFactory.newInstance()
-                .newDocumentBuilder().newDocument();
-            dom.appendChild(dom.createElement("x"));
-            new Xembler(dirs).apply(dom);
-        });
+        Assertions.assertThrows(
+            ImpossibleModificationException.class,
+            () -> {
+                final Iterable<Directive> dirs = new Directives(
+                    "ADD 'bar'; STRICT '2';"
+                );
+                final Document dom = DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().newDocument();
+                dom.appendChild(dom.createElement("x"));
+                new Xembler(dirs).apply(dom);
+            }
+        );
     }
 
 }

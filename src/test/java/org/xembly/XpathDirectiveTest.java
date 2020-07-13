@@ -42,6 +42,8 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link XpathDirective}.
+ *
+ * @since 0.1
  */
 public final class XpathDirectiveTest {
 

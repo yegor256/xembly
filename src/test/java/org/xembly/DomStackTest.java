@@ -37,6 +37,7 @@ import org.mockito.Mockito;
 
 /**
  * Test case for {@link DomStack}.
+ *
  * @since 0.21
  */
 public final class DomStackTest {
@@ -68,8 +69,9 @@ public final class DomStackTest {
      */
     @Test
     public void throwsExceptionOnEmpty() {
-        Assertions.assertThrows(ImpossibleModificationException.class, () -> {
-            new DomStack().pop();
-        });
+        Assertions.assertThrows(
+            ImpossibleModificationException.class,
+            () -> new DomStack().pop()
+        );
     }
 }

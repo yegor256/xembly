@@ -41,6 +41,8 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link XsetDirective}.
+ *
+ * @since 0.1
  */
 public final class XsetDirectiveTest {
 

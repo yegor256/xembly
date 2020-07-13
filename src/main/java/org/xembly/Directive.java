@@ -73,6 +73,7 @@ public interface Directive {
          */
         void push(Directive.Cursor cursor)
             throws ImpossibleModificationException;
+
         /**
          * Pop cursor (runtime exception if stack is empty).
          * @return Cursor recently added

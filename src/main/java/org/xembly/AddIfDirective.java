@@ -68,7 +68,7 @@ final class AddIfDirective implements Directive {
     @Override
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack) {
-        final Collection<Node> targets = new ArrayList<Node>(cursor.size());
+        final Collection<Node> targets = new ArrayList<>(cursor.size());
         final String label = this.name.raw();
         for (final Node node : cursor) {
             final NodeList kids = node.getChildNodes();

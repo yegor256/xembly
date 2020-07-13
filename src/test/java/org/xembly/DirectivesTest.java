@@ -46,6 +46,8 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link Directives}.
+ *
+ * @since 0.1
  */
 @SuppressWarnings({"PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals"})
 public final class DirectivesTest {
@@ -83,10 +85,7 @@ public final class DirectivesTest {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '//orders[@id=\"152\"]'; SET 'test';"
         );
-        MatcherAssert.assertThat(
-            dirs,
-            Matchers.<Directive>iterableWithSize(2)
-        );
+        MatcherAssert.assertThat(dirs, Matchers.iterableWithSize(2));
     }
 
     /**
@@ -94,9 +93,10 @@ public final class DirectivesTest {
      */
     @Test
     public void throwsOnBrokenGrammar() {
-        Assertions.assertThrows(SyntaxException.class, () -> {
-            new Directives("not a xembly at all");
-        });
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("not a xembly at all")
+        );
     }
 
     /**
@@ -104,9 +104,10 @@ public final class DirectivesTest {
      */
     @Test
     public void throwsOnBrokenXmlContent() {
-        Assertions.assertThrows(SyntaxException.class, () -> {
-            new Directives("ADD '\u001b';");
-        });
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD '\u001b';")
+        );
     }
 
     /**
@@ -114,9 +115,10 @@ public final class DirectivesTest {
      */
     @Test
     public void throwsOnBrokenEscapedXmlContent() {
-        Assertions.assertThrows(SyntaxException.class, () -> {
-            new Directives("ADD '&#27;';");
-        });
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD '&#27;';")
+        );
     }
 
     /**
@@ -203,6 +205,7 @@ public final class DirectivesTest {
                 )
             ).node()
         );
+        // @checkstyle MagicNumber (1 line)
         MatcherAssert.assertThat(copy, Matchers.iterableWithSize(19));
         new Xembler(new Directives().add("dudes").append(copy)).apply(dom);
         MatcherAssert.assertThat(

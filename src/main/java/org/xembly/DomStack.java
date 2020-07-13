@@ -48,7 +48,7 @@ final class DomStack implements Directive.Stack {
      * Queue of cursors.
      */
     private final transient Deque<Directive.Cursor> cursors =
-        new LinkedList<Directive.Cursor>();
+        new LinkedList<>();
 
     @Override
     public void push(final Directive.Cursor cursor) {

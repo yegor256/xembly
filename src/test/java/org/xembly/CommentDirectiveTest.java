@@ -37,6 +37,8 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link CommentDirective}.
+ *
+ * @since 0.1
  */
 public final class CommentDirectiveTest {
 
