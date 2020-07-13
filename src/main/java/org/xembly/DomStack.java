@@ -59,14 +59,14 @@ final class DomStack implements Directive.Stack {
 
     @Override
     public Directive.Cursor pop() throws ImpossibleModificationException {
-        try {
-            synchronized (this.cursors) {
+        synchronized (this.cursors) {
+            try {
                 return this.cursors.pop();
+            } catch (final NoSuchElementException ex) {
+                throw new ImpossibleModificationException(
+                    "Stack is empty, can't POP", ex
+                );
             }
-        } catch (final NoSuchElementException ex) {
-            throw new ImpossibleModificationException(
-                "stack is empty, can't POP", ex
-            );
         }
     }
 }
