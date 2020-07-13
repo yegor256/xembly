@@ -245,11 +245,8 @@ public final class XemblerTest {
                 "ADDIF 'blow';REMOVE;ADDIF 'blow';"
             )
         );
-        final int capacity = 10000;
-        final Collection<Callable<Node>> tasks =
-            new ArrayList<Callable<Node>>(
-                capacity
-            );
+        final int capacity = 10_000;
+        final Collection<Callable<Node>> tasks = new ArrayList<>(capacity);
         for (int idx = 0; idx < capacity; ++idx) {
             final Callable<Node> callable = XemblerTest.callable(
                 xembler, root

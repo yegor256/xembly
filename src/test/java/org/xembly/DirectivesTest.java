@@ -47,7 +47,7 @@ import org.w3c.dom.Document;
 /**
  * Test case for {@link Directives}.
  */
-@SuppressWarnings("PMD.TooManyMethods")
+@SuppressWarnings({"PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals"})
 public final class DirectivesTest {
 
     /**

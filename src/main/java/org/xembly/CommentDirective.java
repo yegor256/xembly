@@ -33,7 +33,7 @@ import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-/*
+/**
  * COMMENT directive.
  *
  * <p>The class is immutable and thread-safe.

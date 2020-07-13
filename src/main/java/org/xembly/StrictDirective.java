@@ -83,7 +83,7 @@ final class StrictDirective implements Directive {
             throw new ImpossibleModificationException(
                 String.format(
                     "%d current nodes [%s] while strictly %d expected",
-                    cursor.size(), this.names(cursor), this.number
+                    cursor.size(), StrictDirective.names(cursor), this.number
                 )
             );
         }
@@ -95,7 +95,7 @@ final class StrictDirective implements Directive {
      * @param nodes Collection of nodes
      * @return Text presentation of them
      */
-    private String names(final Iterable<Node> nodes) {
+    private static String names(final Iterable<Node> nodes) {
         final StringBuilder text = new StringBuilder(0);
         for (final Node node : nodes) {
             if (text.length() > 0) {

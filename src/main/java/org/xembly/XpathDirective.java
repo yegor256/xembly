@@ -140,7 +140,7 @@ final class XpathDirective implements Directive {
         final Node dom, final Collection<Node> current)
         throws ImpossibleModificationException {
         final XPath xpath = XpathDirective.FACTORY.get().newXPath();
-        final Collection<Node> targets = new HashSet<Node>(0);
+        final Collection<Node> targets = new HashSet<>(0);
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
             try {
@@ -173,7 +173,7 @@ final class XpathDirective implements Directive {
             if (dom.getOwnerDocument() == null) {
                 roots = Collections.singletonList(dom);
             } else {
-                roots = Collections.<Node>singletonList(
+                roots = Collections.singletonList(
                     dom.getOwnerDocument().getDocumentElement()
                 );
             }

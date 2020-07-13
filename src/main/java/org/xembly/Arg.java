@@ -52,10 +52,7 @@ final class Arg {
      * @throws XmlContentException If fails
      */
     Arg(final String val) throws XmlContentException {
-        for (final char chr : val.toCharArray()) {
-            Arg.legal(chr);
-        }
-        this.value = val;
+        this.value = Arg.ifValid(val);
     }
 
     @Override
@@ -201,6 +198,19 @@ final class Arg {
                 )
             );
         }
+    }
+
+    /**
+     * Check it for validity and return.
+     * @param val The XML string
+     * @return Itself
+     * @throws XmlContentException If fails
+     */
+    private static String ifValid(final String val) throws XmlContentException {
+        for (final char chr : val.toCharArray()) {
+            Arg.legal(chr);
+        }
+        return val;
     }
 
 }
