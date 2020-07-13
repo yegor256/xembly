@@ -44,7 +44,7 @@ import org.xembly.Xembler;
  * @since 0.10.1
  */
 @Loggable
-public final class XemblerProf {
+public final class XemblerProfTest {
 
     /**
      * Xembler can modify DOM.

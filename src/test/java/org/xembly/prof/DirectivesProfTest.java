@@ -41,7 +41,7 @@ import org.xembly.Directives;
  * @since 0.10.1
  */
 @Loggable
-public final class DirectivesProf {
+public final class DirectivesProfTest {
 
     /**
      * Directives can parse long program.
