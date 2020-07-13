@@ -72,6 +72,7 @@ final class PiDirective implements Directive {
     }
 
     @Override
+    @SuppressWarnings("aibolit.P13")
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack) {
         final Document doc;
