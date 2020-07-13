@@ -51,6 +51,7 @@ import org.w3c.dom.NodeList;
  * @since 0.1
  */
 @EqualsAndHashCode(of = "expr")
+@SuppressWarnings("aibolit.P13")
 final class XpathDirective implements Directive {
 
     /**
