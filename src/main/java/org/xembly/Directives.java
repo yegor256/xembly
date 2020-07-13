@@ -155,7 +155,9 @@ public final class Directives implements Iterable<Directive> {
      */
     @SuppressWarnings(
         {
-            "PMD.StdCyclomaticComplexity", "PMD.InefficientEmptyStringCheck"
+            "PMD.StdCyclomaticComplexity",
+            "PMD.InefficientEmptyStringCheck",
+            "aibolit.P20_5"
         }
     )
     public static Iterable<Directive> copyOf(final Node node) {
