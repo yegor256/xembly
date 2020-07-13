@@ -7,7 +7,7 @@ env:
 install: |-
   pip install aibolit==1.2.3rc1
   pdd --source=$(pwd) --file=/dev/null
-  aibolit check
+  aibolit check --folder=src/main
 merge:
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
