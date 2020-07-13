@@ -20,7 +20,7 @@ script:
   - mvn clean install -Pqulice --errors --batch-mode
 before_install:
   - sudo apt-get update
-  - sudo apt-get install python3
+  - sudo apt-get install python3 python3-pip
   - rvm install 2.6.0
   - rvm use 2.6.0
 install:
