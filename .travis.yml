@@ -25,7 +25,6 @@ before_install:
   - pip3 install --upgrade pip
   - rvm install 2.6.0
   - rvm use 2.6.0
-  - python --version
   - python3 --version
   - pip3 --version
 install:
