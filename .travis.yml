@@ -26,8 +26,6 @@ before_install:
   - pip3 install --upgrade pip
   - rvm install 2.6.0
   - rvm use 2.6.0
-  - python3 --version
-  - pip3 --version
 install:
   - gem install pdd -v 0.20.5
   - gem install est -v 0.3.4

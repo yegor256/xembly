@@ -33,7 +33,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.50.4</version>
+    <version>0.50.5</version>
   </parent>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
@@ -217,18 +217,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <tags>
-            <tag>
-              <name>todo</name>
-              <placement>X</placement>
-            </tag>
-            <tag>
-              <name>checkstyle</name>
-              <placement>X</placement>
-            </tag>
-          </tags>
-        </configuration>
         <executions>
           <execution>
             <id>javadoc-generate</id>
@@ -241,27 +229,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </plugin>
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0</version>
-        <configuration>
-          <tags>
-            <tag>
-              <name>todo</name>
-              <placement>X</placement>
-            </tag>
-            <tag>
-              <name>checkstyle</name>
-              <placement>X</placement>
-            </tag>
-          </tags>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
   <profiles>
     <profile>
       <id>prof</id>
