@@ -6,6 +6,7 @@ env:
   MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 install: |-
   pip install aibolit==1.2.3rc2
+  export PATH=${PATH}:$(pwd)/.local/bin
   pdd --source=$(pwd) --file=/dev/null
   aibolit check --folder=src/main
 merge:
