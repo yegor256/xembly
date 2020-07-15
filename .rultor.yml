@@ -5,6 +5,7 @@ assets:
 env:
   MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 install: |-
+  sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
   export PATH=${PATH}:$(pwd)/../.local/bin
   pip3 install --upgrade pip
   pip3 install aibolit==1.2.3rc2
