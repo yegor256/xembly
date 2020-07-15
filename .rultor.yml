@@ -5,7 +5,7 @@ assets:
 env:
   MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 install: |-
-  export PATH=${PATH}:$(pwd)/.local/bin
+  export PATH=${PATH}:$(pwd)/../.local/bin
   pip3 install --upgrade pip
   pip3 install aibolit==1.2.3rc2
   pdd --source=$(pwd) --file=/dev/null
