@@ -38,16 +38,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <bannerLeft>
     <name>xembly.org</name>
     <src>/logo.png</src>
-    <href>http://www.xembly.org/</href>
+    <href>https://www.xembly.org/</href>
     <width>64</width>
     <height>64</height>
   </bannerLeft>
   <body>
     <head>
-      <link href="http://img.xembly.org/favicon.ico" rel="shortcut icon"/>
+      &lt;link href="https://img.xembly.org/favicon.ico" rel="shortcut icon"/&gt;
     </head>
     <breadcrumbs>
-      <item name="xembly.com" href="http://www.xembly.org"/>
+      <item name="xembly.com" href="https://www.xembly.org"/>
     </breadcrumbs>
     <menu name="Overview">
       <item name="Introduction" href="./index.html"/>
