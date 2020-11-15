@@ -34,7 +34,7 @@ package org.xembly;
  *
  * @since 0.3
  */
-public final class SyntaxException extends Exception {
+public final class SyntaxException extends RuntimeException {
 
     /**
      * Serialization marker.

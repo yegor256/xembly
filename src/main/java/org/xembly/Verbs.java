@@ -30,11 +30,12 @@
 package org.xembly;
 
 import java.util.Collection;
-import org.antlr.runtime.ANTLRStringStream;
-import org.antlr.runtime.CharStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.TokenStream;
+import org.antlr.v4.runtime.ANTLRErrorListener;
+import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
 
 /**
  * Directives in plain text.
@@ -59,16 +60,32 @@ final class Verbs {
     /**
      * Parse script.
      * @return Collection of directives
-     * @throws SyntaxException If can't parse
      */
-    public Collection<Directive> directives() throws SyntaxException {
-        final CharStream input = new ANTLRStringStream(this.text);
-        final XemblyLexer lexer = new XemblyLexer(input);
-        final TokenStream tokens = new CommonTokenStream(lexer);
-        final XemblyParser parser = new XemblyParser(tokens);
+    public Collection<Directive> directives() {
+        final ANTLRErrorListener errors = new BaseErrorListener() {
+            // @checkstyle ParameterNumberCheck (10 lines)
+            @Override
+            public void syntaxError(final Recognizer<?, ?> recognizer,
+                final Object symbol, final int line,
+                final int position, final String msg,
+                final RecognitionException error) {
+                throw new SyntaxException(Verbs.this.text, error);
+            }
+        };
+        final XemblyLexer lexer = new XemblyLexer(
+            CharStreams.fromString(this.text)
+        );
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(errors);
+        final XemblyParser parser =
+            new XemblyParser(
+                new CommonTokenStream(lexer)
+            );
+        parser.removeErrorListeners();
+        parser.addErrorListener(errors);
         try {
-            return parser.directives();
-        } catch (final RecognitionException | ParsingException ex) {
+            return parser.directives().ret;
+        } catch (final ParsingException ex) {
             throw new SyntaxException(this.text, ex);
         }
     }

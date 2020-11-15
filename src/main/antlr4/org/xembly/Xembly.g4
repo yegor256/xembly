@@ -29,28 +29,14 @@
  */
 grammar Xembly;
 
-@header {
-    package org.xembly;
+@lexer::header {
     import java.util.Collection;
     import java.util.LinkedList;
 }
 
-@lexer::header {
-    package org.xembly;
-}
-
-@lexer::members {
-    @Override
-    public void emitErrorMessage(String msg) {
-        throw new ParsingException(msg);
-    }
-}
-
-@parser::members {
-    @Override
-    public void emitErrorMessage(String msg) {
-        throw new ParsingException(msg);
-    }
+@parser::header {
+    import java.util.Collection;
+    import java.util.LinkedList;
 }
 
 directives returns [Collection<Directive> ret]
