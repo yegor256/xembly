@@ -65,12 +65,12 @@ final class Verbs {
         final XemblyLexer lexer = new XemblyLexer(
             CharStreams.fromString(this.text)
         );
-        lexer.removeErrorListeners();
-        lexer.addErrorListener(this.errors());
         final XemblyParser parser =
             new XemblyParser(
                 new CommonTokenStream(lexer)
             );
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(this.errors());
         parser.removeErrorListeners();
         parser.addErrorListener(this.errors());
         try {
