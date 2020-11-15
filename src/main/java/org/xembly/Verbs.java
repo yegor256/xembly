@@ -62,7 +62,30 @@ final class Verbs {
      * @return Collection of directives
      */
     public Collection<Directive> directives() {
-        final ANTLRErrorListener errors = new BaseErrorListener() {
+        final XemblyLexer lexer = new XemblyLexer(
+            CharStreams.fromString(this.text)
+        );
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(this.errors());
+        final XemblyParser parser =
+            new XemblyParser(
+                new CommonTokenStream(lexer)
+            );
+        parser.removeErrorListeners();
+        parser.addErrorListener(this.errors());
+        try {
+            return parser.directives().ret;
+        } catch (final ParsingException ex) {
+            throw new SyntaxException(this.text, ex);
+        }
+    }
+
+    /**
+     * Errors listener.
+     * @return Listener
+     */
+    private ANTLRErrorListener errors() {
+        return new BaseErrorListener() {
             // @checkstyle ParameterNumberCheck (10 lines)
             @Override
             public void syntaxError(final Recognizer<?, ?> recognizer,
@@ -72,22 +95,6 @@ final class Verbs {
                 throw new SyntaxException(Verbs.this.text, error);
             }
         };
-        final XemblyLexer lexer = new XemblyLexer(
-            CharStreams.fromString(this.text)
-        );
-        lexer.removeErrorListeners();
-        lexer.addErrorListener(errors);
-        final XemblyParser parser =
-            new XemblyParser(
-                new CommonTokenStream(lexer)
-            );
-        parser.removeErrorListeners();
-        parser.addErrorListener(errors);
-        try {
-            return parser.directives().ret;
-        } catch (final ParsingException ex) {
-            throw new SyntaxException(this.text, ex);
-        }
     }
 
 }
