@@ -37,7 +37,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </parent>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.25.0</version>
   <packaging>jar</packaging>
   <name>xembly</name>
   <description>Assembly for XML</description>
