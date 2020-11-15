@@ -97,11 +97,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <artifactId>mockito-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>xml-apis</groupId>
       <artifactId>xml-apis</artifactId>
       <scope>provided</scope>
