@@ -8,7 +8,7 @@
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/xembly)](http://www.0pdd.com/p?name=yegor256/xembly)
 [![Coverage Status](https://coveralls.io/repos/yegor256/xembly/badge.svg?branch=master&service=github)](https://coveralls.io/github/yegor256/xembly?branch=master)
 [![codebeat badge](https://codebeat.co/badges/c07bdf31-182b-4e4d-a25e-df405c1d877d)](https://codebeat.co/projects/github-com-yegor256-xembly)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2609eb5f77c24bf7a858f8633b4fbf7d)](https://www.codacy.com/app/github_90/xembly?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yegor256/xembly&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f244032e289f4fc2a8d9db8c84251490)](https://www.codacy.com/gh/yegor256/xembly/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yegor256/xembly&amp;utm_campaign=Badge_Grade)
 
 [![Javadoc](http://www.javadoc.io/badge/com.jcabi.incubator/xembly.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
