@@ -1,21 +1,19 @@
-<img src="http://www.xembly.org/logo.png" width="64px" height="64px" />
+<img alt="logo" src="http://www.xembly.org/logo.png" width="64px" height="64px" />
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![Managed by Zerocracy](https://www.0crat.com/badge/C3RUBL5H9.svg)](https://www.0crat.com/p/C3RUBL5H9)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![Build Status](https://travis-ci.org/yegor256/xembly.svg?branch=master)](https://travis-ci.org/yegor256/xembly)
-[![Build status](https://ci.appveyor.com/api/projects/status/e5sbjdlhbrpahr8b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/xembly/branch/master)
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/xembly)](http://www.0pdd.com/p?name=yegor256/xembly)
 [![Coverage Status](https://coveralls.io/repos/yegor256/xembly/badge.svg?branch=master&service=github)](https://coveralls.io/github/yegor256/xembly?branch=master)
 [![codebeat badge](https://codebeat.co/badges/c07bdf31-182b-4e4d-a25e-df405c1d877d)](https://codebeat.co/projects/github-com-yegor256-xembly)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2609eb5f77c24bf7a858f8633b4fbf7d)](https://www.codacy.com/app/github_90/xembly?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yegor256/xembly&amp;utm_campaign=Badge_Grade)
 
-[![JavaDoc](https://img.shields.io/badge/javadoc-html-blue.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
-[![jpeek report](https://i.jpeek.org/com.jcabi.incubator/xembly/badge.svg)](https://i.jpeek.org/com.jcabi.incubator/xembly/)
+[![Javadoc](http://www.javadoc.io/badge/com.jcabi.incubator/xembly.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/xembly)](https://hitsofcode.com/view/github/yegor256/xembly)
+![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/xembly)
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
