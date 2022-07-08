@@ -5,6 +5,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
+[![mvn](https://github.com/yegor256/xembly/actions/workflows/mvn.yml/badge.svg)](https://github.com/yegor256/xembly/actions/workflows/mvn.yml)
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/xembly)](http://www.0pdd.com/p?name=yegor256/xembly)
 [![Coverage Status](https://coveralls.io/repos/yegor256/xembly/badge.svg?branch=master&service=github)](https://coveralls.io/github/yegor256/xembly?branch=master)
 [![codebeat badge](https://codebeat.co/badges/c07bdf31-182b-4e4d-a25e-df405c1d877d)](https://codebeat.co/projects/github-com-yegor256-xembly)

@@ -32,7 +32,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <skin>
     <groupId>com.jcabi</groupId>
     <artifactId>jcabi-maven-skin</artifactId>
-    <version>1.5.1</version>
+    <version>1.7.1</version>
   </skin>
   <googleAnalyticsAccountId>UA-1963507-29</googleAnalyticsAccountId>
   <bannerLeft>

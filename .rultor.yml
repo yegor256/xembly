@@ -1,9 +1,9 @@
+docker:
+  image: yegor256/rultor-image:1.9.1
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
   settings.xml: yegor256/home#assets/xembly/settings.xml
   pubring.gpg: yegor256/home#assets/pubring.gpg
-env:
-  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 install: |-
   sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
   export PATH=${PATH}:$(pwd)/../.local/bin
@@ -15,12 +15,9 @@ merge:
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml -Dinvoker.skip
-deploy:
-  script: |-
-    mvn clean deploy -Pqulice --errors --settings ../settings.xml
 release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     mvn clean deploy -Pxembly -Psonatype --errors --settings ../settings.xml
-    # mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip
+    mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip
