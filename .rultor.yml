@@ -5,7 +5,6 @@ assets:
   settings.xml: yegor256/home#assets/xembly/settings.xml
   pubring.gpg: yegor256/home#assets/pubring.gpg
 install: |-
-  sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
   export PATH=${PATH}:$(pwd)/../.local/bin
   pip3 install --upgrade pip
   pip3 install aibolit==1.2.3rc2
