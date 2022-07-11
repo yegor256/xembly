@@ -38,7 +38,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Test case for {@link PiDirective}.
@@ -84,7 +83,7 @@ public final class PiDirectiveTest {
         final Element root = dom.createElement("xxx");
         dom.appendChild(root);
         new PiDirective("x", "y").exec(
-            dom, new DomCursor(Collections.<Node>emptyList()),
+            dom, new DomCursor(Collections.emptyList()),
             new DomStack()
         );
         MatcherAssert.assertThat(

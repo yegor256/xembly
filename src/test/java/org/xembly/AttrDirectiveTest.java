@@ -37,7 +37,6 @@ import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AddDirective}.
@@ -88,7 +87,7 @@ public final class AttrDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new AttrDirective("x", "y").exec(
-            dom, new DomCursor(Collections.<Node>singletonList(second)),
+            dom, new DomCursor(Collections.singletonList(second)),
             new DomStack()
         );
         MatcherAssert.assertThat(
@@ -109,7 +108,7 @@ public final class AttrDirectiveTest {
         final Element root = dom.createElement("f");
         dom.appendChild(root);
         new AttrDirective("Price", "\u20ac50").exec(
-            dom, new DomCursor(Collections.<Node>singletonList(root)),
+            dom, new DomCursor(Collections.singletonList(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(

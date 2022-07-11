@@ -49,13 +49,4 @@ final class XmlContentException extends Exception {
         super(cause);
     }
 
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     * @param thr Original throwable
-     */
-    XmlContentException(final String cause, final Throwable thr) {
-        super(cause, thr);
-    }
-
 }

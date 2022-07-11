@@ -37,7 +37,6 @@ import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Test case for {@link XsetDirective}.
@@ -92,7 +91,7 @@ public final class XsetDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new XsetDirective("sum(/xxx/*/text()) + 5").exec(
-            dom, new DomCursor(Collections.<Node>singletonList(first)),
+            dom, new DomCursor(Collections.singletonList(first)),
             new DomStack()
         );
         MatcherAssert.assertThat(

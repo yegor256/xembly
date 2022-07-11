@@ -58,12 +58,7 @@ final class XpathDirective implements Directive {
      * XPath factory.
      */
     private static final ThreadLocal<XPathFactory> FACTORY =
-        new ThreadLocal<XPathFactory>() {
-            @Override
-            protected XPathFactory initialValue() {
-                return XPathFactory.newInstance();
-            }
-        };
+        ThreadLocal.withInitial(XPathFactory::newInstance);
 
     /**
      * Pattern to match root-only XPath queries.

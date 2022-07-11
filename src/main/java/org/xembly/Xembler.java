@@ -76,7 +76,7 @@ import org.w3c.dom.Node;
  * a necessity to catch checked exceptions.
  * Use {@code *Quietly()} methods for that:
  * {@link #xmlQuietly()}, {@link #domQuietly()},
- * and {@link #applyQuietly(org.w3c.dom.Node)}.
+ * and {@link #applyQuietly(Node)}.
  *
  * @since 0.1
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)

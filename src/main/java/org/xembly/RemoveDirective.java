@@ -69,7 +69,7 @@ final class RemoveDirective implements Directive {
     @SuppressWarnings("aibolit.P13")
     private static Node parent(final Node node) {
         final Node parent;
-        if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
+        if ((int) node.getNodeType() == (int) Node.ATTRIBUTE_NODE) {
             final Attr attr = Attr.class.cast(node);
             parent = attr.getOwnerElement();
             Element.class.cast(parent).removeAttributeNode(attr);

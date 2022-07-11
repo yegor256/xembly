@@ -274,14 +274,8 @@ public final class XemblerTest {
      * @param document DOM object
      * @return Callable object
      */
-    private static Callable<Node> callable(
-        final Xembler xembler, final Node document
-    ) {
-        return new Callable<Node>() {
-            @Override
-            public Node call() throws Exception {
-                return xembler.apply(document);
-            }
-        };
+    private static Callable<Node> callable(final Xembler xembler,
+        final Node document) {
+        return () -> xembler.apply(document);
     }
 }

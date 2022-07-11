@@ -38,7 +38,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Test case for {@link SetDirective}.
@@ -99,7 +98,7 @@ public final class SetDirectiveTest {
         root.appendChild(second);
         dom.appendChild(root);
         new SetDirective("alpha").exec(
-            dom, new DomCursor(Arrays.<Node>asList(first, second)),
+            dom, new DomCursor(Arrays.asList(first, second)),
             new DomStack()
         );
         MatcherAssert.assertThat(

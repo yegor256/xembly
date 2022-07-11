@@ -36,7 +36,6 @@ import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AddIfDirective}.
@@ -83,7 +82,7 @@ public final class AddIfDirectiveTest {
         root.appendChild(dom.createProcessingInstruction("a12", "22"));
         dom.appendChild(root);
         new AddIfDirective("b").exec(
-            dom, new DomCursor(Collections.<Node>singleton(root)),
+            dom, new DomCursor(Collections.singleton(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(

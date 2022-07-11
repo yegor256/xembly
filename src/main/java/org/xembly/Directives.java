@@ -234,8 +234,8 @@ public final class Directives implements Iterable<Directive> {
      * Appends the {@link Node node}.
      * @param node The node to append
      * @return This object
-     * @see #append(java.lang.Iterable)
-     * @see Directives#copyOf(org.w3c.dom.Node)
+     * @see #append(Iterable)
+     * @see Directives#copyOf(Node)
      * @since 0.23
      */
     public Directives append(final Node node) {

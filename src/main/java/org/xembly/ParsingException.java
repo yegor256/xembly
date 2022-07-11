@@ -45,14 +45,6 @@ final class ParsingException extends RuntimeException {
      * Public ctor.
      * @param cause Cause of it
      */
-    ParsingException(final String cause) {
-        super(cause);
-    }
-
-    /**
-     * Public ctor.
-     * @param cause Cause of it
-     */
     ParsingException(final Throwable cause) {
         super(cause);
     }
