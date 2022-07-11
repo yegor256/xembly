@@ -118,7 +118,7 @@
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>             <strong class="jxr_keyword">new</strong> XpathDirective(<span class="jxr_string">"/*"</span>).exec(
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>                 dom,
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>                 <strong class="jxr_keyword">new</strong> DomCursor(Collections.&lt;Node&gt;singletonList(first)),
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>                 <strong class="jxr_keyword">new</strong> DomCursor(Collections.singletonList(first)),
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>                 <strong class="jxr_keyword">new</strong> DomStack()
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>             ),
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>             Matchers.hasItem(root)
@@ -136,7 +136,7 @@
 <a class="jxr_linenumber" name="L128" href="#L128">128</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>             <strong class="jxr_keyword">new</strong> XpathDirective(<span class="jxr_string">"/some-root"</span>).exec(
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>                 dom,
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>                 <strong class="jxr_keyword">new</strong> DomCursor(Collections.&lt;Node&gt;emptyList()),
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>                 <strong class="jxr_keyword">new</strong> DomCursor(Collections.emptyList()),
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>                 <strong class="jxr_keyword">new</strong> DomStack()
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>             ),
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>             Matchers.emptyIterable()

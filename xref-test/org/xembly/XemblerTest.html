@@ -282,17 +282,11 @@
 <a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     * @param document DOM object</em>
 <a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     * @return Callable object</em>
 <a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L277" href="#L277">277</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Callable&lt;Node&gt; callable(
-<a class="jxr_linenumber" name="L278" href="#L278">278</a>         <strong class="jxr_keyword">final</strong> Xembler xembler, <strong class="jxr_keyword">final</strong> Node document
-<a class="jxr_linenumber" name="L279" href="#L279">279</a>     ) {
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Callable&lt;Node&gt;() {
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>             @Override
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>             <strong class="jxr_keyword">public</strong> Node call() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L283" href="#L283">283</a>                 <strong class="jxr_keyword">return</strong> xembler.apply(document);
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>             }
-<a class="jxr_linenumber" name="L285" href="#L285">285</a>         };
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>     }
-<a class="jxr_linenumber" name="L287" href="#L287">287</a> }
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Callable&lt;Node&gt; callable(<strong class="jxr_keyword">final</strong> Xembler xembler,
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>         <strong class="jxr_keyword">final</strong> Node document) {
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>         <strong class="jxr_keyword">return</strong> () -&gt; xembler.apply(document);
+<a class="jxr_linenumber" name="L280" href="#L280">280</a>     }
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2022 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
