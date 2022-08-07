@@ -79,7 +79,6 @@ import org.w3c.dom.Node;
  * and {@link #applyQuietly(Node)}.
  *
  * @since 0.1
- * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  */
 @ToString
 @EqualsAndHashCode(of = "directives")
@@ -280,7 +279,6 @@ public final class Xembler {
      * @param text Text to escape
      * @return The same text with escaped characters, which are not XML-legal
      * @since 0.14
-     * @checkstyle MagicNumber (20 lines)
      * @checkstyle CyclomaticComplexity (20 lines)
      * @checkstyle BooleanExpressionComplexity (20 lines)
      */

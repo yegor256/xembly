@@ -205,7 +205,6 @@ public final class DirectivesTest {
                 )
             ).node()
         );
-        // @checkstyle MagicNumber (1 line)
         MatcherAssert.assertThat(copy, Matchers.iterableWithSize(19));
         new Xembler(new Directives().add("dudes").append(copy)).apply(dom);
         MatcherAssert.assertThat(

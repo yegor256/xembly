@@ -171,7 +171,6 @@ final class Arg {
      * @throws XmlContentException If illegal
      */
     private static char legal(final char chr) throws XmlContentException {
-        // @checkstyle MagicNumber (5 lines)
         Arg.range(chr, 0x00, 0x08);
         Arg.range(chr, 0x0B, 0x0C);
         Arg.range(chr, 0x0E, 0x1F);
@@ -192,7 +191,6 @@ final class Arg {
         if (chr >= left && chr <= right) {
             throw new XmlContentException(
                 String.format(
-                    // @checkstyle LineLength (1 line)
                     "Character #%02X is in the restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets",
                     (int) chr, left, right
                 )

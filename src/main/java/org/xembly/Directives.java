@@ -73,7 +73,6 @@ import org.w3c.dom.NodeList;
  * <p>The class is mutable and thread-safe.
  *
  * @since 0.1
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
  * @checkstyle ClassFanOutComplexity (500 lines)
  */
 @EqualsAndHashCode(callSuper = false, of = "all")
@@ -191,7 +190,6 @@ public final class Directives implements Iterable<Directive> {
                         } else if (!child.getTextContent().trim().isEmpty()) {
                             throw new IllegalArgumentException(
                                 String.format(
-                                    // @checkstyle LineLength (1 line)
                                     "TEXT node #%d is not allowed together with other %d nodes in %s",
                                     idx, len, child.getNodeName()
                                 )
