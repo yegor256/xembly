@@ -179,49 +179,47 @@
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">     * @throws XmlContentException If illegal</em>
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L173" href="#L173">173</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">char</strong> legal(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr) <strong class="jxr_keyword">throws</strong> XmlContentException {
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>         <em class="jxr_comment">// @checkstyle MagicNumber (5 lines)</em>
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>         Arg.range(chr, 0x00, 0x08);
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>         Arg.range(chr, 0x0B, 0x0C);
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>         Arg.range(chr, 0x0E, 0x1F);
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>         Arg.range(chr, 0x7F, 0x84);
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>         Arg.range(chr, 0x86, 0x9F);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>         <strong class="jxr_keyword">return</strong> chr;
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     }
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">     * Throw if number is in the range.</em>
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">     * @param chr Char number</em>
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">     * @param left Left number (inclusive)</em>
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">     * @param right Right number (inclusive)</em>
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">     * @throws XmlContentException If illegal</em>
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> range(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> left, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> right)
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>         <strong class="jxr_keyword">throws</strong> <a href="../../org/xembly/XmlContentException.html">XmlContentException</a> {
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>         <strong class="jxr_keyword">if</strong> (chr &gt;= left &amp;&amp; chr &lt;= right) {
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../org/xembly/XmlContentException.html">XmlContentException</a>(
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>                 String.format(
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>                     <em class="jxr_comment">// @checkstyle LineLength (1 line)</em>
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>                     <span class="jxr_string">"Character #%02X is in the restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets"</span>,
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>                     (<strong class="jxr_keyword">int</strong>) chr, left, right
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>                 )
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>             );
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>         }
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>     }
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     * Check it for validity and return.</em>
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">     * @param val The XML string</em>
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     * @return Itself</em>
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     * @throws XmlContentException If fails</em>
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String ifValid(<strong class="jxr_keyword">final</strong> String val) <strong class="jxr_keyword">throws</strong> XmlContentException {
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr : val.toCharArray()) {
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>             Arg.legal(chr);
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>         }
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>         <strong class="jxr_keyword">return</strong> val;
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>     }
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> 
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> }
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>         Arg.range(chr, 0x00, 0x08);
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>         Arg.range(chr, 0x0B, 0x0C);
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>         Arg.range(chr, 0x0E, 0x1F);
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>         Arg.range(chr, 0x7F, 0x84);
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>         Arg.range(chr, 0x86, 0x9F);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>         <strong class="jxr_keyword">return</strong> chr;
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>     }
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">     * Throw if number is in the range.</em>
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">     * @param chr Char number</em>
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">     * @param left Left number (inclusive)</em>
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">     * @param right Right number (inclusive)</em>
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">     * @throws XmlContentException If illegal</em>
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> range(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> left, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> right)
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>         <strong class="jxr_keyword">throws</strong> <a href="../../org/xembly/XmlContentException.html">XmlContentException</a> {
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>         <strong class="jxr_keyword">if</strong> (chr &gt;= left &amp;&amp; chr &lt;= right) {
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../org/xembly/XmlContentException.html">XmlContentException</a>(
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>                 String.format(
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>                     <span class="jxr_string">"Character #%02X is in the restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets"</span>,
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>                     (<strong class="jxr_keyword">int</strong>) chr, left, right
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>                 )
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>             );
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>         }
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>     }
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     * Check it for validity and return.</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">     * @param val The XML string</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     * @return Itself</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">     * @throws XmlContentException If fails</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String ifValid(<strong class="jxr_keyword">final</strong> String val) <strong class="jxr_keyword">throws</strong> XmlContentException {
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr : val.toCharArray()) {
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>             Arg.legal(chr);
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>         }
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>         <strong class="jxr_keyword">return</strong> val;
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>     }
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> 
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2022 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
