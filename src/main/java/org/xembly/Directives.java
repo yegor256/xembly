@@ -348,7 +348,7 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, ATTR(%s, %s)",
+                    "Failed to understand XML content, ATTR(%s, %s)",
                     name, value
                 ),
                 ex
@@ -377,7 +377,7 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, PI(%s, %s)",
+                    "Failed to understand XML content, PI(%s, %s)",
                     target, data
                 ),
                 ex
@@ -403,7 +403,7 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, SET(%s)",
+                    "Failed to understand XML content, SET(%s)",
                     text
                 ),
                 ex
@@ -424,8 +424,30 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, XSET(%s)",
+                    "Failed to understand XML content, XSET(%s)",
                     text
+                ),
+                ex
+            );
+        }
+        return this;
+    }
+
+    /**
+     * Set attribute.
+     * @param attr Attribute name
+     * @param text Text to set
+     * @return This object
+     * @since 0.28
+     */
+    public Directives xattr(final Object attr, final Object text) {
+        try {
+            this.all.add(new XattrDirective(attr.toString(), text.toString()));
+        } catch (final XmlContentException ex) {
+            throw new IllegalArgumentException(
+                String.format(
+                    "Failed to understand XML content, XATTR(%s, %s)",
+                    attr, text
                 ),
                 ex
             );

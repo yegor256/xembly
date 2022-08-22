@@ -89,6 +89,15 @@ directive returns [Directive ret]
         }
     }
     |
+    'XATTR' name=argument COMMA value=argument
+    {
+        try {
+            $ret = new XattrDirective($name.ret.toString(), $value.ret.toString());
+        } catch (final XmlContentException ex) {
+            throw new ParsingException(ex);
+        }
+    }
+    |
     'ADD' argument
     {
         try {

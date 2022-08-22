@@ -30,32 +30,30 @@
 package org.xembly;
 
 import com.jcabi.matchers.XhtmlMatchers;
-import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
- * Test case for {@link AttrDirective}.
+ * Test case for {@link XattrDirective}.
  *
- * @since 0.1
+ * @since 0.28
  */
-public final class AttrDirectiveTest {
+public final class XattrDirectiveTest {
 
     /**
-     * AttrDirective can add nodes to current nodes.
+     * XattrDirective can set attributes to current nodes.
      * @throws Exception If some problem inside
      */
     @Test
-    public void addsAttributesToCurrentNodes() throws Exception {
+    public void setsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{
                     "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
-                    "XPATH '//*'; ATTR 'bar', 'test';",
+                    "XPATH '//*'; XATTR 'bar', 'count(//foo)';",
                 }
             )
         );
@@ -64,56 +62,7 @@ public final class AttrDirectiveTest {
         new Xembler(dirs).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPaths(
-                "/root[count(foo) = 2]",
-                "/root[count(foo[@bar='test']) = 2]"
-            )
-        );
-    }
-
-    /**
-     * AttrDirective can add attribute to node.
-     * @throws Exception If some problem inside
-     * @since 0.7
-     */
-    @Test
-    public void addsDomAttributesDirectly() throws Exception {
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        final Element root = dom.createElement("xxx");
-        final Element first = dom.createElement("a");
-        root.appendChild(first);
-        final Element second = dom.createElement("b");
-        root.appendChild(second);
-        dom.appendChild(root);
-        new AttrDirective("x", "y").exec(
-            dom, new DomCursor(Collections.singletonList(second)),
-            new DomStack()
-        );
-        MatcherAssert.assertThat(
-            XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPath("/xxx/b[@x='y']")
-        );
-    }
-
-    /**
-     * AttrDirective can add case-sensitive attributes.
-     * @throws Exception If some problem inside
-     * @since 0.16.1
-     */
-    @Test
-    public void addsCaseSensitiveAttributesDirectly() throws Exception {
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        final Element root = dom.createElement("f");
-        dom.appendChild(root);
-        new AttrDirective("Price", "\u20ac50").exec(
-            dom, new DomCursor(Collections.singletonList(root)),
-            new DomStack()
-        );
-        MatcherAssert.assertThat(
-            XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPath("/f[@Price='\u20ac50']")
+            XhtmlMatchers.hasXPaths("/root[@bar = 2]")
         );
     }
 }

@@ -96,6 +96,7 @@ Full list of supported directives in the current version:
   * `ADDIF`: adds new node, if it's absent
   * `SET`: sets text value of current node
   * `XSET`: sets text value, calculating it with XPath
+  * `XATTR`: sets attribute value, calculating it with XPath
   * `CDATA`: same as `SET`, but makes `CDATA`
   * `UP`: moves cursor one node up
   * `XPATH`: moves cursor to the nodes found by XPath
@@ -201,6 +202,19 @@ XSET "sum(/products/price) div count(/products)";
 ```
 
 `XSET` doesn't move the cursor anywhere.
+
+### XATTR
+
+`XATTR` changes the value of an attribute of all current nodes to a value
+calculated with XPath expression:
+
+```assembly
+ADD "product-1";
+ADD "price";
+XATTR "s", "sum(/products/price) div count(/products)";
+```
+
+`XATTR` doesn't move the cursor anywhere.
 
 ### UP
 
