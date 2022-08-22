@@ -50,6 +50,7 @@ from `$45.00` to `$140.00`. Xembly script would look like:
 
 ```
 XPATH "orders/order[@id=553]";
+XPATH "amount";
 SET "$140.00";
 ```
 
