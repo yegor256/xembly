@@ -45,10 +45,6 @@ import org.w3c.dom.Element;
  */
 public final class RemoveDirectiveTest {
 
-    /**
-     * RemoveDirective can remove nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void removesCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -71,11 +67,6 @@ public final class RemoveDirectiveTest {
         );
     }
 
-    /**
-     * RemoveDirective can remove nodes.
-     * @throws Exception If some problem inside
-     * @since 0.7
-     */
     @Test
     public void removesDomNodesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()

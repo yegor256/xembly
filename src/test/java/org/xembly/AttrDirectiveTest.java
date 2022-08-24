@@ -45,10 +45,6 @@ import org.w3c.dom.Element;
  */
 public final class AttrDirectiveTest {
 
-    /**
-     * AttrDirective can add nodes to current nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -71,11 +67,6 @@ public final class AttrDirectiveTest {
         );
     }
 
-    /**
-     * AttrDirective can add attribute to node.
-     * @throws Exception If some problem inside
-     * @since 0.7
-     */
     @Test
     public void addsDomAttributesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -96,11 +87,6 @@ public final class AttrDirectiveTest {
         );
     }
 
-    /**
-     * AttrDirective can add case-sensitive attributes.
-     * @throws Exception If some problem inside
-     * @since 0.16.1
-     */
     @Test
     public void addsCaseSensitiveAttributesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()

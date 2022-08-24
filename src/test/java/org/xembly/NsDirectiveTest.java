@@ -44,10 +44,6 @@ import org.w3c.dom.Element;
  * @checkstyle MultipleStringLiteralsCheck (500 lines)
  */
 public final class NsDirectiveTest {
-    /**
-     * Verifies that NsDirective appends a namespace to a node.
-     * @throws Exception Thrown in case of an error.
-     */
     @Test
     public void setsNsAttr() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()

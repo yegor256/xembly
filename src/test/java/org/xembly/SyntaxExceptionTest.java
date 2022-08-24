@@ -40,9 +40,6 @@ import org.junit.jupiter.api.Test;
  */
 public final class SyntaxExceptionTest {
 
-    /**
-     * SyntaxException can be instantiated.
-     */
     @Test
     public void instantiatesException() {
         MatcherAssert.assertThat(

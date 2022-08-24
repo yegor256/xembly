@@ -42,10 +42,6 @@ import org.w3c.dom.Document;
  */
 public final class CommentDirectiveTest {
 
-    /**
-     * CommentDirective can add a comment.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsComment() throws Exception {
         final Iterable<Directive> dirs = new Directives(

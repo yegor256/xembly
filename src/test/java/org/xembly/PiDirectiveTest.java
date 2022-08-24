@@ -45,10 +45,6 @@ import org.w3c.dom.Element;
  */
 public final class PiDirectiveTest {
 
-    /**
-     * PiDirective can add processing instructions to current DOM.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsProcessingInstructionsToDom() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -72,10 +68,6 @@ public final class PiDirectiveTest {
         );
     }
 
-    /**
-     * PiDirective can add processing instructions to DOM.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsProcessingInstructionsDirectlyToDom() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -92,10 +84,6 @@ public final class PiDirectiveTest {
         );
     }
 
-    /**
-     * PiDirective can add processing instructions to root.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsProcessingInstructionsToDomRoot() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -112,10 +100,6 @@ public final class PiDirectiveTest {
         );
     }
 
-    /**
-     * PiDirective can prepend processing instruction.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void prependsProcessingInstructionsToDomRoot() throws Exception {
         MatcherAssert.assertThat(

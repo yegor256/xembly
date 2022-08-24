@@ -41,10 +41,6 @@ import org.junit.jupiter.api.Test;
  */
 public final class ArgTest {
 
-    /**
-     * Arg can escape and unescape.
-     * @throws Exception If some problem inside
-     */
     @Test
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void escapesAndUnescaped() throws Exception {
@@ -62,9 +58,6 @@ public final class ArgTest {
         }
     }
 
-    /**
-     * Arg can reject to escape invalid text.
-     */
     @Test
     public void rejectsToEscapeInvalidXmlChars() {
         Assertions.assertThrows(
@@ -73,9 +66,6 @@ public final class ArgTest {
         );
     }
 
-    /**
-     * Arg can reject to unescape invalid text.
-     */
     @Test
     public void rejectsToUnEscapeInvalidXmlChars() {
         Assertions.assertThrows(

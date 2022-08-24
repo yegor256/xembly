@@ -46,10 +46,6 @@ import org.xembly.Xembler;
 @Loggable
 public final class XemblerProfTest {
 
-    /**
-     * Xembler can modify DOM.
-     * @throws Exception If some problem inside
-     */
     @Test
     @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
     public void modifiesDom() throws Exception {

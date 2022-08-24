@@ -45,10 +45,6 @@ import org.w3c.dom.Element;
  */
 public final class XsetDirectiveTest {
 
-    /**
-     * XsetDirective can set text content of nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void setsTextContentOfNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -73,11 +69,6 @@ public final class XsetDirectiveTest {
         );
     }
 
-    /**
-     * XsetDirective can set text content of nodes.
-     * @throws Exception If some problem inside
-     * @since 0.7
-     */
     @Test
     public void setsTextDirectlyIntoDomNodes() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()

@@ -42,10 +42,6 @@ import org.w3c.dom.Document;
  */
 public final class AddDirectiveTest {
 
-    /**
-     * AddDirective can add nodes to current nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsNodesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(

@@ -44,10 +44,6 @@ import org.w3c.dom.Document;
  */
 public final class StrictDirectiveTest {
 
-    /**
-     * StrictDirective can check the number of current nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void checksNumberOfCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -68,9 +64,6 @@ public final class StrictDirectiveTest {
         );
     }
 
-    /**
-     * StrictDirective can fail when number of current nodes is too big.
-     */
     @Test
     public void failsWhenNumberOfCurrentNodesIsTooBig() {
         Assertions.assertThrows(
@@ -87,9 +80,6 @@ public final class StrictDirectiveTest {
         );
     }
 
-    /**
-     * StrictDirective can fail when number of current nodes is zero.
-     */
     @Test
     public void failsWhenNumberOfCurrentNodesIsZero() {
         Assertions.assertThrows(
@@ -106,9 +96,6 @@ public final class StrictDirectiveTest {
         );
     }
 
-    /**
-     * StrictDirective can fail when number of current nodes is too small.
-     */
     @Test
     public void failsWhenNumberOfCurrentNodesIsTooSmall() {
         Assertions.assertThrows(

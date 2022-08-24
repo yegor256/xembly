@@ -52,10 +52,6 @@ import org.w3c.dom.Document;
 @SuppressWarnings({"PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals"})
 public final class DirectivesTest {
 
-    /**
-     * Directives can make an XML document.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void makesXmlDocument() throws Exception {
         MatcherAssert.assertThat(
@@ -76,10 +72,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can parse xembly grammar.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void parsesIncomingGrammar() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -88,9 +80,6 @@ public final class DirectivesTest {
         MatcherAssert.assertThat(dirs, Matchers.iterableWithSize(2));
     }
 
-    /**
-     * Directives can throw when grammar is broken.
-     */
     @Test
     public void throwsOnBrokenGrammar() {
         Assertions.assertThrows(
@@ -99,9 +88,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can throw when XML content is broken.
-     */
     @Test
     public void throwsOnBrokenXmlContent() {
         Assertions.assertThrows(
@@ -110,9 +96,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can throw when escaped XML content is broken.
-     */
     @Test
     public void throwsOnBrokenEscapedXmlContent() {
         Assertions.assertThrows(
@@ -121,11 +104,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can add map of values.
-     * @throws Exception If some problem inside
-     * @since 0.8
-     */
     @Test
     public void addsMapOfValues() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -148,10 +126,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can ignore empty input.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void ingoresEmptyInput() throws Exception {
         MatcherAssert.assertThat(
@@ -160,10 +134,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can build a correct modification programme.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void performsFullScaleModifications() throws Exception {
         final String script = new Directives()
@@ -185,11 +155,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can copy an existing node.
-     * @throws Exception If some problem inside
-     * @since 0.13
-     */
     @Test
     public void copiesExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -217,11 +182,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Appends an existing node.
-     * @throws Exception If some problem inside
-     * @since 1.0
-     */
     @Test
     public void appendsExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -247,11 +207,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can understand case.
-     * @throws Exception If some problem inside
-     * @since 0.14.1
-     */
     @Test
     public void addsElementsCaseSensitively() throws Exception {
         MatcherAssert.assertThat(
@@ -263,11 +218,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can convert to string.
-     * @throws Exception If some problem inside
-     * @since 0.15.2
-     */
     @Test
     public void convertsToString() throws Exception {
         final Directives dirs = new Directives();
@@ -284,10 +234,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can push and pop.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void pushesAndPopsCursor() throws Exception {
         MatcherAssert.assertThat(
@@ -309,10 +255,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can use namespaces.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void prefixesItemsWithNamespaces() throws Exception {
         MatcherAssert.assertThat(
@@ -326,10 +268,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can accept directives from multiple threads.
-     * @throws Exception If some problem inside
-     */
     @Test
     @Disabled
     public void acceptsFromMultipleThreads() throws Exception {
@@ -353,10 +291,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can add comments.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsComments() throws Exception {
         MatcherAssert.assertThat(
@@ -369,10 +303,6 @@ public final class DirectivesTest {
         );
     }
 
-    /**
-     * Directives can append.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void appendsDirs() throws Exception {
         MatcherAssert.assertThat(

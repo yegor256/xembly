@@ -43,10 +43,6 @@ import org.xembly.Xembler;
  */
 public final class XercesSampleTest {
 
-    /**
-     * Xembly can build a document.
-     * @throws Exception If fails
-     */
     @Test
     public void buildsDocument() throws Exception {
         MatcherAssert.assertThat(
@@ -59,10 +55,6 @@ public final class XercesSampleTest {
         );
     }
 
-    /**
-     * Xembly can apply changes to a node.
-     * @throws Exception If fails
-     */
     @Test
     public void appliesChangesToNode() throws Exception {
         final Node node = new XMLDocument("<doc/>").node();

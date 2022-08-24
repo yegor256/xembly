@@ -55,10 +55,6 @@ import org.w3c.dom.Node;
 @SuppressWarnings("PMD.TooManyMethods")
 public final class XemblerTest {
 
-    /**
-     * Xembler can change DOM document.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void makesChangesToDomDocument() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -83,10 +79,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can change DOM document from builder.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void makesChangesToDomDocumentFromBuilder() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -117,10 +109,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can print XML.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void printsXmlDocument() throws Exception {
         MatcherAssert.assertThat(
@@ -131,10 +119,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can show XML declaration line.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void rendersXmlDeclaration() throws Exception {
         MatcherAssert.assertThat(
@@ -143,11 +127,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can escape broken text.
-     * @throws Exception If some problem inside
-     * @since 0.14
-     */
     @Test
     public void escapesBrokenText() throws Exception {
         MatcherAssert.assertThat(
@@ -156,10 +135,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can modify a cloned node.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void modifiesClonedNode() throws Exception {
         final Node node = new XMLDocument("<t/>").node().cloneNode(true);
@@ -170,10 +145,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can remove root node and add a new one.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void replacesRootNode() throws Exception {
         final Node node = new XMLDocument("<e/>").node();
@@ -184,10 +155,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can remove attribute node.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void removesAttribute() throws Exception {
         final Node node = new XMLDocument("<i8 a6='foo'/>").node();
@@ -204,10 +171,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Xembler can remove root node.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void removesRootNode() throws Exception {
         final Node node = new XMLDocument("<old/>").node();
@@ -220,19 +183,6 @@ public final class XemblerTest {
         );
     }
 
-    /**
-     * Test that concurrent invocations on shared DOM.
-     * doesn't ruin executing thread
-     * @todo #34
-     *  I assumed that Xembler should be a thread-safe and
-     *  this test must pass, but this assumption might be wrong and
-     *  this test case is not an issue.
-     *  Modify <code>int capacity</code> to play with results:
-     *  case 1: change capacity to 1 to get test work within 1 thread
-     *  case 2: change capacity to any positive number greater than 1
-     *  to get test broken
-     * @throws Exception If some problem inside
-     */
     @Test
     @Disabled
     public void concurrentInvocationWithNoExceptions() throws Exception {

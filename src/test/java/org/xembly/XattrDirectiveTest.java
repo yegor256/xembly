@@ -43,10 +43,6 @@ import org.w3c.dom.Document;
  */
 public final class XattrDirectiveTest {
 
-    /**
-     * XattrDirective can set attributes to current nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void setsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(

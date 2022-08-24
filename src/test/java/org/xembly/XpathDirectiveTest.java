@@ -47,10 +47,6 @@ import org.w3c.dom.Node;
  */
 public final class XpathDirectiveTest {
 
-    /**
-     * XpathDirective can find nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void findsNodesWithXpathExpression() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -73,10 +69,6 @@ public final class XpathDirectiveTest {
         );
     }
 
-    /**
-     * XpathDirective can ignore empty searches.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void ignoresEmptySearches() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -92,11 +84,6 @@ public final class XpathDirectiveTest {
         );
     }
 
-    /**
-     * XpathDirective can find nodes by XPath.
-     * @throws Exception If some problem inside
-     * @since 0.7
-     */
     @Test
     public void findsNodesByXpathDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -117,10 +104,6 @@ public final class XpathDirectiveTest {
         );
     }
 
-    /**
-     * XpathDirective can find nodes in empty DOM.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void findsNodesInEmptyDom() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -135,10 +118,6 @@ public final class XpathDirectiveTest {
         );
     }
 
-    /**
-     * XpathDirective can find root in cloned document.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void findsRootInClonedNode() throws Exception {
         final Iterable<Directive> dirs = new Directives(

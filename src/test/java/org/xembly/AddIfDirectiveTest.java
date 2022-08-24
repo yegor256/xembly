@@ -44,10 +44,6 @@ import org.w3c.dom.Element;
  */
 public final class AddIfDirectiveTest {
 
-    /**
-     * AddIfDirective can add nodes to current nodes.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsNodesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -65,11 +61,6 @@ public final class AddIfDirectiveTest {
         );
     }
 
-    /**
-     * AddIfDirective can add node to a node.
-     * @throws Exception If some problem inside
-     * @since 0.15.2
-     */
     @Test
     public void addsDomNodesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()

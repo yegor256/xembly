@@ -43,10 +43,6 @@ import org.w3c.dom.Document;
  */
 public final class UpDirectiveTest {
 
-    /**
-     * UpDirective can find parents and move to them.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void jumpsToParentsWhenTheyExist() throws Exception {
         final Iterable<Directive> dirs = new Directives(
@@ -61,9 +57,6 @@ public final class UpDirectiveTest {
         );
     }
 
-    /**
-     * UpDirective can throw when there are no parents.
-     */
     @Test
     public void throwsWhenNoParents() {
         Assertions.assertThrows(

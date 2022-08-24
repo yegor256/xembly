@@ -43,10 +43,6 @@ import org.xembly.Directives;
 @Loggable
 public final class DirectivesProfTest {
 
-    /**
-     * Directives can parse long program.
-     * @throws Exception If some problem inside
-     */
     @Test
     @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
     public void parsesLongProgram() throws Exception {

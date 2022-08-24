@@ -42,10 +42,6 @@ import org.mockito.Mockito;
  */
 public final class DomStackTest {
 
-    /**
-     * DomStack can push and pop.
-     * @throws Exception If some problem inside
-     */
     @Test
     public void addsAndRetrieves() throws Exception {
         final Directive.Stack stack = new DomStack();
@@ -63,10 +59,6 @@ public final class DomStackTest {
         );
     }
 
-    /**
-     * DomStack throws ImpossibleModificationException when
-     * trying to pop an empty stack.
-     */
     @Test
     public void throwsExceptionOnEmpty() {
         Assertions.assertThrows(
