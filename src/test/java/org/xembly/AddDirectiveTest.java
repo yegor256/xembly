@@ -40,10 +40,10 @@ import org.w3c.dom.Document;
  *
  * @since 0.1
  */
-public final class AddDirectiveTest {
+final class AddDirectiveTest {
 
     @Test
-    public void addsNodesToCurrentNodes() throws Exception {
+    void addsNodesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; ADD 'x'; UP; UP; ADD 'bar'; UP; ADD 'bar';"
         );

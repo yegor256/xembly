@@ -43,10 +43,10 @@ import org.w3c.dom.Element;
  *
  * @since 0.1
  */
-public final class AttrDirectiveTest {
+final class AttrDirectiveTest {
 
     @Test
-    public void addsAttributesToCurrentNodes() throws Exception {
+    void addsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{
@@ -68,7 +68,7 @@ public final class AttrDirectiveTest {
     }
 
     @Test
-    public void addsDomAttributesDirectly() throws Exception {
+    void addsDomAttributesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");
@@ -88,7 +88,7 @@ public final class AttrDirectiveTest {
     }
 
     @Test
-    public void addsCaseSensitiveAttributesDirectly() throws Exception {
+    void addsCaseSensitiveAttributesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");

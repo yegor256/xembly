@@ -38,10 +38,10 @@ import org.junit.jupiter.api.Test;
  *
  * @since 1.0
  */
-public final class SyntaxExceptionTest {
+final class SyntaxExceptionTest {
 
     @Test
-    public void instantiatesException() {
+    void instantiatesException() {
         MatcherAssert.assertThat(
             new SyntaxException("", new IllegalStateException("")),
             Matchers.notNullValue()

@@ -44,10 +44,10 @@ import org.w3c.dom.Element;
  *
  * @since 0.1
  */
-public final class SetDirectiveTest {
+final class SetDirectiveTest {
 
     @Test
-    public void setsTextContentOfNodes() throws Exception {
+    void setsTextContentOfNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 "ADD 'root'; ADD 'foo';",
@@ -68,7 +68,7 @@ public final class SetDirectiveTest {
     }
 
     @Test
-    public void rejectsContentWithInvalidXmlCharacters() {
+    void rejectsContentWithInvalidXmlCharacters() {
         Assertions.assertThrows(
             SyntaxException.class,
             () -> new Directives("ADD 'alpha'; SET 'illegal: &#27;&#00;&#03;';")
@@ -76,7 +76,7 @@ public final class SetDirectiveTest {
     }
 
     @Test
-    public void setsTextDirectlyIntoDomNodes() throws Exception {
+    void setsTextDirectlyIntoDomNodes() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");

@@ -42,10 +42,10 @@ import org.w3c.dom.Element;
  *
  * @since 0.1
  */
-public final class AddIfDirectiveTest {
+final class AddIfDirectiveTest {
 
     @Test
-    public void addsNodesToCurrentNodes() throws Exception {
+    void addsNodesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; UP; ADDIF 'bar'; UP; ADDIF 'bar';"
         );
@@ -62,7 +62,7 @@ public final class AddIfDirectiveTest {
     }
 
     @Test
-    public void addsDomNodesDirectly() throws Exception {
+    void addsDomNodesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");

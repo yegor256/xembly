@@ -41,10 +41,10 @@ import org.w3c.dom.Document;
  *
  * @since 0.28
  */
-public final class XattrDirectiveTest {
+final class XattrDirectiveTest {
 
     @Test
-    public void setsAttributesToCurrentNodes() throws Exception {
+    void setsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{

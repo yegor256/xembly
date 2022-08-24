@@ -41,10 +41,10 @@ import org.w3c.dom.Document;
  *
  * @since 0.1
  */
-public final class UpDirectiveTest {
+final class UpDirectiveTest {
 
     @Test
-    public void jumpsToParentsWhenTheyExist() throws Exception {
+    void jumpsToParentsWhenTheyExist() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
         );
@@ -58,7 +58,7 @@ public final class UpDirectiveTest {
     }
 
     @Test
-    public void throwsWhenNoParents() {
+    void throwsWhenNoParents() {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {

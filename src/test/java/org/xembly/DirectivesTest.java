@@ -50,10 +50,10 @@ import org.w3c.dom.Document;
  * @since 0.1
  */
 @SuppressWarnings({"PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals"})
-public final class DirectivesTest {
+final class DirectivesTest {
 
     @Test
-    public void makesXmlDocument() throws Exception {
+    void makesXmlDocument() throws Exception {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(
                 new Xembler(
@@ -73,7 +73,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void parsesIncomingGrammar() {
+    void parsesIncomingGrammar() {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '//orders[@id=\"152\"]'; SET 'test';"
         );
@@ -81,7 +81,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void throwsOnBrokenGrammar() {
+    void throwsOnBrokenGrammar() {
         Assertions.assertThrows(
             SyntaxException.class,
             () -> new Directives("not a xembly at all")
@@ -89,7 +89,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void throwsOnBrokenXmlContent() {
+    void throwsOnBrokenXmlContent() {
         Assertions.assertThrows(
             SyntaxException.class,
             () -> new Directives("ADD '\u001b';")
@@ -97,7 +97,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void throwsOnBrokenEscapedXmlContent() {
+    void throwsOnBrokenEscapedXmlContent() {
         Assertions.assertThrows(
             SyntaxException.class,
             () -> new Directives("ADD '&#27;';")
@@ -105,7 +105,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void addsMapOfValues() throws Exception {
+    void addsMapOfValues() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("root"));
@@ -127,7 +127,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void ingoresEmptyInput() {
+    void ingoresEmptyInput() {
         MatcherAssert.assertThat(
             new Directives("\n\t   \r"),
             Matchers.emptyIterable()
@@ -135,7 +135,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void performsFullScaleModifications() throws Exception {
+    void performsFullScaleModifications() throws Exception {
         final String script = new Directives()
             .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
             .add("body")
@@ -155,7 +155,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void copiesExistingNode() throws Exception {
+    void copiesExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Iterable<Directive> copy = Directives.copyOf(
@@ -182,7 +182,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void appendsExistingNode() throws Exception {
+    void appendsExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         new Xembler(
@@ -207,7 +207,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void addsElementsCaseSensitively() throws Exception {
+    void addsElementsCaseSensitively() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(new Directives().add("XHtml").addIf("Body")).xml(),
             XhtmlMatchers.hasXPaths(
@@ -218,7 +218,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void convertsToString() {
+    void convertsToString() {
         final Directives dirs = new Directives();
         for (int idx = 0; idx < Tv.TEN; ++idx) {
             dirs.add("HELLO");
@@ -234,7 +234,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void pushesAndPopsCursor() throws Exception {
+    void pushesAndPopsCursor() throws Exception {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(
                 new Xembler(
@@ -255,7 +255,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void prefixesItemsWithNamespaces() throws Exception {
+    void prefixesItemsWithNamespaces() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(
                 new Directives()
@@ -269,7 +269,7 @@ public final class DirectivesTest {
 
     @Test
     @Disabled
-    public void acceptsFromMultipleThreads() throws Exception {
+    void acceptsFromMultipleThreads() throws Exception {
         final Directives dirs = new Directives().add("mt6");
         new Callable<Void>() {
             @Parallel(threads = Tv.FIFTY)
@@ -291,7 +291,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void addsComments() throws Exception {
+    void addsComments() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(
                 new Directives()
@@ -303,7 +303,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void appendsDirs() {
+    void appendsDirs() {
         MatcherAssert.assertThat(
             new Directives().add("0").append(
                 new Directives().add("1")

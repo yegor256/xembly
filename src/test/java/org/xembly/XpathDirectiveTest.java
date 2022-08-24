@@ -45,10 +45,10 @@ import org.w3c.dom.Node;
  *
  * @since 0.1
  */
-public final class XpathDirectiveTest {
+final class XpathDirectiveTest {
 
     @Test
-    public void findsNodesWithXpathExpression() throws Exception {
+    void findsNodesWithXpathExpression() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
@@ -70,7 +70,7 @@ public final class XpathDirectiveTest {
     }
 
     @Test
-    public void ignoresEmptySearches() throws Exception {
+    void ignoresEmptySearches() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '/nothing'; XPATH '/top'; STRICT '1'; ADD 'hey';"
         );
@@ -85,7 +85,7 @@ public final class XpathDirectiveTest {
     }
 
     @Test
-    public void findsNodesByXpathDirectly() throws Exception {
+    void findsNodesByXpathDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");
@@ -105,7 +105,7 @@ public final class XpathDirectiveTest {
     }
 
     @Test
-    public void findsNodesInEmptyDom() throws Exception {
+    void findsNodesInEmptyDom() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         MatcherAssert.assertThat(
@@ -119,7 +119,7 @@ public final class XpathDirectiveTest {
     }
 
     @Test
-    public void findsRootInClonedNode() throws Exception {
+    void findsRootInClonedNode() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '/*'; STRICT '1'; ADD 'boom-5';"
         );

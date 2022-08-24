@@ -43,10 +43,10 @@ import org.w3c.dom.Element;
  *
  * @since 0.1
  */
-public final class XsetDirectiveTest {
+final class XsetDirectiveTest {
 
     @Test
-    public void setsTextContentOfNodes() throws Exception {
+    void setsTextContentOfNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[]{
@@ -70,7 +70,7 @@ public final class XsetDirectiveTest {
     }
 
     @Test
-    public void setsTextDirectlyIntoDomNodes() throws Exception {
+    void setsTextDirectlyIntoDomNodes() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");

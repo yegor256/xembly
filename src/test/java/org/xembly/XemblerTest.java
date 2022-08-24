@@ -53,10 +53,10 @@ import org.w3c.dom.Node;
  * @since 0.1
  */
 @SuppressWarnings("PMD.TooManyMethods")
-public final class XemblerTest {
+final class XemblerTest {
 
     @Test
-    public void makesChangesToDomDocument() throws Exception {
+    void makesChangesToDomDocument() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         new Xembler(
@@ -80,7 +80,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void makesChangesToDomDocumentFromBuilder() throws Exception {
+    void makesChangesToDomDocumentFromBuilder() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Directives builder = new Directives()
@@ -110,7 +110,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void printsXmlDocument() throws Exception {
+    void printsXmlDocument() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(
                 new Directives().add("hey-you").add("hoy").set("\u20ac")
@@ -120,7 +120,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void rendersXmlDeclaration() {
+    void rendersXmlDeclaration() {
         MatcherAssert.assertThat(
             new Xembler(new Directives("ADD 'f';")).xmlQuietly(),
             Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<f/>")
@@ -128,7 +128,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void escapesBrokenText() {
+    void escapesBrokenText() {
         MatcherAssert.assertThat(
             Xembler.escape("привет hello \u0000"),
             Matchers.equalTo("привет hello \\u0000")
@@ -136,7 +136,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void modifiesClonedNode() throws Exception {
+    void modifiesClonedNode() throws Exception {
         final Node node = new XMLDocument("<t/>").node().cloneNode(true);
         new Xembler(new Directives().xpath("/t").add("x")).apply(node);
         MatcherAssert.assertThat(
@@ -146,7 +146,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void replacesRootNode() throws Exception {
+    void replacesRootNode() throws Exception {
         final Node node = new XMLDocument("<e/>").node();
         new Xembler(new Directives().xpath("/e").remove().add("p")).apply(node);
         MatcherAssert.assertThat(
@@ -156,7 +156,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void removesAttribute() throws Exception {
+    void removesAttribute() throws Exception {
         final Node node = new XMLDocument("<i8 a6='foo'/>").node();
         new Xembler(
             new Directives()
@@ -172,7 +172,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void removesRootNode() throws Exception {
+    void removesRootNode() throws Exception {
         final Node node = new XMLDocument("<old/>").node();
         new Xembler(
             new Directives().xpath("/old").remove().add("new")
@@ -185,7 +185,7 @@ public final class XemblerTest {
 
     @Test
     @Disabled
-    public void concurrentInvocationWithNoExceptions() throws Exception {
+    void concurrentInvocationWithNoExceptions() throws Exception {
         final ExecutorService service = Executors.newFixedThreadPool(
             Runtime.getRuntime().availableProcessors()
         );

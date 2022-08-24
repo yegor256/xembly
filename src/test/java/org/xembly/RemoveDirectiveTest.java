@@ -43,10 +43,10 @@ import org.w3c.dom.Element;
  *
  * @since 0.1
  */
-public final class RemoveDirectiveTest {
+final class RemoveDirectiveTest {
 
     @Test
-    public void removesCurrentNodes() throws Exception {
+    void removesCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
@@ -68,7 +68,7 @@ public final class RemoveDirectiveTest {
     }
 
     @Test
-    public void removesDomNodesDirectly() throws Exception {
+    void removesDomNodesDirectly() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");

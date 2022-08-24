@@ -41,10 +41,10 @@ import org.xembly.Xembler;
  * Test of XML features with Saxon.
  * @since 0.17
  */
-public final class SaxonSampleTest {
+final class SaxonSampleTest {
 
     @Test
-    public void buildsDocument() throws Exception {
+    void buildsDocument() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(
                 new Directives().add("root")
@@ -56,7 +56,7 @@ public final class SaxonSampleTest {
     }
 
     @Test
-    public void appliesChangesToNode() throws Exception {
+    void appliesChangesToNode() throws Exception {
         final Node node = new XMLDocument("<doc/>").node();
         new Xembler(
             new Directives().xpath("/doc")

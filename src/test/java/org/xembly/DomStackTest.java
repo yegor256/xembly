@@ -40,10 +40,10 @@ import org.mockito.Mockito;
  *
  * @since 0.21
  */
-public final class DomStackTest {
+final class DomStackTest {
 
     @Test
-    public void addsAndRetrieves() throws Exception {
+    void addsAndRetrieves() throws Exception {
         final Directive.Stack stack = new DomStack();
         final Directive.Cursor first = Mockito.mock(Directive.Cursor.class);
         final Directive.Cursor second = Mockito.mock(Directive.Cursor.class);
@@ -60,7 +60,7 @@ public final class DomStackTest {
     }
 
     @Test
-    public void throwsExceptionOnEmpty() {
+    void throwsExceptionOnEmpty() {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> new DomStack().pop()

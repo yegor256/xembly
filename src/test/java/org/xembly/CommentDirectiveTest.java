@@ -40,10 +40,10 @@ import org.w3c.dom.Document;
  *
  * @since 0.1
  */
-public final class CommentDirectiveTest {
+final class CommentDirectiveTest {
 
     @Test
-    public void addsComment() throws Exception {
+    void addsComment() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "ADD 'root'; ADD 'foo'; COMMENT 'How are you?';"
         );

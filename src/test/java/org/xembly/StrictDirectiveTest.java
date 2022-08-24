@@ -42,10 +42,10 @@ import org.w3c.dom.Document;
  *
  * @since 0.1
  */
-public final class StrictDirectiveTest {
+final class StrictDirectiveTest {
 
     @Test
-    public void checksNumberOfCurrentNodes() throws Exception {
+    void checksNumberOfCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 "ADD 'root'; ADD 'foo'; ADD 'bar';",
@@ -65,7 +65,7 @@ public final class StrictDirectiveTest {
     }
 
     @Test
-    public void failsWhenNumberOfCurrentNodesIsTooBig() {
+    void failsWhenNumberOfCurrentNodesIsTooBig() {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {
@@ -81,7 +81,7 @@ public final class StrictDirectiveTest {
     }
 
     @Test
-    public void failsWhenNumberOfCurrentNodesIsZero() {
+    void failsWhenNumberOfCurrentNodesIsZero() {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {
@@ -97,7 +97,7 @@ public final class StrictDirectiveTest {
     }
 
     @Test
-    public void failsWhenNumberOfCurrentNodesIsTooSmall() {
+    void failsWhenNumberOfCurrentNodesIsTooSmall() {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {

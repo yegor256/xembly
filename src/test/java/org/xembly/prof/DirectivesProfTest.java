@@ -41,11 +41,11 @@ import org.xembly.Directives;
  * @since 0.10.1
  */
 @Loggable
-public final class DirectivesProfTest {
+final class DirectivesProfTest {
 
     @Test
     @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
-    public void parsesLongProgram() {
+    void parsesLongProgram() {
         final StringBuilder program = new StringBuilder(Tv.THOUSAND)
             .append("ADD 'root';");
         for (int idx = 0; idx < Tv.TEN * Tv.THOUSAND; ++idx) {

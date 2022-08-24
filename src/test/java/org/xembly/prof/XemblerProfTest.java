@@ -44,11 +44,11 @@ import org.xembly.Xembler;
  * @since 0.10.1
  */
 @Loggable
-public final class XemblerProfTest {
+final class XemblerProfTest {
 
     @Test
     @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
-    public void modifiesDom() throws Exception {
+    void modifiesDom() throws Exception {
         final StringBuilder program = new StringBuilder(Tv.THOUSAND)
             .append("ADD 'root';");
         for (int idx = 0; idx < Tv.FIFTY * Tv.THOUSAND; ++idx) {

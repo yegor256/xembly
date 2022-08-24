@@ -43,10 +43,10 @@ import org.w3c.dom.Element;
  * Test case for {@link PiDirective}.
  * @since 0.9
  */
-public final class PiDirectiveTest {
+final class PiDirectiveTest {
 
     @Test
-    public void addsProcessingInstructionsToDom() throws Exception {
+    void addsProcessingInstructionsToDom() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
@@ -69,7 +69,7 @@ public final class PiDirectiveTest {
     }
 
     @Test
-    public void addsProcessingInstructionsDirectlyToDom() throws Exception {
+    void addsProcessingInstructionsDirectlyToDom() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");
@@ -85,7 +85,7 @@ public final class PiDirectiveTest {
     }
 
     @Test
-    public void addsProcessingInstructionsToDomRoot() throws Exception {
+    void addsProcessingInstructionsToDomRoot() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '/'; PI 'alpha' 'beta \u20ac'; ADD 'x4';"
         );
@@ -101,7 +101,7 @@ public final class PiDirectiveTest {
     }
 
     @Test
-    public void prependsProcessingInstructionsToDomRoot() throws Exception {
+    void prependsProcessingInstructionsToDomRoot() throws Exception {
         MatcherAssert.assertThat(
             new Xembler(new Directives("PI 'a' 'b'; ADD 'c';")).xml(),
             Matchers.containsString("<?a b?><c/>")

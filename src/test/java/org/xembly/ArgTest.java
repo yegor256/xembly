@@ -39,11 +39,10 @@ import org.junit.jupiter.api.Test;
  *
  * @since 0.1
  */
-public final class ArgTest {
+final class ArgTest {
 
     @Test
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public void escapesAndUnescaped() throws Exception {
+    void escapesAndUnescaped() throws Exception {
         final String[] texts = {
             "",
             "123",
@@ -59,7 +58,7 @@ public final class ArgTest {
     }
 
     @Test
-    public void rejectsToEscapeInvalidXmlChars() {
+    void rejectsToEscapeInvalidXmlChars() {
         Assertions.assertThrows(
             XmlContentException.class,
             () -> new Arg("\u001b\u0000").toString()
@@ -67,7 +66,7 @@ public final class ArgTest {
     }
 
     @Test
-    public void rejectsToUnEscapeInvalidXmlChars() {
+    void rejectsToUnEscapeInvalidXmlChars() {
         Assertions.assertThrows(
             XmlContentException.class,
             () -> Arg.unescape("&#27;&#0000;")

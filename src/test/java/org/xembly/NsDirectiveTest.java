@@ -42,9 +42,9 @@ import org.w3c.dom.Element;
  * Validates NsDirective class.
  * @since 0.19.3
  */
-public final class NsDirectiveTest {
+final class NsDirectiveTest {
     @Test
-    public void setsNsAttr() throws Exception {
+    void setsNsAttr() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");
