@@ -73,7 +73,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void parsesIncomingGrammar() throws Exception {
+    public void parsesIncomingGrammar() {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '//orders[@id=\"152\"]'; SET 'test';"
         );
@@ -127,7 +127,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void ingoresEmptyInput() throws Exception {
+    public void ingoresEmptyInput() {
         MatcherAssert.assertThat(
             new Directives("\n\t   \r"),
             Matchers.emptyIterable()
@@ -137,7 +137,6 @@ public final class DirectivesTest {
     @Test
     public void performsFullScaleModifications() throws Exception {
         final String script = new Directives()
-            // @checkstyle MultipleStringLiteralsCheck (1 line)
             .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
             .add("body")
             .add("p")
@@ -219,7 +218,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void convertsToString() throws Exception {
+    public void convertsToString() {
         final Directives dirs = new Directives();
         for (int idx = 0; idx < Tv.TEN; ++idx) {
             dirs.add("HELLO");
@@ -275,7 +274,7 @@ public final class DirectivesTest {
         new Callable<Void>() {
             @Parallel(threads = Tv.FIFTY)
             @Override
-            public Void call() throws Exception {
+            public Void call() {
                 dirs.append(
                     new Directives()
                         .add("fo9").attr("yu", "").set("some text 90")
@@ -304,7 +303,7 @@ public final class DirectivesTest {
     }
 
     @Test
-    public void appendsDirs() throws Exception {
+    public void appendsDirs() {
         MatcherAssert.assertThat(
             new Directives().add("0").append(
                 new Directives().add("1")

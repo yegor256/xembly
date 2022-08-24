@@ -41,7 +41,6 @@ import org.w3c.dom.Element;
 /**
  * Validates NsDirective class.
  * @since 0.19.3
- * @checkstyle MultipleStringLiteralsCheck (500 lines)
  */
 public final class NsDirectiveTest {
     @Test

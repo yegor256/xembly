@@ -69,10 +69,8 @@ public interface Directive {
         /**
          * Push cursor (runtime exception if stack is full).
          * @param cursor Cursor to push
-         * @throws ImpossibleModificationException If fails
          */
-        void push(Directive.Cursor cursor)
-            throws ImpossibleModificationException;
+        void push(Directive.Cursor cursor);
 
         /**
          * Pop cursor (runtime exception if stack is empty).

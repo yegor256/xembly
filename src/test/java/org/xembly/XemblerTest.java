@@ -120,7 +120,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void rendersXmlDeclaration() throws Exception {
+    public void rendersXmlDeclaration() {
         MatcherAssert.assertThat(
             new Xembler(new Directives("ADD 'f';")).xmlQuietly(),
             Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<f/>")
@@ -128,7 +128,7 @@ public final class XemblerTest {
     }
 
     @Test
-    public void escapesBrokenText() throws Exception {
+    public void escapesBrokenText() {
         MatcherAssert.assertThat(
             Xembler.escape("привет hello \u0000"),
             Matchers.equalTo("привет hello \\u0000")
