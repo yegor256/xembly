@@ -102,9 +102,8 @@ public final class Directives implements Iterable<Directive> {
     /**
      * Public ctor.
      * @param text Xembly script
-     * @throws SyntaxException If syntax is broken
      */
-    public Directives(final String text) throws SyntaxException {
+    public Directives(final String text) {
         this(new Verbs(text).directives());
     }
 

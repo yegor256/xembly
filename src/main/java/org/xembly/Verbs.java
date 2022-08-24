@@ -70,13 +70,21 @@ final class Verbs {
                 new CommonTokenStream(lexer)
             );
         lexer.removeErrorListeners();
-        lexer.addErrorListener(this.errors());
+        lexer.addErrorListener(Verbs.errors());
         parser.removeErrorListeners();
-        parser.addErrorListener(this.errors());
+        parser.addErrorListener(Verbs.errors());
         try {
             return parser.directives().ret;
         } catch (final ParsingException ex) {
-            throw new SyntaxException(this.text, ex);
+            throw new SyntaxException(
+                String.format(
+                    "%s \"%s\" in \"%s\"",
+                    ex.getClass().getCanonicalName(),
+                    ex.getLocalizedMessage(),
+                    this.text
+                ),
+                ex
+            );
         }
     }
 
@@ -84,7 +92,7 @@ final class Verbs {
      * Errors listener.
      * @return Listener
      */
-    private ANTLRErrorListener errors() {
+    private static ANTLRErrorListener errors() {
         return new BaseErrorListener() {
             // @checkstyle ParameterNumberCheck (10 lines)
             @Override
@@ -92,7 +100,13 @@ final class Verbs {
                 final Object symbol, final int line,
                 final int position, final String msg,
                 final RecognitionException error) {
-                throw new SyntaxException(Verbs.this.text, error);
+                throw new SyntaxException(
+                    String.format(
+                        "\"%s\" at line #%d, position #%d, symbol %s",
+                        msg, line, position, symbol
+                    ),
+                    error
+                );
             }
         };
     }

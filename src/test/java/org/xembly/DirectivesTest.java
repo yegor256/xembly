@@ -90,9 +90,12 @@ final class DirectivesTest {
 
     @Test
     void throwsOnBrokenXmlContent() {
-        Assertions.assertThrows(
-            SyntaxException.class,
-            () -> new Directives("ADD '\u001b';")
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ADD 't';\nADD '\u001b';")
+            ).getMessage(),
+            Matchers.containsString("ADD")
         );
     }
 
