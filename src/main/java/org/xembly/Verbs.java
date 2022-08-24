@@ -45,6 +45,26 @@ import org.antlr.v4.runtime.Recognizer;
 final class Verbs {
 
     /**
+     * Errors listener.
+     */
+    private static final ANTLRErrorListener ERRORS = new BaseErrorListener() {
+        // @checkstyle ParameterNumberCheck (10 lines)
+        @Override
+        public void syntaxError(final Recognizer<?, ?> recognizer,
+            final Object symbol, final int line,
+            final int position, final String msg,
+            final RecognitionException error) {
+            throw new SyntaxException(
+                String.format(
+                    "\"%s\" at line #%d, position #%d, symbol %s",
+                    msg, line, position, symbol
+                ),
+                error
+            );
+        }
+    };
+
+    /**
      * The text.
      */
     private final String text;
@@ -70,45 +90,21 @@ final class Verbs {
                 new CommonTokenStream(lexer)
             );
         lexer.removeErrorListeners();
-        lexer.addErrorListener(Verbs.errors());
+        lexer.addErrorListener(Verbs.ERRORS);
         parser.removeErrorListeners();
-        parser.addErrorListener(Verbs.errors());
+        parser.addErrorListener(Verbs.ERRORS);
         try {
             return parser.directives().ret;
         } catch (final ParsingException ex) {
             throw new SyntaxException(
                 String.format(
-                    "%s \"%s\" in \"%s\"",
+                    "Parsing failed as %s: \"%s\"",
                     ex.getClass().getCanonicalName(),
-                    ex.getLocalizedMessage(),
-                    this.text
+                    ex.getLocalizedMessage()
                 ),
                 ex
             );
         }
-    }
-
-    /**
-     * Errors listener.
-     * @return Listener
-     */
-    private static ANTLRErrorListener errors() {
-        return new BaseErrorListener() {
-            // @checkstyle ParameterNumberCheck (10 lines)
-            @Override
-            public void syntaxError(final Recognizer<?, ?> recognizer,
-                final Object symbol, final int line,
-                final int position, final String msg,
-                final RecognitionException error) {
-                throw new SyntaxException(
-                    String.format(
-                        "\"%s\" at line #%d, position #%d, symbol %s",
-                        msg, line, position, symbol
-                    ),
-                    error
-                );
-            }
-        };
     }
 
 }

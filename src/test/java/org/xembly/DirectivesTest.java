@@ -95,7 +95,7 @@ final class DirectivesTest {
                 SyntaxException.class,
                 () -> new Directives("ADD 't';\nADD '\u001b';")
             ).getMessage(),
-            Matchers.containsString("ADD")
+            Matchers.containsString("Character #1B is in the restricted XML")
         );
     }
 
