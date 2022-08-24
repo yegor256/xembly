@@ -204,7 +204,7 @@ public final class Directives implements Iterable<Directive> {
                     default:
                         throw new IllegalArgumentException(
                             String.format(
-                                "unsupported type %d of node %s",
+                                "Unsupported type %d of node %s",
                                 child.getNodeType(), child.getNodeName()
                             )
                         );
@@ -251,7 +251,7 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, ADD(%s)",
+                    "Failed to understand XML content, ADD(%s)",
                     name
                 ),
                 ex
@@ -310,7 +310,7 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, ADDIF(%s)",
+                    "Failed to understand XML content, ADDIF(%s)",
                     name
                 ),
                 ex
@@ -478,7 +478,7 @@ public final class Directives implements Iterable<Directive> {
         } catch (final XmlContentException ex) {
             throw new IllegalArgumentException(
                 String.format(
-                    "failed to understand XML content, XPATH(%s)",
+                    "Failed to understand XML content, XPATH(%s)",
                     path
                 ),
                 ex

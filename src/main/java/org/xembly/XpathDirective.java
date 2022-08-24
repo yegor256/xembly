@@ -145,7 +145,7 @@ final class XpathDirective implements Directive {
                 );
             } catch (final XPathExpressionException ex) {
                 throw new ImpossibleModificationException(
-                    String.format("invalid XPath expr '%s'", query), ex
+                    String.format("Invalid XPath expression '%s'", query), ex
                 );
             }
             XpathDirective.copyTo(list, targets);

@@ -60,7 +60,7 @@ final class UpDirective implements Directive {
             if (parent == null) {
                 throw new ImpossibleModificationException(
                     String.format(
-                        "there is no parent node of '%s' (%s), can't go UP",
+                        "There is no parent node of '%s' (%s), can't go UP",
                         node.getNodeName(), node.getNodeType()
                     )
                 );

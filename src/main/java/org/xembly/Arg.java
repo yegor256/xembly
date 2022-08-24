@@ -82,7 +82,7 @@ final class Arg {
         final char[] chars = text.toCharArray();
         if (chars.length < 2) {
             throw new IllegalArgumentException(
-                "internal error, argument can't be shorter than 2 chars"
+                "Internal error, argument can't be shorter than 2 chars"
             );
         }
         final int len = chars.length - 1;
@@ -95,7 +95,7 @@ final class Arg {
                     ++idx;
                     if (idx == chars.length) {
                         throw new XmlContentException(
-                            "reached EOF while parsing XML symbol"
+                            "Reached EOF while parsing XML symbol"
                         );
                     }
                     sbuf.append(chars[idx]);
@@ -158,7 +158,7 @@ final class Arg {
             chr = '&';
         } else {
             throw new XmlContentException(
-                String.format("unknown XML symbol &%s;", symbol)
+                String.format("Unknown XML symbol &%s;", symbol)
             );
         }
         return chr;

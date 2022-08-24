@@ -90,7 +90,7 @@ final class XsetDirective implements Directive {
                 );
             } catch (final XPathExpressionException ex) {
                 throw new ImpossibleModificationException(
-                    String.format("invalid XPath expr '%s'", this.expr), ex
+                    String.format("Invalid XPath expression '%s'", this.expr), ex
                 );
             }
         }

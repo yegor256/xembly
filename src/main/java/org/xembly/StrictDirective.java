@@ -68,14 +68,14 @@ final class StrictDirective implements Directive {
             if (cursor.isEmpty()) {
                 throw new ImpossibleModificationException(
                     String.format(
-                        "no current nodes while %d expected", this.number
+                        "No current nodes while %d expected", this.number
                     )
                 );
             }
             if (cursor.size() == 1) {
                 throw new ImpossibleModificationException(
                     String.format(
-                        "one current node '%s' while strictly %d expected",
+                        "One current node '%s' while strictly %d expected",
                         cursor.iterator().next().getNodeName(), this.number
                     )
                 );
