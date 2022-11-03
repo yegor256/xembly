@@ -33,7 +33,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.62.0</version>
+    <version>0.64.1</version>
   </parent>
   <groupId>org.xembly</groupId>
   <artifactId>saxon</artifactId>
