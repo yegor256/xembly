@@ -82,7 +82,7 @@ String xml = new Xembler(
 ).xml();
 ```
 
-This code will produce this XML document:
+This code will produce the following XML document:
 
 ```xml
 <root>
@@ -92,7 +92,7 @@ This code will produce this XML document:
 
 ## Directives
 
-Full list of supported directives in the current version:
+This is a full list of supported directives, in the current version:
 
   * `ADD`: adds new node to all current nodes
   * `ADDIF`: adds new node, if it's absent
@@ -110,36 +110,36 @@ Full list of supported directives in the current version:
   * `NS`: sets namespace of all current nodes
   * `COMMENT`: adds XML comment
 
-"Cursor" or "current nodes" is where we're currently located
+The "cursor" or "current nodes" is where we're currently located
 in the XML document. When Xembly script starts, the cursor is
-empty and simply points to the highest level in the XML hierarchy.
+empty: it simply points to the highest level in the XML hierarchy.
 Pay attention, it doesn't point to the root node. It points to one
-level above the root. Remember, when document is empty, there is no root.
+level above the root. Remember, when a document is empty, there is no root node.
 
 Then, we start executing directives one by one. After each directive
-cursor is moving somewhere. There may be many nodes under the cursor,
+the cursor is moving somewhere. There may be many nodes under the cursor,
 or just one, or none. For example, let's assume we're starting
 with this simple document `<car/>`:
 
 ```text
-ADD 'hello';        // nothing happens, since cursor is empty
-XPATH '/car';       // there is one node <car> under the cursor
-ADD 'make';         // the result is "<car><make/></car>",
-                    // cursor has one node "<make/>"
-ATTR 'name', 'BMW'; // the result is "<car><make name='BMW'/></car>"
-                    // cursor still has one node "<make/>"
-UP;                 // cursor has one node "<car>"
-ADD 'mileage';      // the result is "<car><make name='BMW'/><mileage/></car>"
-                    // cursor still has one node "<car>"
-XPATH '*';          // cursor has two nodes "<make name='BMW'/>"
+ADD 'hello';        // Nothing happens, since the cursor is empty
+XPATH '/car';       // There is one node <car> under the cursor
+ADD 'make';         // The result is "<car><make/></car>",
+                    // the cursor has one node "<make/>"
+ATTR 'name', 'BMW'; // The result is "<car><make name='BMW'/></car>",
+                    // the cursor still points to one node "<make/>"
+UP;                 // The cursor has one node "<car>"
+ADD 'mileage';      // The result is "<car><make name='BMW'/><mileage/></car>",
+                    // the cursor still has one node "<car>"
+XPATH '*';          // The cursor has two nodes "<make name='BMW'/>"
                     // and "<mileage/>"
-REMOVE;             // the result is "<car/>", since all nodes under
+REMOVE;             // The result is "<car/>", since all nodes under
                     // the cursor are removed
 ```
 
-You can create a collection of directives either from text or
+You can create a collection of directives either from a text or
 via supplementary methods, one per each directive. In both cases,
-you need to use class `Directives`:
+you need to use the `Directives` class:
 
 ```java
 import org.xembly.Directives;
@@ -147,12 +147,12 @@ new Directives("XPATH '//car'; REMOVE;");
 new Directives().xpath("//car").remove();
 ```
 
-The second option is preferable, because it is faster - there is
+The second option is preferable, because it is faster — there is
 no parsing involved.
 
 ### ADD
 
-`ADD` directive adds a new node to every node in the current node set.
+The `ADD` directive adds a new node to every node in the current node set.
 `ADD` expects exactly one mandatory argument, which is the name of
 a new node to be added (case sensitive):
 
@@ -161,16 +161,16 @@ ADD 'orders';
 ADD 'order';
 ```
 
-Even if the node with the same name already exists, a new node
+Even if a node with the same name already exists, a new node
 will be added. Use `ADDIF` if you need to add only if the same-name node
 is absent.
 
-After execution, `ADD` directive moves the cursor to the nodes just added.
+After the execution, the `ADD` directive moves the cursor to the nodes just added.
 
 ### ADDIF
 
-`ADDIF` directive adds a new node to every node of the current set,
-only if it's absent. `ADDIF` expects exactly one argument, which
+The `ADDIF` directive adds a new node to every node of the current set,
+only if it is absent. `ADDIF` expects exactly one argument, which
 is the name of the node to be added (case sensitive):
 
 ```text
@@ -178,11 +178,11 @@ ADD 'orders';
 ADDIF 'order';
 ```
 
-After execution, `ADDIF` directive moves the cursor to the nodes just added.
+After the execution, the `ADDIF` directive moves the cursor to the nodes just added.
 
 ### SET
 
-`SET` changes text content of all current nodes, and expects
+The `SET` directive changes text content of all current nodes, and expects
 exactly one argument, which is the text content to set:
 
 ```text
@@ -194,8 +194,8 @@ SET "John Smith";
 
 ### XSET
 
-`XSET` changes text content of all current nodes to a value
-calculated with XPath expression:
+The `XSET` directive changes text content of all current nodes to a value
+calculated with the provided XPath expression:
 
 ```text
 ADD "product-1";
@@ -207,8 +207,8 @@ XSET "sum(/products/price) div count(/products)";
 
 ### XATTR
 
-`XATTR` changes the value of an attribute of all current nodes to a value
-calculated with XPath expression:
+The `XATTR` directive changes the value of an attribute of all current nodes to a value
+calculated with the provided XPath expression:
 
 ```text
 ADD "product-1";
@@ -220,11 +220,11 @@ XATTR "s", "sum(/products/price) div count(/products)";
 
 ### UP
 
-`UP` moves all current nodes to their parents.
+The `UP` directive moves all current nodes to their parents.
 
 ### XPATH
 
-`XPATH` changes current nodes to the all found by XPath expression:
+The `XPATH` directive re-points the cursor to the nodes found by the provided XPath expression:
 
 ```text
 XPATH "//employee[@id='234' and name='John Smith']/name";
@@ -233,7 +233,7 @@ SET "John R. Smith";
 
 ### REMOVE
 
-`REMOVE` removes current nodes under the cursor and
+The `REMOVE` directive removes current nodes under the cursor and
 moves the cursor to their parents:
 
 ```text
@@ -243,11 +243,11 @@ REMOVE;
 
 ### STRICT
 
-`STRICT` checks that there is certain number of current nodes:
+The `STRICT` directive checks that there is a certain number of current nodes:
 
 ```text
-XPATH "//employee[name='John Doe']";  // move cursor to the employee
-STRICT "1";                           // throw an exception if there
+XPATH "//employee[name='John Doe']";  // Move the cursor to the employee
+STRICT "1";                           // Throw an exception if there
                                       // is not exactly one node under
                                       // the cursor
 ```
@@ -261,7 +261,7 @@ cursor has correct amount of nodes, to avoid unexpected modifications.
 
 ### PI
 
-`PI` directive add a new processing directive to the XML:
+The `PI` directive adds a new processing directive to the XML:
 
 ```text
 PI "xsl-stylesheet" "href='http://example.com'";
@@ -271,23 +271,23 @@ PI "xsl-stylesheet" "href='http://example.com'";
 
 ### PUSH and POP
 
-`PUSH` and `POP` directives saves current DOM position to stack
-and restores it from there.
+The `PUSH` and `POP` directives save current DOM position to stack
+and restore it from there.
 
-Let's say you start your Xembly manipulations from a place in DOM,
+Let's say, you start your Xembly manipulations from a place in DOM,
 which location is not determined for you. After your manipulations are
 done, you want to get back to exactly the same place. You should
 use `PUSH` to save your current location and `POP` to restore it
 back, when manipulations are finished, for example:
 
 ```assemlby
-PUSH;                        // doesn't matter where we are
-                             // we just save the location to stack
-XPATH '//user[@id="123"]';   // move the cursor to a completely
+PUSH;                        // Doesn't matter where we are
+                             // We just save the location to stack
+XPATH '//user[@id="123"]';   // Move the cursor to a completely
                              // different location in the XML
-ADD 'name';                  // add "<name/>" to all nodes under the cursor
-SET 'Jeff';                  // set text value to the nodes
-POP;                         // get back to where we were before the PUSH
+ADD 'name';                  // Add "<name/>" to all nodes under the cursor
+SET 'Jeff';                  // Set text value to the nodes
+POP;                         // Get back to where we were before the PUSH
 ```
 
 `PUSH` basically saves the cursor into stack and `POP` restores it from there.
@@ -296,19 +296,18 @@ stack has no limits, you can push multiple times and pop them back. It is
 a stack, that's why it is First-In-Last-Out (FILO).
 
 This operation is fast and it is highly recommended to use it everywhere,
-to be sure you're not making unexpected changes to the XML document. Every time
-you're not sure where your
+to be sure you're not making unexpected changes to the XML document.
 
 ### NS
 
-`NS` adds a namespace attribute to a node:
+The `NS` directive adds a namespace attribute to a node:
 
 ```text
-XPATH '/garage/car';                // move cursor to "<car/>" node(s)
-NS "http://www.w3.org/TR/html4/";   // set namespace there
+XPATH '/garage/car';                // Move the cursor to "<car/>" node(s)
+NS "http://www.w3.org/TR/html4/";   // Set the namespace over there
 ```
 
-If original document was like this:
+If an original document was like this:
 
 ```xml
 <garage>
@@ -317,7 +316,7 @@ If original document was like this:
 </garage>
 ```
 
-After applying that two directives it will look like this:
+After the applying of that two directives, it will look like this:
 
 ```xml
 <garage xmlns:a="http://www.w3.org/TR/html4/">
@@ -326,15 +325,13 @@ After applying that two directives it will look like this:
 </garage>
 ```
 
-The namspace prefix may no necessarily be `a:`, but it doesn't
-really matter.
+The namspace prefix may not necessarily be `a:`.
 
 `NS` doesn't move the cursor anywhere.
 
 ## XML Collections
 
-Let's say you want to build an XML document with a collection
-of names:
+Let's say you want to build an XML document with a collection of names:
 
 ```java
 package org.xembly.example;
@@ -356,7 +353,7 @@ public class XemblyExample {
 }
 ```
 
-Standard output will contain this text:
+The standard output will contain this text:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -381,7 +378,7 @@ Iterable<Iterable> dirs = new Directives()
 
 This static utility method `copyOf()` converts an instance of class
 `org.w3c.dom.Node` into a collection of Xembly directives. Then,
-method `append()` adds them all together to the main list.
+the `append()` method adds them all together to the main list.
 
 Unfortunately, not every valid XML document can be parsed by `copyOf()`. For
 example, this one will lead to a runtime exception:
@@ -390,7 +387,7 @@ a few paragraphs below.
 
 ## Escaping Invalid XML Text
 
-XML, as standard, doesn't allow certain characters in its body. For example,
+XML, as a standard, doesn't allow certain characters in its body. For example,
 this code will throw an exception:
 
 ```java
@@ -399,12 +396,12 @@ String xml = new Xembler(
 ).xml();
 ```
 
-Character `\u00` is not allowed in XML. Actually, these ranges
-are not allowed: `\u00..\u08`, `\u0B..\u0C`, `\u0E..\u1F`,
+The character `\u00` is not allowed in XML. Actually, these ranges
+are also not allowed: `\u00..\u08`, `\u0B..\u0C`, `\u0E..\u1F`,
 `\u7F..\u84`, and `\u86..u9F`.
 
 This means that you should validate everything and make sure you're
-setting only "valid" text values to XML nodes. Sometimes, it's not feasible
+setting only the "valid" text values to your XML nodes. Sometimes, it's not feasible
 to always check them. Sometimes you may simply need to save whatever
 is possible and call it a day. There a utility static method `Xembler.escape()`, to help
 you do that:
@@ -415,8 +412,8 @@ String xml = new Xembler(
 ).xml();
 ```
 
-This code won't throw an exception. Method `Xembler.escape()` will
-conver "\u00" to "\\u0000". It is recommended to use this method
+This code won't throw an exception. The `Xembler.escape()` method will
+convert "\u00" to "\\u0000". It is recommended to use this method
 everywhere, if you are not sure about the quality of the content.
 
 ## Shaded Xembly JAR With Dependencies
@@ -446,9 +443,6 @@ use our "shaded" JAR, that includes all dependencies:
 Xembly is not intended to be a replacement of XSL or XQuery. It is
 a lightweight (!) instrument for XML manipulations. There are a few things
 that can't be done by means of Xembly:
-
-  * You can't add, remove, or modify XML comments
-    (but you can find them with XPath)
 
   * DTD section can't be modified
 
