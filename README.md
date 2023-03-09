@@ -120,7 +120,7 @@ cursor is moving somewhere. There may be many nodes under the cursor,
 or just one, or none. For example, let's assume we're starting
 with this simple document `<car/>`:
 
-```assembly
+```text
 ADD 'hello';        // nothing happens, since cursor is empty
 XPATH '/car';       // there is one node <car> under the cursor
 ADD 'make';         // the result is "<car><make/></car>",
