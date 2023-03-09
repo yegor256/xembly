@@ -155,7 +155,7 @@ no parsing involved.
 `ADD` expects exactly one mandatory argument, which is the name of
 a new node to be added (case sensitive):
 
-```assembly
+```text
 ADD 'orders';
 ADD 'order';
 ```
@@ -172,7 +172,7 @@ After execution, `ADD` directive moves the cursor to the nodes just added.
 only if it's absent. `ADDIF` expects exactly one argument, which
 is the name of the node to be added (case sensitive):
 
-```assembly
+```text
 ADD 'orders';
 ADDIF 'order';
 ```
@@ -184,7 +184,7 @@ After execution, `ADDIF` directive moves the cursor to the nodes just added.
 `SET` changes text content of all current nodes, and expects
 exactly one argument, which is the text content to set:
 
-```assembly
+```text
 ADD "employee";
 SET "John Smith";
 ```
@@ -196,7 +196,7 @@ SET "John Smith";
 `XSET` changes text content of all current nodes to a value
 calculated with XPath expression:
 
-```assembly
+```text
 ADD "product-1";
 ADD "price";
 XSET "sum(/products/price) div count(/products)";
@@ -209,7 +209,7 @@ XSET "sum(/products/price) div count(/products)";
 `XATTR` changes the value of an attribute of all current nodes to a value
 calculated with XPath expression:
 
-```assembly
+```text
 ADD "product-1";
 ADD "price";
 XATTR "s", "sum(/products/price) div count(/products)";
@@ -225,7 +225,7 @@ XATTR "s", "sum(/products/price) div count(/products)";
 
 `XPATH` changes current nodes to the all found by XPath expression:
 
-```assembly
+```text
 XPATH "//employee[@id='234' and name='John Smith']/name";
 SET "John R. Smith";
 ```
@@ -235,7 +235,7 @@ SET "John R. Smith";
 `REMOVE` removes current nodes under the cursor and
 moves the cursor to their parents:
 
-```assembly
+```text
 ADD "employee";
 REMOVE;
 ```
@@ -244,7 +244,7 @@ REMOVE;
 
 `STRICT` checks that there is certain number of current nodes:
 
-```assembly
+```text
 XPATH "//employee[name='John Doe']";  // move cursor to the employee
 STRICT "1";                           // throw an exception if there
                                       // is not exactly one node under
@@ -262,7 +262,7 @@ cursor has correct amount of nodes, to avoid unexpected modifications.
 
 `PI` directive add a new processing directive to the XML:
 
-```assembly
+```text
 PI "xsl-stylesheet" "href='http://example.com'";
 ```
 
@@ -302,7 +302,7 @@ you're not sure where your
 
 `NS` adds a namespace attribute to a node:
 
-```assembly
+```text
 XPATH '/garage/car';                // move cursor to "<car/>" node(s)
 NS "http://www.w3.org/TR/html4/";   // set namespace there
 ```
