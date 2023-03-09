@@ -18,7 +18,8 @@
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
 for data manipulation in XML documents.
 It is a much simplier alternative to
-[XSLT](http://www.w3.org/TR/xslt) and [XQuery](http://www.w3.org/TR/xquery).
+[DOM](https://en.wikipedia.org/wiki/Document_Object_Model),
+[XSLT](http://www.w3.org/TR/xslt), and [XQuery](http://www.w3.org/TR/xquery).
 Read this blog post
 for a more detailed explanation: [Xembly, an Assembly for XML](http://www.yegor256.com/2014/04/09/xembly-intro.html).
 You may also want to watch [this webinar](https://www.youtube.com/watch?v=oNtTAF0UjjA).
