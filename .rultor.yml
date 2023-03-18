@@ -19,5 +19,7 @@ release:
     [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
+    mvn --batch-mode verify -Pjacoco -Dinvoker.skip
+    mvn --batch-mode verify -Psonar -Dinvoker.skip -Dsonar.qualitygate.wait=true
     mvn clean deploy -Pxembly -Psonatype --errors --settings ../settings.xml
     mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip || echo 'no site this time'
