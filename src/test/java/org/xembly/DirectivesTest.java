@@ -273,10 +273,10 @@ final class DirectivesTest {
     @Test
     void acceptsFromMultipleThreads() throws Exception {
         final Directives dirs = new Directives().add("mt6");
-        final int threads = Tv.FIFTY;
+        final int tasks = Tv.FIFTY;
         new LengthOf(
             new Threads<>(
-                threads / 10,
+                tasks / 10,
                 new Repeated<>(
                     () -> {
                         dirs.append(
@@ -287,7 +287,7 @@ final class DirectivesTest {
                         );
                         return null;
                     },
-                    threads
+                    tasks
                 )
             )
         ).value();

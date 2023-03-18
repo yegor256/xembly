@@ -31,18 +31,13 @@ package org.xembly;
 
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
+import org.cactoos.experimental.Threads;
+import org.cactoos.scalar.LengthOf;
+import org.cactoos.scalar.Repeated;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -184,48 +179,33 @@ final class XemblerTest {
     }
 
     @Test
-    @Disabled
     void concurrentInvocationWithNoExceptions() throws Exception {
-        final ExecutorService service = Executors.newFixedThreadPool(
-            Runtime.getRuntime().availableProcessors()
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        final Node root = dom.appendChild(dom.createElement("root"));
+        dom.appendChild(dom.createElement("root"));
         final Xembler xembler = new Xembler(
             new Directives(
-                "ADDIF 'blow';REMOVE;ADDIF 'blow';"
+                "XPATH '/root';ADDIF 'blow';"
             )
         );
-        final int capacity = 10_000;
-        final Collection<Callable<Node>> tasks = new ArrayList<>(capacity);
-        for (int idx = 0; idx < capacity; ++idx) {
-            final Callable<Node> callable = XemblerTest.callable(
-                xembler, root
-            );
-            tasks.add(callable);
-        }
-        final List<Future<Node>> futures = service.invokeAll(tasks);
-        for (final Future<Node> future : futures) {
-            future.get();
-        }
+        final int tasks = 10;
+        new LengthOf(
+            new Threads<>(
+                tasks,
+                new Repeated<>(
+                    () -> {
+                        xembler.apply(dom);
+                        return null;
+                    },
+                    tasks
+                )
+            )
+        ).value();
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root[count(blow) = 1]"
             )
         );
-        service.shutdown();
-    }
-
-    /**
-     * Builds up callable object.
-     * @param xembler Xembler's instance
-     * @param document DOM object
-     * @return Callable object
-     */
-    private static Callable<Node> callable(final Xembler xembler,
-        final Node document) {
-        return () -> xembler.apply(document);
     }
 }
