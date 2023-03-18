@@ -43,10 +43,11 @@ final class VerbsTest {
 
     @Test
     void throwsOnBrokenSyntax() {
+        final Verbs verbs = new Verbs("ADD 't';\nADD 'x';broken");
         MatcherAssert.assertThat(
             Assertions.assertThrows(
                 SyntaxException.class,
-                () -> new Verbs("ADD 't';\nADD 'x';broken").directives()
+                () -> verbs.directives()
             ).getMessage(),
             Matchers.containsString("token recognition error at: 'b'")
         );
