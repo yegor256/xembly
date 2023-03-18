@@ -13,6 +13,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/xembly)](https://hitsofcode.com/view/github/yegor256/xembly)
 ![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/xembly)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yegor256_xembly&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yegor256_xembly)
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
