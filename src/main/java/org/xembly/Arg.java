@@ -87,11 +87,14 @@ final class Arg {
         }
         final int len = chars.length - 1;
         final StringBuilder output = new StringBuilder(text.length());
-        for (int idx = 1; idx < len; ++idx) {
+        int idx = 1;
+        while (true) {
+            if (idx >= len) {
+                break;
+            }
             if (chars[idx] == '&') {
                 final StringBuilder sbuf = new StringBuilder(0);
                 while (chars[idx] != ';') {
-                    // @checkstyle ModifiedControlVariable (1 line)
                     ++idx;
                     if (idx == chars.length) {
                         throw new XmlContentException(
@@ -104,6 +107,7 @@ final class Arg {
             } else {
                 output.append(chars[idx]);
             }
+            ++idx;
         }
         return output.toString();
     }
