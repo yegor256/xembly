@@ -135,7 +135,9 @@ final class XpathDirective implements Directive {
     private static Collection<Node> traditional(final String query,
         final Node dom, final Collection<Node> current)
         throws ImpossibleModificationException {
-        final XPath xpath = XpathDirective.FACTORY.get().newXPath();
+        final XPathFactory factory = XpathDirective.FACTORY.get();
+        XpathDirective.FACTORY.remove();
+        final XPath xpath = factory.newXPath();
         final Collection<Node> targets = new HashSet<>(0);
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
