@@ -45,7 +45,7 @@ final class StrictDirective implements Directive {
     /**
      * Number of nodes we're expecting.
      */
-    private final transient int number;
+    private final int number;
 
     /**
      * Public ctor.

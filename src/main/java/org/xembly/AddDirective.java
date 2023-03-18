@@ -49,7 +49,7 @@ final class AddDirective implements Directive {
     /**
      * Name of node to add.
      */
-    private final transient Arg name;
+    private final Arg name;
 
     /**
      * Public ctor.

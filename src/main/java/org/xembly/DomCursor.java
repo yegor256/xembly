@@ -50,7 +50,7 @@ final class DomCursor extends
     /**
      * Nodes.
      */
-    private final transient Collection<Node> nodes;
+    private final Collection<Node> nodes;
 
     /**
      * Public ctor.

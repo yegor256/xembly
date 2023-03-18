@@ -45,7 +45,7 @@ final class SetDirective implements Directive {
     /**
      * Text value to set.
      */
-    private final transient Arg value;
+    private final Arg value;
 
     /**
      * Public ctor.

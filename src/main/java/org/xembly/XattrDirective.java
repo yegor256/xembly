@@ -58,12 +58,12 @@ final class XattrDirective implements Directive {
     /**
      * Attribute name.
      */
-    private final transient Arg name;
+    private final Arg name;
 
     /**
      * XPath to use.
      */
-    private final transient Arg expr;
+    private final Arg expr;
 
     /**
      * Public ctor.

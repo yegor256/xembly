@@ -46,7 +46,7 @@ For example, you have an XML document:
 </orders>
 ```
 
-And you want to change the amount of the order #553
+Then, you want to change the amount of the order #553
 from `$45.00` to `$140.00`. Xembly script would look like this:
 
 ```
@@ -55,7 +55,7 @@ XPATH "amount";
 SET "$140.00";
 ```
 
-It is much simpler and compact than
+As you see, it's much simpler and compact than
 [DOM](https://en.wikipedia.org/wiki/Document_Object_Model),
 [XSLT](http://www.w3.org/TR/xslt),
 or [XQuery](http://www.w3.org/TR/xquery).

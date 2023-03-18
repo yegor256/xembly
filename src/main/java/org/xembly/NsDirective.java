@@ -44,7 +44,7 @@ final class NsDirective implements Directive {
     /**
      * Namespace, which should be added to a node.
      */
-    private final transient Arg namespace;
+    private final Arg namespace;
 
     /**
      * Creates an instance of NsDirective.

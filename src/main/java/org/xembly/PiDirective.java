@@ -47,12 +47,12 @@ final class PiDirective implements Directive {
     /**
      * Target name.
      */
-    private final transient Arg target;
+    private final Arg target;
 
     /**
      * Data.
      */
-    private final transient Arg data;
+    private final Arg data;
 
     /**
      * Public ctor.

@@ -46,12 +46,12 @@ final class AttrDirective implements Directive {
     /**
      * Attribute name.
      */
-    private final transient Arg name;
+    private final Arg name;
 
     /**
      * Text value to set.
      */
-    private final transient Arg value;
+    private final Arg value;
 
     /**
      * Public ctor.

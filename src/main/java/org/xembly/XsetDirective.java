@@ -57,7 +57,7 @@ final class XsetDirective implements Directive {
     /**
      * XPath to use.
      */
-    private final transient Arg expr;
+    private final Arg expr;
 
     /**
      * Public ctor.

@@ -90,7 +90,7 @@ public final class Directives implements Iterable<Directive> {
     /**
      * List of directives.
      */
-    private final transient Collection<Directive> all;
+    private final Collection<Directive> all;
 
     /**
      * Public ctor.

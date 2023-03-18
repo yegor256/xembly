@@ -44,7 +44,7 @@ final class Arg {
     /**
      * Value of it.
      */
-    private final transient String value;
+    private final String value;
 
     /**
      * Public ctor.

@@ -99,7 +99,7 @@ public final class Xembler {
     /**
      * Array of directives.
      */
-    private final transient Iterable<Directive> directives;
+    private final Iterable<Directive> directives;
 
     static {
         Xembler.BFACTORY.setNamespaceAware(true);
