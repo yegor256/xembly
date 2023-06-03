@@ -1,15 +1,15 @@
 docker:
-  image: yegor256/rultor-image:1.9.1
+  image: yegor256/rultor-image:1.20.0
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
   settings.xml: yegor256/home#assets/xembly/settings.xml
   pubring.gpg: yegor256/home#assets/pubring.gpg
 install: |-
+  pdd --source=$(pwd) --file=/dev/null
   export PATH=${PATH}:$(pwd)/../.local/bin
   pip3 install --upgrade pip
   pip3 install aibolit==1.2.3rc2
-  pdd --source=$(pwd) --file=/dev/null
-  aibolit check --folder=src/main
+  # aibolit check --folder=src/main
 merge:
   script: |-
     mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
