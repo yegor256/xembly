@@ -7,8 +7,8 @@ assets:
 install: |-
   pdd --source=$(pwd) --file=/dev/null
   export PATH=${PATH}:$(pwd)/../.local/bin
-  pip3 install --upgrade pip
-  pip3 install aibolit==1.2.3rc2
+  # pip3 install --upgrade pip
+  # pip3 install aibolit==1.2.3rc2
   # aibolit check --folder=src/main
 merge:
   script: |-
