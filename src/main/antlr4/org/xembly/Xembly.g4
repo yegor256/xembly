@@ -131,7 +131,7 @@ directive returns [Directive ret]
         $ret = new UpDirective();
     }
     |
-    'PI' target=argument data=argument
+    'PI' target=argument COMMA data=argument
     {
         try {
             $ret = new PiDirective($target.ret.toString(), $data.ret.toString());

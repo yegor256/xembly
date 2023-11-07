@@ -50,8 +50,8 @@ final class PiDirectiveTest {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 new String[] {
-                    "XPATH '/root'; PI 'ab' 'boom \u20ac';",
-                    "ADD 'test'; PI 'foo' 'some data \u20ac';",
+                    "XPATH '/root'; PI 'ab', 'boom \u20ac';",
+                    "ADD 'test'; PI 'foo', 'some data \u20ac';",
                 }
             )
         );
@@ -87,7 +87,7 @@ final class PiDirectiveTest {
     @Test
     void addsProcessingInstructionsToDomRoot() throws Exception {
         final Iterable<Directive> dirs = new Directives(
-            "XPATH '/'; PI 'alpha' 'beta \u20ac'; ADD 'x4';"
+            "XPATH '/'; PI 'alpha', 'beta \u20ac'; ADD 'x4';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -103,7 +103,7 @@ final class PiDirectiveTest {
     @Test
     void prependsProcessingInstructionsToDomRoot() throws Exception {
         MatcherAssert.assertThat(
-            new Xembler(new Directives("PI 'a' 'b'; ADD 'c';")).xml(),
+            new Xembler(new Directives("PI 'a', 'b'; ADD 'c';")).xml(),
             Matchers.containsString("<?a b?><c/>")
         );
     }
