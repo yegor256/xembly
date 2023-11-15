@@ -123,10 +123,11 @@ public interface Transformers {
      * @since 0.30
      */
     final class Default implements Transformers {
+
         /**
          * Default transformer factory.
          */
-        private static TransformerFactory TFACTORY = TransformerFactory.newInstance();
+        private static TransformerFactory tfactory = TransformerFactory.newInstance();
 
         /**
          * Transformer factory.
@@ -138,7 +139,7 @@ public interface Transformers {
          * @since 0.30
          */
         Default() {
-            this(Default.TFACTORY);
+            this(Default.tfactory);
         }
 
         /**

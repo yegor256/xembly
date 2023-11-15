@@ -35,7 +35,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import lombok.EqualsAndHashCode;
@@ -87,12 +86,6 @@ public final class Xembler {
      */
     private static final DocumentBuilderFactory BFACTORY =
         DocumentBuilderFactory.newInstance();
-
-    /**
-     * Transformer factory.
-     */
-    private static final TransformerFactory TFACTORY =
-        TransformerFactory.newInstance();
 
     /**
      * Array of directives.
