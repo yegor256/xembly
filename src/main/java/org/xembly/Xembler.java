@@ -33,7 +33,6 @@ import java.io.StringWriter;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -259,7 +258,7 @@ public final class Xembler {
                 ex
             );
         }
-        this.output.prepareTransformer(transformer);
+        this.output.prepare(transformer);
 //        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 //        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         final StringWriter writer = new StringWriter();
