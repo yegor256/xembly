@@ -208,4 +208,19 @@ final class XemblerTest {
             )
         );
     }
+
+    @Test
+    void omitsHeader() {
+        MatcherAssert.assertThat(
+            "Xembler should omit XML header for Node output type",
+            new Xembler(
+                new Directives()
+                    .add("animals")
+                    .add("cow")
+                    .set("mu-mu"),
+                new Output.Node()
+            ).xmlQuietly(),
+            Matchers.equalTo("<animals><cow>mu-mu</cow></animals>")
+        );
+    }
 }

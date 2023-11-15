@@ -101,6 +101,8 @@ public final class Xembler {
      */
     private final Iterable<Directive> directives;
 
+    private final Output output;
+
     static {
         Xembler.BFACTORY.setNamespaceAware(true);
         Xembler.BFACTORY.setValidating(false);
@@ -112,7 +114,17 @@ public final class Xembler {
      * @param dirs Directives
      */
     public Xembler(final Iterable<Directive> dirs) {
-        this.directives = dirs;
+        this(dirs, new Output.Document());
+    }
+
+    /**
+     * Public ctor.
+     * @param directives Directives
+     * @param output Output type
+     */
+    public Xembler(final Iterable<Directive> directives, final Output output) {
+        this.directives = directives;
+        this.output = output;
     }
 
     /**
@@ -247,8 +259,9 @@ public final class Xembler {
                 ex
             );
         }
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        this.output.prepareTransformer(transformer);
+//        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+//        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         final StringWriter writer = new StringWriter();
         try {
             transformer.transform(
