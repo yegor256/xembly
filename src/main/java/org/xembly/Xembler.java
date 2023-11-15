@@ -34,7 +34,6 @@ import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -101,9 +100,9 @@ public final class Xembler {
     private final Iterable<Directive> directives;
 
     /**
-     * Output type.
+     * Transformers factory.
      */
-    private final Output output;
+    private final Transformers transformers;
 
     static {
         Xembler.BFACTORY.setNamespaceAware(true);
@@ -116,17 +115,17 @@ public final class Xembler {
      * @param dirs Directives
      */
     public Xembler(final Iterable<Directive> dirs) {
-        this(dirs, new Output.Document());
+        this(dirs, new Transformers.Document());
     }
 
     /**
      * Public ctor.
      * @param directives Directives
-     * @param output Output type
+     * @param transformers Transformers
      */
-    public Xembler(final Iterable<Directive> directives, final Output output) {
+    public Xembler(final Iterable<Directive> directives, final Transformers transformers) {
         this.directives = directives;
-        this.output = output;
+        this.transformers = transformers;
     }
 
     /**
@@ -249,19 +248,7 @@ public final class Xembler {
      * @since 0.9
      */
     public String xml() throws ImpossibleModificationException {
-        final Transformer transformer;
-        try {
-            transformer = Xembler.TFACTORY.newTransformer();
-        } catch (final TransformerConfigurationException ex) {
-            throw new IllegalStateException(
-                String.format(
-                    "Failed to create new Transformer at %s",
-                    Xembler.TFACTORY.getClass().getCanonicalName()
-                ),
-                ex
-            );
-        }
-        this.output.prepare(transformer);
+        final Transformer transformer = this.transformers.create();
         final StringWriter writer = new StringWriter();
         try {
             transformer.transform(

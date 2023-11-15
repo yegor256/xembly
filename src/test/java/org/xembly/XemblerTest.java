@@ -218,7 +218,7 @@ final class XemblerTest {
                     .add("animals")
                     .add("cow")
                     .set("mu-mu"),
-                new Output.Node()
+                new Transformers.Node()
             ).xmlQuietly(),
             Matchers.equalTo("<animals><cow>mu-mu</cow></animals>")
         );
