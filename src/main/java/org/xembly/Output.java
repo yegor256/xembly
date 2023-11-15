@@ -41,13 +41,12 @@ import javax.xml.transform.Transformer;
  */
 public interface Output {
 
-
     /**
      * Prepare transformer before using it.
      * @param transformer Transformer to prepare.
      * @since 0.30
      */
-    void prepare(final Transformer transformer);
+    void prepare(Transformer transformer);
 
     /**
      * Document output.
@@ -67,7 +66,7 @@ public interface Output {
          * @since 0.30
          */
         public Document() {
-            this((Document.defaultProperties()));
+            this(Document.defaultProperties());
         }
 
         /**
@@ -81,8 +80,7 @@ public interface Output {
 
         @Override
         public void prepare(final Transformer transformer) {
-            this.properties.entrySet().stream()
-                .forEach((e) -> transformer.setOutputProperty(e.getKey(), e.getValue()));
+            this.properties.forEach(transformer::setOutputProperty);
         }
 
         /**
@@ -90,7 +88,7 @@ public interface Output {
          * @return Properties to configure the output.
          */
         private static Map<String, String> defaultProperties() {
-            final HashMap<String, String> res = new HashMap<>();
+            final Map<String, String> res = new HashMap<>();
             res.put(OutputKeys.INDENT, "yes");
             res.put(OutputKeys.ENCODING, "UTF-8");
             return res;

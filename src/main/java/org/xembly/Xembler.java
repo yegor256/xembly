@@ -100,6 +100,9 @@ public final class Xembler {
      */
     private final Iterable<Directive> directives;
 
+    /**
+     * Output type.
+     */
     private final Output output;
 
     static {
@@ -259,8 +262,6 @@ public final class Xembler {
             );
         }
         this.output.prepare(transformer);
-//        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-//        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
         final StringWriter writer = new StringWriter();
         try {
             transformer.transform(
