@@ -97,7 +97,10 @@ public interface Output {
 
     /**
      * Node output.
-     * Omits XML declaration: <?xml version="1.0" encoding="UTF-8"?>
+     * Omits XML declaration:
+     * <p>{@code
+     * <?xml version="1.0" encoding="UTF-8"?>
+     * }</p>
      * @since 0.30
      */
     final class Node implements Output {
