@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../testapidocs/org/xembly/VerbsTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (c) 2013-2022, xembly.org</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (c) 2013-2023, xembly.org</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * All rights reserved.</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * Redistribution and use in source and binary forms, with or without</em>
@@ -47,21 +47,22 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * @since 0.29</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../org/xembly/VerbsTest.html">VerbsTest</a> {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="VerbsTest" href="../../org/xembly/VerbsTest.html#VerbsTest">VerbsTest</a> {
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      @Test
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">void</strong> throwsOnBrokenSyntax() {
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>              Assertions.assertThrows(
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>                  SyntaxException.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>                  () -&gt; <strong class="jxr_keyword">new</strong> Verbs(<span class="jxr_string">"ADD 't';\nADD 'x';broken"</span>).directives()
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>              ).getMessage(),
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>              Matchers.containsString(<span class="jxr_string">"token recognition error at: 'b'"</span>)
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          );
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      }
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  }
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">final</strong> Verbs verbs = <strong class="jxr_keyword">new</strong> Verbs(<span class="jxr_string">"ADD 't';\nADD 'x';broken"</span>);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>              Assertions.assertThrows(
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>                  SyntaxException.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>                  () -&gt; verbs.directives()
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>              ).getMessage(),
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>              Matchers.containsString(<span class="jxr_string">"token recognition error at: 'b'"</span>)
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          );
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      }
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2013&#x2013;2022 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2013&#x2013;2023 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
 </body>
 </html>

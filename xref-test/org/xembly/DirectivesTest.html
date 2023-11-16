@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../testapidocs/org/xembly/DirectivesTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (c) 2013-2022, xembly.org</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (c) 2013-2023, xembly.org</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * All rights reserved.</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * Redistribution and use in source and binary forms, with or without</em>
@@ -37,18 +37,18 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">package</strong> org.xembly;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.jcabi.aspects.Parallel;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.jcabi.aspects.Tv;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> com.jcabi.immutable.ArrayMap;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> com.jcabi.matchers.XhtmlMatchers;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> com.jcabi.xml.XMLDocument;
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.Callable;
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> javax.xml.parsers.DocumentBuilderFactory;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.StringUtils;
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.MatcherAssert;
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.Matchers;
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Assertions;
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Disabled;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.jcabi.aspects.Tv;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.jcabi.immutable.ArrayMap;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> com.jcabi.matchers.XhtmlMatchers;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> com.jcabi.xml.XMLDocument;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> javax.xml.parsers.DocumentBuilderFactory;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.StringUtils;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> org.cactoos.experimental.Threads;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.cactoos.scalar.LengthOf;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> org.cactoos.scalar.Repeated;
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.MatcherAssert;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.Matchers;
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Assertions;
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">import</strong> org.w3c.dom.Document;
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  
@@ -58,7 +58,7 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment"> * @since 0.1</em>
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  @SuppressWarnings({<span class="jxr_string">"PMD.TooManyMethods"</span>, <span class="jxr_string">"PMD.AvoidDuplicateLiterals"</span>})
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../org/xembly/DirectivesTest.html">DirectivesTest</a> {
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> DirectivesTest {
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      @Test
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">void</strong> makesXmlDocument() <strong class="jxr_keyword">throws</strong> Exception {
@@ -279,53 +279,57 @@
 <a class="jxr_linenumber" name="L271" href="#L271">271</a>     }
 <a class="jxr_linenumber" name="L272" href="#L272">272</a> 
 <a class="jxr_linenumber" name="L273" href="#L273">273</a>     @Test
-<a class="jxr_linenumber" name="L274" href="#L274">274</a>     @Disabled
-<a class="jxr_linenumber" name="L275" href="#L275">275</a>     <strong class="jxr_keyword">void</strong> acceptsFromMultipleThreads() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L276" href="#L276">276</a>         <strong class="jxr_keyword">final</strong> Directives dirs = <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"mt6"</span>);
-<a class="jxr_linenumber" name="L277" href="#L277">277</a>         <strong class="jxr_keyword">new</strong> Callable&lt;Void&gt;() {
-<a class="jxr_linenumber" name="L278" href="#L278">278</a>             @Parallel(threads = Tv.FIFTY)
-<a class="jxr_linenumber" name="L279" href="#L279">279</a>             @Override
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>             <strong class="jxr_keyword">public</strong> Void call() {
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>                 dirs.append(
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>                     <strong class="jxr_keyword">new</strong> Directives()
-<a class="jxr_linenumber" name="L283" href="#L283">283</a>                         .add(<span class="jxr_string">"fo9"</span>).attr(<span class="jxr_string">"yu"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some text 90"</span>)
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>                         .add(<span class="jxr_string">"tr4"</span>).attr(<span class="jxr_string">"s2w3"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some other text 76"</span>)
-<a class="jxr_linenumber" name="L285" href="#L285">285</a>                         .up().up()
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>                 );
-<a class="jxr_linenumber" name="L287" href="#L287">287</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L288" href="#L288">288</a>             }
-<a class="jxr_linenumber" name="L289" href="#L289">289</a>         } .call();
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L291" href="#L291">291</a>             XhtmlMatchers.xhtml(<strong class="jxr_keyword">new</strong> Xembler(dirs).xml()),
-<a class="jxr_linenumber" name="L292" href="#L292">292</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"/mt6[count(fo9[@yu])=50]"</span>)
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>         );
-<a class="jxr_linenumber" name="L294" href="#L294">294</a>     }
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> 
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>     @Test
-<a class="jxr_linenumber" name="L297" href="#L297">297</a>     <strong class="jxr_keyword">void</strong> addsComments() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>             <strong class="jxr_keyword">new</strong> Xembler(
-<a class="jxr_linenumber" name="L300" href="#L300">300</a>                 <strong class="jxr_keyword">new</strong> Directives()
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>                     .add(<span class="jxr_string">"victory"</span>)
-<a class="jxr_linenumber" name="L302" href="#L302">302</a>                     .comment(Xembler.escape(<span class="jxr_string">"Yes, we &lt;win&gt;!"</span>))
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>             ).xml(),
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"//comment()"</span>)
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>         );
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>     }
-<a class="jxr_linenumber" name="L307" href="#L307">307</a> 
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>     @Test
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>     <strong class="jxr_keyword">void</strong> appendsDirs() {
-<a class="jxr_linenumber" name="L310" href="#L310">310</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>             <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"0"</span>).append(
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>                 <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"1"</span>)
-<a class="jxr_linenumber" name="L313" href="#L313">313</a>             ).add(<span class="jxr_string">"2"</span>).toString(),
-<a class="jxr_linenumber" name="L314" href="#L314">314</a>             Matchers.equalTo(<span class="jxr_string">"ADD \&quot;0\&quot;;ADD \&quot;1\&quot;;ADD \&quot;2\&quot;;"</span>)
-<a class="jxr_linenumber" name="L315" href="#L315">315</a>         );
-<a class="jxr_linenumber" name="L316" href="#L316">316</a>     }
-<a class="jxr_linenumber" name="L317" href="#L317">317</a> 
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> }
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>     <strong class="jxr_keyword">void</strong> acceptsFromMultipleThreads() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>         <strong class="jxr_keyword">final</strong> Directives dirs = <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"mt6"</span>);
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> tasks = Tv.FIFTY;
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>         <strong class="jxr_keyword">new</strong> LengthOf(
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>             <strong class="jxr_keyword">new</strong> Threads&lt;&gt;(
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>                 tasks / 10,
+<a class="jxr_linenumber" name="L280" href="#L280">280</a>                 <strong class="jxr_keyword">new</strong> Repeated&lt;&gt;(
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>                     () -&gt; {
+<a class="jxr_linenumber" name="L282" href="#L282">282</a>                         dirs.append(
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>                             <strong class="jxr_keyword">new</strong> Directives()
+<a class="jxr_linenumber" name="L284" href="#L284">284</a>                                 .add(<span class="jxr_string">"fo9"</span>).attr(<span class="jxr_string">"yu"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some text 90"</span>).up()
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>                                 .add(<span class="jxr_string">"tr4"</span>).attr(<span class="jxr_string">"s2w3"</span>, <span class="jxr_string">""</span>).set(<span class="jxr_string">"some other text 76"</span>)
+<a class="jxr_linenumber" name="L286" href="#L286">286</a>                                 .up()
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>                         );
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>                         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>                     },
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>                     tasks
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>                 )
+<a class="jxr_linenumber" name="L292" href="#L292">292</a>             )
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>         ).value();
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L295" href="#L295">295</a>             XhtmlMatchers.xhtml(<strong class="jxr_keyword">new</strong> Xembler(dirs).xml()),
+<a class="jxr_linenumber" name="L296" href="#L296">296</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"/mt6[count(fo9[@yu])=50]"</span>)
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>         );
+<a class="jxr_linenumber" name="L298" href="#L298">298</a>     }
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> 
+<a class="jxr_linenumber" name="L300" href="#L300">300</a>     @Test
+<a class="jxr_linenumber" name="L301" href="#L301">301</a>     <strong class="jxr_keyword">void</strong> addsComments() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>             <strong class="jxr_keyword">new</strong> Xembler(
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>                 <strong class="jxr_keyword">new</strong> Directives()
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>                     .add(<span class="jxr_string">"victory"</span>)
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>                     .comment(Xembler.escape(<span class="jxr_string">"Yes, we &lt;win&gt;!"</span>))
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>             ).xml(),
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>             XhtmlMatchers.hasXPath(<span class="jxr_string">"//comment()"</span>)
+<a class="jxr_linenumber" name="L309" href="#L309">309</a>         );
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>     }
+<a class="jxr_linenumber" name="L311" href="#L311">311</a> 
+<a class="jxr_linenumber" name="L312" href="#L312">312</a>     @Test
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>     <strong class="jxr_keyword">void</strong> appendsDirs() {
+<a class="jxr_linenumber" name="L314" href="#L314">314</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L315" href="#L315">315</a>             <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"0"</span>).append(
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>                 <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"1"</span>)
+<a class="jxr_linenumber" name="L317" href="#L317">317</a>             ).add(<span class="jxr_string">"2"</span>).toString(),
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>             Matchers.equalTo(<span class="jxr_string">"ADD \&quot;0\&quot;;ADD \&quot;1\&quot;;ADD \&quot;2\&quot;;"</span>)
+<a class="jxr_linenumber" name="L319" href="#L319">319</a>         );
+<a class="jxr_linenumber" name="L320" href="#L320">320</a>     }
+<a class="jxr_linenumber" name="L321" href="#L321">321</a> 
+<a class="jxr_linenumber" name="L322" href="#L322">322</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2013&#x2013;2022 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2013&#x2013;2023 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
 </body>
 </html>
