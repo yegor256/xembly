@@ -51,6 +51,19 @@ import org.w3c.dom.Node;
 final class XemblerTest {
 
     @Test
+    void printsNicely() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives("ADD 'a'; ADD 'b'; ADD 'c'; SET 'hello';")
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            new XMLDocument(dom).toString(),
+            Matchers.containsString("<a>\n   <b>\n      <c>")
+        );
+    }
+
+    @Test
     void makesChangesToDomDocument() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
