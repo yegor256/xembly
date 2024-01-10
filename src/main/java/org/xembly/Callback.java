@@ -29,27 +29,16 @@
  */
 package org.xembly;
 
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 /**
- * Test case for {@link Verbs}.
- *
- * @since 0.29
+ * A task that returns a result and may throw an {@link XmlContentException}.
+ * @param <V> Type of computed result
+ * @since 0.31.0
  */
-final class VerbsTest {
-
-    @Test
-    void throwsOnBrokenSyntax() {
-        final Verbs verbs = new Verbs("ADD 't';\nADD 'x';broken");
-        MatcherAssert.assertThat(
-            Assertions.assertThrows(
-                SyntaxException.class,
-                verbs::directives
-            ).getMessage(),
-            Matchers.containsString("near [broken;]")
-        );
-    }
+public interface Callback<V> {
+    /**
+     * Computes a result.
+     * @return The computed result
+     * @throws XmlContentException If unable to compute a result
+     */
+    V call() throws XmlContentException;
 }

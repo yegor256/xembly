@@ -49,10 +49,8 @@ final class AttrDirectiveTest {
     void addsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[]{
-                    "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
-                    "XPATH '//*'; ATTR 'bar', 'test';",
-                }
+                "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
+                "XPATH '//*'; ATTR 'bar', 'test';"
             )
         );
         final Document dom = DocumentBuilderFactory.newInstance()

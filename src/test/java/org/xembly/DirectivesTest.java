@@ -319,4 +319,102 @@ final class DirectivesTest {
         );
     }
 
+    @Test
+    void hasUnknownCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("hello 'hey';")
+            ).getMessage(),
+            Matchers.containsString("Unknown command")
+        );
+    }
+
+    @Test
+    void doesNotHaveQuoteInSimpleCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ADD ;")
+            ).getMessage(),
+            Matchers.containsString("Couldn't find quote in the part of the command")
+        );
+    }
+
+    @Test
+    void containsWrongSymbolsAfterSimpleCommandArgument() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ADD 'o' wrong;")
+            ).getMessage(),
+            Matchers.containsString("Unexpected symbols after command argument")
+        );
+    }
+
+    @Test
+    void hasManyArgumentsForSimpleCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ADD 'o' ' ;")
+            ).getMessage(),
+            Matchers.containsString("Unexpected behaviour when searching for command arguments")
+        );
+    }
+
+    @Test
+    void containsSemicolonAfterFirstArgumentInComplexCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ATTR 'o';")
+            ).getMessage(),
+            Matchers.containsString("Unexpected last quote")
+        );
+    }
+
+    @Test
+    void doesNotContainCommaAfterFirstArgumentInComplexCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ATTR 'o' .;")
+            ).getMessage(),
+            Matchers.containsString("Comma after first argument is expected")
+        );
+    }
+
+    @Test
+    void containsUnexpectedSemicolonAfterCommaInComplexCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ATTR 'o' , ;")
+            ).getMessage(),
+            Matchers.containsString("Unexpected last semicolon")
+        );
+    }
+
+    @Test
+    void doesNotContainQuoteAfterFirstArgumentInComplexCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ATTR 'o' , x ;")
+            ).getMessage(),
+            Matchers.containsString("Single or double quote is expected after comma")
+        );
+    }
+
+    @Test
+    void containsUnexpectedSymbolsAfterSecondArgumentInComplexCommand() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                SyntaxException.class,
+                () -> new Directives("ATTR 'o' , \"x\" y ;")
+            ).getMessage(),
+            Matchers.containsString("Unexpected symbols after second argument")
+        );
+    }
 }

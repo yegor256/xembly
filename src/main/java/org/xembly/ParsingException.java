@@ -34,7 +34,7 @@ package org.xembly;
  *
  * @since 0.6
  */
-final class ParsingException extends RuntimeException {
+final class ParsingException extends Exception {
 
     /**
      * Serialization marker.
@@ -45,8 +45,7 @@ final class ParsingException extends RuntimeException {
      * Public ctor.
      * @param cause Cause of it
      */
-    ParsingException(final Throwable cause) {
+    ParsingException(final String cause) {
         super(cause);
     }
-
 }
