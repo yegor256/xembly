@@ -47,10 +47,8 @@ final class XattrDirectiveTest {
     void setsAttributesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[]{
-                    "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
-                    "XPATH '//*'; XATTR 'bar', 'count(//foo)';",
-                }
+                "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
+                "XPATH '//*'; XATTR 'bar', 'count(//foo)';"
             )
         );
         final Document dom = DocumentBuilderFactory.newInstance()

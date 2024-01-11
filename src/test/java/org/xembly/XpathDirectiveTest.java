@@ -51,10 +51,8 @@ final class XpathDirectiveTest {
     void findsNodesWithXpathExpression() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[] {
-                    "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';",
-                    "XPATH '//*[@bar=1]'; ADD 'test';",
-                }
+                "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';",
+                "XPATH '//*[@bar=1]'; ADD 'test';"
             )
         );
         final Document dom = DocumentBuilderFactory.newInstance()

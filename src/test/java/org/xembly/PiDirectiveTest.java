@@ -49,10 +49,8 @@ final class PiDirectiveTest {
     void addsProcessingInstructionsToDom() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[] {
-                    "XPATH '/root'; PI 'ab', 'boom \u20ac';",
-                    "ADD 'test'; PI 'foo', 'some data \u20ac';",
-                }
+                "XPATH '/root'; PI 'ab', 'boom \u20ac';",
+                "ADD 'test'; PI 'foo', 'some data \u20ac';"
             )
         );
         final Document dom = DocumentBuilderFactory.newInstance()

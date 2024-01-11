@@ -49,12 +49,10 @@ final class XsetDirectiveTest {
     void setsTextContentOfNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
-                new String[]{
-                    "ADD 'root'; ADD 'foo';",
-                    "SET '&quot;Bonnie &amp; Clyde&quot;';",
-                    "UP; ADD 'length'; XSET 'string-length(/root/foo)';",
-                    "XSET '. + 10';",
-                }
+                "ADD 'root'; ADD 'foo';",
+                "SET '&quot;Bonnie &amp; Clyde&quot;';",
+                "UP; ADD 'length'; XSET 'string-length(/root/foo)';",
+                "XSET '. + 10';"
             )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
