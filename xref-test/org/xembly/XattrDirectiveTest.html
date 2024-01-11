@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../testapidocs/org/xembly/XattrDirectiveTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (c) 2013-2023, xembly.org</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright (c) 2013-2024, xembly.org</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * All rights reserved.</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * Redistribution and use in source and binary forms, with or without</em>
@@ -55,23 +55,21 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">void</strong> setsAttributesToCurrentNodes() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          <strong class="jxr_keyword">final</strong> Iterable&lt;Directive&gt; dirs = <strong class="jxr_keyword">new</strong> Directives(
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>              StringUtils.join(
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>                  <strong class="jxr_keyword">new</strong> String[]{
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>                      <span class="jxr_string">"ADD 'root'; ADD 'foo'; UP; ADD 'foo';"</span>,
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>                      <span class="jxr_string">"XPATH '//*'; XATTR 'bar', 'count(//foo)';"</span>,
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>                  }
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>              )
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          );
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          <strong class="jxr_keyword">final</strong> Document dom = DocumentBuilderFactory.newInstance()
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>              .newDocumentBuilder().newDocument();
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">new</strong> Xembler(dirs).apply(dom);
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>              XhtmlMatchers.xhtml(dom),
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>              XhtmlMatchers.hasXPaths(<span class="jxr_string">"/root[@bar = 2]"</span>)
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          );
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      }
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>                  <span class="jxr_string">"ADD 'root'; ADD 'foo'; UP; ADD 'foo';"</span>,
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>                  <span class="jxr_string">"XPATH '//*'; XATTR 'bar', 'count(//foo)';"</span>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>              )
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          );
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">final</strong> Document dom = DocumentBuilderFactory.newInstance()
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>              .newDocumentBuilder().newDocument();
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>          <strong class="jxr_keyword">new</strong> Xembler(dirs).apply(dom);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>              XhtmlMatchers.xhtml(dom),
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>              XhtmlMatchers.hasXPaths(<span class="jxr_string">"/root[@bar = 2]"</span>)
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          );
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      }
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2013&#x2013;2023 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2013&#x2013;2024 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
 </body>
 </html>
