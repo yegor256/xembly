@@ -44,7 +44,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </bannerLeft>
   <body>
     <head>
-      &lt;link href="https://img.xembly.org/favicon.ico" rel="shortcut icon"/&gt;
+      &lt;link href="/favicon.ico" rel="shortcut icon"/&gt;
     </head>
     <breadcrumbs>
       <item name="xembly.com" href="https://www.xembly.org"/>
