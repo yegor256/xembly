@@ -1,4 +1,4 @@
-<img alt="logo" src="http://www.xembly.org/logo.png" width="64px" height="64px" />
+<img alt="logo" src="https://www.xembly.org/logo.png" width="64px" height="64px" />
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
