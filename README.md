@@ -30,7 +30,7 @@ You need this dependency:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.30.0</version>
+  <version>0.31.0</version>
 </dependency>
 ```
 
