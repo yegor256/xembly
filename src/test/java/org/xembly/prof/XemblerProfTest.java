@@ -30,7 +30,6 @@
 package org.xembly.prof;
 
 import com.jcabi.aspects.Loggable;
-import com.jcabi.aspects.Tv;
 import com.jcabi.matchers.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
@@ -49,9 +48,9 @@ final class XemblerProfTest {
     @Test
     @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
     void modifiesDom() throws Exception {
-        final StringBuilder program = new StringBuilder(Tv.THOUSAND)
+        final StringBuilder program = new StringBuilder(1000)
             .append("ADD 'root';");
-        for (int idx = 0; idx < Tv.FIFTY * Tv.THOUSAND; ++idx) {
+        for (int idx = 0; idx < 50_000; ++idx) {
             program.append(
                 "XPATH '/root'; ADDIF 'node';ADD 'temp'; REMOVE;SET '"
             ).append(idx).append("';");

@@ -29,7 +29,6 @@
  */
 package org.xembly;
 
-import com.jcabi.aspects.Tv;
 import com.jcabi.immutable.ArrayMap;
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
@@ -223,7 +222,7 @@ final class DirectivesTest {
     @Test
     void convertsToString() {
         final Directives dirs = new Directives();
-        for (int idx = 0; idx < Tv.TEN; ++idx) {
+        for (int idx = 0; idx < 10; ++idx) {
             dirs.add("HELLO");
         }
         MatcherAssert.assertThat(
@@ -273,7 +272,7 @@ final class DirectivesTest {
     @Test
     void acceptsFromMultipleThreads() throws Exception {
         final Directives dirs = new Directives().add("mt6");
-        final int tasks = Tv.FIFTY;
+        final int tasks = 50;
         new LengthOf(
             new Threads<>(
                 tasks / 10,
