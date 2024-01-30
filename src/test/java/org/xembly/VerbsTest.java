@@ -52,4 +52,22 @@ final class VerbsTest {
             Matchers.containsString("near [broken;]")
         );
     }
+
+    @Test
+    void worksWithSpacesAfterLastCommand() {
+        Assertions.assertDoesNotThrow(
+            () -> new Xembler(
+                new Directives("ADD 'o'; ATTR 'base', 'int';    ")
+            ).xml()
+        );
+    }
+
+    @Test
+    void worksWithNewLines() {
+        Assertions.assertDoesNotThrow(
+            () -> new Xembler(
+                new Directives("\n\nADD 'o';\nATTR 'base','int';\n\n")
+            ).xml()
+        );
+    }
 }

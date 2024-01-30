@@ -106,12 +106,13 @@ final class Verbs {
      * @return Directives from text
      */
     public Iterable<Directive> directives() {
-        if (!this.text.trim().isEmpty()) {
+        final String trimmed = this.text.trim();
+        if (!trimmed.isEmpty()) {
             final String semicolon = ";";
             final StringBuilder builder = new StringBuilder();
             Optional<Callback<Directive>> command;
             try {
-                for (final String part : this.text.split(semicolon)) {
+                for (final String part : trimmed.split(semicolon)) {
                     if (builder.length() == 0) {
                         builder.append(Verbs.ltrim(part));
                     } else {

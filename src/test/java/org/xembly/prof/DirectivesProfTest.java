@@ -55,5 +55,4 @@ final class DirectivesProfTest {
         final Directives dirs = new Directives(program.toString());
         MatcherAssert.assertThat(dirs, Matchers.notNullValue());
     }
-
 }

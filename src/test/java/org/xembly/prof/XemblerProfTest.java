@@ -65,5 +65,4 @@ final class XemblerProfTest {
             XhtmlMatchers.hasXPath("/root/node[.='49999']")
         );
     }
-
 }
