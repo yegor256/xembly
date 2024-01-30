@@ -1,4 +1,4 @@
-<img alt="logo" src="http://www.xembly.org/logo.png" width="64px" height="64px" />
+<img alt="logo" src="https://www.xembly.org/logo.png" width="64px" height="64px" />
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
@@ -12,7 +12,6 @@
 [![Javadoc](http://www.javadoc.io/badge/com.jcabi.incubator/xembly.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/xembly)](https://hitsofcode.com/view/github/yegor256/xembly)
-![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/xembly)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yegor256_xembly&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yegor256_xembly)
 
 **Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
@@ -31,7 +30,7 @@ You need this dependency:
 <dependency>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
-  <version>0.30.0</version>
+  <version>0.31.0</version>
 </dependency>
 ```
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2023, xembly.org
+ * Copyright (c) 2013-2024, xembly.org
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,6 @@
 package org.xembly.prof;
 
 import com.jcabi.aspects.Loggable;
-import com.jcabi.aspects.Tv;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -46,9 +45,9 @@ final class DirectivesProfTest {
     @Test
     @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
     void parsesLongProgram() {
-        final StringBuilder program = new StringBuilder(Tv.THOUSAND)
+        final StringBuilder program = new StringBuilder(1000)
             .append("ADD 'root';");
-        for (int idx = 0; idx < Tv.TEN * Tv.THOUSAND; ++idx) {
+        for (int idx = 0; idx < 10_000; ++idx) {
             program.append("XPATH '/root'; ADDIF 'node';SET '")
                 .append(idx).append("'; ADD 'x'; REMOVE;");
         }

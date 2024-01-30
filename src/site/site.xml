@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-Copyright (c) 2013-2023, xembly.org
+Copyright (c) 2013-2024, xembly.org
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </bannerLeft>
   <body>
     <head>
-      &lt;link href="https://img.xembly.org/favicon.ico" rel="shortcut icon"/&gt;
+      &lt;link href="/favicon.ico" rel="shortcut icon"/&gt;
     </head>
     <breadcrumbs>
       <item name="xembly.com" href="https://www.xembly.org"/>
