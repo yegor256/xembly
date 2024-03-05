@@ -1,3 +1,5 @@
+# Xembly
+
 <img alt="logo" src="https://www.xembly.org/logo.png" width="64px" height="64px" />
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
@@ -96,21 +98,21 @@ This code will produce the following XML document:
 
 This is a full list of supported directives, in the current version:
 
-  * `ADD`: adds new node to all current nodes
-  * `ADDIF`: adds new node, if it's absent
-  * `SET`: sets text value of current node
-  * `XSET`: sets text value, calculating it with XPath
-  * `XATTR`: sets attribute value, calculating it with XPath
-  * `CDATA`: same as `SET`, but makes `CDATA`
-  * `UP`: moves cursor one node up
-  * `XPATH`: moves cursor to the nodes found by XPath
-  * `REMOVE`: removes all current nodes
-  * `STRICT`: throws an exception if cursor is missing nodes
-  * `PI`: adds processing instruction
-  * `PUSH`: saves cursor in stack
-  * `POP`: retrieves cursor from stack
-  * `NS`: sets namespace of all current nodes
-  * `COMMENT`: adds XML comment
+* `ADD`: adds new node to all current nodes
+* `ADDIF`: adds new node, if it's absent
+* `SET`: sets text value of current node
+* `XSET`: sets text value, calculating it with XPath
+* `XATTR`: sets attribute value, calculating it with XPath
+* `CDATA`: same as `SET`, but makes `CDATA`
+* `UP`: moves cursor one node up
+* `XPATH`: moves cursor to the nodes found by XPath
+* `REMOVE`: removes all current nodes
+* `STRICT`: throws an exception if cursor is missing nodes
+* `PI`: adds processing instruction
+* `PUSH`: saves cursor in stack
+* `POP`: retrieves cursor from stack
+* `NS`: sets namespace of all current nodes
+* `COMMENT`: adds XML comment
 
 The "cursor" or "current nodes" is where we're currently located
 in the XML document. When Xembly script starts, the cursor is
@@ -446,10 +448,10 @@ Xembly is not intended to be a replacement of XSL or XQuery. It is
 a lightweight (!) instrument for XML manipulations. There are a few things
 that can't be done by means of Xembly:
 
-  * DTD section can't be modified
+* DTD section can't be modified
 
-  * Elements and text content can't be mixed, e.g.
-    this structure is not supported: `<test>hello <b>friend</a></test>`
+* Elements and text content can't be mixed, e.g.
+this structure is not supported: `<test>hello <b>friend</a></test>`
 
 Some of these limitations may be removed in the next versions. Please,
 submit [an issue](https://github.com/yegor256/xembly/issues).
