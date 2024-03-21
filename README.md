@@ -13,7 +13,6 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f244032e289f4fc2a8d9db8c84251490)](https://www.codacy.com/gh/yegor256/xembly/dashboard)
 [![Javadoc](http://www.javadoc.io/badge/com.jcabi.incubator/xembly.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
-[![Hits-of-Code](https://hitsofcode.com/github/yegor256/xembly)](https://hitsofcode.com/view/github/yegor256/xembly)
 ![Hits-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/hoc-badge.svg)
 ![Lines-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/loc-badge.svg)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yegor256_xembly&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yegor256_xembly)
