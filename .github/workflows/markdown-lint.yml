@@ -15,5 +15,5 @@ jobs:
   markdown-lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@b32f140b0c872d58512e0a66172253c302617b90
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
       - uses: articulate/actions-markdownlint@v1
