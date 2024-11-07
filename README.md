@@ -54,7 +54,7 @@ For example, you have an XML document:
 Then, you want to change the amount of the order #553
 from `$45.00` to `$140.00`. Xembly script would look like this:
 
-```
+```text
 XPATH "orders/order[@id=553]";
 XPATH "amount";
 SET "$140.00";
@@ -472,8 +472,8 @@ your changes and apply them to the `master` branch shortly, provided
 they don't violate our quality standards. To avoid frustration, before
 sending us your pull request, please run full Maven build:
 
-```
-$ mvn clean install -Pqulice
+```bash
+mvn clean install -Pqulice
 ```
 
 You must fix all static analysis issues, otherwise we won't be able
