@@ -49,9 +49,9 @@ final class XercesSampleTest {
             new Xembler(
                 new Directives().add("root")
                     .addIf("first")
-                    .add("node").set("hello")
+                    .add("node").set("привет")
             ).xml(),
-            XhtmlMatchers.hasXPath("/root/first[node='hello']")
+            XhtmlMatchers.hasXPath("/root/first[node='привет']")
         );
     }
 
@@ -62,11 +62,11 @@ final class XercesSampleTest {
             new Directives().xpath("/doc")
                 .remove().xpath("/").add("hello-you")
                 .add("second")
-                .addIf("sub").set("hey")
+                .addIf("sub").set("друг")
         ).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
-            XhtmlMatchers.hasXPath("/hello-you/second[sub='hey']")
+            XhtmlMatchers.hasXPath("/hello-you/second[sub='друг']")
         );
     }
 
