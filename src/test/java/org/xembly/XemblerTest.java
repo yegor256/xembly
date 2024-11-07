@@ -55,7 +55,7 @@ final class XemblerTest {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         new Xembler(
-            new Directives("ADD 'a'; ADD 'b'; ADD 'c'; SET 'hello';")
+            new Directives("ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';")
         ).apply(dom);
         MatcherAssert.assertThat(
             new XMLDocument(dom).toString(),
@@ -71,7 +71,7 @@ final class XemblerTest {
             new Directives(
                 StringUtils.join(
                     "ADD 'root'; STRICT '1'; ADD 'order';",
-                    "ATTR 'tag', 'hello, world!';",
+                    "ATTR 'tag', 'hello, друг!';",
                     "ADD 'price'; SET \"$29.99\"; STRICT '1'; UP; UP;",
                     "XPATH '//order[price=&apos;$29.99&apos;]/price';",
                     "SET ' $39.99 ';"
@@ -81,7 +81,7 @@ final class XemblerTest {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
-                "/root/order[@tag='hello, world!']",
+                "/root/order[@tag='hello, друг!']",
                 "/root/order[price=' $39.99 ']"
             )
         );

@@ -47,7 +47,7 @@ final class AddIfDirectiveTest {
     @Test
     void addsNodesToCurrentNodes() throws Exception {
         final Iterable<Directive> dirs = new Directives(
-            "ADD 'root'; ADD 'foo'; UP; ADDIF 'bar'; UP; ADDIF 'bar';"
+            "ADD 'root'; ADD 'foo'; UP; ADDIF 'друг'; UP; ADDIF 'друг';"
         );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
@@ -56,7 +56,7 @@ final class AddIfDirectiveTest {
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root/foo",
-                "/root[count(bar) = 1]"
+                "/root[count(друг) = 1]"
             )
         );
     }
@@ -67,7 +67,7 @@ final class AddIfDirectiveTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");
         root.appendChild(dom.createElement("a"));
-        root.appendChild(dom.createTextNode("hello"));
+        root.appendChild(dom.createTextNode("привет"));
         root.appendChild(dom.createComment("some comment"));
         root.appendChild(dom.createCDATASection("CDATA"));
         root.appendChild(dom.createProcessingInstruction("a12", "22"));

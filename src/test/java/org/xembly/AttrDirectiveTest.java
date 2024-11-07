@@ -50,7 +50,7 @@ final class AttrDirectiveTest {
         final Iterable<Directive> dirs = new Directives(
             StringUtils.join(
                 "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
-                "XPATH '//*'; ATTR 'bar', 'test';"
+                "XPATH '//*'; ATTR 'bar', 'привет';"
             )
         );
         final Document dom = DocumentBuilderFactory.newInstance()
@@ -60,7 +60,7 @@ final class AttrDirectiveTest {
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root[count(foo) = 2]",
-                "/root[count(foo[@bar='test']) = 2]"
+                "/root[count(foo[@bar='привет']) = 2]"
             )
         );
     }
