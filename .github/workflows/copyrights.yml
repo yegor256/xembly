@@ -26,26 +26,33 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 ---
-name: hoc-badge
-on:
+name: copyrights
+'on':
   push:
     branches:
       - master
-concurrency:
-  group: hoc-badge-${{ github.ref }}
-  cancel-in-progress: true
+  pull_request:
+    branches:
+      - master
 jobs:
-  hoc-badge:
-    runs-on: ubuntu-22.04
+  copyrights:
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-      - uses: MikhailEpatko/hits-of-code-badge@main
+      - uses: actions/checkout@v4
+      - uses: yegor256/copyrights-action@0.0.8
         with:
-          output_dir: gh-pages
-          filename: hoc-badge.svg
-      - uses: JamesIves/github-pages-deploy-action@v4.5.0
-        with:
-          branch: gh-pages
-          folder: gh-pages
-          clean: false
-        if: github.ref == 'refs/heads/master'
+          globs: >-
+            **/LICENSE.txt
+            **/*.sh
+            **/*.yml
+            **/*.yaml
+            **/*.eo
+            **/*.xmir
+            **/*.xml
+            **/*.xsl
+            **/*.xsd
+            **/*.ini
+            **/*.java
+            **/*.g4
+            **/*.properties
+            **/*.groovy
