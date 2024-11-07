@@ -1,6 +1,4 @@
-# Xembly
-
-<img alt="logo" src="https://www.xembly.org/logo.png" width="64px" height="64px" />
+# XML Modifying Imperative Language (and Java Lib)
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
@@ -17,15 +15,18 @@
 ![Lines-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/loc-badge.svg)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yegor256_xembly&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yegor256_xembly)
 
-**Xembly** is an [Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
-[imperative](http://en.wikipedia.org/wiki/Imperative_programming) programming language
+**Xembly** is an
+[Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
+[imperative](http://en.wikipedia.org/wiki/Imperative_programming)
+programming language
 for data manipulation in XML documents.
 It is a much simplier alternative to
 [DOM](https://en.wikipedia.org/wiki/Document_Object_Model),
 [XSLT](http://www.w3.org/TR/xslt), and [XQuery](http://www.w3.org/TR/xquery).
 Read this blog post
-for a more detailed explanation: [Xembly, an Assembly for XML](http://www.yegor256.com/2014/04/09/xembly-intro.html).
-You may also want to watch [this webinar](https://www.youtube.com/watch?v=oNtTAF0UjjA).
+for a more detailed explanation: [Xembly, an Assembly for XML][blog].
+You may also want to watch
+[this webinar](https://www.youtube.com/watch?v=oNtTAF0UjjA).
 
 You need this dependency:
 
@@ -37,7 +38,8 @@ You need this dependency:
 </dependency>
 ```
 
-Here is a command line implementation (as Ruby gem): [xembly-gem](https://github.com/yegor256/xembly-gem)
+Here is a command line implementation (as Ruby gem):
+[xembly-gem](https://github.com/yegor256/xembly-gem)
 
 For example, you have an XML document:
 
@@ -170,7 +172,8 @@ Even if a node with the same name already exists, a new node
 will be added. Use `ADDIF` if you need to add only if the same-name node
 is absent.
 
-After the execution, the `ADD` directive moves the cursor to the nodes just added.
+After the execution, the `ADD` directive moves the cursor
+to the nodes just added.
 
 ### ADDIF
 
@@ -183,7 +186,8 @@ ADD 'orders';
 ADDIF 'order';
 ```
 
-After the execution, the `ADDIF` directive moves the cursor to the nodes just added.
+After the execution, the `ADDIF` directive moves the cursor
+to the nodes just added.
 
 ### SET
 
@@ -212,7 +216,8 @@ XSET "sum(/products/price) div count(/products)";
 
 ### XATTR
 
-The `XATTR` directive changes the value of an attribute of all current nodes to a value
+The `XATTR` directive changes the value of an attribute of
+all current nodes to a value
 calculated with the provided XPath expression:
 
 ```text
@@ -229,7 +234,8 @@ The `UP` directive moves all current nodes to their parents.
 
 ### XPATH
 
-The `XPATH` directive re-points the cursor to the nodes found by the provided XPath expression:
+The `XPATH` directive re-points the cursor to the nodes found
+by the provided XPath expression:
 
 ```text
 XPATH "//employee[@id='234' and name='John Smith']/name";
@@ -406,9 +412,11 @@ are also not allowed: `\u00..\u08`, `\u0B..\u0C`, `\u0E..\u1F`,
 `\u7F..\u84`, and `\u86..u9F`.
 
 This means that you should validate everything and make sure you're
-setting only the "valid" text values to your XML nodes. Sometimes, it's not feasible
+setting only the "valid" text values to your XML nodes. Sometimes,
+it's not feasible
 to always check them. Sometimes you may simply need to save whatever
-is possible and call it a day. There a utility static method `Xembler.escape()`, to help
+is possible and call it a day. There a utility static method
+`Xembler.escape()`, to help
 you do that:
 
 ```java
@@ -474,14 +482,17 @@ to merge your pull request. The build must be "clean".
 ## Delivery Pipeline
 
 Git `master` branch is our cutting edge of development. It always contains
-the latest version of the product, always in `-SNAPSHOT` suffixed version. Nobody
+the latest version of the product, always in `-SNAPSHOT` suffixed version.
+Nobody
 is allowed to commit directly to `master` &mdash; this branch is basically
 [read-only](http://www.yegor256.com/2014/07/21/read-only-master-branch.html).
 Everybody contributes changes via
-[pull requrests](http://www.yegor256.com/2014/04/15/github-guidelines.html). We are
+[pull requrests](http://www.yegor256.com/2014/04/15/github-guidelines.html).
+We are
 using [rultor](http://www.rultor.com), a hosted
-[chatbot](http://www.yegor256.com/2015/11/03/chatbot-better-than-ui-for-microservice.html),
-in order to merge pull requests into `master`. Only our architect is allowed to send pull
+[chatbot][blog-chatbots],
+in order to merge pull requests into `master`.
+Only our architect is allowed to send pull
 requests to @rultor for merge, using `merge` command.
 Before it happens, a mandatory code review must be performed for a pull request.
 
@@ -494,8 +505,10 @@ Every once in a while, the architect may decide that it's time to release
 a new [minor/major](http://www.semver.org) version of the product. When
 it happens, he gives `release` command to @rultor. The code from `master`
 branch is tested, versioned, packaged, and deployed to
-[Sonatype](http://central.sonatype.org/) and [Maven Central](http://search.maven.org/).
-A new Git tag is created. A new GitHub release is created and briefly documented.
+[Sonatype](http://central.sonatype.org/) and
+[Maven Central](http://search.maven.org/).
+A new Git tag is created. A new GitHub release is created
+and briefly documented.
 All this is done automatically by @rultor.
 
 ## Got questions?
@@ -503,5 +516,9 @@ All this is done automatically by @rultor.
 If you have questions or general suggestions, don't hesitate to submit
 a new [Github issue](https://github.com/yegor256/xembly/issues/new).
 But keep these
-[Five Principles of Bug Tracking](http://www.yegor256.com/2014/11/24/principles-of-bug-tracking.html)
+[Five Principles of Bug Tracking][blog-bugs]
 in mind.
+
+[blog]: http://www.yegor256.com/2014/04/09/xembly-intro.html
+[blog-bugs]: http://www.yegor256.com/2014/11/24/principles-of-bug-tracking.html
+[blog-chatbots]: http://www.yegor256.com/2015/11/03/chatbot-better-than-ui-for-microservice.html
