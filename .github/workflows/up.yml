@@ -29,6 +29,8 @@
 name: up
 on:
   push:
+    branches:
+      - master
 jobs:
   up:
     runs-on: ubuntu-22.04
