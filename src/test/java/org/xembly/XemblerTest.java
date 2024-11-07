@@ -230,10 +230,10 @@ final class XemblerTest {
                 new Directives()
                     .add("animals")
                     .add("cow")
-                    .set("mu-mu"),
+                    .set("му-му"),
                 new Transformers.Node()
             ).xmlQuietly(),
-            Matchers.equalTo("<animals><cow>mu-mu</cow></animals>")
+            Matchers.equalTo("<animals><cow>му-му</cow></animals>")
         );
     }
 }
