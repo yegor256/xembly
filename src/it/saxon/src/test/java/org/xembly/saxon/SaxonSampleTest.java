@@ -60,13 +60,13 @@ final class SaxonSampleTest {
         final Node node = new XMLDocument("<doc/>").node();
         new Xembler(
             new Directives().xpath("/doc")
-                .remove().xpath("/").add("hello-you")
+                .remove().xpath("/").add("привет-you")
                 .add("second")
                 .addIf("sub").set("друг")
         ).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
-            XhtmlMatchers.hasXPath("/hello-you/second[sub='друг']")
+            XhtmlMatchers.hasXPath("/привет-you/second[sub='друг']")
         );
     }
 
