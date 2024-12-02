@@ -244,7 +244,18 @@
 <a class="jxr_linenumber" name="L236" href="#L236">236</a>             Matchers.equalTo(<span class="jxr_string">"&lt;animals&gt;&lt;cow&gt;му-му&lt;/cow&gt;&lt;/animals&gt;"</span>)
 <a class="jxr_linenumber" name="L237" href="#L237">237</a>         );
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>     }
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> }
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> 
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>     @Test
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>     <strong class="jxr_keyword">void</strong> printsNamespaces() {
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>             <span class="jxr_string">"XML output must have namespace prefixes"</span>,
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>             <strong class="jxr_keyword">new</strong> Xembler(
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>                 <strong class="jxr_keyword">new</strong> Directives().add(<span class="jxr_string">"flower"</span>).attr(<span class="jxr_string">"color x html"</span>, <span class="jxr_string">"green"</span>)
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>             ).xmlQuietly(),
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>             Matchers.containsString(<span class="jxr_string">"x:color=\&quot;green\&quot;"</span>)
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>         );
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>     }
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2024 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>
