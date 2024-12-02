@@ -332,6 +332,10 @@ public final class Directives implements Iterable<Directive> {
     /**
      * Set attribute.
      *
+     * <p>If it's necessary to add an attribute with a namespace, append
+     * the namespace to the name of the attribute, separating them
+     * with a space.</p>
+     *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
      * {@link Xembler#escape(String)}.

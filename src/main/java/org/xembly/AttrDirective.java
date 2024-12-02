@@ -75,8 +75,13 @@ final class AttrDirective implements Directive {
         final Directive.Cursor cursor, final Directive.Stack stack) {
         final String key = this.name.raw();
         final String val = this.value.raw();
+        final String[] parts = key.split(" ");
         for (final Node node : cursor) {
-            Element.class.cast(node).setAttribute(key, val);
+            if (parts.length == 2) {
+                Element.class.cast(node).setAttributeNS(parts[1], parts[0], val);
+            } else {
+                Element.class.cast(node).setAttribute(key, val);
+            }
         }
         return cursor;
     }

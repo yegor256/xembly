@@ -30,10 +30,12 @@
 package org.xembly;
 
 import com.jcabi.matchers.XhtmlMatchers;
+import com.jcabi.xml.XMLDocument;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -98,6 +100,21 @@ final class AttrDirectiveTest {
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("/f[@Price='\u20ac50']")
+        );
+    }
+
+    @Test
+    void addAttributeWithNamespace() {
+        MatcherAssert.assertThat(
+            new XMLDocument(
+                new Xembler(
+                    new Directives().add("boom").attr(
+                        "noNamespaceSchemaLocation http://www.w3.org/2001/XMLSchema-instance",
+                        "foo.xsd"
+                    )
+                ).domQuietly()
+            ).nodes("/boom/@xsi:noNamespaceSchemaLocation"),
+            Matchers.not(Matchers.emptyIterable())
         );
     }
 }
