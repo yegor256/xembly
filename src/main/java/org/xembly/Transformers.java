@@ -65,8 +65,8 @@ public interface Transformers {
          * @since 0.30
          */
         public Node() {
-            this.original = new Formatted(
-                new Default(),
+            this.original = new Transformers.Formatted(
+                new Transformers.Default(),
                 Collections.singletonMap(OutputKeys.OMIT_XML_DECLARATION, "yes")
             );
         }
@@ -95,9 +95,9 @@ public interface Transformers {
          * @since 0.30
          */
         public Document() {
-            this.original = new Formatted(
-                new Default(),
-                Document.defaultProperties()
+            this.original = new Transformers.Formatted(
+                new Transformers.Default(),
+                Transformers.Document.defaultProperties()
             );
         }
 
@@ -139,7 +139,7 @@ public interface Transformers {
          * @since 0.30
          */
         Default() {
-            this(Default.tfactory);
+            this(Transformers.Default.tfactory);
         }
 
         /**

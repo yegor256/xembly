@@ -77,8 +77,10 @@ final class AttrDirective implements Directive {
         final String val = this.value.raw();
         final String[] parts = key.split(" ");
         for (final Node node : cursor) {
-            if (parts.length == 2) {
-                Element.class.cast(node).setAttributeNS(parts[1], parts[0], val);
+            if (parts.length == 3) {
+                Element.class.cast(node).setAttributeNS(
+                    parts[2], String.format("%s:%s", parts[1], parts[0]), val
+                );
             } else {
                 Element.class.cast(node).setAttribute(key, val);
             }

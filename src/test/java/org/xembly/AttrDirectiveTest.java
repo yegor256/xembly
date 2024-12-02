@@ -39,6 +39,7 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AttrDirective}.
@@ -105,15 +106,18 @@ final class AttrDirectiveTest {
 
     @Test
     void addAttributeWithNamespace() {
+        final Node node = new Xembler(
+            new Directives().add("boom").attr(
+                "noNamespaceSchemaLocation xsi http://www.w3.org/2001/XMLSchema-instance",
+                "foo.xsd"
+            )
+        ).domQuietly();
         MatcherAssert.assertThat(
-            new XMLDocument(
-                new Xembler(
-                    new Directives().add("boom").attr(
-                        "noNamespaceSchemaLocation http://www.w3.org/2001/XMLSchema-instance",
-                        "foo.xsd"
-                    )
-                ).domQuietly()
-            ).nodes("/boom/@xsi:noNamespaceSchemaLocation"),
+            new XMLDocument(node).toString(),
+            Matchers.containsString("xsi:noNamespaceSchemaLocation")
+        );
+        MatcherAssert.assertThat(
+            new XMLDocument(node).nodes("/boom/@xsi:noNamespaceSchemaLocation"),
             Matchers.not(Matchers.emptyIterable())
         );
     }

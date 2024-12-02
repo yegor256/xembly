@@ -236,4 +236,15 @@ final class XemblerTest {
             Matchers.equalTo("<animals><cow>му-му</cow></animals>")
         );
     }
+
+    @Test
+    void printsNamespaces() {
+        MatcherAssert.assertThat(
+            "XML output must have namespace prefixes",
+            new Xembler(
+                new Directives().add("flower").attr("color x html", "green")
+            ).xmlQuietly(),
+            Matchers.containsString("x:color=\"green\"")
+        );
+    }
 }

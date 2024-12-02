@@ -204,12 +204,18 @@ ATTR 'price', '$49.99';
 After the execution, `ATTR` doesn't move the cursor.
 
 If it's necessary to make sure the attribute belongs to a certain
-namespace, put the namespace into the attribute name separating
-it with a space from the name:
+namespace, put the namespace and its prefix into the 
+attribute name separating them with spaces:
 
 ```text
-ADD 'root';
-ATTR 'noNamespaceSchemaLocation http://www.w3.org/2001/XMLSchema-instance', 'https://...';
+ADD 'flower';
+ATTR 'noNamespaceSchemaLocation xsi http://www.w3.org/2001/XMLSchema-instance', 'foo.xsd';
+```
+
+This will generate the following document:
+
+```xml
+<flower xsi:noNamespaceSchemaLocation="foo.xsd"/>
 ```
 
 ### SET
