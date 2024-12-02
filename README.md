@@ -103,6 +103,7 @@ This is a full list of supported directives, in the current version:
 
 * `ADD`: adds new node to all current nodes
 * `ADDIF`: adds new node, if it's absent
+* `ATTR`: sets new attribute to current nodes
 * `SET`: sets text value of current node
 * `XSET`: sets text value, calculating it with XPath
 * `XATTR`: sets attribute value, calculating it with XPath
@@ -188,6 +189,28 @@ ADDIF 'order';
 
 After the execution, the `ADDIF` directive moves the cursor
 to the nodes just added.
+
+### ATTR
+
+The `ATTR` directive sets an attribute to every node of the current set.
+`ATTR` expects exactly two arguments, where the first is the name
+of the attribute and the second is the value to set:
+
+```text
+ADD 'order';
+ATTR 'price', '$49.99';
+```
+
+After the execution, `ATTR` doesn't move the cursor.
+
+If it's necessary to make sure the attribute belongs to a certain
+namespace, put the namespace into the attribute name separating
+it with a space from the name:
+
+```text
+ADD 'root';
+ATTR 'noNamespaceSchemaLocation http://www.w3.org/2001/XMLSchema-instance', 'https://...';
+```
 
 ### SET
 
