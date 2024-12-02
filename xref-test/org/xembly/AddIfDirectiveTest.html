@@ -55,7 +55,7 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      @Test
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">void</strong> addsNodesToCurrentNodes() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          <strong class="jxr_keyword">final</strong> Iterable&lt;Directive&gt; dirs = <strong class="jxr_keyword">new</strong> Directives(
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>              <span class="jxr_string">"ADD 'root'; ADD 'foo'; UP; ADDIF 'bar'; UP; ADDIF 'bar';"</span>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>              <span class="jxr_string">"ADD 'root'; ADD 'foo'; UP; ADDIF 'друг'; UP; ADDIF 'друг';"</span>
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          );
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>          <strong class="jxr_keyword">final</strong> Document dom = DocumentBuilderFactory.newInstance()
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>              .newDocumentBuilder().newDocument();
@@ -64,7 +64,7 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>              XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>              XhtmlMatchers.hasXPaths(
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>                  <span class="jxr_string">"/root/foo"</span>,
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>                  <span class="jxr_string">"/root[count(bar) = 1]"</span>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>                  <span class="jxr_string">"/root[count(друг) = 1]"</span>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>              )
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>          );
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>      }
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>              .newDocumentBuilder().newDocument();
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">final</strong> Element root = dom.createElement(<span class="jxr_string">"xxx"</span>);
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          root.appendChild(dom.createElement(<span class="jxr_string">"a"</span>));
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          root.appendChild(dom.createTextNode(<span class="jxr_string">"hello"</span>));
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          root.appendChild(dom.createTextNode(<span class="jxr_string">"привет"</span>));
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>          root.appendChild(dom.createComment(<span class="jxr_string">"some comment"</span>));
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          root.appendChild(dom.createCDATASection(<span class="jxr_string">"CDATA"</span>));
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>          root.appendChild(dom.createProcessingInstruction(<span class="jxr_string">"a12"</span>, <span class="jxr_string">"22"</span>));

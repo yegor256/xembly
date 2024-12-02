@@ -83,13 +83,18 @@
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          <strong class="jxr_keyword">final</strong> Directive.Cursor cursor, <strong class="jxr_keyword">final</strong> Directive.Stack stack) {
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>          <strong class="jxr_keyword">final</strong> String key = <strong class="jxr_keyword">this</strong>.name.raw();
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          <strong class="jxr_keyword">final</strong> String val = <strong class="jxr_keyword">this</strong>.value.raw();
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Node node : cursor) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>              Element.<strong class="jxr_keyword">class</strong>.<strong class="jxr_keyword">cast</strong>(node).setAttribute(key, val);
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          }
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">return</strong> cursor;
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  }
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">final</strong> String[] parts = key.split(<span class="jxr_string">" "</span>);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Node node : cursor) {
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <strong class="jxr_keyword">if</strong> (parts.length == 2) {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  Element.<strong class="jxr_keyword">class</strong>.<strong class="jxr_keyword">cast</strong>(node).setAttributeNS(parts[1], parts[0], val);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>              } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  Element.<strong class="jxr_keyword">class</strong>.<strong class="jxr_keyword">cast</strong>(node).setAttribute(key, val);
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>              }
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>          }
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <strong class="jxr_keyword">return</strong> cursor;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      }
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2013&#x2013;2024 <a href="https://github.com/yegor256/xembly">Xembly</a>. All rights reserved.</div>

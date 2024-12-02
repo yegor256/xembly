@@ -63,7 +63,7 @@
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">final</strong> Document dom = DocumentBuilderFactory.newInstance()
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>              .newDocumentBuilder().newDocument();
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>          <strong class="jxr_keyword">new</strong> Xembler(
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>              <strong class="jxr_keyword">new</strong> Directives(<span class="jxr_string">"ADD 'a'; ADD 'b'; ADD 'c'; SET 'hello';"</span>)
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>              <strong class="jxr_keyword">new</strong> Directives(<span class="jxr_string">"ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';"</span>)
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>          ).apply(dom);
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>              <strong class="jxr_keyword">new</strong> XMLDocument(dom).toString(),
@@ -79,7 +79,7 @@
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>              <strong class="jxr_keyword">new</strong> Directives(
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>                  StringUtils.join(
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>                      <span class="jxr_string">"ADD 'root'; STRICT '1'; ADD 'order';"</span>,
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      <span class="jxr_string">"ATTR 'tag', 'hello, world!';"</span>,
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      <span class="jxr_string">"ATTR 'tag', 'hello, друг!';"</span>,
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>                      <span class="jxr_string">"ADD 'price'; SET \&quot;$29.99\&quot;; STRICT '1'; UP; UP;"</span>,
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>                      <span class="jxr_string">"XPATH '//order[price=&amp;apos;$29.99&amp;apos;]/price';"</span>,
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>                      <span class="jxr_string">"SET ' $39.99 ';"</span>
@@ -89,7 +89,7 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              XhtmlMatchers.xhtml(dom),
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>              XhtmlMatchers.hasXPaths(
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  <span class="jxr_string">"/root/order[@tag='hello, world!']"</span>,
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  <span class="jxr_string">"/root/order[@tag='hello, друг!']"</span>,
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>                  <span class="jxr_string">"/root/order[price=' $39.99 ']"</span>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>              )
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>          );
@@ -238,10 +238,10 @@
 <a class="jxr_linenumber" name="L230" href="#L230">230</a>                 <strong class="jxr_keyword">new</strong> Directives()
 <a class="jxr_linenumber" name="L231" href="#L231">231</a>                     .add(<span class="jxr_string">"animals"</span>)
 <a class="jxr_linenumber" name="L232" href="#L232">232</a>                     .add(<span class="jxr_string">"cow"</span>)
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>                     .set(<span class="jxr_string">"mu-mu"</span>),
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>                     .set(<span class="jxr_string">"му-му"</span>),
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>                 <strong class="jxr_keyword">new</strong> Transformers.Node()
 <a class="jxr_linenumber" name="L235" href="#L235">235</a>             ).xmlQuietly(),
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>             Matchers.equalTo(<span class="jxr_string">"&lt;animals&gt;&lt;cow&gt;mu-mu&lt;/cow&gt;&lt;/animals&gt;"</span>)
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>             Matchers.equalTo(<span class="jxr_string">"&lt;animals&gt;&lt;cow&gt;му-му&lt;/cow&gt;&lt;/animals&gt;"</span>)
 <a class="jxr_linenumber" name="L237" href="#L237">237</a>         );
 <a class="jxr_linenumber" name="L238" href="#L238">238</a>     }
 <a class="jxr_linenumber" name="L239" href="#L239">239</a> }
