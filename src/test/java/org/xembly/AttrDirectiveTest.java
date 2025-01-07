@@ -33,8 +33,6 @@ import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
 import java.util.Collections;
 import javax.xml.parsers.DocumentBuilderFactory;
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -122,12 +120,5 @@ final class AttrDirectiveTest {
             new XMLDocument(node).nodes("/boom/@xsi:noNamespaceSchemaLocation"),
             Matchers.not(Matchers.emptyIterable())
         );
-    }
-
-    @Property
-    void worksWithAnyAttribute(@ForAll final String value) {
-        new Xembler(
-            new Directives().add("r").attr("a", Xembler.escape(value))
-        ).domQuietly();
     }
 }

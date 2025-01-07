@@ -32,6 +32,8 @@ package org.xembly;
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
 import javax.xml.parsers.DocumentBuilderFactory;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.apache.commons.lang3.StringUtils;
 import org.cactoos.experimental.Threads;
 import org.cactoos.scalar.LengthOf;
@@ -140,6 +142,18 @@ final class XemblerTest {
         MatcherAssert.assertThat(
             Xembler.escape("привет hello \u0000"),
             Matchers.equalTo("привет hello \\u0000")
+        );
+    }
+
+    @Property
+    void escapesEverything(@ForAll final String value) {
+        MatcherAssert.assertThat(
+            new XMLDocument(
+                new Xembler(
+                    new Directives().add("r").attr("a", Xembler.escape(value))
+                ).domQuietly()
+            ),
+            XhtmlMatchers.hasXPath("/r/@a")
         );
     }
 
