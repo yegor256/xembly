@@ -169,7 +169,7 @@ final class DirectivesTest {
                     "<!-- some comment -->",
                     "<x><![CDATA[hey you]]></x>  </jeff>"
                 )
-            ).node()
+            ).deepCopy()
         );
         MatcherAssert.assertThat(copy, Matchers.iterableWithSize(19));
         new Xembler(new Directives().add("dudes").append(copy)).apply(dom);
@@ -195,7 +195,7 @@ final class DirectivesTest {
                         "<io a='x'><f><name>\u20ac</name></f></io>",
                         "<x><![CDATA[hey you]]></x>  </joe>"
                     )
-                ).node()
+                ).deepCopy()
             )
         ).apply(dom);
         MatcherAssert.assertThat(

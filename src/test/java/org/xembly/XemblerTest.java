@@ -145,7 +145,7 @@ final class XemblerTest {
 
     @Test
     void modifiesClonedNode() throws Exception {
-        final Node node = new XMLDocument("<t/>").node().cloneNode(true);
+        final Node node = new XMLDocument("<t/>").deepCopy();
         new Xembler(new Directives().xpath("/t").add("x")).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
@@ -155,7 +155,7 @@ final class XemblerTest {
 
     @Test
     void replacesRootNode() throws Exception {
-        final Node node = new XMLDocument("<e/>").node();
+        final Node node = new XMLDocument("<e/>").deepCopy();
         new Xembler(new Directives().xpath("/e").remove().add("p")).apply(node);
         MatcherAssert.assertThat(
             new XMLDocument(node),
@@ -165,7 +165,7 @@ final class XemblerTest {
 
     @Test
     void removesAttribute() throws Exception {
-        final Node node = new XMLDocument("<i8 a6='foo'/>").node();
+        final Node node = new XMLDocument("<i8 a6='foo'/>").deepCopy();
         new Xembler(
             new Directives()
                 .xpath("/i8/@a6")
@@ -181,7 +181,7 @@ final class XemblerTest {
 
     @Test
     void removesRootNode() throws Exception {
-        final Node node = new XMLDocument("<old/>").node();
+        final Node node = new XMLDocument("<old/>").deepCopy();
         new Xembler(
             new Directives().xpath("/old").remove().add("new")
         ).apply(node);
