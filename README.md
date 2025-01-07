@@ -204,7 +204,7 @@ ATTR 'price', '$49.99';
 After the execution, `ATTR` doesn't move the cursor.
 
 If it's necessary to make sure the attribute belongs to a certain
-namespace, put the namespace and its prefix into the 
+namespace, put the namespace and its prefix into the
 attribute name separating them with spaces:
 
 ```text
