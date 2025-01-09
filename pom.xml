@@ -130,7 +130,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>com.jcabi</groupId>
       <artifactId>jcabi-matchers</artifactId>
-      <version>1.7.0</version>
+      <version>1.8.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -192,6 +192,18 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-core</artifactId>
       <version>3.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>2.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eolang</groupId>
+      <artifactId>jucs</artifactId>
+      <version>0.2.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

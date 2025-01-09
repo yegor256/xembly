@@ -29,20 +29,33 @@
  */
 package org.xembly;
 
+import com.jcabi.matchers.XPathMatcher;
 import com.jcabi.matchers.XhtmlMatchers;
+import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
+import com.jcabi.xml.XPathContext;
+import java.util.Collection;
+import java.util.Map;
 import javax.xml.parsers.DocumentBuilderFactory;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.apache.commons.lang3.StringUtils;
 import org.cactoos.experimental.Threads;
+import org.cactoos.iterable.Mapped;
+import org.cactoos.list.ListOf;
 import org.cactoos.scalar.LengthOf;
 import org.cactoos.scalar.Repeated;
+import org.eolang.jucs.ClasspathSource;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.hamcrest.core.AllOf;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.yaml.snakeyaml.Yaml;
 
 /**
  * Test case for {@link Xembler}.
@@ -261,4 +274,49 @@ final class XemblerTest {
             Matchers.containsString("x:color=\"green\"")
         );
     }
+
+    @ParameterizedTest
+    @ClasspathSource(value = "org/xembly/stories/", glob = "**.yml")
+    void checksYamlStories(final String story) {
+        MatcherAssert.assertThat(
+            "modifies XML document with a few directives",
+            story,
+            new XemblerTest.StoryMatcher()
+        );
+    }
+
+    /**
+     * Matcher for stories.
+     *
+     * @since 0.33.0
+     */
+    private static final class StoryMatcher extends BaseMatcher<String> {
+        @Override
+        @SuppressWarnings("unchecked")
+        public boolean matches(final Object item) {
+            final Map<String, Object> yaml = new Yaml().load(
+                String.class.cast(item.toString())
+            );
+            final Directives directives = new Directives();
+            for (final String dir : (Iterable<String>) yaml.get("directives")) {
+                directives.append(new Directives(dir));
+            }
+            final XML xml = new XMLDocument(yaml.get("before").toString());
+            new Xembler(directives).applyQuietly(xml.inner());
+            return new AllOf<>(
+                new ListOf<>(
+                    new Mapped<>(
+                        str -> new XPathMatcher<>(str, new XPathContext()),
+                        (Collection<String>) yaml.get("xpaths")
+                    )
+                )
+            ).matches(XhtmlMatchers.xhtml(xml.inner()));
+        }
+
+        @Override
+        public void describeTo(final Description description) {
+            description.appendText("matches");
+        }
+    }
+
 }

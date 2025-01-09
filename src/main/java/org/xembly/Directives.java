@@ -75,16 +75,13 @@ import org.w3c.dom.NodeList;
  * @since 0.1
  * @checkstyle ClassFanOutComplexity (500 lines)
  */
-@EqualsAndHashCode(callSuper = false, of = "all")
-@SuppressWarnings
-    (
-        {
-            "PMD.TooManyMethods",
-            "PMD.CyclomaticComplexity",
-            "PMD.GodClass",
-            "PMD.StdCyclomaticComplexity"
-        }
-    )
+@EqualsAndHashCode(of = "all")
+@SuppressWarnings({
+    "PMD.TooManyMethods",
+    "PMD.CyclomaticComplexity",
+    "PMD.GodClass",
+    "PMD.StdCyclomaticComplexity"
+})
 public final class Directives implements Iterable<Directive> {
 
     /**
