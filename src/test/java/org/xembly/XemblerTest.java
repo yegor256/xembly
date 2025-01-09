@@ -46,8 +46,7 @@ import org.cactoos.list.ListOf;
 import org.cactoos.scalar.LengthOf;
 import org.cactoos.scalar.Repeated;
 import org.eolang.jucs.ClasspathSource;
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.AllOf;
@@ -280,43 +279,38 @@ final class XemblerTest {
     void checksYamlStories(final String story) {
         MatcherAssert.assertThat(
             "modifies XML document with a few directives",
-            story,
-            new XemblerTest.StoryMatcher()
+            XemblerTest.outcomeOf(story),
+            XemblerTest.matchersOf(story)
         );
     }
 
-    /**
-     * Matcher for stories.
-     *
-     * @since 0.33.0
-     */
-    private static final class StoryMatcher extends BaseMatcher<String> {
-        @Override
-        @SuppressWarnings("unchecked")
-        public boolean matches(final Object item) {
-            final Map<String, Object> yaml = new Yaml().load(
-                String.class.cast(item.toString())
-            );
-            final Directives directives = new Directives();
-            for (final String dir : (Iterable<String>) yaml.get("directives")) {
-                directives.append(new Directives(dir));
-            }
-            final XML xml = new XMLDocument(yaml.get("before").toString());
-            new Xembler(directives).applyQuietly(xml.inner());
-            return new AllOf<>(
-                new ListOf<>(
-                    new Mapped<>(
-                        str -> new XPathMatcher<>(str, new XPathContext()),
-                        (Collection<String>) yaml.get("xpaths")
-                    )
-                )
-            ).matches(XhtmlMatchers.xhtml(xml.inner()));
+    @SuppressWarnings("unchecked")
+    private static XML outcomeOf(final String story) {
+        final Map<String, Object> yaml = new Yaml().load(
+            String.class.cast(story)
+        );
+        final Directives directives = new Directives();
+        for (final String dir : (Iterable<String>) yaml.get("directives")) {
+            directives.append(new Directives(dir));
         }
+        final XML xml = new XMLDocument(yaml.get("before").toString());
+        new Xembler(directives).applyQuietly(xml.inner());
+        return xml;
+    }
 
-        @Override
-        public void describeTo(final Description description) {
-            description.appendText("matches");
-        }
+    @SuppressWarnings("unchecked")
+    private static Matcher<XML> matchersOf(final String story) {
+        final Map<String, Object> yaml = new Yaml().load(
+            String.class.cast(story)
+        );
+        return new AllOf<>(
+            new ListOf<>(
+                new Mapped<>(
+                    str -> new XPathMatcher<>(str, new XPathContext()),
+                    (Collection<String>) yaml.get("xpaths")
+                )
+            )
+        );
     }
 
 }
