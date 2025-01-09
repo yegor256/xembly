@@ -286,28 +286,31 @@ final class XemblerTest {
 
     @SuppressWarnings("unchecked")
     private static XML outcomeOf(final String story) {
-        final Map<String, Object> yaml = new Yaml().load(
-            String.class.cast(story)
+        final Map<String, Object> yaml = new Yaml().load(story);
+        final Node before = new XMLDocument(
+            yaml.get("before").toString()
+        ).inner();
+        return new XMLDocument(
+            new Xembler(
+                new Directives(
+                    String.join(
+                        "",
+                        (Iterable<String>) yaml.get("directives")
+                    )
+                )
+            ).applyQuietly(before)
         );
-        final Directives directives = new Directives();
-        for (final String dir : (Iterable<String>) yaml.get("directives")) {
-            directives.append(new Directives(dir));
-        }
-        final XML xml = new XMLDocument(yaml.get("before").toString());
-        new Xembler(directives).applyQuietly(xml.inner());
-        return xml;
     }
 
     @SuppressWarnings("unchecked")
     private static Matcher<XML> matchersOf(final String story) {
-        final Map<String, Object> yaml = new Yaml().load(
-            String.class.cast(story)
-        );
         return new AllOf<>(
             new ListOf<>(
                 new Mapped<>(
                     str -> new XPathMatcher<>(str, new XPathContext()),
-                    (Collection<String>) yaml.get("xpaths")
+                    (Collection<String>) new Yaml()
+                        .<Map<String, Object>>load(story)
+                        .get("xpaths")
                 )
             )
         );
