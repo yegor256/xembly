@@ -242,7 +242,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
           <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs</artifactId>
-            <version>4.8.6</version>
+            <version>4.9.0</version>
           </dependency>
         </dependencies>
       </plugin>
