@@ -21,7 +21,7 @@
 # SOFTWARE.
 ---
 name: ort
-on:
+'on':
   push:
     branches:
       - master
@@ -36,5 +36,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oss-review-toolkit/ort-ci-github-action@v1
         with:
-          allow-dynamic-versions: 'true'
           fail-on: 'violations'

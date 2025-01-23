@@ -27,7 +27,7 @@
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 ---
 name: up
-on:
+'on':
   push:
 jobs:
   up:
