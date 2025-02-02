@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Attr;
 import org.w3c.dom.NamedNodeMap;
@@ -110,7 +111,7 @@ public final class Directives implements Iterable<Directive> {
      */
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public Directives(final Iterable<Directive> dirs) {
-        this.all = Directives.toCollection(dirs);
+        this.all = new CopyOnWriteArrayList<>(Directives.toCollection(dirs));
     }
 
     @Override
@@ -218,9 +219,7 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.11
      */
     public Directives append(final Iterable<Directive> dirs) {
-        synchronized (this.all) {
-            this.all.addAll(Directives.toCollection(dirs));
-        }
+        this.all.addAll(Directives.toCollection(dirs));
         return this;
     }
 
