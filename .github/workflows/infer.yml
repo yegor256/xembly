@@ -33,6 +33,7 @@ name: infer
       - master
 jobs:
   infer:
+    timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
