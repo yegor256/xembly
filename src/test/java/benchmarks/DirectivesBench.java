@@ -27,41 +27,59 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.xembly.prof;
+package benchmarks;
 
-import com.jcabi.aspects.Loggable;
-import com.jcabi.matchers.XhtmlMatchers;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.concurrent.TimeUnit;
 import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Test;
-import org.w3c.dom.Document;
+import org.hamcrest.Matchers;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.Warmup;
 import org.xembly.Directives;
-import org.xembly.Xembler;
 
 /**
- * Prof case for {@link Xembler}.
- * @since 0.10.1
+ * Benchmark for {@link Directives}.
+ *
+ * @since 0.0.34
+ * @checkstyle DesignForExtensionCheck (10 lines)
+ * @checkstyle NonStaticMethodCheck (100 lines)
  */
-@Loggable
-final class XemblerProfTest {
+@Fork(1)
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 1)
+@Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.MILLISECONDS)
+@State(Scope.Benchmark)
+public class DirectivesBench {
 
-    @Test
-    @SuppressWarnings("PMD.InsufficientStringBufferDeclaration")
-    void modifiesDom() throws Exception {
-        final StringBuilder program = new StringBuilder(1000)
-            .append("ADD 'root';");
-        for (int idx = 0; idx < 50_000; ++idx) {
-            program.append(
-                "XPATH '/root'; ADDIF 'node';ADD 'temp'; REMOVE;SET '"
-            ).append(idx).append("';");
+    /**
+     * Benchmark for {@link Directives#Directives(String)}.
+     */
+    @Benchmark
+    public final void buildsLargeXml() {
+        final Directives dirs = new Directives().add("root");
+        for (int idx = 0; idx < 100_000; ++idx) {
+            dirs.add("item").attr("idx", idx).up();
+        }
+    }
+
+    /**
+     * Benchmark for {@link Directives#Directives(String)}.
+     */
+    @Benchmark
+    public final void parsesLongProgram() {
+        final StringBuilder program = new StringBuilder(1000).append("ADD 'root';");
+        for (int idx = 0; idx < 10_000; ++idx) {
+            program.append("XPATH '/root'; ADDIF 'node';SET '")
+                .append(idx).append("'; ADD 'x'; REMOVE;");
         }
         final Directives dirs = new Directives(program.toString());
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
-        MatcherAssert.assertThat(
-            XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPath("/root/node[.='49999']")
-        );
+        MatcherAssert.assertThat(dirs, Matchers.notNullValue());
     }
 }

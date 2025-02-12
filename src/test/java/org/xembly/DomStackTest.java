@@ -32,7 +32,6 @@ package org.xembly;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -44,7 +43,6 @@ import org.mockito.Mockito;
 final class DomStackTest {
 
     @Test
-    @Disabled
     void addsAndRetrieves() throws Exception {
         final Directive.Stack stack = new DomStack();
         final Directive.Cursor first = Mockito.mock(Directive.Cursor.class);

@@ -29,8 +29,8 @@
  */
 
 /**
- * Test cases for profiling.
+ * Benchmarks.
  *
- * @since 0.10.1
+ * @since 0.1
  */
-package org.xembly.prof;
+package benchmarks;
