@@ -317,7 +317,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <version>1.18.0</version>
+        <version>1.18.2</version>
         <executions>
           <execution>
             <goals>
