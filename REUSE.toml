@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: Copyright (c) 2013-2025 Yegor Bugayenko <yegor256@gmail.com>
+# SPDX-License-Identifier: MIT
+
+version = 1
+
+[[annotations]]
+path = [
+     ".pdd",
+     "renovate.json",
+     "README.md",
+     "src/it/saxon/src/test/resources/META-INF/services/javax.xml.transform.TransformerFactory",
+     "src/it/xerces/src/test/resources/META-INF/services/javax.xml.parsers.DocumentBuilderFactory",
+     "src/it/xerces/src/test/resources/META-INF/services/javax.xml.transform.TransformerFactory",
+     "src/it/xerces/src/test/resources/META-INF/services/javax.xml.xpath.XPathFactory",
+     "src/site/resources/CNAME",
+     "src/site/resources/favicon.ico",
+     "src/site/resources/logo-256x256.png",
+     "src/site/resources/logo-64x64.png",
+     "src/site/resources/logo.png",
+     "src/www.xembly.org/logo.png"
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (c) 2013-2025 Yegor Bugayenko <yegor256@gmail.com>"
+SPDX-License-Identifier = "MIT"
