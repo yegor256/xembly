@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2013-2025 Yegor Bugayenko <yegor256@gmail.com>
 # SPDX-License-Identifier: MIT
 ---
+# yamllint disable rule:line-length
 name: reuse
 'on':
   push:
@@ -11,6 +12,7 @@ name: reuse
       - master
 jobs:
   reuse:
+    timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
