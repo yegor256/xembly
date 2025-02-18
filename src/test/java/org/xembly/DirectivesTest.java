@@ -1,31 +1,6 @@
 /*
- * Copyright (c) 2013-2025 Yegor Bugayenko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the xembly.org nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+ * SPDX-FileCopyrightText: 2013-2025 Yegor Bugayenko <yegor256@gmail.com>
+ * SPDX-License-Identifier: MIT
  */
 package org.xembly;
 
@@ -54,6 +29,7 @@ final class DirectivesTest {
     @Test
     void makesXmlDocument() throws Exception {
         MatcherAssert.assertThat(
+            "Can't build XML document",
             XhtmlMatchers.xhtml(
                 new Xembler(
                     new Directives()
@@ -76,20 +52,26 @@ final class DirectivesTest {
         final Iterable<Directive> dirs = new Directives(
             "XPATH '//orders[@id=\"152\"]'; SET 'test';"
         );
-        MatcherAssert.assertThat(dirs, Matchers.iterableWithSize(2));
+        MatcherAssert.assertThat(
+            "Can't parse directives",
+            dirs,
+            Matchers.iterableWithSize(2)
+        );
     }
 
     @Test
     void throwsOnBrokenGrammar() {
         Assertions.assertThrows(
             SyntaxException.class,
-            () -> new Directives("not a xembly at all")
+            () -> new Directives("not a xembly at all"),
+            "Can't detect broken grammar"
         );
     }
 
     @Test
     void throwsOnBrokenXmlContent() {
         MatcherAssert.assertThat(
+            "Can't detect broken XML content",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ADD 't';\nADD '\u001b';")
@@ -102,7 +84,8 @@ final class DirectivesTest {
     void throwsOnBrokenEscapedXmlContent() {
         Assertions.assertThrows(
             SyntaxException.class,
-            () -> new Directives("ADD '&#27;';")
+            () -> new Directives("ADD '&#27;';"),
+            "Can't detect broken escaped XML content"
         );
     }
 
@@ -119,6 +102,7 @@ final class DirectivesTest {
             ).add("third")
         ).apply(dom);
         MatcherAssert.assertThat(
+            "Can't add map of values",
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/root/first[.=1]",
@@ -131,6 +115,7 @@ final class DirectivesTest {
     @Test
     void ingoresEmptyInput() {
         MatcherAssert.assertThat(
+            "Can't ignore empty input",
             new Directives("\n\t   \r"),
             Matchers.emptyIterable()
         );
@@ -148,6 +133,7 @@ final class DirectivesTest {
             .newDocumentBuilder().newDocument();
         new Xembler(new Directives(script)).apply(dom);
         MatcherAssert.assertThat(
+            "Can't perform full-scale modifications",
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/xhtml:html",
@@ -171,9 +157,14 @@ final class DirectivesTest {
                 )
             ).deepCopy()
         );
-        MatcherAssert.assertThat(copy, Matchers.iterableWithSize(19));
+        MatcherAssert.assertThat(
+            "Can't copy existing node",
+            copy,
+            Matchers.iterableWithSize(19)
+        );
         new Xembler(new Directives().add("dudes").append(copy)).apply(dom);
         MatcherAssert.assertThat(
+            "Can't copy existing node",
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/dudes/jeff[@name = 'Jeffrey']",
@@ -199,6 +190,7 @@ final class DirectivesTest {
             )
         ).apply(dom);
         MatcherAssert.assertThat(
+            "Can't append existing node",
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/guys/joe[@name = 'Joey']",
@@ -211,6 +203,7 @@ final class DirectivesTest {
     @Test
     void addsElementsCaseSensitively() throws Exception {
         MatcherAssert.assertThat(
+            "Can't add elements case-sensitively",
             new Xembler(new Directives().add("XHtml").addIf("Body")).xml(),
             XhtmlMatchers.hasXPaths(
                 "/XHtml",
@@ -226,10 +219,12 @@ final class DirectivesTest {
             dirs.add("HELLO");
         }
         MatcherAssert.assertThat(
+            "Can't convert to string",
             dirs,
             Matchers.hasToString(Matchers.containsString("8:"))
         );
         MatcherAssert.assertThat(
+            "Can't convert to string",
             new Directives(dirs.toString()),
             Matchers.not(Matchers.emptyIterable())
         );
@@ -238,6 +233,7 @@ final class DirectivesTest {
     @Test
     void pushesAndPopsCursor() throws Exception {
         MatcherAssert.assertThat(
+            "Can't push and pop cursor",
             XhtmlMatchers.xhtml(
                 new Xembler(
                     new Directives()
@@ -259,6 +255,7 @@ final class DirectivesTest {
     @Test
     void prefixesItemsWithNamespaces() throws Exception {
         MatcherAssert.assertThat(
+            "Can't prefix items with namespaces",
             new Xembler(
                 new Directives()
                     .add("bbb")
@@ -291,6 +288,7 @@ final class DirectivesTest {
             )
         ).value();
         MatcherAssert.assertThat(
+            "Can't accept from multiple threads",
             XhtmlMatchers.xhtml(new Xembler(dirs).xml()),
             XhtmlMatchers.hasXPath("/mt6[count(fo9[@yu])=50]")
         );
@@ -299,6 +297,7 @@ final class DirectivesTest {
     @Test
     void addsComments() throws Exception {
         MatcherAssert.assertThat(
+            "Can't add comments",
             new Xembler(
                 new Directives()
                     .add("victory")
@@ -311,6 +310,7 @@ final class DirectivesTest {
     @Test
     void appendsDirs() {
         MatcherAssert.assertThat(
+            "Can't append directives",
             new Directives().add("0").append(
                 new Directives().add("1")
             ).add("2").toString(),
@@ -321,6 +321,7 @@ final class DirectivesTest {
     @Test
     void hasUnknownCommand() {
         MatcherAssert.assertThat(
+            "Can't detect unknown command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("hello 'hey';")
@@ -332,6 +333,7 @@ final class DirectivesTest {
     @Test
     void doesNotHaveQuoteInSimpleCommand() {
         MatcherAssert.assertThat(
+            "Can't detect missing quote in simple command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ADD ;")
@@ -343,6 +345,7 @@ final class DirectivesTest {
     @Test
     void containsWrongSymbolsAfterSimpleCommandArgument() {
         MatcherAssert.assertThat(
+            "Can't detect wrong symbols after simple command argument",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ADD 'o' wrong;")
@@ -354,6 +357,7 @@ final class DirectivesTest {
     @Test
     void hasManyArgumentsForSimpleCommand() {
         MatcherAssert.assertThat(
+            "Can't detect many arguments for simple command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ADD 'o' ' ;")
@@ -365,6 +369,7 @@ final class DirectivesTest {
     @Test
     void containsSemicolonAfterFirstArgumentInComplexCommand() {
         MatcherAssert.assertThat(
+            "Can't detect semicolon after first argument in complex command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ATTR 'o';")
@@ -376,6 +381,7 @@ final class DirectivesTest {
     @Test
     void doesNotContainCommaAfterFirstArgumentInComplexCommand() {
         MatcherAssert.assertThat(
+            "Can't detect missing comma after first argument in complex command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ATTR 'o' .;")
@@ -387,6 +393,7 @@ final class DirectivesTest {
     @Test
     void containsUnexpectedSemicolonAfterCommaInComplexCommand() {
         MatcherAssert.assertThat(
+            "Can't detect unexpected semicolon after comma in complex command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ATTR 'o' , ;")
@@ -398,6 +405,7 @@ final class DirectivesTest {
     @Test
     void doesNotContainQuoteAfterFirstArgumentInComplexCommand() {
         MatcherAssert.assertThat(
+            "Can't detect missing quote after first argument in complex command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ATTR 'o' , x ;")
@@ -409,6 +417,7 @@ final class DirectivesTest {
     @Test
     void containsUnexpectedSymbolsAfterSecondArgumentInComplexCommand() {
         MatcherAssert.assertThat(
+            "Can't detect unexpected symbols after second argument in complex command",
             Assertions.assertThrows(
                 SyntaxException.class,
                 () -> new Directives("ATTR 'o' , \"x\" y ;")

@@ -1,35 +1,11 @@
 /*
- * Copyright (c) 2013-2025 Yegor Bugayenko
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the xembly.org nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+ * SPDX-FileCopyrightText: 2013-2025 Yegor Bugayenko <yegor256@gmail.com>
+ * SPDX-License-Identifier: MIT
  */
 package org.xembly;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -41,46 +17,56 @@ import java.util.function.Function;
  * Directives in plain text.
  * @since 0.24
  */
-@SuppressWarnings({"PMD.GodClass", "PMD.InefficientEmptyStringCheck"})
+@SuppressWarnings({
+    "PMD.GodClass",
+    "PMD.InefficientEmptyStringCheck",
+    "PMD.DoubleBraceInitialization"
+})
 final class Verbs {
     /**
      * Commands without arguments.
      */
     @SuppressWarnings("PMD.NonStaticInitializer")
     private static final Map<String, Callback<Directive>> ARGUMENTLESS =
-        new HashMap<String, Callback<Directive>>() {{
-            put("REMOVE", RemoveDirective::new);
-            put("UP", UpDirective::new);
-            put("PUSH", PushDirective::new);
-            put("POP", PopDirective::new);
-        }};
+        new HashMap<String, Callback<Directive>>() {
+            {
+                this.put("REMOVE", RemoveDirective::new);
+                this.put("UP", UpDirective::new);
+                this.put("PUSH", PushDirective::new);
+                this.put("POP", PopDirective::new);
+            }
+        };
 
     /**
      * Commands with one argument.
      */
     @SuppressWarnings("PMD.NonStaticInitializer")
     private static final Map<String, Function<String, Callback<Directive>>> SIMPLE =
-        new HashMap<String, Function<String, Callback<Directive>>>() {{
-            put("XPATH", value -> () -> new XpathDirective(value));
-            put("SET", value -> () -> new SetDirective(value));
-            put("XSET", value -> () -> new XsetDirective(value));
-            put("ADD", value -> () -> new AddDirective(value));
-            put("ADDIF", value -> () -> new AddIfDirective(value));
-            put("STRICT", value -> () -> new StrictDirective(Integer.parseInt(value)));
-            put("CDATA", value -> () -> new CdataDirective(value));
-            put("COMMENT", value -> () -> new CommentDirective(value));
-        }};
+        new HashMap<String, Function<String, Callback<Directive>>>() {
+            {
+                this.put("XPATH", value -> () -> new XpathDirective(value));
+                this.put("SET", value -> () -> new SetDirective(value));
+                this.put("XSET", value -> () -> new XsetDirective(value));
+                this.put("ADD", value -> () -> new AddDirective(value));
+                this.put("ADDIF", value -> () -> new AddIfDirective(value));
+                this.put("STRICT", value -> () -> new StrictDirective(Integer.parseInt(value)));
+                this.put("CDATA", value -> () -> new CdataDirective(value));
+                this.put("COMMENT", value -> () -> new CommentDirective(value));
+            }
+    };
 
     /**
      * Commands with two arguments.
      */
     @SuppressWarnings("PMD.NonStaticInitializer")
     private static final Map<String, BiFunction<String, String, Callback<Directive>>> COMPLEX =
-        new HashMap<String, BiFunction<String, String, Callback<Directive>>>() {{
-            put("ATTR", (attr, value) -> () -> new AttrDirective(attr, value));
-            put("XATTR", (attr, value) -> () -> new XattrDirective(attr, value));
-            put("PI", (target, data) -> () -> new PiDirective(target, data));
-        }};
+        new HashMap<String, BiFunction<String, String, Callback<Directive>>>() {
+            {
+                this.put("ATTR", (attr, value) -> () -> new AttrDirective(attr, value));
+                this.put("XATTR", (attr, value) -> () -> new XattrDirective(attr, value));
+                this.put("PI", (target, data) -> () -> new PiDirective(target, data));
+            }
+        };
 
     /**
      * Text.
@@ -108,17 +94,16 @@ final class Verbs {
     public Iterable<Directive> directives() {
         final String trimmed = this.text.trim();
         if (!trimmed.isEmpty()) {
-            final String semicolon = ";";
-            final StringBuilder builder = new StringBuilder();
-            Optional<Callback<Directive>> command;
             try {
+                final String semicolon = ";";
+                final StringBuilder builder = new StringBuilder();
                 for (final String part : trimmed.split(semicolon)) {
                     if (builder.length() == 0) {
                         builder.append(Verbs.ltrim(part));
                     } else {
                         builder.append(part);
                     }
-                    command = Verbs.parsedCommand(builder.toString());
+                    final Optional<Callback<Directive>> command = Verbs.parsedCommand(builder.toString());
                     if (command.isPresent()) {
                         this.dirs.add(command.get().call());
                         builder.setLength(0);
@@ -137,7 +122,7 @@ final class Verbs {
                 );
             }
         }
-        return this.dirs;
+        return Collections.unmodifiableCollection(this.dirs);
     }
 
     /**
@@ -274,6 +259,7 @@ final class Verbs {
      * @checkstyle CyclomaticComplexityCheck (100 lines)
      * @checkstyle NestedIfDepthCheck (100 lines)
      */
+    @SuppressWarnings("PMD.CognitiveComplexity")
     private static Optional<Callback<Directive>> complexCommand(
         final String part,
         final String command,
