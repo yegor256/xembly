@@ -53,7 +53,7 @@ final class Verbs {
                 this.put("CDATA", value -> () -> new CdataDirective(value));
                 this.put("COMMENT", value -> () -> new CommentDirective(value));
             }
-    };
+        };
 
     /**
      * Commands with two arguments.
@@ -103,7 +103,8 @@ final class Verbs {
                     } else {
                         builder.append(part);
                     }
-                    final Optional<Callback<Directive>> command = Verbs.parsedCommand(builder.toString());
+                    final Optional<Callback<Directive>> command =
+                        Verbs.parsedCommand(builder.toString());
                     if (command.isPresent()) {
                         this.dirs.add(command.get().call());
                         builder.setLength(0);
