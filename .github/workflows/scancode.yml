@@ -16,8 +16,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: scancode-inputs
       - uses: aboutcode-org/scancode-action@alpha
         with:
-          inputs-path: .
+          inputs-path: scancode-inputs
           pipelines: "scan_codebase"
           output-formats: "json xlsx spdx cyclonedx"
