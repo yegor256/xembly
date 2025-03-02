@@ -1,9 +1,10 @@
+
 # SPDX-FileCopyrightText: Copyright (c) 2013-2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
-
-.DS_Store
-target/
-.idea/
 *.iml
-ajcore.*
+.DS_Store
+.idea/
 .jqwik-database
+ajcore.*
+node_modules/
+target/
