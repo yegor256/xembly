@@ -4,6 +4,11 @@
 version = 1
 [[annotations]]
 path = [
+    "**.json",
+    "**.md",
+    "**.png",
+    "**.svg",
+    "**.txt",
     "**/*.csv",
     "**/*.jpg",
     "**/*.json",
@@ -13,11 +18,14 @@ path = [
     "**/*.svg",
     "**/*.txt",
     "**/*.vm",
+    "**/.DS_Store",
     "**/.gitignore",
+    "**/.pdd",
     "**/CNAME",
-    ".gitleaksignore",
+    ".DS_Store",
+    ".gitignore",
     ".pdd",
-    ".xcop",
+    "CNAME",
     "README.md",
     "renovate.json",
     "src/it/saxon/src/test/resources/META-INF/services/javax.xml.transform.TransformerFactory",
