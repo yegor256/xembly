@@ -13,6 +13,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 ![Hits-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/hoc-badge.svg)
 ![Lines-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/loc-badge.svg)
+[![libs.tech recommends](https://libs.tech/project/11796850/badge.svg)](https://libs.tech/project/11796850/xembly)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yegor256_xembly&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yegor256_xembly)
 
 **Xembly** is an
