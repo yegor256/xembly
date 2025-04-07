@@ -1,15 +1,15 @@
 # XML Modifying Imperative Language (and Java Lib)
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/xembly)](http://www.rultor.com/p/yegor256/xembly)
+[![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/xembly)](https://www.rultor.com/p/yegor256/xembly)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![mvn](https://github.com/yegor256/xembly/actions/workflows/mvn.yml/badge.svg)](https://github.com/yegor256/xembly/actions/workflows/mvn.yml)
-[![PDD status](http://www.0pdd.com/svg?name=yegor256/xembly)](http://www.0pdd.com/p?name=yegor256/xembly)
+[![PDD status](https://www.0pdd.com/svg?name=yegor256/xembly)](https://www.0pdd.com/p?name=yegor256/xembly)
 [![codecov](https://codecov.io/gh/yegor256/xembly/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/xembly)
 [![codebeat badge](https://codebeat.co/badges/c07bdf31-182b-4e4d-a25e-df405c1d877d)](https://codebeat.co/projects/github-com-yegor256-xembly)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f244032e289f4fc2a8d9db8c84251490)](https://www.codacy.com/gh/yegor256/xembly/dashboard)
-[![Javadoc](http://www.javadoc.io/badge/com.jcabi.incubator/xembly.svg)](http://www.javadoc.io/doc/com.jcabi.incubator/xembly)
+[![Javadoc](https://www.javadoc.io/badge/com.jcabi.incubator/xembly.svg)](https://www.javadoc.io/doc/com.jcabi.incubator/xembly)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.jcabi.incubator/xembly)
 ![Hits-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/hoc-badge.svg)
 ![Lines-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/loc-badge.svg)
@@ -518,7 +518,7 @@ is allowed to commit directly to `master` &mdash; this branch is basically
 Everybody contributes changes via
 [pull requrests](http://www.yegor256.com/2014/04/15/github-guidelines.html).
 We are
-using [rultor](http://www.rultor.com), a hosted
+using [rultor](https://www.rultor.com), a hosted
 [chatbot][blog-chatbots],
 in order to merge pull requests into `master`.
 Only our architect is allowed to send pull
