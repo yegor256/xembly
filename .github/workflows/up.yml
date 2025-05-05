@@ -17,7 +17,8 @@ jobs:
           sed -E -i "s/<version>[^<]+/<version>${latest}/g" README.md
       - uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: 'New version in README'
+          sign-commits: true
+          commit-message: 'new version in README'
           delete-branch: true
           title: 'New version in README'
           assignees: yegor256
