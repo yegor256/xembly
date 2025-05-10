@@ -20,7 +20,7 @@
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming)
 programming language
 for data manipulation in XML documents.
-It is a much simplier alternative to
+It is a much simpler alternative to
 [DOM](https://en.wikipedia.org/wiki/Document_Object_Model),
 [XSLT](http://www.w3.org/TR/xslt), and [XQuery](http://www.w3.org/TR/xquery).
 Read this blog post
@@ -320,7 +320,7 @@ done, you want to get back to exactly the same place. You should
 use `PUSH` to save your current location and `POP` to restore it
 back, when manipulations are finished, for example:
 
-```assemlby
+```assembly
 PUSH;                        // Doesn't matter where we are
                              // We just save the location to stack
 XPATH '//user[@id="123"]';   // Move the cursor to a completely
@@ -365,7 +365,7 @@ After the applying of that two directives, it will look like this:
 </garage>
 ```
 
-The namspace prefix may not necessarily be `a:`.
+The namespace prefix may not necessarily be `a:`.
 
 `NS` doesn't move the cursor anywhere.
 
@@ -438,13 +438,13 @@ String xml = new Xembler(
 
 The character `\u00` is not allowed in XML. Actually, these ranges
 are also not allowed: `\u00..\u08`, `\u0B..\u0C`, `\u0E..\u1F`,
-`\u7F..\u84`, and `\u86..u9F`.
+`\u7F..\u84`, and `\u86..\u9F`.
 
 This means that you should validate everything and make sure you're
 setting only the "valid" text values to your XML nodes. Sometimes,
 it's not feasible
 to always check them. Sometimes you may simply need to save whatever
-is possible and call it a day. There a utility static method
+is possible and call it a day. There is a utility static method
 `Xembler.escape()`, to help
 you do that:
 
@@ -489,7 +489,7 @@ that can't be done by means of Xembly:
 * DTD section can't be modified
 
 * Elements and text content can't be mixed, e.g.
-this structure is not supported: `<test>hello <b>friend</a></test>`
+this structure is not supported: `<test>hello <b>friend</b></test>`
 
 Some of these limitations may be removed in the next versions. Please,
 submit [an issue](https://github.com/yegor256/xembly/issues).
@@ -516,7 +516,7 @@ Nobody
 is allowed to commit directly to `master` &mdash; this branch is basically
 [read-only](http://www.yegor256.com/2014/07/21/read-only-master-branch.html).
 Everybody contributes changes via
-[pull requrests](http://www.yegor256.com/2014/04/15/github-guidelines.html).
+[pull requests](http://www.yegor256.com/2014/04/15/github-guidelines.html).
 We are
 using [rultor](https://www.rultor.com), a hosted
 [chatbot][blog-chatbots],
