@@ -277,7 +277,7 @@ final class DirectivesTest {
                     () -> {
                         dirs.append(
                             new Directives()
-                                .add("fo9").attr("yu", "").set("some text 90").up()
+                                .add("foo9").attr("yu", "").set("some text 90").up()
                                 .add("tr4").attr("s2w3", "").set("some other text 76")
                                 .up()
                         );
@@ -290,7 +290,7 @@ final class DirectivesTest {
         MatcherAssert.assertThat(
             "Can't accept from multiple threads",
             XhtmlMatchers.xhtml(new Xembler(dirs).xml()),
-            XhtmlMatchers.hasXPath("/mt6[count(fo9[@yu])=50]")
+            XhtmlMatchers.hasXPath("/mt6[count(foo9[@yu])=50]")
         );
     }
 
