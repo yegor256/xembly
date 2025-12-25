@@ -11,6 +11,7 @@ import com.jcabi.xml.XMLDocument;
 import com.jcabi.xml.XPathContext;
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Stream;
 import javax.xml.parsers.DocumentBuilderFactory;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -25,7 +26,9 @@ import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.AllOf;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -38,6 +41,27 @@ import org.yaml.snakeyaml.Yaml;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 final class XemblerTest {
+
+    @TestFactory
+    Stream<DynamicTest> parsesDifferentScripts() {
+        final String[] scripts = {
+            "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
+            "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
+            "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';",
+        };
+        return Stream.of(scripts).map(
+            script -> DynamicTest.dynamicTest(
+                script,
+                () -> {
+                    final Document dom = DocumentBuilderFactory.newInstance()
+                        .newDocumentBuilder().newDocument();
+                    new Xembler(
+                        new Directives(script)
+                    ).apply(dom);
+                }
+            )
+        );
+    }
 
     @Test
     void printsNicely() throws Exception {
