@@ -19,10 +19,10 @@ public final class SyntaxException extends RuntimeException {
     /**
      * Public ctor.
      * @param cause Cause of it
-     * @param thr Original throwable
+     * @param error Original throwable
      */
-    SyntaxException(final String cause, final Throwable thr) {
-        super(cause, thr);
+    SyntaxException(final String cause, final Throwable error) {
+        super(cause, error);
     }
 
 }

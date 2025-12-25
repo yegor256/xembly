@@ -113,7 +113,7 @@ final class DirectivesTest {
     }
 
     @Test
-    void ingoresEmptyInput() {
+    void ignoresEmptyInput() {
         MatcherAssert.assertThat(
             "Can't ignore empty input",
             new Directives("\n\t   \r"),

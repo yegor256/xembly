@@ -27,11 +27,11 @@ public final class ImpossibleModificationException extends Exception {
     /**
      * Public ctor.
      * @param cause Cause of it
-     * @param thr Original throwable
+     * @param error Original throwable
      */
     ImpossibleModificationException(final String cause,
-        final Throwable thr) {
-        super(cause, thr);
+        final Throwable error) {
+        super(cause, error);
     }
 
 }
