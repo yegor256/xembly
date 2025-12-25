@@ -47,6 +47,7 @@ final class XemblerTest {
         final String[] scripts = {
             "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
             "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
+            "ADD 'x'; SET 'hello';",
             "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';",
         };
         return Stream.of(scripts).map(
