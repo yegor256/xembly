@@ -48,18 +48,13 @@ final class XemblerTest {
             "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
             "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
             "ADD 'x'; SET 'hello';",
+            "ADD 'x'; STRICT '1';",
             "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';",
         };
         return Stream.of(scripts).map(
             script -> DynamicTest.dynamicTest(
                 script,
-                () -> {
-                    final Document dom = DocumentBuilderFactory.newInstance()
-                        .newDocumentBuilder().newDocument();
-                    new Xembler(
-                        new Directives(script)
-                    ).apply(dom);
-                }
+                () -> new Xembler(new Directives(script)).xmlQuietly()
             )
         );
     }
