@@ -209,6 +209,44 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>com.github.wvengen</groupId>
+        <artifactId>proguard-maven-plugin</artifactId>
+        <version>2.6.1</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>proguard</goal>
+            </goals>
+            <configuration>
+              <exclusions>
+                <exclusion>
+                  <groupId>org.projectlombok</groupId>
+                  <artifactId>lombok</artifactId>
+                </exclusion>
+                <exclusion>
+                  <groupId>xml-apis</groupId>
+                  <artifactId>xml-apis</artifactId>
+                </exclusion>
+              </exclusions>
+              <libs>
+                <lib>${java.home}/jmods/java.base.jmod</lib>
+                <lib>${java.home}/jmods/java.logging.jmod</lib>
+                <lib>${java.home}/jmods/java.xml.jmod</lib>
+              </libs>
+              <options>
+                <option>-keep public class org.xembly.** { *; }</option>
+                <option>-dontnote **</option>
+                <option>-dontwarn lombok.Generated</option>
+              </options>
+              <injar>${project.build.finalName}.jar</injar>
+              <includeDependencyInjar>true</includeDependencyInjar>
+              <obfuscate>false</obfuscate>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>pw.krejci</groupId>
         <artifactId>jmh-maven-plugin</artifactId>
         <version>0.2.2</version>
