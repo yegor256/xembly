@@ -51,7 +51,7 @@ final class Arg {
      * @return Clean text
      * @throws XmlContentException If fails
      */
-    @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops", "aibolit.P32" })
+    @SuppressWarnings({"aibolit.P32", "PMD.ProhibitPublicStaticMethods"})
     public static String unescape(final String text)
         throws XmlContentException {
         final char[] chars = text.toCharArray();
@@ -123,8 +123,7 @@ final class Arg {
     private static char symbol(final String symbol) throws XmlContentException {
         final char chr;
         if ('#' == symbol.charAt(0)) {
-            final int num = Integer.parseInt(symbol.substring(1));
-            chr = Arg.legal((char) num);
+            chr = Arg.legal((char) Integer.parseInt(symbol.substring(1)));
         } else if ("apos".equalsIgnoreCase(symbol)) {
             chr = '\'';
         } else if ("quot".equalsIgnoreCase(symbol)) {

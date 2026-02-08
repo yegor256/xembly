@@ -9,6 +9,7 @@ package org.xembly;
  * @param <V> Type of computed result
  * @since 0.31.0
  */
+@FunctionalInterface
 public interface Callback<V> {
     /**
      * Computes a result.

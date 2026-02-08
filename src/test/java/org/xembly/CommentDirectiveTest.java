@@ -19,12 +19,11 @@ final class CommentDirectiveTest {
 
     @Test
     void addsComment() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'root'; ADD 'foo'; COMMENT 'How are you?';"
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives("ADD 'root'; ADD 'foo'; COMMENT 'How are you?';")
+        ).apply(dom);
         MatcherAssert.assertThat(
             "fails to add comment",
             XhtmlMatchers.xhtml(dom),

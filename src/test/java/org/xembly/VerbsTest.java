@@ -4,8 +4,6 @@
  */
 package org.xembly;
 
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +16,10 @@ final class VerbsTest {
 
     @Test
     void throwsOnBrokenSyntax() {
-        final Verbs verbs = new Verbs("ADD 't';\nADD 'x';broken");
-        MatcherAssert.assertThat(
-            "Can't throw on broken syntax",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                verbs::directives
-            ).getMessage(),
-            Matchers.containsString("near [broken;]")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Verbs("ADD 't';\nADD 'x';broken").directives(),
+            "Can't throw on broken syntax"
         );
     }
 

@@ -45,7 +45,6 @@ final class AddDirective implements Directive {
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack) {
         final Collection<Node> targets = new ArrayList<>(cursor.size());
-        final String label = this.name.raw();
         final Document doc;
         if (dom.getOwnerDocument() == null) {
             doc = Document.class.cast(dom);
@@ -53,7 +52,7 @@ final class AddDirective implements Directive {
             doc = dom.getOwnerDocument();
         }
         for (final Node node : cursor) {
-            final Element element = doc.createElement(label);
+            final Element element = doc.createElement(this.name.raw());
             node.appendChild(element);
             targets.add(element);
         }

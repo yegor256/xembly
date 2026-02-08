@@ -21,12 +21,13 @@ final class AddIfDirectiveTest {
 
     @Test
     void addsNodesToCurrentNodes() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'root'; ADD 'foo'; UP; ADDIF 'друг'; UP; ADDIF 'друг';"
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                "ADD 'root'; ADD 'foo'; UP; ADDIF 'друг'; UP; ADDIF 'друг';"
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "fails to add nodes to current nodes",
             XhtmlMatchers.xhtml(dom),

@@ -32,7 +32,7 @@ final class Print {
     @Override
     @SuppressWarnings("aibolit.P21")
     public String toString() {
-        final StringBuilder text = new StringBuilder(0);
+        final StringBuilder text = new StringBuilder(128);
         int width = 0;
         int idx = 0;
         for (final Directive dir : this.all) {

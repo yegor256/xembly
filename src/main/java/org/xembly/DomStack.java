@@ -7,6 +7,8 @@ package org.xembly;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -25,23 +27,32 @@ final class DomStack implements Directive.Stack {
     private final Deque<Directive.Cursor> cursors =
         new LinkedList<>();
 
+    /**
+     * Lock for thread safety.
+     */
+    private final Lock lock = new ReentrantLock();
+
     @Override
     public void push(final Directive.Cursor cursor) {
-        synchronized (this.cursors) {
+        this.lock.lock();
+        try {
             this.cursors.push(cursor);
+        } finally {
+            this.lock.unlock();
         }
     }
 
     @Override
     public Directive.Cursor pop() throws ImpossibleModificationException {
-        synchronized (this.cursors) {
-            try {
-                return this.cursors.pop();
-            } catch (final NoSuchElementException ex) {
-                throw new ImpossibleModificationException(
-                    "Stack is empty, can't POP", ex
-                );
-            }
+        this.lock.lock();
+        try {
+            return this.cursors.pop();
+        } catch (final NoSuchElementException ex) {
+            throw new ImpossibleModificationException(
+                "Stack is empty, can't POP", ex
+            );
+        } finally {
+            this.lock.unlock();
         }
     }
 }

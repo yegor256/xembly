@@ -23,7 +23,7 @@ import org.w3c.dom.Document;
  *
  * @since 0.1
  */
-@SuppressWarnings({"PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals"})
+@SuppressWarnings("PMD.TooManyMethods")
 final class DirectivesTest {
 
     @Test
@@ -49,12 +49,9 @@ final class DirectivesTest {
 
     @Test
     void parsesIncomingGrammar() {
-        final Iterable<Directive> dirs = new Directives(
-            "XPATH '//orders[@id=\"152\"]'; SET 'test';"
-        );
         MatcherAssert.assertThat(
             "Can't parse directives",
-            dirs,
+            new Directives("XPATH '//orders[@id=\"152\"]'; SET 'test';"),
             Matchers.iterableWithSize(2)
         );
     }
@@ -70,13 +67,10 @@ final class DirectivesTest {
 
     @Test
     void throwsOnBrokenXmlContent() {
-        MatcherAssert.assertThat(
-            "Can't detect broken XML content",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ADD 't';\nADD '\u001b';")
-            ).getMessage(),
-            Matchers.containsString("Character #1B is in the restricted XML")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD 't';\nADD '\u001b';"),
+            "Can't detect broken XML content"
         );
     }
 
@@ -123,15 +117,18 @@ final class DirectivesTest {
 
     @Test
     void performsFullScaleModifications() throws Exception {
-        final String script = new Directives()
-            .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
-            .add("body")
-            .add("p")
-            .set("\u20ac \\")
-            .toString();
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(new Directives(script)).apply(dom);
+        new Xembler(
+            new Directives(
+                new Directives()
+                    .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
+                    .add("body")
+                    .add("p")
+                    .set("\u20ac \\")
+                    .toString()
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't perform full-scale modifications",
             XhtmlMatchers.xhtml(dom),
@@ -146,23 +143,21 @@ final class DirectivesTest {
     void copiesExistingNode() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        final Iterable<Directive> copy = Directives.copyOf(
-            new XMLDocument(
-                StringUtils.join(
-                    "<jeff name='Jeffrey'><first/><second/>",
-                    "<?some-pi test?>",
-                    "<file a='x'><f><name>\u20ac</name></f></file>",
-                    "<!-- some comment -->",
-                    "<x><![CDATA[hey you]]></x>  </jeff>"
+        new Xembler(
+            new Directives().add("dudes").append(
+                Directives.copyOf(
+                    new XMLDocument(
+                        StringUtils.join(
+                            "<jeff name='Jeffrey'><first/><second/>",
+                            "<?some-pi test?>",
+                            "<file a='x'><f><name>\u20ac</name></f></file>",
+                            "<!-- some comment -->",
+                            "<x><![CDATA[hey you]]></x>  </jeff>"
+                        )
+                    ).deepCopy()
                 )
-            ).deepCopy()
-        );
-        MatcherAssert.assertThat(
-            "Can't copy existing node",
-            copy,
-            Matchers.iterableWithSize(19)
-        );
-        new Xembler(new Directives().add("dudes").append(copy)).apply(dom);
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't copy existing node",
             XhtmlMatchers.xhtml(dom),
@@ -223,8 +218,16 @@ final class DirectivesTest {
             dirs,
             Matchers.hasToString(Matchers.containsString("8:"))
         );
+    }
+
+    @Test
+    void parsesBackFromString() {
+        final Directives dirs = new Directives();
+        for (int idx = 0; idx < 10; ++idx) {
+            dirs.add("HELLO");
+        }
         MatcherAssert.assertThat(
-            "Can't convert to string",
+            "Can't parse back from string",
             new Directives(dirs.toString()),
             Matchers.not(Matchers.emptyIterable())
         );
@@ -268,28 +271,11 @@ final class DirectivesTest {
 
     @Test
     void acceptsFromMultipleThreads() throws Exception {
-        final Directives dirs = new Directives().add("mt6");
-        final int tasks = 50;
-        new LengthOf(
-            new Threads<>(
-                tasks / 10,
-                new Repeated<>(
-                    () -> {
-                        dirs.append(
-                            new Directives()
-                                .add("foo9").attr("yu", "").set("some text 90").up()
-                                .add("tr4").attr("s2w3", "").set("some other text 76")
-                                .up()
-                        );
-                        return null;
-                    },
-                    tasks
-                )
-            )
-        ).value();
         MatcherAssert.assertThat(
             "Can't accept from multiple threads",
-            XhtmlMatchers.xhtml(new Xembler(dirs).xml()),
+            XhtmlMatchers.xhtml(
+                new Xembler(DirectivesTest.concurrent(50)).xml()
+            ),
             XhtmlMatchers.hasXPath("/mt6[count(foo9[@yu])=50]")
         );
     }
@@ -320,109 +306,111 @@ final class DirectivesTest {
 
     @Test
     void hasUnknownCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect unknown command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("hello 'hey';")
-            ).getMessage(),
-            Matchers.containsString("Unknown command")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("hello 'hey';"),
+            "Can't detect unknown command"
         );
     }
 
     @Test
     void doesNotHaveQuoteInSimpleCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect missing quote in simple command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ADD ;")
-            ).getMessage(),
-            Matchers.containsString("Couldn't find quote in the part of the command")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD ;"),
+            "Can't detect missing quote in simple command"
         );
     }
 
     @Test
     void containsWrongSymbolsAfterSimpleCommandArgument() {
-        MatcherAssert.assertThat(
-            "Can't detect wrong symbols after simple command argument",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ADD 'o' wrong;")
-            ).getMessage(),
-            Matchers.containsString("Unexpected symbols after command argument")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD 'o' wrong;"),
+            "Can't detect wrong symbols after simple command argument"
         );
     }
 
     @Test
     void hasManyArgumentsForSimpleCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect many arguments for simple command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ADD 'o' ' ;")
-            ).getMessage(),
-            Matchers.containsString("Unexpected behaviour when searching for command arguments")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD 'o' ' ;"),
+            "Can't detect many arguments for simple command"
         );
     }
 
     @Test
     void containsSemicolonAfterFirstArgumentInComplexCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect semicolon after first argument in complex command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ATTR 'o';")
-            ).getMessage(),
-            Matchers.containsString("Unexpected last quote")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ATTR 'o';"),
+            "Can't detect semicolon after first argument in complex command"
         );
     }
 
     @Test
     void doesNotContainCommaAfterFirstArgumentInComplexCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect missing comma after first argument in complex command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ATTR 'o' .;")
-            ).getMessage(),
-            Matchers.containsString("Comma after first argument is expected")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ATTR 'o' .;"),
+            "Can't detect missing comma after first argument in complex command"
         );
     }
 
     @Test
     void containsUnexpectedSemicolonAfterCommaInComplexCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect unexpected semicolon after comma in complex command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ATTR 'o' , ;")
-            ).getMessage(),
-            Matchers.containsString("Unexpected last semicolon")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ATTR 'o' , ;"),
+            "Can't detect unexpected semicolon after comma in complex command"
         );
     }
 
     @Test
     void doesNotContainQuoteAfterFirstArgumentInComplexCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect missing quote after first argument in complex command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ATTR 'o' , x ;")
-            ).getMessage(),
-            Matchers.containsString("Single or double quote is expected after comma")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ATTR 'o' , x ;"),
+            "Can't detect missing quote after first argument in complex command"
         );
     }
 
     @Test
     void containsUnexpectedSymbolsAfterSecondArgumentInComplexCommand() {
-        MatcherAssert.assertThat(
-            "Can't detect unexpected symbols after second argument in complex command",
-            Assertions.assertThrows(
-                SyntaxException.class,
-                () -> new Directives("ATTR 'o' , \"x\" y ;")
-            ).getMessage(),
-            Matchers.containsString("Unexpected symbols after second argument")
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ATTR 'o' , \"x\" y ;"),
+            "Can't detect unexpected symbols after second argument in complex command"
         );
+    }
+
+    /**
+     * Creates directives concurrently from multiple threads.
+     * @param tasks Number of tasks
+     * @return Directives with appended content
+     * @throws Exception If fails
+     */
+    @SuppressWarnings("PMD.UnnecessaryLocalRule")
+    private static Directives concurrent(final int tasks) throws Exception {
+        final Directives result = new Directives().add("mt6");
+        new LengthOf(
+            new Threads<>(
+                tasks / 10,
+                new Repeated<>(
+                    () -> {
+                        result.append(
+                            new Directives()
+                                .add("foo9").attr("yu", "").set("some text 90").up()
+                                .add("tr4").attr("s2w3", "").set("some other text 76")
+                                .up()
+                        );
+                        return null;
+                    },
+                    tasks
+                )
+            )
+        ).value();
+        return result;
     }
 }

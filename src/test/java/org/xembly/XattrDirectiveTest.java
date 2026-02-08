@@ -20,15 +20,16 @@ final class XattrDirectiveTest {
 
     @Test
     void setsAttributesToCurrentNodes() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
-                "XPATH '//*'; XATTR 'bar', 'count(//foo)';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
+                    "XPATH '//*'; XATTR 'bar', 'count(//foo)';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't set attributes to current nodes",
             XhtmlMatchers.xhtml(dom),

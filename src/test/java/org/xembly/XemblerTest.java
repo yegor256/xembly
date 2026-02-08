@@ -11,7 +11,6 @@ import com.jcabi.xml.XMLDocument;
 import com.jcabi.xml.XPathContext;
 import java.util.Collection;
 import java.util.Map;
-import java.util.stream.Stream;
 import javax.xml.parsers.DocumentBuilderFactory;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -26,10 +25,9 @@ import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.AllOf;
-import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.yaml.snakeyaml.Yaml;
@@ -42,20 +40,19 @@ import org.yaml.snakeyaml.Yaml;
 @SuppressWarnings("PMD.TooManyMethods")
 final class XemblerTest {
 
-    @TestFactory
-    Stream<DynamicTest> parsesDifferentScripts() {
-        final String[] scripts = {
-            "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
-            "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
-            "ADD 'x'; SET 'hello';",
-            "ADD 'x'; STRICT '1';",
-            "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';",
-        };
-        return Stream.of(scripts).map(
-            script -> DynamicTest.dynamicTest(
-                script,
-                () -> new Xembler(new Directives(script)).xmlQuietly()
-            )
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
+        "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
+        "ADD 'x'; SET 'hello';",
+        "ADD 'x'; STRICT '1';",
+        "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';"
+    })
+    void parsesDifferentScripts(final String script) {
+        MatcherAssert.assertThat(
+            "Can't parse script",
+            new Xembler(new Directives(script)).xmlQuietly(),
+            Matchers.notNullValue()
         );
     }
 
@@ -102,23 +99,27 @@ final class XemblerTest {
     void makesChangesToDomDocumentFromBuilder() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        final Directives builder = new Directives()
-            .add("top")
-            .add("employees")
-            .add("paper")
-            .up()
-            .xpath("*")
-            .remove()
-            .addIf("employee")
-            .attr("id", "<443>")
-            .add("name")
-            .strict(1)
-            .set("\rСаша\t\nПушкин\n")
-            .up()
-            .up()
-            .xpath("/top/employees/employee[@id='<443>']/name")
-            .set("\"Юра Лермонтов\"");
-        new Xembler(new Directives(builder.toString())).applyQuietly(dom);
+        new Xembler(
+            new Directives(
+                new Directives()
+                    .add("top")
+                    .add("employees")
+                    .add("paper")
+                    .up()
+                    .xpath("*")
+                    .remove()
+                    .addIf("employee")
+                    .attr("id", "<443>")
+                    .add("name")
+                    .strict(1)
+                    .set("\rСаша\t\nПушкин\n")
+                    .up()
+                    .up()
+                    .xpath("/top/employees/employee[@id='<443>']/name")
+                    .set("\"Юра Лермонтов\"")
+                    .toString()
+            )
+        ).applyQuietly(dom);
         MatcherAssert.assertThat(
             "Can't make changes to DOM document from builder",
             XhtmlMatchers.xhtml(dom),
@@ -294,9 +295,6 @@ final class XemblerTest {
     @SuppressWarnings("unchecked")
     private static XML outcomeOf(final String story) {
         final Map<String, Object> yaml = new Yaml().load(story);
-        final Node before = new XMLDocument(
-            yaml.get("before").toString()
-        ).inner();
         return new XMLDocument(
             new Xembler(
                 new Directives(
@@ -305,7 +303,9 @@ final class XemblerTest {
                         (Iterable<String>) yaml.get("directives")
                     )
                 )
-            ).applyQuietly(before)
+            ).applyQuietly(
+                new XMLDocument(yaml.get("before").toString()).inner()
+            )
         );
     }
 

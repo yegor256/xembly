@@ -47,10 +47,8 @@ final class CommentDirective implements Directive {
         } else {
             doc = dom.getOwnerDocument();
         }
-        final String val = this.value.raw();
         for (final Node node : cursor) {
-            final Node cdata = doc.createComment(val);
-            node.appendChild(cdata);
+            node.appendChild(doc.createComment(this.value.raw()));
         }
         return cursor;
     }

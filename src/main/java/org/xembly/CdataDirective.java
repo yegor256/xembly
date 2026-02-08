@@ -47,10 +47,8 @@ final class CdataDirective implements Directive {
         } else {
             doc = dom.getOwnerDocument();
         }
-        final String val = this.value.raw();
         for (final Node node : cursor) {
-            final Node cdata = doc.createCDATASection(val);
-            node.appendChild(cdata);
+            node.appendChild(doc.createCDATASection(this.value.raw()));
         }
         return cursor;
     }

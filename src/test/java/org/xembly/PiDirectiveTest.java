@@ -12,7 +12,6 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  * Test case for {@link PiDirective}.
@@ -22,16 +21,17 @@ final class PiDirectiveTest {
 
     @Test
     void addsProcessingInstructionsToDom() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "XPATH '/root'; PI 'ab', 'boom \u20ac';",
-                "ADD 'test'; PI 'foo', 'some data \u20ac';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("root"));
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "XPATH '/root'; PI 'ab', 'boom \u20ac';",
+                    "ADD 'test'; PI 'foo', 'some data \u20ac';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't add processing instructions to DOM",
             XhtmlMatchers.xhtml(dom),
@@ -46,8 +46,7 @@ final class PiDirectiveTest {
     void addsProcessingInstructionsDirectlyToDom() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        final Element root = dom.createElement("xxx");
-        dom.appendChild(root);
+        dom.appendChild(dom.createElement("xxx"));
         new PiDirective("x", "y").exec(
             dom, new DomCursor(Collections.emptyList()),
             new DomStack()
@@ -61,12 +60,11 @@ final class PiDirectiveTest {
 
     @Test
     void addsProcessingInstructionsToDomRoot() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "XPATH '/'; PI 'alpha', 'beta \u20ac'; ADD 'x4';"
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives("XPATH '/'; PI 'alpha', 'beta \u20ac'; ADD 'x4';")
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't add processing instructions to DOM root",
             XhtmlMatchers.xhtml(dom),

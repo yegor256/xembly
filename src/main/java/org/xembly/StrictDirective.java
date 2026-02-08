@@ -72,7 +72,7 @@ final class StrictDirective implements Directive {
      */
     @SuppressWarnings("aibolit.P13")
     private static String names(final Iterable<Node> nodes) {
-        final StringBuilder text = new StringBuilder(0);
+        final StringBuilder text = new StringBuilder(64);
         for (final Node node : nodes) {
             if (text.length() > 0) {
                 text.append(", ");

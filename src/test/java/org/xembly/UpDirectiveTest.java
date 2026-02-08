@@ -20,12 +20,13 @@ final class UpDirectiveTest {
 
     @Test
     void jumpsToParentsWhenTheyExist() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "ADD 'root'; ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                "ADD 'root'; ADD 'foo'; ADD 'bar'; UP; UP; STRICT '1';"
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't jump to parents when they exist",
             XhtmlMatchers.xhtml(dom),
@@ -38,13 +39,12 @@ final class UpDirectiveTest {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {
-                final Iterable<Directive> dirs = new Directives(
-                    "ADD 'foo'; UP; UP; UP;"
-                );
                 final Document dom = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder().newDocument();
                 dom.appendChild(dom.createElement("boom"));
-                new Xembler(dirs).apply(dom);
+                new Xembler(
+                    new Directives("ADD 'foo'; UP; UP; UP;")
+                ).apply(dom);
             },
             "Can't jump to parents when they don't exist"
         );

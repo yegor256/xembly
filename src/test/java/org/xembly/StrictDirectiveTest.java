@@ -21,15 +21,16 @@ final class StrictDirectiveTest {
 
     @Test
     void checksNumberOfCurrentNodes() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "ADD 'root'; ADD 'foo'; ADD 'bar';",
-                "ADD 'boom'; XPATH '//*'; STRICT '4';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'foo'; ADD 'bar';",
+                    "ADD 'boom'; XPATH '//*'; STRICT '4';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't check number of current nodes",
             XhtmlMatchers.xhtml(dom),
@@ -45,13 +46,14 @@ final class StrictDirectiveTest {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {
-                final Iterable<Directive> dirs = new Directives(
-                    "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
-                );
                 final Document dom = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder().newDocument();
                 dom.appendChild(dom.createElement("f"));
-                new Xembler(dirs).apply(dom);
+                new Xembler(
+                    new Directives(
+                        "ADD 'bar'; UP; ADD 'bar'; XPATH '/f/bar'; STRICT '1';"
+                    )
+                ).apply(dom);
             },
             "Number of current nodes is not checked"
         );
@@ -62,13 +64,14 @@ final class StrictDirectiveTest {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {
-                final Iterable<Directive> dirs = new Directives(
-                    "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
-                );
                 final Document dom = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder().newDocument();
                 dom.appendChild(dom.createElement("z"));
-                new Xembler(dirs).apply(dom);
+                new Xembler(
+                    new Directives(
+                        "ADD 'foo'; ADD 'x'; XPATH '/foo/absent'; STRICT '1';"
+                    )
+                ).apply(dom);
             },
             "Number of current nodes is not checked"
         );
@@ -79,13 +82,12 @@ final class StrictDirectiveTest {
         Assertions.assertThrows(
             ImpossibleModificationException.class,
             () -> {
-                final Iterable<Directive> dirs = new Directives(
-                    "ADD 'bar'; STRICT '2';"
-                );
                 final Document dom = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder().newDocument();
                 dom.appendChild(dom.createElement("x"));
-                new Xembler(dirs).apply(dom);
+                new Xembler(
+                    new Directives("ADD 'bar'; STRICT '2';")
+                ).apply(dom);
             },
             "Number of current nodes is not checked"
         );

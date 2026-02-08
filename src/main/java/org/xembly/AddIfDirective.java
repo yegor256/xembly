@@ -45,14 +45,13 @@ final class AddIfDirective implements Directive {
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack) {
         final Collection<Node> targets = new ArrayList<>(cursor.size());
-        final String label = this.name.raw();
         for (final Node node : cursor) {
             final NodeList kids = node.getChildNodes();
             Node target = null;
             final int len = kids.getLength();
             for (int idx = 0; idx < len; ++idx) {
                 if (kids.item(idx).getNodeName()
-                    .compareToIgnoreCase(label) == 0) {
+                    .compareToIgnoreCase(this.name.raw()) == 0) {
                     target = kids.item(idx);
                     break;
                 }

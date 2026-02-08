@@ -18,17 +18,25 @@ import org.mockito.Mockito;
 final class DomStackTest {
 
     @Test
-    void addsAndRetrieves() throws Exception {
+    void addsAndRetrievesSecond() throws Exception {
         final Directive.Stack stack = new DomStack();
-        final Directive.Cursor first = Mockito.mock(Directive.Cursor.class);
         final Directive.Cursor second = Mockito.mock(Directive.Cursor.class);
-        stack.push(first);
+        stack.push(Mockito.mock(Directive.Cursor.class));
         stack.push(second);
         MatcherAssert.assertThat(
             "Can't retrieve the second element",
             stack.pop(),
             Matchers.equalTo(second)
         );
+    }
+
+    @Test
+    void addsAndRetrievesFirst() throws Exception {
+        final Directive.Stack stack = new DomStack();
+        final Directive.Cursor first = Mockito.mock(Directive.Cursor.class);
+        stack.push(first);
+        stack.push(Mockito.mock(Directive.Cursor.class));
+        stack.pop();
         MatcherAssert.assertThat(
             "Can't retrieve the first element",
             stack.pop(),

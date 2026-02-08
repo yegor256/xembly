@@ -24,15 +24,16 @@ final class XpathDirectiveTest {
 
     @Test
     void findsNodesWithXpathExpression() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';",
-                "XPATH '//*[@bar=1]'; ADD 'test';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'foo'; ATTR 'bar', '1'; UP; ADD 'bar';",
+                    "XPATH '//*[@bar=1]'; ADD 'test';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't find nodes with XPath expression",
             XhtmlMatchers.xhtml(dom),
@@ -45,13 +46,14 @@ final class XpathDirectiveTest {
 
     @Test
     void ignoresEmptySearches() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "XPATH '/nothing'; XPATH '/top'; STRICT '1'; ADD 'hey';"
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("top"));
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                "XPATH '/nothing'; XPATH '/top'; STRICT '1'; ADD 'hey';"
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't ignore empty searches",
             XhtmlMatchers.xhtml(dom),
@@ -66,8 +68,7 @@ final class XpathDirectiveTest {
         final Element root = dom.createElement("xxx");
         final Element first = dom.createElement("a");
         root.appendChild(first);
-        final Element second = dom.createElement("b");
-        root.appendChild(second);
+        root.appendChild(dom.createElement("b"));
         dom.appendChild(root);
         MatcherAssert.assertThat(
             "Can't find nodes by XPath directly",
@@ -82,12 +83,11 @@ final class XpathDirectiveTest {
 
     @Test
     void findsNodesInEmptyDom() throws Exception {
-        final Document dom = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
         MatcherAssert.assertThat(
             "Can't find nodes in an empty DOM",
             new XpathDirective("/some-root").exec(
-                dom,
+                DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().newDocument(),
                 new DomCursor(Collections.emptyList()),
                 new DomStack()
             ),
@@ -97,14 +97,13 @@ final class XpathDirectiveTest {
 
     @Test
     void findsRootInClonedNode() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            "XPATH '/*'; STRICT '1'; ADD 'boom-5';"
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         dom.appendChild(dom.createElement("high"));
         final Node clone = dom.cloneNode(true);
-        new Xembler(dirs).apply(clone);
+        new Xembler(
+            new Directives("XPATH '/*'; STRICT '1'; ADD 'boom-5';")
+        ).apply(clone);
         MatcherAssert.assertThat(
             "Can't find root in a cloned node",
             XhtmlMatchers.xhtml(clone),

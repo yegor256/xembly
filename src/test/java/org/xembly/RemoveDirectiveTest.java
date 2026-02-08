@@ -22,15 +22,16 @@ final class RemoveDirectiveTest {
 
     @Test
     void removesCurrentNodes() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';",
-                "XPATH '/*/foo//*'; REMOVE; ADD 'x';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'foo'; ADD 'bar'; ADD 'boom';",
+                    "XPATH '/*/foo//*'; REMOVE; ADD 'x';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't remove current nodes",
             XhtmlMatchers.xhtml(dom),
@@ -48,8 +49,7 @@ final class RemoveDirectiveTest {
         final Element root = dom.createElement("xxx");
         final Element first = dom.createElement("a");
         root.appendChild(first);
-        final Element second = dom.createElement("b");
-        root.appendChild(second);
+        root.appendChild(dom.createElement("b"));
         dom.appendChild(root);
         new RemoveDirective().exec(
             dom, new DomCursor(Collections.singletonList(first)),

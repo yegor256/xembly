@@ -51,12 +51,7 @@ import org.w3c.dom.NodeList;
  * @checkstyle ClassFanOutComplexity (500 lines)
  */
 @EqualsAndHashCode(of = "all")
-@SuppressWarnings({
-    "PMD.TooManyMethods",
-    "PMD.CyclomaticComplexity",
-    "PMD.GodClass",
-    "PMD.StdCyclomaticComplexity"
-})
+@SuppressWarnings("PMD.TooManyMethods")
 public final class Directives implements Iterable<Directive> {
 
     /**
@@ -83,7 +78,6 @@ public final class Directives implements Iterable<Directive> {
      * Public ctor.
      * @param dirs Directives
      */
-    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public Directives(final Iterable<Directive> dirs) {
         this.all = Collections.synchronizedCollection(Directives.toCollection(dirs));
     }
@@ -126,8 +120,8 @@ public final class Directives implements Iterable<Directive> {
     @SuppressWarnings(
         {
             "PMD.CognitiveComplexity",
-            "PMD.StdCyclomaticComplexity",
             "PMD.InefficientEmptyStringCheck",
+            "PMD.ProhibitPublicStaticMethods",
             "aibolit.P20_5"
         }
     )

@@ -54,7 +54,9 @@ public class DirectivesBench {
             program.append("XPATH '/root'; ADDIF 'node';SET '")
                 .append(idx).append("'; ADD 'x'; REMOVE;");
         }
-        final Directives dirs = new Directives(program.toString());
-        MatcherAssert.assertThat(dirs, Matchers.notNullValue());
+        MatcherAssert.assertThat(
+            new Directives(program.toString()),
+            Matchers.notNullValue()
+        );
     }
 }

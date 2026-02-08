@@ -23,16 +23,17 @@ final class SetDirectiveTest {
 
     @Test
     void setsTextContentOfNodes() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "ADD 'root'; ADD 'foo';",
-                "SET '&quot;Bonnie &amp; Clyde&quot;';",
-                "UP; ADD 'cops'; SET 'everywhere';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'foo';",
+                    "SET '&quot;Bonnie &amp; Clyde&quot;';",
+                    "UP; ADD 'cops'; SET 'everywhere';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "Can't set text content of nodes",
             XhtmlMatchers.xhtml(dom),

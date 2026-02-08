@@ -7,7 +7,6 @@ package org.xembly;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -62,12 +61,11 @@ final class XattrDirective implements Directive {
         throws ImpossibleModificationException {
         final ConcurrentMap<Node, String> values =
             new ConcurrentHashMap<>(0);
-        final XPath xpath = XattrDirective.FACTORY.newXPath();
         for (final Node node : cursor) {
             try {
                 values.put(
                     node,
-                    xpath.evaluate(
+                    XattrDirective.FACTORY.newXPath().evaluate(
                         this.expr.raw(), node, XPathConstants.STRING
                     ).toString()
                 );

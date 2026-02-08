@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -110,15 +109,15 @@ final class XpathDirective implements Directive {
     private static Collection<Node> traditional(final String query,
         final Node dom, final Collection<Node> current)
         throws ImpossibleModificationException {
-        final XPathFactory factory = XpathDirective.FACTORY.get();
         XpathDirective.FACTORY.remove();
-        final XPath xpath = factory.newXPath();
         final Collection<Node> targets = new HashSet<>(0);
         for (final Node node : XpathDirective.roots(dom, current)) {
             final NodeList list;
             try {
                 list = NodeList.class.cast(
-                    xpath.evaluate(query, node, XPathConstants.NODESET)
+                    XpathDirective.FACTORY.get().newXPath().evaluate(
+                        query, node, XPathConstants.NODESET
+                    )
                 );
             } catch (final XPathExpressionException ex) {
                 throw new ImpossibleModificationException(

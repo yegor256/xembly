@@ -14,7 +14,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 /**
  * Test case for {@link AttrDirective}.
@@ -25,15 +24,16 @@ final class AttrDirectiveTest {
 
     @Test
     void addsAttributesToCurrentNodes() throws Exception {
-        final Iterable<Directive> dirs = new Directives(
-            StringUtils.join(
-                "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
-                "XPATH '//*'; ATTR 'bar', 'привет';"
-            )
-        );
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'foo'; UP; ADD 'foo';",
+                    "XPATH '//*'; ATTR 'bar', 'привет';"
+                )
+            )
+        ).apply(dom);
         MatcherAssert.assertThat(
             "fails to add attributes to current nodes",
             XhtmlMatchers.xhtml(dom),
@@ -49,8 +49,7 @@ final class AttrDirectiveTest {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("xxx");
-        final Element first = dom.createElement("a");
-        root.appendChild(first);
+        root.appendChild(dom.createElement("a"));
         final Element second = dom.createElement("b");
         root.appendChild(second);
         dom.appendChild(root);
@@ -84,20 +83,32 @@ final class AttrDirectiveTest {
 
     @Test
     void addAttributeWithNamespace() {
-        final Node node = new Xembler(
-            new Directives().add("boom").attr(
-                "noNamespaceSchemaLocation xsi http://www.w3.org/2001/XMLSchema-instance",
-                "foo.xsd"
-            )
-        ).domQuietly();
         MatcherAssert.assertThat(
             "fails to add attribute with namespace",
-            new XMLDocument(node).toString(),
+            new XMLDocument(
+                new Xembler(
+                    new Directives().add("boom").attr(
+                        "noNamespaceSchemaLocation xsi http://www.w3.org/2001/XMLSchema-instance",
+                        "foo.xsd"
+                    )
+                ).domQuietly()
+            ).toString(),
             Matchers.containsString("xsi:noNamespaceSchemaLocation")
         );
+    }
+
+    @Test
+    void findsAttributeWithNamespaceByXpath() {
         MatcherAssert.assertThat(
-            "fails to add attribute with namespace",
-            new XMLDocument(node).nodes("/boom/@xsi:noNamespaceSchemaLocation"),
+            "fails to find attribute with namespace by xpath",
+            new XMLDocument(
+                new Xembler(
+                    new Directives().add("boom").attr(
+                        "noNamespaceSchemaLocation xsi http://www.w3.org/2001/XMLSchema-instance",
+                        "foo.xsd"
+                    )
+                ).domQuietly()
+            ).nodes("/boom/@xsi:noNamespaceSchemaLocation"),
             Matchers.not(Matchers.emptyIterable())
         );
     }

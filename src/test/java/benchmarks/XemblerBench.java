@@ -49,10 +49,9 @@ public class XemblerBench {
                 "XPATH '/root'; ADDIF 'node';ADD 'temp'; REMOVE;SET '"
             ).append(idx).append("';");
         }
-        final Directives dirs = new Directives(program.toString());
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
-        new Xembler(dirs).apply(dom);
+        new Xembler(new Directives(program.toString())).apply(dom);
         MatcherAssert.assertThat(
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("/root/node[.='49999']")

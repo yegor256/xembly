@@ -24,15 +24,14 @@ final class NsDirectiveTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");
         dom.appendChild(root);
-        final String name = "somens";
-        new NsDirective(new Arg(name)).exec(
+        new NsDirective(new Arg("somens")).exec(
             dom, new DomCursor(Collections.singletonList(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(
             "fails to set namespace attribute",
             new XMLDocument(dom).toString(),
-            XhtmlMatchers.hasXPath("/ns1:f", name)
+            XhtmlMatchers.hasXPath("/ns1:f", "somens")
         );
     }
 }

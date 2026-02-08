@@ -26,7 +26,6 @@ final class Verbs {
     /**
      * Commands without arguments.
      */
-    @SuppressWarnings("PMD.NonStaticInitializer")
     private static final Map<String, Callback<Directive>> ARGUMENTLESS =
         new HashMap<String, Callback<Directive>>() {
             {
@@ -40,7 +39,6 @@ final class Verbs {
     /**
      * Commands with one argument.
      */
-    @SuppressWarnings("PMD.NonStaticInitializer")
     private static final Map<String, Function<String, Callback<Directive>>> SIMPLE =
         new HashMap<String, Function<String, Callback<Directive>>>() {
             {
@@ -58,7 +56,6 @@ final class Verbs {
     /**
      * Commands with two arguments.
      */
-    @SuppressWarnings("PMD.NonStaticInitializer")
     private static final Map<String, BiFunction<String, String, Callback<Directive>>> COMPLEX =
         new HashMap<String, BiFunction<String, String, Callback<Directive>>>() {
             {
