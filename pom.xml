@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.68.0</version>
+    <version>0.71.0</version>
   </parent>
   <groupId>com.jcabi.incubator</groupId>
   <artifactId>xembly</artifactId>
@@ -208,6 +208,65 @@
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-maven-plugin</artifactId>
+        <version>0.15.1</version>
+        <dependencies>
+          <dependency>
+              <groupId>org.revapi</groupId>
+              <artifactId>revapi-java</artifactId>
+              <version>0.28.4</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <analysisConfiguration>
+            <revapi.differences id="intentional-api-changes">
+              <differences>
+                <item>
+                  <ignore>true</ignore>
+                  <code>java.class.externalClassExposedInAPI</code>
+                  <new>interface org.w3c.dom.DOMConfiguration</new>
+                  <justification>Standard DOM API from xml-apis is intentionally exposed</justification>
+                </item>
+                <item>
+                  <ignore>true</ignore>
+                  <code>java.class.externalClassExposedInAPI</code>
+                  <new>interface org.w3c.dom.DOMStringList</new>
+                  <justification>Standard DOM API from xml-apis is intentionally exposed</justification>
+                </item>
+                <item>
+                  <ignore>true</ignore>
+                  <code>java.class.externalClassExposedInAPI</code>
+                  <new>interface org.w3c.dom.TypeInfo</new>
+                  <justification>Standard DOM API from xml-apis is intentionally exposed</justification>
+                </item>
+                <item>
+                  <ignore>true</ignore>
+                  <code>java.class.externalClassExposedInAPI</code>
+                  <new>interface org.w3c.dom.UserDataHandler</new>
+                  <justification>Standard DOM API from xml-apis is intentionally exposed</justification>
+                </item>
+                <item>
+                  <ignore>true</ignore>
+                  <code>java.class.nonPublicPartOfAPI</code>
+                  <old>class org.xembly.XmlContentException</old>
+                  <new>class org.xembly.XmlContentException</new>
+                  <justification>Package-private exception is intentionally used in the Callback interface</justification>
+                </item>
+              </differences>
+            </revapi.differences>
+          </analysisConfiguration>
+        </configuration>
+        <executions>
+          <execution>
+            <id>api-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>com.github.wvengen</groupId>
         <artifactId>proguard-maven-plugin</artifactId>
