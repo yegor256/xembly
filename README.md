@@ -15,18 +15,13 @@
 ![Lines-of-Code](https://raw.githubusercontent.com/yegor256/xembly/gh-pages/loc-badge.svg)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=yegor256_xembly&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=yegor256_xembly)
 
-**Xembly** is an
-[Assembly](http://en.wikipedia.org/wiki/Assembly_language)-like
-[imperative](http://en.wikipedia.org/wiki/Imperative_programming)
-programming language
-for data manipulation in XML documents.
-It is a much simpler alternative to
-[DOM](https://en.wikipedia.org/wiki/Document_Object_Model),
-[XSLT](http://www.w3.org/TR/xslt), and [XQuery](http://www.w3.org/TR/xquery).
-Read this blog post
-for a more detailed explanation: [Xembly, an Assembly for XML][blog].
+**Xembly** is an [Assembly]-like [imperative]
+  programming language for data manipulation in XML documents.
+It is a much simpler alternative to [DOM], [XSLT], and [XQuery].
+Read this blog post for a more detailed explanation:
+  [Xembly, an Assembly for XML][blog].
 You may also want to watch
-[this webinar](https://www.youtube.com/watch?v=oNtTAF0UjjA).
+  [this webinar](https://www.youtube.com/watch?v=oNtTAF0UjjA).
 
 You need this dependency:
 
@@ -38,8 +33,7 @@ You need this dependency:
 </dependency>
 ```
 
-Here is a command line implementation (as Ruby gem):
-[xembly-gem](https://github.com/yegor256/xembly-gem)
+Here is a command line implementation (as Ruby gem): [xembly-gem].
 
 For example, you have an XML document:
 
@@ -52,7 +46,7 @@ For example, you have an XML document:
 ```
 
 Then, you want to change the amount of the order #553
-from `$45.00` to `$140.00`. Xembly script would look like this:
+  from `$45.00` to `$140.00`. Xembly script would look like this:
 
 ```text
 XPATH "orders/order[@id=553]";
@@ -60,10 +54,7 @@ XPATH "amount";
 SET "$140.00";
 ```
 
-As you see, it's much simpler and compact than
-[DOM](https://en.wikipedia.org/wiki/Document_Object_Model),
-[XSLT](http://www.w3.org/TR/xslt),
-or [XQuery](http://www.w3.org/TR/xquery).
+As you see, it's much simpler and compact than [DOM], [XSLT], or [XQuery].
 
 This Java package implements Xembly:
 
@@ -119,15 +110,17 @@ This is a full list of supported directives, in the current version:
 * `COMMENT`: adds XML comment
 
 The "cursor" or "current nodes" is where we're currently located
-in the XML document. When Xembly script starts, the cursor is
-empty: it simply points to the highest level in the XML hierarchy.
-Pay attention, it doesn't point to the root node. It points to one
-level above the root. Remember, when a document is empty, there is no root node.
+  in the XML document.
+When Xembly script starts, the cursor is empty:
+  it simply points to the highest level in the XML hierarchy.
+Pay attention, it doesn't point to the root node.
+It points to one level above the root.
+Remember, when a document is empty, there is no root node.
 
-Then, we start executing directives one by one. After each directive
-the cursor is moving somewhere. There may be many nodes under the cursor,
-or just one, or none. For example, let's assume we're starting
-with this simple document `<car/>`:
+Then, we start executing directives one by one.
+After each directive the cursor is moving somewhere.
+There may be many nodes under the cursor, or just one, or none.
+For example, let's assume we're starting with this simple document `<car/>`:
 
 ```text
 ADD 'hello';        // Nothing happens, since the cursor is empty
@@ -146,8 +139,8 @@ REMOVE;             // The result is "<car/>", since all nodes under
 ```
 
 You can create a collection of directives either from a text or
-via supplementary methods, one per each directive. In both cases,
-you need to use the `Directives` class:
+  via supplementary methods, one per each directive.
+In both cases, you need to use the `Directives` class:
 
 ```java
 import org.xembly.Directives;
@@ -155,14 +148,14 @@ new Directives("XPATH '//car'; REMOVE;");
 new Directives().xpath("//car").remove();
 ```
 
-The second option is preferable, because it is faster — there is
-no parsing involved.
+The second option is preferable, because it is faster —
+  there is no parsing involved.
 
 ### ADD
 
 The `ADD` directive adds a new node to every node in the current node set.
 `ADD` expects exactly one mandatory argument, which is the name of
-a new node to be added (case sensitive):
+  a new node to be added (case sensitive):
 
 ```text
 ADD 'orders';
@@ -170,17 +163,18 @@ ADD 'order';
 ```
 
 Even if a node with the same name already exists, a new node
-will be added. Use `ADDIF` if you need to add only if the same-name node
-is absent.
+  will be added. Use `ADDIF` if you need to add only if the same-name node
+  is absent.
 
 After the execution, the `ADD` directive moves the cursor
-to the nodes just added.
+  to the nodes just added.
 
 ### ADDIF
 
 The `ADDIF` directive adds a new node to every node of the current set,
-only if it is absent. `ADDIF` expects exactly one argument, which
-is the name of the node to be added (case sensitive):
+  only if it is absent.
+`ADDIF` expects exactly one argument,
+  which is the name of the node to be added (case sensitive):
 
 ```text
 ADD 'orders';
@@ -188,13 +182,13 @@ ADDIF 'order';
 ```
 
 After the execution, the `ADDIF` directive moves the cursor
-to the nodes just added.
+  to the nodes just added.
 
 ### ATTR
 
 The `ATTR` directive sets an attribute to every node of the current set.
 `ATTR` expects exactly two arguments, where the first is the name
-of the attribute and the second is the value to set:
+  of the attribute and the second is the value to set:
 
 ```text
 ADD 'order';
@@ -204,12 +198,13 @@ ATTR 'price', '$49.99';
 After the execution, `ATTR` doesn't move the cursor.
 
 If it's necessary to make sure the attribute belongs to a certain
-namespace, put the namespace and its prefix into the
-attribute name separating them with spaces:
+  namespace, put the namespace and its prefix into the
+  attribute name separating them with spaces:
 
 ```text
 ADD 'flower';
-ATTR 'noNamespaceSchemaLocation xsi http://www.w3.org/2001/XMLSchema-instance', 'foo.xsd';
+ATTR 'noNamespaceSchemaLocation xsi
+  http://www.w3.org/2001/XMLSchema-instance', 'foo.xsd';
 ```
 
 This will generate the following document:
@@ -221,7 +216,7 @@ This will generate the following document:
 ### SET
 
 The `SET` directive changes text content of all current nodes, and expects
-exactly one argument, which is the text content to set:
+  exactly one argument, which is the text content to set:
 
 ```text
 ADD "employee";
@@ -233,7 +228,7 @@ SET "John Smith";
 ### XSET
 
 The `XSET` directive changes text content of all current nodes to a value
-calculated with the provided XPath expression:
+  calculated with the provided XPath expression:
 
 ```text
 ADD "product-1";
@@ -246,8 +241,8 @@ XSET "sum(/products/price) div count(/products)";
 ### XATTR
 
 The `XATTR` directive changes the value of an attribute of
-all current nodes to a value
-calculated with the provided XPath expression:
+  all current nodes to a value
+  calculated with the provided XPath expression:
 
 ```text
 ADD "product-1";
@@ -264,7 +259,7 @@ The `UP` directive moves all current nodes to their parents.
 ### XPATH
 
 The `XPATH` directive re-points the cursor to the nodes found
-by the provided XPath expression:
+  by the provided XPath expression:
 
 ```text
 XPATH "//employee[@id='234' and name='John Smith']/name";
@@ -274,7 +269,7 @@ SET "John R. Smith";
 ### REMOVE
 
 The `REMOVE` directive removes current nodes under the cursor and
-moves the cursor to their parents:
+  moves the cursor to their parents:
 
 ```text
 ADD "employee";
@@ -293,9 +288,10 @@ STRICT "1";                           // Throw an exception if there
 ```
 
 This is a very effective mechanism of validation of your script,
-in production mode. It is similar to `assert`  statement in Java.
+  in production mode.
+It is similar to `assert`  statement in Java.
 It is recommended to use `STRICT` regularly, to make sure your
-cursor has correct amount of nodes, to avoid unexpected modifications.
+  cursor has correct amount of nodes, to avoid unexpected modifications.
 
 `STRICT` doesn't move the cursor anywhere.
 
@@ -312,13 +308,14 @@ PI "xsl-stylesheet" "href='http://example.com'";
 ### PUSH and POP
 
 The `PUSH` and `POP` directives save current DOM position to stack
-and restore it from there.
+  and restore it from there.
 
 Let's say, you start your Xembly manipulations from a place in DOM,
-which location is not determined for you. After your manipulations are
-done, you want to get back to exactly the same place. You should
-use `PUSH` to save your current location and `POP` to restore it
-back, when manipulations are finished, for example:
+  which location is not determined for you.
+After your manipulations are done,
+  you want to get back to exactly the same place.
+You should use `PUSH` to save your current location and `POP` to restore it
+  back, when manipulations are finished, for example:
 
 ```assembly
 PUSH;                        // Doesn't matter where we are
@@ -331,12 +328,12 @@ POP;                         // Get back to where we were before the PUSH
 ```
 
 `PUSH` basically saves the cursor into stack and `POP` restores it from there.
-This is a very similar technique to `PUSH`/`POP` directives in Assembly. The
-stack has no limits, you can push multiple times and pop them back. It is
-a stack, that's why it is First-In-Last-Out (FILO).
+This is a very similar technique to `PUSH`/`POP` directives in Assembly.
+The stack has no limits, you can push multiple times and pop them back.
+It is a stack, that's why it is First-In-Last-Out (FILO).
 
 This operation is fast and it is highly recommended to use it everywhere,
-to be sure you're not making unexpected changes to the XML document.
+  to be sure you're not making unexpected changes to the XML document.
 
 ### NS
 
@@ -407,7 +404,7 @@ The standard output will contain this text:
 ## Merging Documents
 
 When you need to add an entire XML document, you can convert
-it first into Xembly directives and then add them all together:
+  it first into Xembly directives and then add them all together:
 
 ```java
 Iterable<Iterable> dirs = new Directives()
@@ -417,18 +414,18 @@ Iterable<Iterable> dirs = new Directives()
 ```
 
 This static utility method `copyOf()` converts an instance of class
-`org.w3c.dom.Node` into a collection of Xembly directives. Then,
-the `append()` method adds them all together to the main list.
+  `org.w3c.dom.Node` into a collection of Xembly directives.
+Then, the `append()` method adds them all together to the main list.
 
-Unfortunately, not every valid XML document can be parsed by `copyOf()`. For
-example, this one will lead to a runtime exception:
-`<car>2015<name>BMW</name></car>`. Read more about Xembly limitations,
-a few paragraphs below.
+Unfortunately, not every valid XML document can be parsed by `copyOf()`.
+For example, this one will lead to a runtime exception:
+  `<car>2015<name>BMW</name></car>`.
+Read more about Xembly limitations, a few paragraphs below.
 
 ## Escaping Invalid XML Text
 
-XML, as a standard, doesn't allow certain characters in its body. For example,
-this code will throw an exception:
+XML, as a standard, doesn't allow certain characters in its body.
+For example, this code will throw an exception:
 
 ```java
 String xml = new Xembler(
@@ -437,16 +434,14 @@ String xml = new Xembler(
 ```
 
 The character `\u00` is not allowed in XML. Actually, these ranges
-are also not allowed: `\u00..\u08`, `\u0B..\u0C`, `\u0E..\u1F`,
-`\u7F..\u84`, and `\u86..\u9F`.
+  are also not allowed: `\u00..\u08`, `\u0B..\u0C`, `\u0E..\u1F`,
+  `\u7F..\u84`, and `\u86..\u9F`.
 
 This means that you should validate everything and make sure you're
-setting only the "valid" text values to your XML nodes. Sometimes,
-it's not feasible
-to always check them. Sometimes you may simply need to save whatever
-is possible and call it a day. There is a utility static method
-`Xembler.escape()`, to help
-you do that:
+  setting only the "valid" text values to your XML nodes.
+Sometimes, it's not feasible to always check them.
+Sometimes you may simply need to save whatever is possible and call it a day.
+There is a utility static method `Xembler.escape()`, to help you do that:
 
 ```java
 String xml = new Xembler(
@@ -454,9 +449,10 @@ String xml = new Xembler(
 ).xml();
 ```
 
-This code won't throw an exception. The `Xembler.escape()` method will
-convert "\u00" to "\\u0000". It is recommended to use this method
-everywhere, if you are not sure about the quality of the content.
+This code won't throw an exception.
+The `Xembler.escape()` method converts "\u00" to "\\u0000".
+It is recommended to use this method everywhere,
+if you are not sure about the quality of the content.
 
 ## Shaded Xembly JAR With Dependencies
 
@@ -470,7 +466,7 @@ Usually, you're supposed to use this dependency in your `pom.xml`:
 ```
 
 However, if you have conflicts between dependencies, you can
-use our "shaded" JAR, that includes all dependencies:
+  use our "shaded" JAR, that includes all dependencies:
 
 ```xml
 <dependency>
@@ -482,9 +478,9 @@ use our "shaded" JAR, that includes all dependencies:
 
 ## Known Limitations
 
-Xembly is not intended to be a replacement of XSL or XQuery. It is
-a lightweight (!) instrument for XML manipulations. There are a few things
-that can't be done by means of Xembly:
+Xembly is not intended to be a replacement of XSL or XQuery.
+It is a lightweight (!) instrument for XML manipulations.
+There are a few things that can't be done by means of Xembly:
 
 * DTD section can't be modified
 
@@ -496,24 +492,26 @@ submit [an issue](https://github.com/yegor256/xembly/issues).
 
 ## How To Contribute
 
-Fork repository, make changes, send us a pull request. We will review
-your changes and apply them to the `master` branch shortly, provided
-they don't violate our quality standards. To avoid frustration, before
-sending us your pull request, please run full Maven build:
+Fork repository, make changes, send us a pull request.
+We will review your changes and apply them to the `master` branch shortly,
+  provided they don't violate our quality standards.
+To avoid frustration, before sending us your pull request,
+  please run full Maven build:
 
 ```bash
 mvn clean install -Pqulice
 ```
 
 You must fix all static analysis issues, otherwise we won't be able
-to merge your pull request. The build must be "clean".
+  to merge your pull request.
+The build must be "clean".
 
 ## Delivery Pipeline
 
-Git `master` branch is our cutting edge of development. It always contains
-the latest version of the product, always in `-SNAPSHOT` suffixed version.
-Nobody
-is allowed to commit directly to `master` &mdash; this branch is basically
+Git `master` branch is our cutting edge of development.
+It always contains the latest version of the product,
+  always in `-SNAPSHOT` suffixed version.
+Nobody is allowed to commit directly to `master` — this branch is basically
 [read-only](http://www.yegor256.com/2014/07/21/read-only-master-branch.html).
 Everybody contributes changes via
 [pull requests](http://www.yegor256.com/2014/04/15/github-guidelines.html).
@@ -543,11 +541,15 @@ All this is done automatically by @rultor.
 ## Got questions?
 
 If you have questions or general suggestions, don't hesitate to submit
-a new [Github issue](https://github.com/yegor256/xembly/issues/new).
-But keep these
-[Five Principles of Bug Tracking][blog-bugs]
-in mind.
+  a new [Github issue](https://github.com/yegor256/xembly/issues/new).
+But keep these [Five Principles of Bug Tracking][blog-bugs] in mind.
 
 [blog]: http://www.yegor256.com/2014/04/09/xembly-intro.html
 [blog-bugs]: http://www.yegor256.com/2014/11/24/principles-of-bug-tracking.html
 [blog-chatbots]: http://www.yegor256.com/2015/11/03/chatbot-better-than-ui-for-microservice.html
+[DOM]: https://en.wikipedia.org/wiki/Document_Object_Model
+[Assembly]: http://en.wikipedia.org/wiki/Assembly_language
+[imperative]: http://en.wikipedia.org/wiki/Imperative_programming
+[XSLT]: http://www.w3.org/TR/xslt
+[XQuery]: http://www.w3.org/TR/xquery
+[xembly-gem]: https://github.com/yegor256/xembly-gem

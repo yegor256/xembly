@@ -215,6 +215,22 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.eolang</groupId>
+        <artifactId>hone-maven-plugin</artifactId>
+        <version>0.21.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>pull</goal>
+              <goal>optimize</goal>
+            </goals>
+            <configuration>
+              <rules>streams/*</rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.revapi</groupId>
         <artifactId>revapi-maven-plugin</artifactId>
         <version>0.15.1</version>
@@ -259,6 +275,14 @@
                   <old>class org.xembly.XmlContentException</old>
                   <new>class org.xembly.XmlContentException</new>
                   <justification>Package-private exception is intentionally used in the Callback interface</justification>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <ignore>true</ignore>
+                  <code>java.annotation.removed</code>
+                  <old>.*</old>
+                  <annotationType>lombok\.Generated</annotationType>
+                  <justification>Lombok annotation removal does not affect runtime behavior</justification>
                 </item>
               </differences>
             </revapi.differences>
