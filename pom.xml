@@ -217,7 +217,7 @@
       <plugin>
         <groupId>org.eolang</groupId>
         <artifactId>hone-maven-plugin</artifactId>
-        <version>0.21.0</version>
+        <version>0.22.0</version>
         <executions>
           <execution>
             <goals>
@@ -226,6 +226,7 @@
             </goals>
             <configuration>
               <rules>streams/*</rules>
+              <skipWithoutDocker>true</skipWithoutDocker>
             </configuration>
           </execution>
         </executions>
