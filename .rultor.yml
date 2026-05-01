@@ -16,7 +16,7 @@ install: |-
   # aibolit check --folder=src/main
 merge:
   script: |-
-    mvn clean install -Pxembly -Pqulice --errors --settings ../settings.xml
+    mvn clean install -ntp -Pxembly -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml -Dinvoker.skip
 release:
   pre: false
@@ -25,5 +25,5 @@ release:
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     export MAVEN_OPTS="--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED"
-    mvn clean deploy -Pxembly -Psonatype --errors --settings ../settings.xml
+    mvn clean deploy -ntp -Pxembly -Psonatype --errors --settings ../settings.xml
     mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip || echo 'no site this time'
