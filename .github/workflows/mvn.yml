@@ -33,16 +33,15 @@ jobs:
       - run: java -version
       - run: mvn -version
       - name: Run Maven
+        shell: bash
         run: |
           set +e
-          mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true 2>&1 | tee /tmp/mvn-output.log
+          mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true 2>&1 | tee mvn-output.log
           EXIT_CODE=${PIPESTATUS[0]}
-          set -e
-          if [ "$EXIT_CODE" -ne 0 ]; then
-            echo "## Maven failure log (last 200 lines)" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            tail -n 200 /tmp/mvn-output.log >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            exit $EXIT_CODE
-          fi
-        shell: bash
+          exit $EXIT_CODE
+      - name: Upload Maven logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvn-logs-${{ matrix.os }}-${{ matrix.java }}
+          path: mvn-output.log
