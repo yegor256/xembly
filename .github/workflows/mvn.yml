@@ -41,7 +41,7 @@ jobs:
           EXIT_CODE=${PIPESTATUS[0]}
           exit $EXIT_CODE
       - name: Comment with failure log
-        if: failure() && matrix.os == 'ubuntu-24.04' && matrix.java == 17
+        if: failure()
         uses: actions/github-script@v7
         with:
           script: |
