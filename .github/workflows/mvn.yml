@@ -32,4 +32,17 @@ jobs:
             ${{ runner.os }}-jdk-${{ matrix.java }}-maven-
       - run: java -version
       - run: mvn -version
-      - run: mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true
+      - name: Run Maven
+        run: |
+          set +e
+          mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true 2>&1 | tee /tmp/mvn-output.log
+          EXIT_CODE=${PIPESTATUS[0]}
+          set -e
+          if [ "$EXIT_CODE" -ne 0 ]; then
+            echo "## Maven failure log (last 200 lines)" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 200 /tmp/mvn-output.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit $EXIT_CODE
+          fi
+        shell: bash
