@@ -54,6 +54,37 @@ public interface Transformers {
     }
 
     /**
+     * Transformer factory that produces compact (non-indented) XML.
+     * All transformers produced by this factory will be configured to produce
+     * XML documents with XML declaration but without pretty-printing
+     * (no indentation, no extra line breaks).
+     * @since 0.32.3
+     */
+    final class Compact implements Transformers {
+
+        /**
+         * Original transformer factory.
+         */
+        private final Transformers original;
+
+        /**
+         * Default ctor.
+         * @since 0.32.3
+         */
+        public Compact() {
+            this.original = new Transformers.Formatted(
+                new Transformers.Default(),
+                Collections.singletonMap(OutputKeys.ENCODING, "UTF-8")
+            );
+        }
+
+        @Override
+        public Transformer create() {
+            return this.original.create();
+        }
+    }
+
+    /**
      * Transformer factory that produces document transformers.
      * All transformers produced by this factory will be configured to produce
      * XML documents with XML declaration and indentation.
