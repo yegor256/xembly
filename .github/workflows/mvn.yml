@@ -24,37 +24,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
-      - uses: actions/cache@v5
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-jdk-${{ matrix.java }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-jdk-${{ matrix.java }}-maven-
       - run: java -version
       - run: mvn -version
-      - name: Run Maven
-        shell: bash
-        id: run_maven
-        run: |
-          set +e
-          mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true 2>&1 | tail -120 | tee mvn-tail.log
-          EXIT_CODE=${PIPESTATUS[0]}
-          exit $EXIT_CODE
-      - name: Comment with failure log
-        if: failure()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            let body = '';
-            try { body = fs.readFileSync('mvn-tail.log', 'utf8'); } catch (e) { body = 'no log'; }
-            const truncated = body.length > 60000 ? body.slice(-60000) : body;
-            const issueNum = context.payload.pull_request ? context.payload.pull_request.number : null;
-            if (issueNum) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNum,
-                body: '<details><summary>Maven failure log (' + context.job + ')</summary>\n\n```\n' + truncated + '\n```\n</details>'
-              });
-            }
+      - run: mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true
