@@ -24,12 +24,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
-      - uses: actions/cache@v5
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-jdk-${{ matrix.java }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-jdk-${{ matrix.java }}-maven-
       - run: java -version
       - run: mvn -version
-      - run: mvn --errors --batch-mode clean install -Pqulice
+      - run: mvn --errors --batch-mode clean install -Pqulice -Dhone.skip=true
