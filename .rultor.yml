@@ -26,4 +26,4 @@ release:
     git commit -am "${tag}"
     export MAVEN_OPTS="--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED"
     mvn clean deploy -ntp -Pxembly -Psonatype --errors --settings ../settings.xml
-    mvn clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip || echo 'no site this time'
+    mvn -ntp clean site-deploy -Pxembly -Psite --errors --settings ../settings.xml -Dinvoker.skip || echo 'no site this time'
