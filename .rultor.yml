@@ -22,7 +22,7 @@ release:
   pre: false
   script: |-
     [[ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
-    mvn versions:set "-DnewVersion=${tag}"
+    mvn -ntp versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     export MAVEN_OPTS="--add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED"
     mvn clean deploy -ntp -Pxembly -Psonatype --errors --settings ../settings.xml
