@@ -85,6 +85,58 @@ public interface Transformers {
     }
 
     /**
+     * Transformer factory that emits an explicit {@code standalone}
+     * attribute in the XML declaration.
+     * Pass {@code true} to emit {@code standalone="yes"} or {@code false} to
+     * emit {@code standalone="no"}. Indentation and UTF-8 encoding are kept
+     * to match {@link Transformers.Document}.
+     * @since 0.33
+     */
+    final class Standalone implements Transformers {
+
+        /**
+         * Original transformer factory.
+         */
+        private final Transformers original;
+
+        /**
+         * Public ctor.
+         * @param standalone Whether the document is standalone
+         * @since 0.33
+         */
+        public Standalone(final boolean standalone) {
+            this.original = new Transformers.Formatted(
+                new Transformers.Default(),
+                Transformers.Standalone.props(standalone)
+            );
+        }
+
+        @Override
+        public Transformer create() {
+            return this.original.create();
+        }
+
+        /**
+         * Build output properties for the given standalone value.
+         * @param standalone Whether the document is standalone
+         * @return Properties to configure the output
+         */
+        private static Map<String, String> props(final boolean standalone) {
+            final Map<String, String> res = new HashMap<>();
+            res.put(OutputKeys.INDENT, "yes");
+            res.put(OutputKeys.ENCODING, "UTF-8");
+            final String value;
+            if (standalone) {
+                value = "yes";
+            } else {
+                value = "no";
+            }
+            res.put(OutputKeys.STANDALONE, value);
+            return res;
+        }
+    }
+
+    /**
      * Transformer factory that produces document transformers.
      * All transformers produced by this factory will be configured to produce
      * XML documents with XML declaration and indentation.
