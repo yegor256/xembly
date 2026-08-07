@@ -21,7 +21,7 @@ final class TransformersTest {
             new Xembler(
                 new Directives().add("a").add("b").set("hello")
             ).xml(),
-            Matchers.containsString("<a>" + System.lineSeparator())
+            Matchers.containsString(String.format("<a>%n"))
         );
     }
 
@@ -36,10 +36,10 @@ final class TransformersTest {
             Matchers.allOf(
                 Matchers.containsString("<a><b>hello</b></a>"),
                 Matchers.not(
-                    Matchers.containsString(System.lineSeparator() + "   ")
+                    Matchers.containsString(String.format("%n   "))
                 ),
                 Matchers.not(
-                    Matchers.containsString(System.lineSeparator() + "    ")
+                    Matchers.containsString(String.format("%n    "))
                 )
             )
         );

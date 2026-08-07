@@ -4,10 +4,10 @@
  */
 package org.xembly;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Attr;
@@ -559,7 +559,7 @@ public final class Directives implements Iterable<Directive> {
      * @return Collection
      */
     private static <T> Collection<T> toCollection(final Iterable<T> itr) {
-        final Collection<T> col = new LinkedList<>();
+        final Collection<T> col = new ArrayList<>(0);
         for (final T item : itr) {
             col.add(item);
         }

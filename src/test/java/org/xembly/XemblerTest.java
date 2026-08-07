@@ -36,17 +36,18 @@ import org.yaml.snakeyaml.Yaml;
  * Test case for {@link Xembler}.
  * @since 0.1
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class XemblerTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {
-        "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
-        "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
-        "ADD 'x'; SET 'hello';",
-        "ADD 'x'; STRICT '1';",
-        "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';"
-    })
+    @ValueSource(
+        strings = {
+            "ADD 'a'; ADD 'b'; ADD 'c'; SET 'привет';",
+            "ADD \"a\"; ADD \"b\"; ADD \"c\"; SET \"привет\";",
+            "ADD 'x'; SET 'hello';",
+            "ADD 'x'; STRICT '1';",
+            "ADD 'x'; ATTR 'y', 'z'; PI 'foo', 'bar';"
+        }
+    )
     void parsesDifferentScripts(final String script) {
         MatcherAssert.assertThat(
             "Can't parse script",
@@ -65,7 +66,7 @@ final class XemblerTest {
         MatcherAssert.assertThat(
             "Can't print XML nicely",
             new XMLDocument(dom).toString(),
-            Matchers.containsString("<a>\n   <b>\n      <c>")
+            Matchers.containsString(String.format("<a>%c   <b>%c      <c>", '\n', '\n'))
         );
     }
 
@@ -111,7 +112,7 @@ final class XemblerTest {
                     .attr("id", "<443>")
                     .add("name")
                     .strict(1)
-                    .set("\rСаша\t\nПушкин\n")
+                    .set(String.format("%cСаша\t%cПушкин%c", '\r', '\n', '\n'))
                     .up()
                     .up()
                     .xpath("/top/employees/employee[@id='<443>']/name")
@@ -145,7 +146,9 @@ final class XemblerTest {
         MatcherAssert.assertThat(
             "Can't render XML declaration",
             new Xembler(new Directives("ADD 'f';")).xmlQuietly(),
-            Matchers.equalTo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<f/>")
+            Matchers.equalTo(
+                String.format("<?xml version=\"1.0\" encoding=\"UTF-8\"?>%c<f/>", '\n')
+            )
         );
     }
 
@@ -153,7 +156,7 @@ final class XemblerTest {
     void escapesBrokenText() {
         MatcherAssert.assertThat(
             "Can't escape broken text",
-            Xembler.escape("привет hello \u0000"),
+            Xembler.escape("привет hello \0"),
             Matchers.equalTo("привет hello \\u0000")
         );
     }

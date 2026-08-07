@@ -18,7 +18,7 @@ final class VerbsTest {
         Assertions.assertThrows(
             SyntaxException.class,
             () -> new Verbs(
-                "ADD 't';" + System.lineSeparator() + "ADD 'x';broken"
+                String.format("ADD 't';%nADD 'x';broken")
             ).directives(),
             "Can't throw on broken syntax"
         );
@@ -39,10 +39,7 @@ final class VerbsTest {
         Assertions.assertDoesNotThrow(
             () -> new Xembler(
                 new Directives(
-                    System.lineSeparator() + System.lineSeparator()
-                        + "ADD 'o';" + System.lineSeparator()
-                        + "ATTR 'base','int';" + System.lineSeparator()
-                        + System.lineSeparator()
+                    String.format("%n%nADD 'o';%nATTR 'base','int';%n%n")
                 )
             ).xml(),
             "Can't work with new lines"

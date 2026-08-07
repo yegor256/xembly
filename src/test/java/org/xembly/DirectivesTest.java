@@ -35,17 +35,15 @@ final class DirectivesTest {
                         .add("page")
                         .attr("the-name", "with €")
                         .add("child-node")
-                        .set(" the text" + System.lineSeparator()).up()
+                        .set(String.format(" the text%n")).up()
                         .add("big_text").cdata(
-                            "<<hello" + System.lineSeparator()
-                                + System.lineSeparator() + "!!!>>"
+                            String.format("<<hello%n%n!!!>>")
                         ).up()
                 ).xml()
             ),
             XhtmlMatchers.hasXPaths(
                 "/page[@the-name]",
-                "/page/big_text[.='<<hello" + System.lineSeparator()
-                    + System.lineSeparator() + "!!!>>']"
+                String.format("/page/big_text[.='<<hello%n%n!!!>>']")
             )
         );
     }
@@ -72,7 +70,7 @@ final class DirectivesTest {
     void throwsOnBrokenXmlContent() {
         Assertions.assertThrows(
             SyntaxException.class,
-            () -> new Directives("ADD 't';" + System.lineSeparator() + "ADD '';"),
+            () -> new Directives(String.format("ADD 't';%nADD '\033';")),
             "Can't detect broken XML content"
         );
     }
@@ -113,7 +111,7 @@ final class DirectivesTest {
     void ignoresEmptyInput() {
         MatcherAssert.assertThat(
             "Can't ignore empty input",
-            new Directives(System.lineSeparator() + "\t   " + System.lineSeparator()),
+            new Directives(String.format("%n\t   %n")),
             Matchers.emptyIterable()
         );
     }

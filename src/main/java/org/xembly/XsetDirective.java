@@ -4,9 +4,8 @@
  */
 package org.xembly;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -51,8 +50,8 @@ final class XsetDirective implements Directive {
     public Directive.Cursor exec(final Node dom,
         final Directive.Cursor cursor, final Directive.Stack stack)
         throws ImpossibleModificationException {
-        final ConcurrentMap<Node, String> values =
-            new ConcurrentHashMap<>(0);
+        final Map<Node, String> values =
+            new HashMap<>(0);
         for (final Node node : cursor) {
             try {
                 values.put(

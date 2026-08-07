@@ -40,9 +40,7 @@ final class Arg {
 
     @Override
     public String toString() {
-        final String escaped = Arg.escape(this.value);
-        return new StringBuilder(this.value.length() + 2 + escaped.length())
-            .append('"').append(escaped).append('"').toString();
+        return String.format("\"%s\"", Arg.escape(this.value));
     }
 
     /**
@@ -101,7 +99,8 @@ final class Arg {
      */
     private static String escape(final String text) {
         final StringBuilder output = new StringBuilder(text.length());
-        for (final char chr : text.toCharArray()) {
+        for (int idx = 0; idx < text.length(); ++idx) {
+            final char chr = text.charAt(idx);
             if (chr < ' ') {
                 output.append("&#").append((int) chr).append(';');
             } else if (chr == '"') {
@@ -190,8 +189,8 @@ final class Arg {
      * @throws XmlContentException If fails
      */
     private static String ifValid(final String val) throws XmlContentException {
-        for (final char chr : val.toCharArray()) {
-            Arg.legal(chr);
+        for (int idx = 0; idx < val.length(); ++idx) {
+            Arg.legal(val.charAt(idx));
         }
         return val;
     }

@@ -4,10 +4,10 @@
  */
 package org.xembly;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -74,7 +74,7 @@ final class Verbs {
      */
     Verbs(final String txt) {
         this.text = txt;
-        this.dirs = new LinkedList<>();
+        this.dirs = new ArrayList<>(0);
     }
 
     /**
@@ -87,7 +87,7 @@ final class Verbs {
             try {
                 final String semicolon = ";";
                 final StringBuilder builder = new StringBuilder();
-                for (final String part : trimmed.split(semicolon)) {
+                for (final String part : trimmed.split(semicolon, 0)) {
                     if (builder.length() == 0) {
                         builder.append(Verbs.ltrim(part));
                     } else {
@@ -203,7 +203,7 @@ final class Verbs {
         final int index
     ) throws XmlContentException, ParsingException {
         final char quote = part.charAt(index);
-        final String[] args = part.split(String.valueOf(quote));
+        final String[] args = part.split(String.valueOf(quote), 0);
         final Optional<Callback<Directive>> cmd;
         if (args.length == 1) {
             cmd = Optional.empty();
@@ -254,7 +254,7 @@ final class Verbs {
         final int index
     ) throws XmlContentException, ParsingException {
         final char quote = part.charAt(index);
-        final String[] args = part.split(String.valueOf(quote));
+        final String[] args = part.split(String.valueOf(quote), 0);
         final Optional<Callback<Directive>> cmd;
         if (args.length == 1) {
             cmd = Optional.empty();

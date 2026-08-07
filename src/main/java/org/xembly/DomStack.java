@@ -4,8 +4,8 @@
  */
 package org.xembly;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -25,7 +25,7 @@ final class DomStack implements Directive.Stack {
      * Queue of cursors.
      */
     private final Deque<Directive.Cursor> cursors =
-        new LinkedList<>();
+        new ArrayDeque<>();
 
     /**
      * Lock for thread safety.

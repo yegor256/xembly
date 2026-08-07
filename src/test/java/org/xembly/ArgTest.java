@@ -21,7 +21,7 @@ final class ArgTest {
             "",
             "123",
             "test € привет & <>'\"\\",
-            "how are you there,\t\n\rтоварищ? &#0D;",
+            String.format("how are you there,\t%c%cтоварищ? &#0D;", '\n', '\r'),
         };
         for (final String text : texts) {
             MatcherAssert.assertThat(
@@ -36,7 +36,7 @@ final class ArgTest {
     void rejectsToEscapeInvalidXmlChars() {
         Assertions.assertThrows(
             XmlContentException.class,
-            () -> new Arg("\u001b\u0000").toString(),
+            () -> new Arg("\033\0").toString(),
             "Invalid XML content"
         );
     }
