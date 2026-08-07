@@ -6,7 +6,6 @@ package org.xembly;
 
 /**
  * When impossible to understand XML content.
- *
  * @since 0.6
  */
 final class XmlContentException extends Exception {
@@ -14,7 +13,7 @@ final class XmlContentException extends Exception {
     /**
      * Serialization marker.
      */
-    private static final long serialVersionUID = 0x6547f999eaf6efb9L;
+    private static final long serialVersionUID = 0x6547F999EAF6EFB9L;
 
     /**
      * Public ctor.
@@ -23,5 +22,4 @@ final class XmlContentException extends Exception {
     XmlContentException(final String cause) {
         super(cause);
     }
-
 }

@@ -58,5 +58,4 @@ final class AddDirective implements Directive {
         }
         return new DomCursor(targets);
     }
-
 }

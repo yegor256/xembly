@@ -27,7 +27,15 @@ final class Arg {
      * @throws XmlContentException If fails
      */
     Arg(final String val) throws XmlContentException {
-        this.value = Arg.ifValid(val);
+        this(Arg.ifValid(val).toCharArray());
+    }
+
+    /**
+     * Primary ctor.
+     * @param chars Validated characters
+     */
+    private Arg(final char... chars) {
+        this.value = new String(chars);
     }
 
     @Override
@@ -41,7 +49,7 @@ final class Arg {
      * Get it's raw value.
      * @return Value
      */
-    public String raw() {
+    String raw() {
         return this.value;
     }
 
@@ -51,9 +59,8 @@ final class Arg {
      * @return Clean text
      * @throws XmlContentException If fails
      */
-    @SuppressWarnings({"aibolit.P32", "PMD.ProhibitPublicStaticMethods"})
-    public static String unescape(final String text)
-        throws XmlContentException {
+    @SuppressWarnings("aibolit.P32")
+    static String unescape(final String text) throws XmlContentException {
         final char[] chars = text.toCharArray();
         if (chars.length < 2) {
             throw new IllegalArgumentException(
@@ -188,5 +195,4 @@ final class Arg {
         }
         return val;
     }
-
 }

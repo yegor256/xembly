@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Arg}.
- *
  * @since 0.1
  */
 final class ArgTest {
@@ -21,7 +20,7 @@ final class ArgTest {
         final String[] texts = {
             "",
             "123",
-            "test \u20ac привет & <>'\"\\",
+            "test € привет & <>'\"\\",
             "how are you there,\t\n\rтоварищ? &#0D;",
         };
         for (final String text : texts) {
@@ -50,5 +49,4 @@ final class ArgTest {
             "Invalid XML content"
         );
     }
-
 }

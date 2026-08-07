@@ -34,7 +34,6 @@ import org.yaml.snakeyaml.Yaml;
 
 /**
  * Test case for {@link Xembler}.
- *
  * @since 0.1
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -135,9 +134,9 @@ final class XemblerTest {
         MatcherAssert.assertThat(
             "Can't print XML document",
             new Xembler(
-                new Directives().add("hey-you").add("hoy").set("\u20ac")
+                new Directives().add("hey-you").add("hoy").set("€")
             ).xml(),
-            XhtmlMatchers.hasXPath("/hey-you/hoy[.='\u20ac']")
+            XhtmlMatchers.hasXPath("/hey-you/hoy[.='€']")
         );
     }
 
@@ -322,5 +321,4 @@ final class XemblerTest {
             )
         );
     }
-
 }

@@ -48,7 +48,6 @@ import org.w3c.dom.NodeList;
  * <p>The class is mutable and thread-safe.
  *
  * @since 0.1
- * @checkstyle ClassFanOutComplexity (500 lines)
  */
 @EqualsAndHashCode(of = "all")
 @SuppressWarnings("PMD.TooManyMethods")
@@ -63,7 +62,11 @@ public final class Directives implements Iterable<Directive> {
      * Public ctor.
      */
     public Directives() {
-        this(Collections.emptyList());
+        this(
+            Collections.synchronizedCollection(
+                Directives.toCollection(Collections.emptyList())
+            )
+        );
     }
 
     /**
@@ -71,7 +74,11 @@ public final class Directives implements Iterable<Directive> {
      * @param text Xembly script
      */
     public Directives(final String text) {
-        this(new Verbs(text).directives());
+        this(
+            Collections.synchronizedCollection(
+                Directives.toCollection(new Verbs(text).directives())
+            )
+        );
     }
 
     /**
@@ -79,7 +86,15 @@ public final class Directives implements Iterable<Directive> {
      * @param dirs Directives
      */
     public Directives(final Iterable<Directive> dirs) {
-        this.all = Collections.synchronizedCollection(Directives.toCollection(dirs));
+        this(Collections.synchronizedCollection(Directives.toCollection(dirs)));
+    }
+
+    /**
+     * Primary ctor.
+     * @param col Collection of directives
+     */
+    private Directives(final Collection<Directive> col) {
+        this.all = col;
     }
 
     @Override
@@ -338,7 +353,6 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.9
      * @checkstyle MethodName (3 lines)
      */
-    @SuppressWarnings("PMD.ShortMethodName")
     public Directives pi(final Object target, final Object data) {
         try {
             this.all.add(new PiDirective(target.toString(), data.toString()));
@@ -429,7 +443,6 @@ public final class Directives implements Iterable<Directive> {
      * @since 0.5
      * @checkstyle MethodName (3 lines)
      */
-    @SuppressWarnings("PMD.ShortMethodName")
     public Directives up() {
         this.all.add(new UpDirective());
         return this;
@@ -552,5 +565,4 @@ public final class Directives implements Iterable<Directive> {
         }
         return col;
     }
-
 }

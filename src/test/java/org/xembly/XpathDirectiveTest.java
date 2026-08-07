@@ -17,7 +17,6 @@ import org.w3c.dom.Node;
 
 /**
  * Test case for {@link XpathDirective}.
- *
  * @since 0.1
  */
 final class XpathDirectiveTest {
@@ -110,5 +109,4 @@ final class XpathDirectiveTest {
             XhtmlMatchers.hasXPath("/high/boom-5")
         );
     }
-
 }

@@ -70,5 +70,4 @@ final class AddIfDirective implements Directive {
         }
         return new DomCursor(targets);
     }
-
 }

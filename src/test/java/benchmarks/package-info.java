@@ -5,7 +5,6 @@
 
 /**
  * Benchmarks.
- *
  * @since 0.1
  */
 package benchmarks;

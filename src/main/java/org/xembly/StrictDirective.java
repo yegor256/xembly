@@ -85,5 +85,4 @@ final class StrictDirective implements Directive {
         }
         return text.toString();
     }
-
 }

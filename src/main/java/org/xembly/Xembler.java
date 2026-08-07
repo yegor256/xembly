@@ -122,7 +122,7 @@ public final class Xembler {
      * @return The same document/node
      * @throws ImpossibleModificationException If can't modify
      */
-    @SuppressWarnings({"aibolit.P15", "PMD.UnnecessaryLocalRule"})
+    @SuppressWarnings("aibolit.P15")
     public Node apply(final Node dom) throws ImpossibleModificationException {
         Directive.Cursor cursor = new DomCursor(
             Collections.singletonList(dom)
@@ -255,7 +255,7 @@ public final class Xembler {
         final StringBuilder output = new StringBuilder(text.length());
         final char[] chars = text.toCharArray();
         for (final char chr : chars) {
-            final boolean illegal = chr >= 0x00 && chr <= 0x08
+            final boolean illegal = chr <= 0x08
                 || chr >= 0x0B && chr <= 0x0C
                 || chr >= 0x0E && chr <= 0x1F
                 || chr >= 0x7F && chr <= 0x84
@@ -268,5 +268,4 @@ public final class Xembler {
         }
         return output.toString();
     }
-
 }

@@ -20,10 +20,8 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link Directives}.
- *
  * @since 0.1
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class DirectivesTest {
 
     @Test
@@ -35,14 +33,19 @@ final class DirectivesTest {
                     new Directives()
                         .pi("xml-stylesheet", "none")
                         .add("page")
-                        .attr("the-name", "with \u20ac")
-                        .add("child-node").set(" the text\n").up()
-                        .add("big_text").cdata("<<hello\n\n!!!>>").up()
+                        .attr("the-name", "with €")
+                        .add("child-node")
+                        .set(" the text" + System.lineSeparator()).up()
+                        .add("big_text").cdata(
+                            "<<hello" + System.lineSeparator()
+                                + System.lineSeparator() + "!!!>>"
+                        ).up()
                 ).xml()
             ),
             XhtmlMatchers.hasXPaths(
                 "/page[@the-name]",
-                "/page/big_text[.='<<hello\n\n!!!>>']"
+                "/page/big_text[.='<<hello" + System.lineSeparator()
+                    + System.lineSeparator() + "!!!>>']"
             )
         );
     }
@@ -69,7 +72,7 @@ final class DirectivesTest {
     void throwsOnBrokenXmlContent() {
         Assertions.assertThrows(
             SyntaxException.class,
-            () -> new Directives("ADD 't';\nADD '\u001b';"),
+            () -> new Directives("ADD 't';" + System.lineSeparator() + "ADD '';"),
             "Can't detect broken XML content"
         );
     }
@@ -110,7 +113,7 @@ final class DirectivesTest {
     void ignoresEmptyInput() {
         MatcherAssert.assertThat(
             "Can't ignore empty input",
-            new Directives("\n\t   \r"),
+            new Directives(System.lineSeparator() + "\t   " + System.lineSeparator()),
             Matchers.emptyIterable()
         );
     }
@@ -125,7 +128,7 @@ final class DirectivesTest {
                     .add("html").attr("xmlns", "http://www.w3.org/1999/xhtml")
                     .add("body")
                     .add("p")
-                    .set("\u20ac \\")
+                    .set("€ \\")
                     .toString()
             )
         ).apply(dom);
@@ -134,7 +137,7 @@ final class DirectivesTest {
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPaths(
                 "/xhtml:html",
-                "/xhtml:html/body/p[.='\u20ac \\']"
+                "/xhtml:html/body/p[.='€ \\']"
             )
         );
     }
@@ -150,7 +153,7 @@ final class DirectivesTest {
                         StringUtils.join(
                             "<jeff name='Jeffrey'><first/><second/>",
                             "<?some-pi test?>",
-                            "<file a='x'><f><name>\u20ac</name></f></file>",
+                            "<file a='x'><f><name>€</name></f></file>",
                             "<!-- some comment -->",
                             "<x><![CDATA[hey you]]></x>  </jeff>"
                         )
@@ -164,7 +167,7 @@ final class DirectivesTest {
             XhtmlMatchers.hasXPaths(
                 "/dudes/jeff[@name = 'Jeffrey']",
                 "/dudes/jeff[first and second]",
-                "/dudes/jeff/file[@a='x']/f[name='\u20ac']"
+                "/dudes/jeff/file[@a='x']/f[name='€']"
             )
         );
     }
@@ -178,7 +181,7 @@ final class DirectivesTest {
                 new XMLDocument(
                     StringUtils.join(
                         "<joe name='Joey'><first/><second/>",
-                        "<io a='x'><f><name>\u20ac</name></f></io>",
+                        "<io a='x'><f><name>€</name></f></io>",
                         "<x><![CDATA[hey you]]></x>  </joe>"
                     )
                 ).deepCopy()
@@ -190,7 +193,7 @@ final class DirectivesTest {
             XhtmlMatchers.hasXPaths(
                 "/guys/joe[@name = 'Joey']",
                 "/guys/joe[first and second]",
-                "/guys/joe/io[@a='x']/f[name='\u20ac']"
+                "/guys/joe/io[@a='x']/f[name='€']"
             )
         );
     }
@@ -391,7 +394,6 @@ final class DirectivesTest {
      * @return Directives with appended content
      * @throws Exception If fails
      */
-    @SuppressWarnings("PMD.UnnecessaryLocalRule")
     private static Directives concurrent(final int tasks) throws Exception {
         final Directives result = new Directives().add("mt6");
         new LengthOf(

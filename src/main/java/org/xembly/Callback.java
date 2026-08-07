@@ -11,6 +11,7 @@ package org.xembly;
  */
 @FunctionalInterface
 public interface Callback<V> {
+
     /**
      * Computes a result.
      * @return The computed result

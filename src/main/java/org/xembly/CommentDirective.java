@@ -52,5 +52,4 @@ final class CommentDirective implements Directive {
         }
         return cursor;
     }
-
 }

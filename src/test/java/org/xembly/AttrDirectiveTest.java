@@ -17,7 +17,6 @@ import org.w3c.dom.Element;
 
 /**
  * Test case for {@link AttrDirective}.
- *
  * @since 0.1
  */
 final class AttrDirectiveTest {
@@ -70,14 +69,14 @@ final class AttrDirectiveTest {
             .newDocumentBuilder().newDocument();
         final Element root = dom.createElement("f");
         dom.appendChild(root);
-        new AttrDirective("Price", "\u20ac50").exec(
+        new AttrDirective("Price", "€50").exec(
             dom, new DomCursor(Collections.singletonList(root)),
             new DomStack()
         );
         MatcherAssert.assertThat(
             "fails to add case-sensitive attributes to current nodes",
             XhtmlMatchers.xhtml(dom),
-            XhtmlMatchers.hasXPath("/f[@Price='\u20ac50']")
+            XhtmlMatchers.hasXPath("/f[@Price='€50']")
         );
     }
 

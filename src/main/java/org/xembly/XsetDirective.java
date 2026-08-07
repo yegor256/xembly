@@ -72,5 +72,4 @@ final class XsetDirective implements Directive {
         }
         return cursor;
     }
-
 }

@@ -13,7 +13,6 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link XattrDirective}.
- *
  * @since 0.28
  */
 final class XattrDirectiveTest {

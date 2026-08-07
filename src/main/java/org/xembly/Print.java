@@ -6,7 +6,6 @@ package org.xembly;
 
 /**
  * It prints directives in one line.
- *
  * @since 0.25
  */
 final class Print {
@@ -49,5 +48,4 @@ final class Print {
         }
         return text.toString().trim();
     }
-
 }

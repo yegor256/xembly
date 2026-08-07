@@ -27,8 +27,8 @@ final class PiDirectiveTest {
         new Xembler(
             new Directives(
                 StringUtils.join(
-                    "XPATH '/root'; PI 'ab', 'boom \u20ac';",
-                    "ADD 'test'; PI 'foo', 'some data \u20ac';"
+                    "XPATH '/root'; PI 'ab', 'boom €';",
+                    "ADD 'test'; PI 'foo', 'some data €';"
                 )
             )
         ).apply(dom);
@@ -63,13 +63,13 @@ final class PiDirectiveTest {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
         new Xembler(
-            new Directives("XPATH '/'; PI 'alpha', 'beta \u20ac'; ADD 'x4';")
+            new Directives("XPATH '/'; PI 'alpha', 'beta €'; ADD 'x4';")
         ).apply(dom);
         MatcherAssert.assertThat(
             "Can't add processing instructions to DOM root",
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath(
-                "/processing-instruction('alpha')[.='beta \u20ac']"
+                "/processing-instruction('alpha')[.='beta €']"
             )
         );
     }
@@ -82,5 +82,4 @@ final class PiDirectiveTest {
             Matchers.containsString("<?a b?><c/>")
         );
     }
-
 }

@@ -15,7 +15,6 @@ import org.w3c.dom.Element;
 
 /**
  * Test case for {@link XsetDirective}.
- *
  * @since 0.1
  */
 final class XsetDirectiveTest {
@@ -66,5 +65,4 @@ final class XsetDirectiveTest {
             XhtmlMatchers.hasXPaths("/xxx[first='33' and second='13']")
         );
     }
-
 }

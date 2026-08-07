@@ -19,51 +19,44 @@ import java.util.function.Function;
  */
 @SuppressWarnings({
     "PMD.GodClass",
-    "PMD.InefficientEmptyStringCheck",
-    "PMD.DoubleBraceInitialization"
+    "PMD.InefficientEmptyStringCheck"
 })
 final class Verbs {
+
     /**
      * Commands without arguments.
      */
-    private static final Map<String, Callback<Directive>> ARGUMENTLESS =
-        new HashMap<String, Callback<Directive>>() {
-            {
-                this.put("REMOVE", RemoveDirective::new);
-                this.put("UP", UpDirective::new);
-                this.put("PUSH", PushDirective::new);
-                this.put("POP", PopDirective::new);
-            }
-        };
+    private static final Map<String, Callback<Directive>> ARGUMENTLESS = new HashMap<>();
 
     /**
      * Commands with one argument.
      */
     private static final Map<String, Function<String, Callback<Directive>>> SIMPLE =
-        new HashMap<String, Function<String, Callback<Directive>>>() {
-            {
-                this.put("XPATH", value -> () -> new XpathDirective(value));
-                this.put("SET", value -> () -> new SetDirective(value));
-                this.put("XSET", value -> () -> new XsetDirective(value));
-                this.put("ADD", value -> () -> new AddDirective(value));
-                this.put("ADDIF", value -> () -> new AddIfDirective(value));
-                this.put("STRICT", value -> () -> new StrictDirective(Integer.parseInt(value)));
-                this.put("CDATA", value -> () -> new CdataDirective(value));
-                this.put("COMMENT", value -> () -> new CommentDirective(value));
-            }
-        };
+        new HashMap<>();
 
     /**
      * Commands with two arguments.
      */
     private static final Map<String, BiFunction<String, String, Callback<Directive>>> COMPLEX =
-        new HashMap<String, BiFunction<String, String, Callback<Directive>>>() {
-            {
-                this.put("ATTR", (attr, value) -> () -> new AttrDirective(attr, value));
-                this.put("XATTR", (attr, value) -> () -> new XattrDirective(attr, value));
-                this.put("PI", (target, data) -> () -> new PiDirective(target, data));
-            }
-        };
+        new HashMap<>();
+
+    static {
+        Verbs.ARGUMENTLESS.put("REMOVE", RemoveDirective::new);
+        Verbs.ARGUMENTLESS.put("UP", UpDirective::new);
+        Verbs.ARGUMENTLESS.put("PUSH", PushDirective::new);
+        Verbs.ARGUMENTLESS.put("POP", PopDirective::new);
+        Verbs.SIMPLE.put("XPATH", value -> () -> new XpathDirective(value));
+        Verbs.SIMPLE.put("SET", value -> () -> new SetDirective(value));
+        Verbs.SIMPLE.put("XSET", value -> () -> new XsetDirective(value));
+        Verbs.SIMPLE.put("ADD", value -> () -> new AddDirective(value));
+        Verbs.SIMPLE.put("ADDIF", value -> () -> new AddIfDirective(value));
+        Verbs.SIMPLE.put("STRICT", value -> () -> new StrictDirective(Integer.parseInt(value)));
+        Verbs.SIMPLE.put("CDATA", value -> () -> new CdataDirective(value));
+        Verbs.SIMPLE.put("COMMENT", value -> () -> new CommentDirective(value));
+        Verbs.COMPLEX.put("ATTR", (attr, value) -> () -> new AttrDirective(attr, value));
+        Verbs.COMPLEX.put("XATTR", (attr, value) -> () -> new XattrDirective(attr, value));
+        Verbs.COMPLEX.put("PI", (target, data) -> () -> new PiDirective(target, data));
+    }
 
     /**
      * Text.
@@ -88,7 +81,7 @@ final class Verbs {
      * Parse directives from text.
      * @return Directives from text
      */
-    public Iterable<Directive> directives() {
+    Iterable<Directive> directives() {
         final String trimmed = this.text.trim();
         if (!trimmed.isEmpty()) {
             try {
@@ -254,10 +247,7 @@ final class Verbs {
      * @return Complex command or empty
      * @throws XmlContentException If fails to un-escape all XML symbols in command arguments
      * @throws ParsingException If fails to parse complex command
-     * @checkstyle CyclomaticComplexityCheck (100 lines)
-     * @checkstyle NestedIfDepthCheck (100 lines)
      */
-    @SuppressWarnings("PMD.CognitiveComplexity")
     private static Optional<Callback<Directive>> complexCommand(
         final String part,
         final String command,
@@ -273,54 +263,19 @@ final class Verbs {
                 throw new ParsingException(
                     String.format("Unexpected last quote near [%s;]", part)
                 );
-            } else {
-                cmd = Optional.empty();
             }
+            cmd = Optional.empty();
         } else if (args.length > 2) {
-            String tail = Verbs.ltrim(
-                part.substring(index + part.substring(index + 1).indexOf(quote) + 2)
-            );
-            if (tail.isEmpty()) {
-                cmd = Optional.empty();
+            final Optional<String> second = Verbs.secondArgument(part, quote, index);
+            if (second.isPresent()) {
+                cmd = Optional.of(
+                    Verbs.COMPLEX.get(command).apply(
+                        Arg.unescape(String.format("'%s'", args[1])),
+                        Arg.unescape(String.format("'%s'", second.get()))
+                    )
+                );
             } else {
-                if (tail.charAt(0) != ',') {
-                    throw new ParsingException(
-                        String.format("Comma after first argument is expected near [%s;]", part)
-                    );
-                }
-                tail = Verbs.ltrim(tail.substring(1));
-                if (tail.isEmpty()) {
-                    throw new ParsingException(
-                        String.format("Unexpected last semicolon near [%s;]", part)
-                    );
-                }
-                final char first = tail.charAt(0);
-                if (first != '\'' && first != '"') {
-                    throw new ParsingException(
-                        String.format(
-                            "Single or double quote is expected after comma near [%s;]", part
-                        )
-                    );
-                }
-                tail = tail.substring(1);
-                final int next = tail.indexOf(first);
-                if (next == -1) {
-                    cmd = Optional.empty();
-                } else {
-                    if (!tail.substring(next + 1).trim().isEmpty()) {
-                        throw new ParsingException(
-                            String.format(
-                                "Unexpected symbols after second argument near [%s;]", part
-                            )
-                        );
-                    }
-                    cmd = Optional.of(
-                        Verbs.COMPLEX.get(command).apply(
-                            Arg.unescape(String.format("'%s'", args[1])),
-                            Arg.unescape(String.format("'%s'", tail.substring(0, next)))
-                        )
-                    );
-                }
+                cmd = Optional.empty();
             }
         } else {
             throw new ParsingException(
@@ -330,6 +285,90 @@ final class Verbs {
             );
         }
         return cmd;
+    }
+
+    /**
+     * Try to parse the second argument of a complex command.
+     * @param part Full command part
+     * @param quote Quote character used to split the command
+     * @param index Index of nearest quote
+     * @return Second argument, raw and still quoted, or empty
+     * @throws ParsingException If fails to parse the second argument
+     */
+    private static Optional<String> secondArgument(
+        final String part,
+        final char quote,
+        final int index
+    ) throws ParsingException {
+        final String tail = Verbs.ltrim(
+            part.substring(index + part.substring(index + 1).indexOf(quote) + 2)
+        );
+        final Optional<String> arg;
+        if (tail.isEmpty()) {
+            arg = Optional.empty();
+        } else {
+            arg = Verbs.afterComma(part, tail);
+        }
+        return arg;
+    }
+
+    /**
+     * Try to parse the second argument right after its leading comma.
+     * @param part Full command part
+     * @param tail Remainder of the command right after the first argument
+     * @return Second argument, raw and still quoted, or empty
+     * @throws ParsingException If fails to parse the second argument
+     */
+    private static Optional<String> afterComma(
+        final String part,
+        final String tail
+    ) throws ParsingException {
+        if (tail.charAt(0) != ',') {
+            throw new ParsingException(
+                String.format("Comma after first argument is expected near [%s;]", part)
+            );
+        }
+        final String rest = Verbs.ltrim(tail.substring(1));
+        if (rest.isEmpty()) {
+            throw new ParsingException(
+                String.format("Unexpected last semicolon near [%s;]", part)
+            );
+        }
+        final char first = rest.charAt(0);
+        if (first != '\'' && first != '"') {
+            throw new ParsingException(
+                String.format("Single or double quote is expected after comma near [%s;]", part)
+            );
+        }
+        return Verbs.secondValue(part, rest.substring(1), first);
+    }
+
+    /**
+     * Try to parse the second argument's quoted value.
+     * @param part Full command part
+     * @param rest Remainder right after the second argument's opening quote
+     * @param first Quote character enclosing the second argument
+     * @return Second argument, raw and still quoted, or empty
+     * @throws ParsingException If fails to parse the second argument
+     */
+    private static Optional<String> secondValue(
+        final String part,
+        final String rest,
+        final char first
+    ) throws ParsingException {
+        final int next = rest.indexOf(first);
+        final Optional<String> arg;
+        if (next == -1) {
+            arg = Optional.empty();
+        } else {
+            if (!rest.substring(next + 1).trim().isEmpty()) {
+                throw new ParsingException(
+                    String.format("Unexpected symbols after second argument near [%s;]", part)
+                );
+            }
+            arg = Optional.of(rest.substring(0, next));
+        }
+        return arg;
     }
 
     /**

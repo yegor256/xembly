@@ -59,5 +59,4 @@ final class RemoveDirective implements Directive {
         }
         return parent;
     }
-
 }

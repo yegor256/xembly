@@ -44,5 +44,4 @@ final class UpDirective implements Directive {
         }
         return new DomCursor(parents);
     }
-
 }

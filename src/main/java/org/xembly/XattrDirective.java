@@ -82,5 +82,4 @@ final class XattrDirective implements Directive {
         }
         return cursor;
     }
-
 }

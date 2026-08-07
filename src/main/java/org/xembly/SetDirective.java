@@ -44,5 +44,4 @@ final class SetDirective implements Directive {
         }
         return cursor;
     }
-
 }

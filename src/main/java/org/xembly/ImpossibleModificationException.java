@@ -6,7 +6,6 @@ package org.xembly;
 
 /**
  * When further modification is impossible.
- *
  * @since 0.3
  */
 public final class ImpossibleModificationException extends Exception {
@@ -14,14 +13,14 @@ public final class ImpossibleModificationException extends Exception {
     /**
      * Serialization marker.
      */
-    private static final long serialVersionUID = 0x654739998af6efb9L;
+    private static final long serialVersionUID = 0x654739998AF6EFB9L;
 
     /**
      * Public ctor.
      * @param cause Cause of it
      */
     ImpossibleModificationException(final String cause) {
-        super(cause);
+        this(cause, null);
     }
 
     /**
@@ -29,9 +28,7 @@ public final class ImpossibleModificationException extends Exception {
      * @param cause Cause of it
      * @param error Original throwable
      */
-    ImpossibleModificationException(final String cause,
-        final Throwable error) {
+    ImpossibleModificationException(final String cause, final Throwable error) {
         super(cause, error);
     }
-
 }

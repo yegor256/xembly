@@ -164,5 +164,4 @@ final class XpathDirective implements Directive {
         }
         return roots;
     }
-
 }

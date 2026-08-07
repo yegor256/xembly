@@ -28,5 +28,4 @@ final class PopDirective implements Directive {
         throws ImpossibleModificationException {
         return stack.pop();
     }
-
 }

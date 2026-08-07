@@ -13,7 +13,6 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link UpDirective}.
- *
  * @since 0.1
  */
 final class UpDirectiveTest {
@@ -49,5 +48,4 @@ final class UpDirectiveTest {
             "Can't jump to parents when they don't exist"
         );
     }
-
 }

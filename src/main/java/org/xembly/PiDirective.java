@@ -34,9 +34,9 @@ final class PiDirective implements Directive {
      * @param tgt Target
      * @param dat Data
      * @throws XmlContentException If invalid input
+     * @checkstyle ConstructorsCodeFreeCheck (3 lines)
      */
-    PiDirective(final String tgt, final String dat)
-        throws XmlContentException {
+    PiDirective(final String tgt, final String dat) throws XmlContentException {
         this.target = new Arg(tgt.toLowerCase(Locale.ENGLISH));
         this.data = new Arg(dat);
     }
@@ -68,5 +68,4 @@ final class PiDirective implements Directive {
         }
         return cursor;
     }
-
 }

@@ -30,9 +30,9 @@ final class DomCursor extends
     /**
      * Public ctor.
      * @param nds Nodes to encapsulate
+     * @checkstyle ConstructorsCodeFreeCheck (3 lines)
      */
     DomCursor(final Collection<Node> nds) {
-        super();
         this.nodes = Collections.unmodifiableCollection(nds);
     }
 

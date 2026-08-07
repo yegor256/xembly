@@ -62,5 +62,4 @@ final class AttrDirective implements Directive {
         }
         return cursor;
     }
-
 }

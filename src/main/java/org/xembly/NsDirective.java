@@ -16,6 +16,7 @@ import org.w3c.dom.Node;
  */
 @EqualsAndHashCode(of = "namespace")
 final class NsDirective implements Directive {
+
     /**
      * Namespace, which should be added to a node.
      */
@@ -23,7 +24,7 @@ final class NsDirective implements Directive {
 
     /**
      * Creates an instance of NsDirective.
-     * @param nsp Namespace, which should be added to a node.
+     * @param nsp Namespace, which should be added to a node
      */
     NsDirective(final Arg nsp) {
         this.namespace = nsp;

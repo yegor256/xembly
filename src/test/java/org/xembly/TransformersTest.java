@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Transformers}.
- *
  * @since 0.32.3
  */
 final class TransformersTest {
@@ -22,7 +21,7 @@ final class TransformersTest {
             new Xembler(
                 new Directives().add("a").add("b").set("hello")
             ).xml(),
-            Matchers.containsString("<a>\n")
+            Matchers.containsString("<a>" + System.lineSeparator())
         );
     }
 
@@ -36,8 +35,12 @@ final class TransformersTest {
             ).xml(),
             Matchers.allOf(
                 Matchers.containsString("<a><b>hello</b></a>"),
-                Matchers.not(Matchers.containsString("\n   ")),
-                Matchers.not(Matchers.containsString("\n    "))
+                Matchers.not(
+                    Matchers.containsString(System.lineSeparator() + "   ")
+                ),
+                Matchers.not(
+                    Matchers.containsString(System.lineSeparator() + "    ")
+                )
             )
         );
     }

@@ -52,5 +52,4 @@ final class CdataDirective implements Directive {
         }
         return cursor;
     }
-
 }

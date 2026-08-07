@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Verbs}.
- *
  * @since 0.29
  */
 final class VerbsTest {
@@ -18,7 +17,9 @@ final class VerbsTest {
     void throwsOnBrokenSyntax() {
         Assertions.assertThrows(
             SyntaxException.class,
-            () -> new Verbs("ADD 't';\nADD 'x';broken").directives(),
+            () -> new Verbs(
+                "ADD 't';" + System.lineSeparator() + "ADD 'x';broken"
+            ).directives(),
             "Can't throw on broken syntax"
         );
     }
@@ -37,7 +38,12 @@ final class VerbsTest {
     void worksWithNewLines() {
         Assertions.assertDoesNotThrow(
             () -> new Xembler(
-                new Directives("\n\nADD 'o';\nATTR 'base','int';\n\n")
+                new Directives(
+                    System.lineSeparator() + System.lineSeparator()
+                        + "ADD 'o';" + System.lineSeparator()
+                        + "ATTR 'base','int';" + System.lineSeparator()
+                        + System.lineSeparator()
+                )
             ).xml(),
             "Can't work with new lines"
         );

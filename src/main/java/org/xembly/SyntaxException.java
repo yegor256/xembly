@@ -6,7 +6,6 @@ package org.xembly;
 
 /**
  * When syntax is broken.
- *
  * @since 0.3
  */
 public final class SyntaxException extends RuntimeException {
@@ -14,7 +13,7 @@ public final class SyntaxException extends RuntimeException {
     /**
      * Serialization marker.
      */
-    private static final long serialVersionUID = 0x6547f9e98af6efb9L;
+    private static final long serialVersionUID = 0x6547F9E98AF6EFB9L;
 
     /**
      * Public ctor.
@@ -24,5 +23,4 @@ public final class SyntaxException extends RuntimeException {
     SyntaxException(final String cause, final Throwable error) {
         super(cause, error);
     }
-
 }

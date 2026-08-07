@@ -18,6 +18,7 @@ import org.w3c.dom.Element;
  * @since 0.19.3
  */
 final class NsDirectiveTest {
+
     @Test
     void setsNsAttr() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()

@@ -20,9 +20,7 @@ import org.xembly.Directives;
 
 /**
  * Benchmark for {@link Directives}.
- *
  * @since 0.0.34
- * @checkstyle DesignForExtensionCheck (10 lines)
  * @checkstyle NonStaticMethodCheck (100 lines)
  */
 @Fork(1)

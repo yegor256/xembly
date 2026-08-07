@@ -29,5 +29,4 @@ final class PushDirective implements Directive {
         stack.push(cursor);
         return cursor;
     }
-
 }

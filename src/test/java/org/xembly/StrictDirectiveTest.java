@@ -14,7 +14,6 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link StrictDirective}.
- *
  * @since 0.1
  */
 final class StrictDirectiveTest {
@@ -92,5 +91,4 @@ final class StrictDirectiveTest {
             "Number of current nodes is not checked"
         );
     }
-
 }

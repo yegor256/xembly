@@ -42,6 +42,7 @@ public interface Directive {
      * @since 0.16
      */
     interface Stack {
+
         /**
          * Push cursor (runtime exception if stack is full).
          * @param cursor Cursor to push
@@ -53,8 +54,6 @@ public interface Directive {
          * @return Cursor recently added
          * @throws ImpossibleModificationException If fails
          */
-        Directive.Cursor pop()
-            throws ImpossibleModificationException;
+        Directive.Cursor pop() throws ImpossibleModificationException;
     }
-
 }

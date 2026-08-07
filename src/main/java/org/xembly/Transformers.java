@@ -21,7 +21,7 @@ public interface Transformers {
 
     /**
      * Create transformer.
-     * @return Transformer.
+     * @return Transformer
      */
     Transformer create();
 
@@ -39,6 +39,7 @@ public interface Transformers {
         /**
          * Default ctor.
          * @since 0.30
+         * @checkstyle ConstructorsCodeFreeCheck (5 lines)
          */
         public Node() {
             this.original = new Transformers.Formatted(
@@ -70,6 +71,7 @@ public interface Transformers {
         /**
          * Default ctor.
          * @since 0.32.3
+         * @checkstyle ConstructorsCodeFreeCheck (5 lines)
          */
         public Compact() {
             this.original = new Transformers.Formatted(
@@ -100,6 +102,7 @@ public interface Transformers {
         /**
          * Default ctor.
          * @since 0.30
+         * @checkstyle ConstructorsCodeFreeCheck (5 lines)
          */
         public Document() {
             this.original = new Transformers.Formatted(
@@ -115,7 +118,7 @@ public interface Transformers {
 
         /**
          * Default properties prestructor.
-         * @return Properties to configure the output.
+         * @return Properties to configure the output
          */
         private static Map<String, String> defaultProperties() {
             final Map<String, String> res = new HashMap<>();
@@ -151,7 +154,7 @@ public interface Transformers {
 
         /**
          * Ctor.
-         * @param factory Transformer factory.
+         * @param factory Transformer factory
          * @since 0.30
          */
         private Default(final TransformerFactory factory) {
@@ -192,8 +195,8 @@ public interface Transformers {
 
         /**
          * Ctor.
-         * @param original Original transformer factory.
-         * @param properties Properties to configure the output.
+         * @param original Original transformer factory
+         * @param properties Properties to configure the output
          */
         Formatted(
             final Transformers original,

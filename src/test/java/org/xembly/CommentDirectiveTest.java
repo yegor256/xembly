@@ -12,7 +12,6 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link CommentDirective}.
- *
  * @since 0.1
  */
 final class CommentDirectiveTest {
@@ -30,5 +29,4 @@ final class CommentDirectiveTest {
             XhtmlMatchers.hasXPath("//comment()")
         );
     }
-
 }
