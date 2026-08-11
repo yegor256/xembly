@@ -16,7 +16,7 @@ import javax.xml.transform.TransformerFactory;
  * Transformer factory.
  * @since 0.30
  */
-@SuppressWarnings("PMD.ImplicitFunctionalInterface")
+@FunctionalInterface
 public interface Transformers {
 
     /**

@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
  *
  * @since 0.1
  */
-@SuppressWarnings("PMD.ImplicitFunctionalInterface")
+@FunctionalInterface
 public interface Directive {
 
     /**
