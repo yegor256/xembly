@@ -4,6 +4,7 @@
  */
 package org.xembly;
 
+import java.util.regex.Pattern;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -14,14 +15,21 @@ import org.junit.jupiter.api.Test;
  */
 final class TransformersTest {
 
+    /**
+     * Any line break, in any of its platform spellings.
+     */
+    private static final Pattern BREAK = Pattern.compile("\\R");
+
     @Test
     void prettyPrintsByDefault() throws Exception {
         MatcherAssert.assertThat(
             "Default Xembler must produce indented XML",
-            new Xembler(
-                new Directives().add("a").add("b").set("hello")
-            ).xml(),
-            Matchers.containsString("<a>\n")
+            TransformersTest.BREAK.matcher(
+                new Xembler(
+                    new Directives().add("a").add("b").set("hello")
+                ).xml()
+            ).replaceAll(System.lineSeparator()),
+            Matchers.containsString(String.format("<a>%n"))
         );
     }
 
@@ -29,14 +37,20 @@ final class TransformersTest {
     void disablesPrettyPrintWithCompact() throws Exception {
         MatcherAssert.assertThat(
             "Compact transformer must produce non-indented XML",
-            new Xembler(
-                new Directives().add("a").add("b").set("hello"),
-                new Transformers.Compact()
-            ).xml(),
+            TransformersTest.BREAK.matcher(
+                new Xembler(
+                    new Directives().add("a").add("b").set("hello"),
+                    new Transformers.Compact()
+                ).xml()
+            ).replaceAll(System.lineSeparator()),
             Matchers.allOf(
                 Matchers.containsString("<a><b>hello</b></a>"),
-                Matchers.not(Matchers.containsString("\n   ")),
-                Matchers.not(Matchers.containsString("\n    "))
+                Matchers.not(
+                    Matchers.containsString(String.format("%n   "))
+                ),
+                Matchers.not(
+                    Matchers.containsString(String.format("%n    "))
+                )
             )
         );
     }
