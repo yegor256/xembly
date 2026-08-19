@@ -487,18 +487,7 @@
             <version>0.30.13</version>
             <configuration>
               <excludes combine.children="append">
-                <exclude>findbugs:.*</exclude>
-                <exclude>duplicatefinder:.*</exclude>
                 <exclude>xml:/src/it/settings.xml</exclude>
-                <!--
-                StatementSwitchToExpressionSwitch false positive:
-                ErrorProne suggests arrow-switch syntax, which requires
-                source 14+ to compile, while this project targets source
-                8. Same root cause as #1694 (CheckstyleValidator gates on
-                source level, ErrorProneValidator does not), tracked at
-                https://github.com/yegor256/qulice/issues/1716
-                -->
-                <exclude>errorprone:.*/src/main/java/org/xembly/Directives\.java</exclude>
               </excludes>
             </configuration>
           </plugin>
