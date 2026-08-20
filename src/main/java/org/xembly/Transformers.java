@@ -116,10 +116,6 @@ public interface Transformers {
             return this.original.create();
         }
 
-        /**
-         * Default properties prestructor.
-         * @return Properties to configure the output
-         */
         private static Map<String, String> defaultProperties() {
             final Map<String, String> res = new HashMap<>();
             res.put(OutputKeys.INDENT, "yes");

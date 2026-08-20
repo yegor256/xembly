@@ -74,12 +74,6 @@ final class XpathDirective implements Directive {
         return new DomCursor(targets);
     }
 
-    /**
-     * Fetches only root node.
-     * @param root Root node name
-     * @param dom Document
-     * @return Found nodes
-     */
     private static Collection<Node> rootOnly(final String root,
         final Node dom) {
         final Node target;
@@ -98,14 +92,6 @@ final class XpathDirective implements Directive {
         return targets;
     }
 
-    /**
-     * Fetch them in traditional way.
-     * @param query XPath query
-     * @param dom Document
-     * @param current Nodes we're currently at
-     * @return Found nodes
-     * @throws ImpossibleModificationException If fails
-     */
     private static Collection<Node> traditional(final String query,
         final Node dom, final Collection<Node> current)
         throws ImpossibleModificationException {
@@ -129,11 +115,6 @@ final class XpathDirective implements Directive {
         return targets;
     }
 
-    /**
-     * Copy nodes from NodeList to a collection.
-     * @param list The list
-     * @param targets Collection
-     */
     private static void copyTo(final NodeList list,
         final Collection<Node> targets) {
         final int len = list.getLength();
@@ -142,12 +123,6 @@ final class XpathDirective implements Directive {
         }
     }
 
-    /**
-     * Get roots to start searching from.
-     * @param dom Document
-     * @param nodes Current nodes
-     * @return Root nodes to start searching from
-     */
     private static Iterable<Node> roots(final Node dom,
         final Collection<Node> nodes) {
         final Collection<Node> roots;

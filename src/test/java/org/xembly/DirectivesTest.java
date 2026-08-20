@@ -386,12 +386,6 @@ final class DirectivesTest {
         );
     }
 
-    /**
-     * Creates directives concurrently from multiple threads.
-     * @param tasks Number of tasks
-     * @return Directives with appended content
-     * @throws Exception If fails
-     */
     private static Directives concurrent(final int tasks) throws Exception {
         final Directives result = new Directives().add("mt6");
         new LengthOf(

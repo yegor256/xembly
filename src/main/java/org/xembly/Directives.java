@@ -441,7 +441,6 @@ public final class Directives implements Iterable<Directive> {
      * Go one node/level up.
      * @return This object
      * @since 0.5
-     * @checkstyle MethodName (3 lines)
      */
     public Directives up() {
         this.all.add(new UpDirective());
@@ -552,12 +551,6 @@ public final class Directives implements Iterable<Directive> {
         return this;
     }
 
-    /**
-     * Iterable to collection.
-     * @param itr Iterable
-     * @param <T> The type
-     * @return Collection
-     */
     private static <T> Collection<T> toCollection(final Iterable<T> itr) {
         final Collection<T> col = new ArrayList<>(0);
         for (final T item : itr) {

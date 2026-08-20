@@ -65,11 +65,6 @@ final class StrictDirective implements Directive {
         return cursor;
     }
 
-    /**
-     * Get node names as a string.
-     * @param nodes Collection of nodes
-     * @return Text presentation of them
-     */
     @SuppressWarnings("aibolit.P13")
     private static String names(final Iterable<Node> nodes) {
         final StringBuilder text = new StringBuilder(64);

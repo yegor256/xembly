@@ -36,11 +36,6 @@ final class RemoveDirective implements Directive {
         return new DomCursor(parents);
     }
 
-    /**
-     * Convert it to the parent.
-     * @param node The node
-     * @return Its parent
-     */
     @SuppressWarnings("aibolit.P13")
     private static Node parent(final Node node) {
         final Node parent;

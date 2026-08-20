@@ -92,11 +92,6 @@ final class Arg {
         return output.toString();
     }
 
-    /**
-     * Escape all unprintable characters.
-     * @param text Raw text
-     * @return Clean text
-     */
     private static String escape(final String text) {
         final StringBuilder output = new StringBuilder(text.length());
         for (int idx = 0; idx < text.length(); ++idx) {
@@ -120,12 +115,6 @@ final class Arg {
         return output.toString();
     }
 
-    /**
-     * Convert XML symbol to char.
-     * @param symbol XML symbol, without leading ampersand
-     * @return Character
-     * @throws XmlContentException If fails
-     */
     private static char symbol(final String symbol) throws XmlContentException {
         final char chr;
         if ('#' == symbol.charAt(0)) {
@@ -148,12 +137,6 @@ final class Arg {
         return chr;
     }
 
-    /**
-     * Validate char number and throw exception if it's not legal.
-     * @param chr Char number
-     * @return The same number
-     * @throws XmlContentException If illegal
-     */
     private static char legal(final char chr) throws XmlContentException {
         Arg.range(chr, 0x00, 0x08);
         Arg.range(chr, 0x0B, 0x0C);
@@ -163,13 +146,6 @@ final class Arg {
         return chr;
     }
 
-    /**
-     * Throw if number is in the range.
-     * @param chr Char number
-     * @param left Left number (inclusive)
-     * @param right Right number (inclusive)
-     * @throws XmlContentException If illegal
-     */
     private static void range(final char chr, final int left, final int right)
         throws XmlContentException {
         if (chr >= left && chr <= right) {
@@ -182,12 +158,6 @@ final class Arg {
         }
     }
 
-    /**
-     * Check it for validity and return.
-     * @param val The XML string
-     * @return Itself
-     * @throws XmlContentException If fails
-     */
     private static String ifValid(final String val) throws XmlContentException {
         for (int idx = 0; idx < val.length(); ++idx) {
             Arg.legal(val.charAt(idx));

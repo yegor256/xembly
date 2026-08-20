@@ -116,13 +116,6 @@ final class Verbs {
         return Collections.unmodifiableCollection(this.dirs);
     }
 
-    /**
-     * Try to parse Xembly command.
-     * @param part Part of the command
-     * @return Command or empty
-     * @throws XmlContentException If fails to un-escape all XML symbols
-     * @throws ParsingException If fails to parse given command
-     */
     private static Optional<Callback<Directive>> parsedCommand(final String part)
         throws XmlContentException, ParsingException {
         final Optional<Callback<Directive>> cmd;
@@ -145,11 +138,6 @@ final class Verbs {
         return cmd;
     }
 
-    /**
-     * Get command without number in front.
-     * @param command Command to process
-     * @return Command without number in front
-     */
     private static String withoutNumber(final String command) {
         final int index = command.indexOf(':');
         final String cmd;
@@ -161,12 +149,6 @@ final class Verbs {
         return cmd;
     }
 
-    /**
-     * Get index of the nearest left single or double quote in the given command.
-     * @param part Part of the command to process
-     * @return Index of nearest quote
-     * @throws ParsingException If fails to find quotes in the part of the command
-     */
     private static int nearQuoteIndex(final String part) throws ParsingException {
         final int single = part.indexOf('\'');
         final int dual = part.indexOf('"');
@@ -188,15 +170,6 @@ final class Verbs {
         return index;
     }
 
-    /**
-     * Try to parse command with one argument.
-     * @param part Full command part
-     * @param command Command itself
-     * @param index Index of nearest quote
-     * @return Simple command or empty
-     * @throws XmlContentException If fails to un-escape all XML symbols in command argument
-     * @throws ParsingException If fails to parse simple command
-     */
     private static Optional<Callback<Directive>> simpleCommand(
         final String part,
         final String command,
@@ -239,15 +212,6 @@ final class Verbs {
         return cmd;
     }
 
-    /**
-     * Try to parse command with two arguments.
-     * @param part Full command part
-     * @param command Command itself
-     * @param index Index of nearest quote
-     * @return Complex command or empty
-     * @throws XmlContentException If fails to un-escape all XML symbols in command arguments
-     * @throws ParsingException If fails to parse complex command
-     */
     private static Optional<Callback<Directive>> complexCommand(
         final String part,
         final String command,
@@ -287,14 +251,6 @@ final class Verbs {
         return cmd;
     }
 
-    /**
-     * Try to parse the second argument of a complex command.
-     * @param part Full command part
-     * @param quote Quote character used to split the command
-     * @param index Index of nearest quote
-     * @return Second argument, raw and still quoted, or empty
-     * @throws ParsingException If fails to parse the second argument
-     */
     private static Optional<String> secondArgument(
         final String part,
         final char quote,
@@ -312,13 +268,6 @@ final class Verbs {
         return arg;
     }
 
-    /**
-     * Try to parse the second argument right after its leading comma.
-     * @param part Full command part
-     * @param tail Remainder of the command right after the first argument
-     * @return Second argument, raw and still quoted, or empty
-     * @throws ParsingException If fails to parse the second argument
-     */
     private static Optional<String> afterComma(
         final String part,
         final String tail
@@ -343,14 +292,6 @@ final class Verbs {
         return Verbs.secondValue(part, rest.substring(1), first);
     }
 
-    /**
-     * Try to parse the second argument's quoted value.
-     * @param part Full command part
-     * @param rest Remainder right after the second argument's opening quote
-     * @param first Quote character enclosing the second argument
-     * @return Second argument, raw and still quoted, or empty
-     * @throws ParsingException If fails to parse the second argument
-     */
     private static Optional<String> secondValue(
         final String part,
         final String rest,
@@ -371,11 +312,6 @@ final class Verbs {
         return arg;
     }
 
-    /**
-     * Trim from left.
-     * @param str String to trim
-     * @return String trimmed from left
-     */
     private static String ltrim(final String str) {
         int idx = 0;
         while (idx < str.length() && Character.isWhitespace(str.charAt(idx))) {
