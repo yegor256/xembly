@@ -78,4 +78,28 @@ final class TransformersTest {
             Matchers.not(Matchers.containsString("<?xml"))
         );
     }
+
+    @Test
+    void rendersStandaloneNoInDeclaration() throws Exception {
+        MatcherAssert.assertThat(
+            "Standalone(false) must emit standalone=\"no\"",
+            new Xembler(
+                new Directives().add("page"),
+                new Transformers.Standalone(false)
+            ).xml(),
+            Matchers.containsString("standalone=\"no\"")
+        );
+    }
+
+    @Test
+    void rendersStandaloneYesInDeclaration() throws Exception {
+        MatcherAssert.assertThat(
+            "Standalone(true) must emit standalone=\"yes\"",
+            new Xembler(
+                new Directives().add("page"),
+                new Transformers.Standalone(true)
+            ).xml(),
+            Matchers.containsString("standalone=\"yes\"")
+        );
+    }
 }
