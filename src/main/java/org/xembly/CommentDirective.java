@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 /**
  * COMMENT directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.23
  */
@@ -25,6 +25,7 @@ final class CommentDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param val Text value to set
      * @throws XmlContentException If invalid input
      */

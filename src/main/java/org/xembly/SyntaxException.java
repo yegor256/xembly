@@ -6,6 +6,7 @@ package org.xembly;
 
 /**
  * When syntax is broken.
+ *
  * @since 0.3
  */
 public final class SyntaxException extends RuntimeException {
@@ -17,6 +18,7 @@ public final class SyntaxException extends RuntimeException {
 
     /**
      * Public ctor.
+     *
      * @param cause Cause of it
      * @param error Original throwable
      */

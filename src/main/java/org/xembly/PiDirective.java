@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
 /**
  * PI directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.9
  */
@@ -31,6 +31,7 @@ final class PiDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param tgt Target
      * @param dat Data
      * @throws XmlContentException If invalid input

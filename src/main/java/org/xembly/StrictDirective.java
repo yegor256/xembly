@@ -10,7 +10,7 @@ import org.w3c.dom.Node;
 /**
  * STRICT directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.3
  */
@@ -24,6 +24,7 @@ final class StrictDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param nodes Number of node expected
      */
     StrictDirective(final int nodes) {

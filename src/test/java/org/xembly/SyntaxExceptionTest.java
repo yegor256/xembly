@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link SyntaxException}.
+ *
  * @since 1.0
  */
 final class SyntaxExceptionTest {

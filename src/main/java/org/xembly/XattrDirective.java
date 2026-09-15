@@ -16,7 +16,7 @@ import org.w3c.dom.Node;
 /**
  * XATTR directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.28
  */
@@ -40,6 +40,7 @@ final class XattrDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param attr Name of the attr
      * @param val Text value to set
      * @throws XmlContentException If invalid input

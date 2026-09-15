@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
 /**
  * UP directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.1
  */

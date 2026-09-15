@@ -34,6 +34,7 @@ import org.yaml.snakeyaml.Yaml;
 
 /**
  * Test case for {@link Xembler}.
+ *
  * @since 0.1
  */
 final class XemblerTest {

@@ -6,6 +6,7 @@ package org.xembly;
 
 /**
  * When further modification is impossible.
+ *
  * @since 0.3
  */
 public final class ImpossibleModificationException extends Exception {
@@ -17,6 +18,7 @@ public final class ImpossibleModificationException extends Exception {
 
     /**
      * Public ctor.
+     *
      * @param cause Cause of it
      */
     ImpossibleModificationException(final String cause) {
@@ -25,6 +27,7 @@ public final class ImpossibleModificationException extends Exception {
 
     /**
      * Public ctor.
+     *
      * @param cause Cause of it
      * @param error Original throwable
      */

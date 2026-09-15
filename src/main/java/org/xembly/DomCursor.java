@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 /**
  * Cursor at DOM.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.16
  */
@@ -29,6 +29,7 @@ final class DomCursor extends
 
     /**
      * Public ctor.
+     *
      * @param nds Nodes to encapsulate
      * @checkstyle ConstructorsCodeFreeCheck (3 lines)
      */

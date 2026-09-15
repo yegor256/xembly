@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 /**
  * CDATA directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.17
  */
@@ -25,6 +25,7 @@ final class CdataDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param val Text value to set
      * @throws XmlContentException If invalid input
      */

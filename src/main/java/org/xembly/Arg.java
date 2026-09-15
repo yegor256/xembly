@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 /**
  * Argument properly escaped.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.1
  */
@@ -23,6 +23,7 @@ final class Arg {
 
     /**
      * Public ctor.
+     *
      * @param val Value of it
      * @throws XmlContentException If fails
      */
@@ -32,6 +33,7 @@ final class Arg {
 
     /**
      * Primary ctor.
+     *
      * @param chars Validated characters
      */
     private Arg(final char... chars) {
@@ -45,6 +47,7 @@ final class Arg {
 
     /**
      * Get it's raw value.
+     *
      * @return Value
      */
     String raw() {
@@ -53,6 +56,7 @@ final class Arg {
 
     /**
      * Un-escape all XML symbols.
+     *
      * @param text XML text
      * @return Clean text
      * @throws XmlContentException If fails

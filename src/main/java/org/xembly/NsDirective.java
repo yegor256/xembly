@@ -10,7 +10,7 @@ import org.w3c.dom.Node;
 /**
  * Namespace directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.19.3
  */
@@ -24,6 +24,7 @@ final class NsDirective implements Directive {
 
     /**
      * Creates an instance of NsDirective.
+     *
      * @param nsp Namespace, which should be added to a node
      */
     NsDirective(final Arg nsp) {

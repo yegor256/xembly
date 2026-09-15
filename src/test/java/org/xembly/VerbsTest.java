@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Verbs}.
+ *
  * @since 0.29
  */
 final class VerbsTest {

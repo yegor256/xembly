@@ -6,6 +6,7 @@ package org.xembly;
 
 /**
  * When parsing of directives is impossible.
+ *
  * @since 0.6
  */
 final class ParsingException extends Exception {
@@ -17,6 +18,7 @@ final class ParsingException extends Exception {
 
     /**
      * Public ctor.
+     *
      * @param cause Cause of it
      */
     ParsingException(final String cause) {

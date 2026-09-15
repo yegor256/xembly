@@ -21,7 +21,7 @@ import org.w3c.dom.Node;
 /**
  * Processor of Xembly directives, main entry point to the package.
  *
- * <p>For example, to modify a DOM document:
+ * <p>For example, to modify a DOM document:</p>
  *
  * <pre> Document dom = DocumentBuilderFactory.newInstance()
  *   .newDocumentBuilder().newDocument();
@@ -34,7 +34,7 @@ import org.w3c.dom.Node;
  *     .attr("id", 6564)
  * ).apply(dom);</pre>
  *
- * <p>You can also convert your Xembly directives directly to XML document:
+ * <p>You can also convert your Xembly directives directly to XML document:</p>
  *
  * <pre> String xml = new Xembler(
  *   new Directives()
@@ -48,7 +48,7 @@ import org.w3c.dom.Node;
  * a necessity to catch checked exceptions.
  * Use {@code *Quietly()} methods for that:
  * {@link #xmlQuietly()}, {@link #domQuietly()},
- * and {@link #applyQuietly(Node)}.
+ * and {@link #applyQuietly(Node)}.</p>
  *
  * @since 0.1
  */
@@ -80,6 +80,7 @@ public final class Xembler {
 
     /**
      * Public ctor.
+     *
      * @param dirs Directives
      */
     public Xembler(final Iterable<Directive> dirs) {
@@ -88,6 +89,7 @@ public final class Xembler {
 
     /**
      * Public ctor.
+     *
      * @param directives Directives
      * @param transformers Transformers
      */
@@ -98,6 +100,7 @@ public final class Xembler {
 
     /**
      * Apply all changes to the document/node, without any checked exceptions.
+     *
      * @param dom DOM document/node
      * @return The same document/node
      * @since 0.18
@@ -118,6 +121,7 @@ public final class Xembler {
 
     /**
      * Apply all changes to the document/node.
+     *
      * @param dom DOM document/node
      * @return The same document/node
      * @throws ImpossibleModificationException If can't modify
@@ -150,6 +154,7 @@ public final class Xembler {
 
     /**
      * Apply all changes to an empty DOM, without checked exceptions.
+     *
      * @return DOM created
      * @since 0.18
      */
@@ -169,6 +174,7 @@ public final class Xembler {
 
     /**
      * Apply all changes to an empty DOM.
+     *
      * @return DOM created
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
@@ -192,6 +198,7 @@ public final class Xembler {
 
     /**
      * Convert to XML document, without checked exceptions.
+     *
      * @return XML document
      * @since 0.18
      */
@@ -211,6 +218,7 @@ public final class Xembler {
 
     /**
      * Convert to XML document.
+     *
      * @return XML document
      * @throws ImpossibleModificationException If can't modify
      * @since 0.9
@@ -239,7 +247,7 @@ public final class Xembler {
      * Utility method to escape text before using it as a text value
      * in XML.
      *
-     * <p>Use it like this, in order to avoid runtime exceptions:
+     * <p>Use it like this, in order to avoid runtime exceptions:</p>
      *
      * <pre>new Directives().xpath("/test")
      *   .set(Xembler.escape("illegal: \u0000"));</pre>

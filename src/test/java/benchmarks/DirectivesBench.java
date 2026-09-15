@@ -20,6 +20,7 @@ import org.xembly.Directives;
 
 /**
  * Benchmark for {@link Directives}.
+ *
  * @since 0.0.34
  * @checkstyle NonStaticMethodCheck (100 lines)
  */
@@ -30,6 +31,13 @@ import org.xembly.Directives;
 @Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class DirectivesBench {
+
+    /**
+     * Constructor.
+     */
+    public DirectivesBench() {
+        // Nothing to initialize.
+    }
 
     /**
      * Benchmark for {@link Directives#Directives(String)}.

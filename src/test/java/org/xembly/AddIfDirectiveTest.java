@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 
 /**
  * Test case for {@link AddIfDirective}.
+ *
  * @since 0.1
  */
 final class AddIfDirectiveTest {

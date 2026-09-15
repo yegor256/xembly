@@ -6,6 +6,7 @@ package org.xembly;
 
 /**
  * When impossible to understand XML content.
+ *
  * @since 0.6
  */
 final class XmlContentException extends Exception {
@@ -17,6 +18,7 @@ final class XmlContentException extends Exception {
 
     /**
      * Public ctor.
+     *
      * @param cause Cause of it
      */
     XmlContentException(final String cause) {

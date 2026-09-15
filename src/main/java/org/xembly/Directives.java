@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
  * Collection of {@link Directive}s, instantiable from {@link String}.
  *
  * <p>For example, to fetch directives from a string and apply to the
- * DOM document:
+ * DOM document:</p>
  *
  * <pre> Document dom = DocumentBuilderFactory.newInstance()
  *   .newDocumentBuilder().newDocument();
@@ -28,7 +28,7 @@ import org.w3c.dom.NodeList;
  *   new Directives("XPATH 'root'; ADD 'employee';")
  * ).apply(dom);</pre>
  *
- * <p>{@link Directives} can be used as a builder of Xembly script:
+ * <p>{@link Directives} can be used as a builder of Xembly script:</p>
  *
  * <pre> Document dom = DocumentBuilderFactory.newInstance()
  *   .newDocumentBuilder().newDocument();
@@ -45,7 +45,7 @@ import org.w3c.dom.NodeList;
  *     .remove()
  * ).apply(dom);</pre>
  *
- * <p>The class is mutable and thread-safe.
+ * <p>The class is mutable and thread-safe.</p>
  *
  * @since 0.1
  */
@@ -71,6 +71,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Public ctor.
+     *
      * @param text Xembly script
      */
     public Directives(final String text) {
@@ -83,6 +84,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Public ctor.
+     *
      * @param dirs Directives
      */
     public Directives(final Iterable<Directive> dirs) {
@@ -91,6 +93,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Primary ctor.
+     *
      * @param col Collection of directives
      */
     private Directives(final Collection<Directive> col) {
@@ -112,7 +115,7 @@ public final class Directives implements Iterable<Directive> {
      * of provided node.
      *
      * <p>For example, you already have a node in an XML document,
-     * which you'd like to add to another XML document:
+     * which you'd like to add to another XML document:</p>
      *
      * <pre> Document target = parse("&lt;root/&gt;");
      * Node node = parse("&lt;user name='Jeffrey'/&gt;");
@@ -198,6 +201,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Append all directives.
+     *
      * @param dirs Directives to append
      * @return This object
      * @since 0.11
@@ -209,6 +213,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Appends the {@link Node node}.
+     *
      * @param node The node to append
      * @return This object
      * @see #append(Iterable)
@@ -221,6 +226,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Add node to all current nodes.
+     *
      * @param name Name of the node to add
      * @return This object
      * @since 0.5
@@ -246,7 +252,7 @@ public final class Directives implements Iterable<Directive> {
      * <p>Every pair in the provided map will be treated as a new
      * node name and value. It's a convenient utility method that simplifies
      * the process of adding a collection of nodes with pre-set values. For
-     * example:
+     * example:</p>
      *
      * <pre> new Directives()
      *   .add("first", "hello, world!")
@@ -261,7 +267,7 @@ public final class Directives implements Iterable<Directive> {
      *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
-     * {@link Xembler#escape(String)}.
+     * {@link Xembler#escape(String)}.</p>
      *
      * @param nodes Names and values of nodes to add
      * @param <K> Type of key
@@ -280,6 +286,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Add node if it's absent.
+     *
      * @param name Name of the node to add
      * @return This object
      * @since 0.5
@@ -301,6 +308,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Remove all current nodes and move cursor to their parents.
+     *
      * @return This object
      * @since 0.5
      */
@@ -318,7 +326,7 @@ public final class Directives implements Iterable<Directive> {
      *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
-     * {@link Xembler#escape(String)}.
+     * {@link Xembler#escape(String)}.</p>
      *
      * @param name Name of the attribute
      * @param value Value to set
@@ -345,7 +353,7 @@ public final class Directives implements Iterable<Directive> {
      *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
-     * {@link Xembler#escape(String)}.
+     * {@link Xembler#escape(String)}.</p>
      *
      * @param target PI name
      * @param data Data to set
@@ -373,7 +381,7 @@ public final class Directives implements Iterable<Directive> {
      *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
-     * {@link Xembler#escape(String)}.
+     * {@link Xembler#escape(String)}.</p>
      *
      * @param text Text to set
      * @return This object
@@ -396,6 +404,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Set text content.
+     *
      * @param text Text to set
      * @return This object
      * @since 0.7
@@ -417,6 +426,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Set attribute.
+     *
      * @param attr Attribute name
      * @param text Text to set
      * @return This object
@@ -439,6 +449,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Go one node/level up.
+     *
      * @return This object
      * @since 0.5
      */
@@ -449,6 +460,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Go to XPath.
+     *
      * @param path Path to go to
      * @return This object
      * @since 0.5
@@ -470,6 +482,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Check that there is exactly this number of current nodes.
+     *
      * @param number Number of expected nodes
      * @return This object
      * @since 0.5
@@ -481,6 +494,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Push current cursor to stack.
+     *
      * @return This object
      * @since 0.16
      */
@@ -491,6 +505,7 @@ public final class Directives implements Iterable<Directive> {
 
     /**
      * Pop cursor to stack and replace current cursor with it.
+     *
      * @return This object
      * @since 0.16
      */
@@ -504,7 +519,7 @@ public final class Directives implements Iterable<Directive> {
      *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
-     * {@link Xembler#escape(String)}.
+     * {@link Xembler#escape(String)}.</p>
      *
      * @param text Text to set
      * @return This object
@@ -530,7 +545,7 @@ public final class Directives implements Iterable<Directive> {
      *
      * <p>If a value provided contains illegal XML characters, a runtime
      * exception will be thrown. To avoid this, it is recommended to use
-     * {@link Xembler#escape(String)}.
+     * {@link Xembler#escape(String)}.</p>
      *
      * @param text Text to set
      * @return This object

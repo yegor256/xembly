@@ -14,6 +14,7 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link StrictDirective}.
+ *
  * @since 0.1
  */
 final class StrictDirectiveTest {

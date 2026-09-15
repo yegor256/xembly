@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Transformers}.
+ *
  * @since 0.32.3
  */
 final class TransformersTest {

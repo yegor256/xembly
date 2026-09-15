@@ -17,6 +17,7 @@ import org.w3c.dom.Element;
 
 /**
  * Test case for {@link AttrDirective}.
+ *
  * @since 0.1
  */
 final class AttrDirectiveTest {

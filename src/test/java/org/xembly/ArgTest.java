@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Arg}.
+ *
  * @since 0.1
  */
 final class ArgTest {

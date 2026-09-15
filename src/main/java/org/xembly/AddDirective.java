@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
 /**
  * ADD directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.1
  */
@@ -28,6 +28,7 @@ final class AddDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param node Name of node to add
      * @throws XmlContentException If invalid input
      */

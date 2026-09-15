@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 
 /**
  * Test case for {@link DomStack}.
+ *
  * @since 0.21
  */
 final class DomStackTest {

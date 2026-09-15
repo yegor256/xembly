@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
  *
  * <p>Use {@link Directives} to create a collection of them. You don't
  * need to use this interface directly and make instances of it. Everything
- * is done through {@link Directives} and {@link Xembler}.
+ * is done through {@link Directives} and {@link Xembler}.</p>
  *
  * @since 0.1
  */
@@ -21,6 +21,7 @@ public interface Directive {
 
     /**
      * Execute it in the given document with current position at the given node.
+     *
      * @param dom Document
      * @param cursor Nodes we're currently at
      * @param stack Execution stack
@@ -32,6 +33,7 @@ public interface Directive {
 
     /**
      * Cursor.
+     *
      * @since 0.16
      */
     interface Cursor extends Collection<Node> {
@@ -39,18 +41,21 @@ public interface Directive {
 
     /**
      * Stack.
+     *
      * @since 0.16
      */
     interface Stack {
 
         /**
          * Push cursor (runtime exception if stack is full).
+         *
          * @param cursor Cursor to push
          */
         void push(Directive.Cursor cursor);
 
         /**
          * Pop cursor (runtime exception if stack is empty).
+         *
          * @return Cursor recently added
          * @throws ImpossibleModificationException If fails
          */

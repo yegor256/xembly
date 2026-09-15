@@ -6,6 +6,7 @@ package org.xembly;
 
 /**
  * A task that returns a result and may throw an {@link XmlContentException}.
+ *
  * @param <V> Type of computed result
  * @since 0.31.0
  */
@@ -14,6 +15,7 @@ public interface Callback<V> {
 
     /**
      * Computes a result.
+     *
      * @return The computed result
      * @throws XmlContentException If unable to compute a result
      */

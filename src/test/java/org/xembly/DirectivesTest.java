@@ -20,6 +20,7 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link Directives}.
+ *
  * @since 0.1
  */
 final class DirectivesTest {

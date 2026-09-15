@@ -6,14 +6,10 @@ package org.xembly;
 
 /**
  * It prints directives in one line.
+ *
  * @since 0.25
  */
 final class Print {
-
-    /**
-     * Right margin.
-     */
-    private static final int MARGIN = 80;
 
     /**
      * List of directives.
@@ -22,6 +18,7 @@ final class Print {
 
     /**
      * Public ctor.
+     *
      * @param dirs Directives
      */
     Print(final Iterable<Directive> dirs) {
@@ -41,7 +38,7 @@ final class Print {
             final String txt = dir.toString();
             text.append(txt).append(';');
             width += txt.length();
-            if (width > Print.MARGIN) {
+            if (width > 80) {
                 width = 0;
             }
             ++idx;

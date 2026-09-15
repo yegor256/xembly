@@ -10,7 +10,7 @@ import org.w3c.dom.Node;
 /**
  * SET directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.1
  */
@@ -24,6 +24,7 @@ final class SetDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param val Text value to set
      * @throws XmlContentException If invalid input
      */

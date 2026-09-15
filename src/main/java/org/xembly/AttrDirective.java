@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 /**
  * ATTR directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.1
  */
@@ -30,6 +30,7 @@ final class AttrDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param attr Attribute name
      * @param val Text value to set
      * @throws XmlContentException If invalid input

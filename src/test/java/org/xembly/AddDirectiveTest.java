@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 
 /**
  * Test case for {@link AddDirective}.
+ *
  * @since 0.1
  */
 final class AddDirectiveTest {

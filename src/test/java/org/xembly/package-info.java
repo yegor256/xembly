@@ -5,6 +5,7 @@
 
 /**
  * Assembly for XML, tests.
+ *
  * @since 0.1
  */
 package org.xembly;

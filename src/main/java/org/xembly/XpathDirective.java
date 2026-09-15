@@ -20,7 +20,7 @@ import org.w3c.dom.NodeList;
 /**
  * XPATH directive.
  *
- * <p>The class is immutable and thread-safe.
+ * <p>The class is immutable and thread-safe.</p>
  *
  * @since 0.1
  */
@@ -47,6 +47,7 @@ final class XpathDirective implements Directive {
 
     /**
      * Public ctor.
+     *
      * @param path XPath
      * @throws XmlContentException If invalid input
      */

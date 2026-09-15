@@ -14,6 +14,7 @@ import javax.xml.transform.TransformerFactory;
 
 /**
  * Transformer factory.
+ *
  * @since 0.30
  */
 @FunctionalInterface
@@ -21,12 +22,14 @@ public interface Transformers {
 
     /**
      * Create transformer.
+     *
      * @return Transformer
      */
     Transformer create();
 
     /**
      * Transformer factory that omits XML declaration.
+     *
      * @since 0.30
      */
     final class Node implements Transformers {
@@ -38,6 +41,7 @@ public interface Transformers {
 
         /**
          * Default ctor.
+         *
          * @since 0.30
          * @checkstyle ConstructorsCodeFreeCheck (5 lines)
          */
@@ -59,6 +63,7 @@ public interface Transformers {
      * All transformers produced by this factory will be configured to produce
      * XML documents with XML declaration but without pretty-printing
      * (no indentation, no extra line breaks).
+     *
      * @since 0.32.3
      */
     final class Compact implements Transformers {
@@ -70,6 +75,7 @@ public interface Transformers {
 
         /**
          * Default ctor.
+         *
          * @since 0.32.3
          * @checkstyle ConstructorsCodeFreeCheck (5 lines)
          */
@@ -90,6 +96,7 @@ public interface Transformers {
      * Transformer factory that produces document transformers.
      * All transformers produced by this factory will be configured to produce
      * XML documents with XML declaration and indentation.
+     *
      * @since 0.30
      */
     final class Document implements Transformers {
@@ -101,6 +108,7 @@ public interface Transformers {
 
         /**
          * Default ctor.
+         *
          * @since 0.30
          * @checkstyle ConstructorsCodeFreeCheck (5 lines)
          */
@@ -126,6 +134,7 @@ public interface Transformers {
 
     /**
      * Default transformer factory.
+     *
      * @since 0.30
      */
     final class Default implements Transformers {
@@ -142,6 +151,7 @@ public interface Transformers {
 
         /**
          * Default ctor.
+         *
          * @since 0.30
          */
         Default() {
@@ -150,6 +160,7 @@ public interface Transformers {
 
         /**
          * Ctor.
+         *
          * @param factory Transformer factory
          * @since 0.30
          */
@@ -175,6 +186,7 @@ public interface Transformers {
 
     /**
      * Transformer factory that produces formatted transformers.
+     *
      * @since 0.30
      */
     final class Formatted implements Transformers {
@@ -191,6 +203,7 @@ public interface Transformers {
 
         /**
          * Ctor.
+         *
          * @param original Original transformer factory
          * @param properties Properties to configure the output
          */

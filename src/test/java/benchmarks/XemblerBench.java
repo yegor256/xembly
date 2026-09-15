@@ -23,6 +23,7 @@ import org.xembly.Xembler;
 
 /**
  * Benchmark for {@link Directives}.
+ *
  * @since 0.0.34
  * @checkstyle NonStaticMethodCheck (100 lines)
  */
@@ -35,7 +36,15 @@ import org.xembly.Xembler;
 public class XemblerBench {
 
     /**
+     * Constructor.
+     */
+    public XemblerBench() {
+        // Nothing to initialize.
+    }
+
+    /**
      * Benchmark for {@link Directives#Directives(String)}.
+     *
      * @throws Exception If fails
      */
     @Benchmark

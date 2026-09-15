@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 /**
  * Stack of DOM cursors.
  *
- * <p>The class is mutable and thread-safe.
+ * <p>The class is mutable and thread-safe.</p>
  *
  * @since 0.16
  */

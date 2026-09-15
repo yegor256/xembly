@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 
 /**
  * Validates NsDirective class.
+ *
  * @since 0.19.3
  */
 final class NsDirectiveTest {

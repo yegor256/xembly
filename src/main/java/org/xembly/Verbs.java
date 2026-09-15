@@ -15,6 +15,7 @@ import java.util.function.Function;
 
 /**
  * Directives in plain text.
+ *
  * @since 0.24
  */
 @SuppressWarnings({
@@ -70,6 +71,7 @@ final class Verbs {
 
     /**
      * Ctor.
+     *
      * @param txt Text to parse
      */
     Verbs(final String txt) {
@@ -79,6 +81,7 @@ final class Verbs {
 
     /**
      * Parse directives from text.
+     *
      * @return Directives from text
      */
     Iterable<Directive> directives() {
