@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-java@v6
         with:
           distribution: 'temurin'
-          java-version: 23
+          java-version: 25
       - uses: srz-zumix/setup-infer@v1
         with:
           infer_version: v1.0.0
