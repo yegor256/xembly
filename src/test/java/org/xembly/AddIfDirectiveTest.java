@@ -59,4 +59,19 @@ final class AddIfDirectiveTest {
             XhtmlMatchers.hasXPath("/xxx/b")
         );
     }
+
+    @Test
+    void addsNodeWhenSiblingDiffersOnlyInCase() throws Exception {
+        MatcherAssert.assertThat(
+            "does not add a separate node when a sibling differs only in case",
+            XhtmlMatchers.xhtml(
+                new Xembler(
+                    new Directives(
+                        "ADD 'root'; ADD 'Item'; UP; ADDIF 'item';"
+                    )
+                ).dom()
+            ),
+            XhtmlMatchers.hasXPaths("/root/Item", "/root/item")
+        );
+    }
 }
