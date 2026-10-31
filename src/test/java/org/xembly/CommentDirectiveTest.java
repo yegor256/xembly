@@ -7,6 +7,7 @@ package org.xembly;
 import com.jcabi.matchers.XhtmlMatchers;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
@@ -28,6 +29,15 @@ final class CommentDirectiveTest {
             "fails to add comment",
             XhtmlMatchers.xhtml(dom),
             XhtmlMatchers.hasXPath("//comment()")
+        );
+    }
+
+    @Test
+    void printsItselfAsComment() throws Exception {
+        MatcherAssert.assertThat(
+            "prints comment directive as something else",
+            new CommentDirective("hello, wörld!").toString(),
+            Matchers.equalTo("COMMENT \"hello, wörld!\"")
         );
     }
 }

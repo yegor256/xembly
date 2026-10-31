@@ -35,7 +35,7 @@ final class CommentDirective implements Directive {
 
     @Override
     public String toString() {
-        return String.format("CDATA %s", this.value);
+        return String.format("COMMENT %s", this.value);
     }
 
     @Override
