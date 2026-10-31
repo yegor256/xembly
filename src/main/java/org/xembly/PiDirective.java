@@ -4,7 +4,6 @@
  */
 package org.xembly;
 
-import java.util.Locale;
 import lombok.EqualsAndHashCode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -35,10 +34,9 @@ final class PiDirective implements Directive {
      * @param tgt Target
      * @param dat Data
      * @throws XmlContentException If invalid input
-     * @checkstyle ConstructorsCodeFreeCheck (3 lines)
      */
     PiDirective(final String tgt, final String dat) throws XmlContentException {
-        this.target = new Arg(tgt.toLowerCase(Locale.ENGLISH));
+        this.target = new Arg(tgt);
         this.data = new Arg(dat);
     }
 
