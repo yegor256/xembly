@@ -83,4 +83,13 @@ final class PiDirectiveTest {
             Matchers.containsString("<?a b?><c/>")
         );
     }
+
+    @Test
+    void keepsCaseOfProcessingInstructionTarget() throws Exception {
+        MatcherAssert.assertThat(
+            "Lowercased the target of processing instruction",
+            new Xembler(new Directives().pi("MyApp", "x").add("r")).xml(),
+            Matchers.containsString("<?MyApp x?>")
+        );
+    }
 }
