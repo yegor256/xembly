@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           path: scancode-inputs/checkout
-      - uses: aboutcode-org/scancode-action@alpha
+      - uses: aboutcode-org/scancode-action@v0.1
         with:
           inputs-path: scancode-inputs
           pipelines: "scan_codebase"

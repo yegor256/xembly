@@ -311,6 +311,18 @@
         <groupId>com.github.wvengen</groupId>
         <artifactId>proguard-maven-plugin</artifactId>
         <version>2.7.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.guardsquare</groupId>
+            <artifactId>proguard-base</artifactId>
+            <version>7.10.0</version>
+          </dependency>
+          <dependency>
+            <groupId>com.guardsquare</groupId>
+            <artifactId>proguard-core</artifactId>
+            <version>9.4.1</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
             <phase>verify</phase>
