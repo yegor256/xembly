@@ -155,7 +155,7 @@ final class Arg {
         if (chr >= left && chr <= right) {
             throw new XmlContentException(
                 String.format(
-                    "Character #%02X is in the restricted XML range #%02X-#%02X, see http://www.w3.org/TR/2004/REC-xml11-20040204/#charsets",
+                    "Character #%02X is in the restricted XML range #%02X-#%02X, see https://www.w3.org/TR/xml11/#charsets",
                     (int) chr, left, right
                 )
             );
