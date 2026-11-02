@@ -2,5 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "enabled": false,
+      "matchFileNames": [
+        ".github/workflows/codecov.yml"
+      ],
+      "matchPackageNames": [
+        "java-jdk"
+      ]
+    }
   ]
 }
