@@ -50,4 +50,16 @@ final class ArgTest {
             "Invalid XML content"
         );
     }
+
+    @Test
+    void referencesLatestXmlSpecificationInErrorMessage() {
+        MatcherAssert.assertThat(
+            "Error message doesnt reference the latest XML 1.1 specification",
+            Assertions.assertThrows(
+                XmlContentException.class,
+                () -> new Arg("\007").toString()
+            ).getMessage(),
+            Matchers.containsString("https://www.w3.org/TR/xml11/#charsets")
+        );
+    }
 }
