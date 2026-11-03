@@ -13,5 +13,7 @@
         "java-jdk"
       ]
     }
-  ]
+  ],
+  "automerge": true,
+  "platformAutomerge": false
 }
