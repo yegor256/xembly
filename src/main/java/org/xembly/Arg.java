@@ -119,20 +119,22 @@ final class Arg {
         return output.toString();
     }
 
-    private static char symbol(final String symbol) throws XmlContentException {
-        final char chr;
+    private static String symbol(final String symbol) throws XmlContentException {
+        final String chr;
         if ('#' == symbol.charAt(0)) {
-            chr = Arg.legal((char) Integer.parseInt(symbol.substring(1)));
+            chr = String.valueOf(
+                Character.toChars(Arg.legal(Arg.number(symbol.substring(1))))
+            );
         } else if ("apos".equalsIgnoreCase(symbol)) {
-            chr = '\'';
+            chr = "'";
         } else if ("quot".equalsIgnoreCase(symbol)) {
-            chr = '"';
+            chr = "\"";
         } else if ("lt".equalsIgnoreCase(symbol)) {
-            chr = '<';
+            chr = "<";
         } else if ("gt".equalsIgnoreCase(symbol)) {
-            chr = '>';
+            chr = ">";
         } else if ("amp".equalsIgnoreCase(symbol)) {
-            chr = '&';
+            chr = "&";
         } else {
             throw new XmlContentException(
                 String.format("Unknown XML symbol &%s;", symbol)
@@ -141,22 +143,43 @@ final class Arg {
         return chr;
     }
 
-    private static char legal(final char chr) throws XmlContentException {
-        Arg.range(chr, 0x00, 0x08);
-        Arg.range(chr, 0x0B, 0x0C);
-        Arg.range(chr, 0x0E, 0x1F);
-        Arg.range(chr, 0x7F, 0x84);
-        Arg.range(chr, 0x86, 0x9F);
-        return chr;
+    private static int number(final String digits) throws XmlContentException {
+        final int code;
+        try {
+            code = Integer.parseInt(digits);
+        } catch (final NumberFormatException ex) {
+            throw new XmlContentException(
+                String.format("Invalid numeric character reference #%s", digits),
+                ex
+            );
+        }
+        return code;
     }
 
-    private static void range(final char chr, final int left, final int right)
+    private static int legal(final int code) throws XmlContentException {
+        Arg.range(code, 0x00, 0x08);
+        Arg.range(code, 0x0B, 0x0C);
+        Arg.range(code, 0x0E, 0x1F);
+        Arg.range(code, 0x7F, 0x84);
+        Arg.range(code, 0x86, 0x9F);
+        if (code < 0x00 || code > 0x10FFFF) {
+            throw new XmlContentException(
+                String.format(
+                    "Character #%X is outside of the valid XML range #00-#10FFFF, see https://www.w3.org/TR/xml11/#charsets",
+                    code
+                )
+            );
+        }
+        return code;
+    }
+
+    private static void range(final int code, final int left, final int right)
         throws XmlContentException {
-        if (chr >= left && chr <= right) {
+        if (code >= left && code <= right) {
             throw new XmlContentException(
                 String.format(
                     "Character #%02X is in the restricted XML range #%02X-#%02X, see https://www.w3.org/TR/xml11/#charsets",
-                    (int) chr, left, right
+                    code, left, right
                 )
             );
         }

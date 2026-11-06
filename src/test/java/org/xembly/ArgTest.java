@@ -22,6 +22,7 @@ final class ArgTest {
             "",
             "123",
             "test € привет & <>'\"\\",
+            "😀 🎉 привет",
             String.format("how are you there,\t%c%cтоварищ? &#0D;", '\n', '\r'),
         };
         for (final String text : texts) {
@@ -60,6 +61,47 @@ final class ArgTest {
                 () -> new Arg("\007").toString()
             ).getMessage(),
             Matchers.containsString("https://www.w3.org/TR/xml11/#charsets")
+        );
+    }
+
+    @Test
+    void unescapesSupplementaryCharacterReferences() throws Exception {
+        MatcherAssert.assertThat(
+            "Supplementary characters must survive numeric references",
+            Arg.unescape("'&#128512;'"),
+            Matchers.equalTo("😀")
+        );
+    }
+
+    @Test
+    void rejectsNumericReferencesAboveUnicodeRange() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#1114112;'"),
+            "Values above the Unicode range are not valid XML characters"
+        );
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#1114144;'"),
+            "Values above the Unicode range are not valid XML characters"
+        );
+    }
+
+    @Test
+    void rejectsNegativeNumericReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#-1;'"),
+            "Negative values are not valid XML characters"
+        );
+    }
+
+    @Test
+    void rejectsMalformedNumericReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#99999999999999;'"),
+            "Numbers that don't fit into int are not valid XML characters"
         );
     }
 }

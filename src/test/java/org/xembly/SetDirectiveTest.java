@@ -54,6 +54,20 @@ final class SetDirectiveTest {
     }
 
     @Test
+    void setsSupplementaryCharactersFromNumericReferences() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives("ADD 'root'; SET '&#128512;';")
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            "Can't set text content with supplementary character",
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths("/root[.='😀']")
+        );
+    }
+
+    @Test
     void setsTextDirectlyIntoDomNodes() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
