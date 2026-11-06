@@ -11,9 +11,8 @@ import com.jcabi.xml.XMLDocument;
 import com.jcabi.xml.XPathContext;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Random;
 import javax.xml.parsers.DocumentBuilderFactory;
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
 import org.apache.commons.lang3.StringUtils;
 import org.cactoos.experimental.Threads;
 import org.cactoos.iterable.Mapped;
@@ -162,17 +161,35 @@ final class XemblerTest {
         );
     }
 
-    @Property
-    void escapesEverything(@ForAll final String value) {
-        MatcherAssert.assertThat(
-            "Can't escape text",
-            new XMLDocument(
-                new Xembler(
-                    new Directives().add("r").attr("a", Xembler.escape(value))
-                ).domQuietly()
-            ),
-            XhtmlMatchers.hasXPath("/r/@a")
-        );
+    @Test
+    void escapesEverything() {
+        final StringBuilder pool = new StringBuilder(0x20);
+        for (int chr = 0x00; chr <= 0x1F; ++chr) {
+            pool.append((char) chr);
+        }
+        for (int chr = 0x7F; chr <= 0x9F; ++chr) {
+            pool.append((char) chr);
+        }
+        pool.append("привет мир, XML; 42 <>&\"'");
+        final Random random = new Random(0x305L);
+        for (int iter = 0; iter < 500; ++iter) {
+            final StringBuilder value = new StringBuilder(0);
+            final int length = random.nextInt(64);
+            for (int pos = 0; pos < length; ++pos) {
+                value.append(pool.charAt(random.nextInt(pool.length())));
+            }
+            final String raw = value.toString();
+            final String escaped = Xembler.escape(raw);
+            MatcherAssert.assertThat(
+                String.format("Can't escape text: %s", escaped),
+                new XMLDocument(
+                    new Xembler(
+                        new Directives().add("r").attr("a", escaped)
+                    ).domQuietly()
+                ),
+                XhtmlMatchers.hasXPath("/r/@a")
+            );
+        }
     }
 
     @Test
