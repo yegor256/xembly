@@ -153,6 +153,23 @@ final class XemblerTest {
     }
 
     @Test
+    void rendersStandaloneInDeclaration() {
+        MatcherAssert.assertThat(
+            "Can't render standalone in XML declaration",
+            new Xembler(
+                new Directives("ADD 'f';"),
+                new Transformers.Standalone(false)
+            ).xmlQuietly(),
+            Matchers.equalTo(
+                String.format(
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>%c<f/>",
+                    '\n'
+                )
+            )
+        );
+    }
+
+    @Test
     void escapesBrokenText() {
         MatcherAssert.assertThat(
             "Can't escape broken text",
