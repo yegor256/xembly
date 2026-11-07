@@ -133,6 +133,57 @@ public interface Transformers {
     }
 
     /**
+     * Transformer factory that emits an explicit {@code standalone}
+     * attribute in the XML declaration.
+     * All transformers produced by this factory will be configured to produce
+     * XML documents with XML declaration and indentation, where the
+     * declaration carries {@code standalone="yes"} or {@code standalone="no"},
+     * depending on the value passed to the ctor.
+     *
+     * @since 0.32.3
+     */
+    final class Standalone implements Transformers {
+
+        /**
+         * Original transformer factory.
+         */
+        private final Transformers original;
+
+        /**
+         * Public ctor.
+         *
+         * @param standalone Whether the document must be marked as standalone
+         * @since 0.32.3
+         * @checkstyle ConstructorsCodeFreeCheck (5 lines)
+         */
+        public Standalone(final boolean standalone) {
+            this.original = new Transformers.Formatted(
+                new Transformers.Default(),
+                Transformers.Standalone.properties(standalone)
+            );
+        }
+
+        @Override
+        public Transformer create() {
+            return this.original.create();
+        }
+
+        private static Map<String, String> properties(final boolean standalone) {
+            final Map<String, String> res = new HashMap<>();
+            res.put(OutputKeys.INDENT, "yes");
+            res.put(OutputKeys.ENCODING, "UTF-8");
+            final String value;
+            if (standalone) {
+                value = "yes";
+            } else {
+                value = "no";
+            }
+            res.put(OutputKeys.STANDALONE, value);
+            return res;
+        }
+    }
+
+    /**
      * Default transformer factory.
      *
      * @since 0.30
