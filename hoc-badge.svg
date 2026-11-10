@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="131" height="20">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="131" height="20" role="img" aria-label="Hits of Code: 24,753">
+    <title>Hits of Code: 24,753</title>
     <linearGradient id="b" x2="0" y2="100%">
         <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
         <stop offset="1" stop-opacity=".1"/>
@@ -12,12 +13,13 @@
         <path fill="#4C1" d="M81 0h50v20H81z"/>
         <path fill="url(#b)" d="M0 0h131v20H0z"/>
     </g>
+
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
         <text x="41.5" y="15" fill="#010101" fill-opacity=".3">Hits of Code</text>
         <text x="40.5" y="14">Hits of Code</text>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-        <text x="107.0" y="15" fill="#010101" fill-opacity=".3">24,751</text>
-        <text x="106.0" y="14">24,751</text>
+        <text x="107.0" y="15" fill="#010101" fill-opacity=".3">24,753</text>
+        <text x="106.0" y="14">24,753</text>
     </g>
 </svg>
