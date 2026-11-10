@@ -22,6 +22,16 @@ final class XmlContentException extends Exception {
      * @param cause Cause of it
      */
     XmlContentException(final String cause) {
-        super(cause);
+        this(cause, null);
+    }
+
+    /**
+     * Public ctor.
+     *
+     * @param cause Cause of it
+     * @param error Original throwable
+     */
+    XmlContentException(final String cause, final Throwable error) {
+        super(cause, error);
     }
 }
