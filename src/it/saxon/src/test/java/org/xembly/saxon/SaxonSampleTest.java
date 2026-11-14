@@ -6,7 +6,12 @@ package org.xembly.saxon;
 
 import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XMLDocument;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.xpath.XPathFactory;
+import net.sf.saxon.TransformerFactoryImpl;
+import net.sf.saxon.xpath.XPathFactoryImpl;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
 import org.xembly.Directives;
@@ -17,6 +22,20 @@ import org.xembly.Xembler;
  * @since 0.17
  */
 final class SaxonSampleTest {
+
+    @Test
+    void loadsSaxonProviders() {
+        MatcherAssert.assertThat(
+            "Must use Saxon for transformations",
+            TransformerFactory.newInstance(),
+            Matchers.instanceOf(TransformerFactoryImpl.class)
+        );
+        MatcherAssert.assertThat(
+            "Must use Saxon for DOM XPath expressions",
+            XPathFactory.newInstance(),
+            Matchers.instanceOf(XPathFactoryImpl.class)
+        );
+    }
 
     @Test
     void buildsDocument() throws Exception {
