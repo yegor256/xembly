@@ -86,6 +86,29 @@ final class DirectivesTest {
     }
 
     @Test
+    void throwsOnMalformedEntityInArgument() {
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD 'a'; SET 'x&;y';"),
+            "Can't detect empty XML symbol in argument"
+        );
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Directives("ADD 'a'; SET 'x&#xZZ;y';"),
+            "Can't detect broken numeric XML symbol in argument"
+        );
+    }
+
+    @Test
+    void unescapesHexEntityInArgument() throws Exception {
+        MatcherAssert.assertThat(
+            "Hex entities must decode in directive arguments",
+            new Directives("SET '&#x41;';").iterator().next().toString(),
+            Matchers.equalTo("SET \"A\"")
+        );
+    }
+
+    @Test
     void addsMapOfValues() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();

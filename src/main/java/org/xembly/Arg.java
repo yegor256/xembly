@@ -120,6 +120,11 @@ final class Arg {
     }
 
     private static String symbol(final String symbol) throws XmlContentException {
+        if (symbol.isEmpty()) {
+            throw new XmlContentException(
+                String.format("Empty XML symbol &%s;", symbol)
+            );
+        }
         final String chr;
         if ('#' == symbol.charAt(0)) {
             chr = String.valueOf(
@@ -146,7 +151,11 @@ final class Arg {
     private static int number(final String digits) throws XmlContentException {
         final int code;
         try {
-            code = Integer.parseInt(digits);
+            if (digits.startsWith("x") || digits.startsWith("X")) {
+                code = Integer.parseInt(digits.substring(1), 16);
+            } else {
+                code = Integer.parseInt(digits);
+            }
         } catch (final NumberFormatException ex) {
             throw new XmlContentException(
                 String.format("Invalid numeric character reference #%s", digits),

@@ -104,4 +104,86 @@ final class ArgTest {
             "Numbers that don't fit into int are not valid XML characters"
         );
     }
+
+    @Test
+    void rejectsEmptySymbolReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'x&;y'"),
+            "Empty XML symbols must be reported as content errors"
+        );
+    }
+
+    @Test
+    void rejectsEmptyNumericReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#;'"),
+            "Empty numbers must be reported as content errors"
+        );
+    }
+
+    @Test
+    void unescapesHexCharacterReferences() throws Exception {
+        MatcherAssert.assertThat(
+            "Hex references must decode by base 16",
+            Arg.unescape("'&#x41;'"),
+            Matchers.equalTo("A")
+        );
+    }
+
+    @Test
+    void unescapesUppercaseHexPrefixes() throws Exception {
+        MatcherAssert.assertThat(
+            "Uppercase X prefix must decode too",
+            Arg.unescape("'&#X41;'"),
+            Matchers.equalTo("A")
+        );
+    }
+
+    @Test
+    void unescapesHexLineFeedReferences() throws Exception {
+        MatcherAssert.assertThat(
+            "Hex line feed reference must decode",
+            Arg.unescape("'&#xA;'"),
+            Matchers.equalTo(String.valueOf('\n'))
+        );
+    }
+
+    @Test
+    void unescapesSupplementaryHexReferences() throws Exception {
+        MatcherAssert.assertThat(
+            "Supplementary hex references must survive",
+            Arg.unescape("'&#x1F600;'"),
+            Matchers.equalTo("😀")
+        );
+    }
+
+    @Test
+    void rejectsMalformedHexCharacterReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#xZZ;'"),
+            "Non-hex digits are not valid XML characters"
+        );
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#x;'"),
+            "Empty hex digits are not valid XML characters"
+        );
+    }
+
+    @Test
+    void rejectsHexReferencesAboveUnicodeRange() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#x110000;'"),
+            "Hex values above the Unicode range are not valid XML characters"
+        );
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#xFFFFFFFF;'"),
+            "Hex values that don't fit into int are not valid XML characters"
+        );
+    }
 }
