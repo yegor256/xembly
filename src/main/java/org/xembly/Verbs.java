@@ -179,7 +179,7 @@ final class Verbs {
         final int index
     ) throws XmlContentException, ParsingException {
         final char quote = part.charAt(index);
-        final String[] args = part.split(String.valueOf(quote), 0);
+        final String[] args = part.split(String.valueOf(quote), -1);
         final Optional<Callback<Directive>> cmd;
         if (args.length == 1) {
             cmd = Optional.empty();

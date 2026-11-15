@@ -109,6 +109,33 @@ final class DirectivesTest {
     }
 
     @Test
+    void parsesEmptyArgumentInSingleQuotes() {
+        MatcherAssert.assertThat(
+            "Empty single-quoted argument must not be dropped",
+            new Directives("SET '';").iterator().next().toString(),
+            Matchers.equalTo("SET \"\"")
+        );
+    }
+
+    @Test
+    void parsesEmptyArgumentInDoubleQuotes() {
+        MatcherAssert.assertThat(
+            "Empty double-quoted argument must not be dropped",
+            new Directives("SET \"\";").iterator().next().toString(),
+            Matchers.equalTo("SET \"\"")
+        );
+    }
+
+    @Test
+    void roundTripsEmptyTextThroughPrinting() {
+        MatcherAssert.assertThat(
+            "Empty text must survive the round trip through printing",
+            new Directives(new Directives().set("").toString()).iterator().next().toString(),
+            Matchers.equalTo("SET \"\"")
+        );
+    }
+
+    @Test
     void addsMapOfValues() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();
