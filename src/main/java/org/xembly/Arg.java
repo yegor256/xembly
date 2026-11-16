@@ -171,6 +171,7 @@ final class Arg {
         Arg.range(code, 0x0E, 0x1F);
         Arg.range(code, 0x7F, 0x84);
         Arg.range(code, 0x86, 0x9F);
+        Arg.range(code, 0xD800, 0xDFFF);
         if (code < 0x00 || code > 0x10FFFF) {
             throw new XmlContentException(
                 String.format(
@@ -195,8 +196,9 @@ final class Arg {
     }
 
     private static String ifValid(final String val) throws XmlContentException {
-        for (int idx = 0; idx < val.length(); ++idx) {
-            Arg.legal(val.charAt(idx));
+        final int[] codes = val.codePoints().toArray();
+        for (final int code : codes) {
+            Arg.legal(code);
         }
         return val;
     }
