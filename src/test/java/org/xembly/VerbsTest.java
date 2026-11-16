@@ -26,6 +26,33 @@ final class VerbsTest {
     }
 
     @Test
+    void throwsOnMalformedStrictNumber() {
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Verbs("STRICT '1x';").directives(),
+            "Can't throw on malformed number in STRICT"
+        );
+    }
+
+    @Test
+    void throwsOnStrictNumberOverflow() {
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Verbs("STRICT '99999999999';").directives(),
+            "Can't throw on number overflow in STRICT"
+        );
+    }
+
+    @Test
+    void throwsOnStrictNumberWithLeadingSpace() {
+        Assertions.assertThrows(
+            SyntaxException.class,
+            () -> new Verbs("STRICT ' 1';").directives(),
+            "Can't throw on number with leading space in STRICT"
+        );
+    }
+
+    @Test
     void worksWithSpacesAfterLastCommand() {
         Assertions.assertDoesNotThrow(
             () -> new Xembler(
