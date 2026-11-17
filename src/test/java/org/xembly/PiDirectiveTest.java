@@ -80,7 +80,7 @@ final class PiDirectiveTest {
         MatcherAssert.assertThat(
             "Can't prepend processing instructions to DOM root",
             new Xembler(new Directives("PI 'a', 'b'; ADD 'c';")).xml(),
-            Matchers.containsString("<?a b?>\n<c/>")
+            Matchers.containsString(String.format("<?a b?>%c<c/>", '\n'))
         );
     }
 
