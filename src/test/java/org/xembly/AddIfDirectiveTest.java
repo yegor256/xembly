@@ -74,4 +74,24 @@ final class AddIfDirectiveTest {
             XhtmlMatchers.hasXPaths("/root/Item", "/root/item")
         );
     }
+
+    @Test
+    void createsElementWhenProcessingInstructionSharesName() throws Exception {
+        MatcherAssert.assertThat(
+            "mistakes a processing instruction for an element with the same name",
+            XhtmlMatchers.xhtml(
+                new Xembler(
+                    new Directives()
+                        .add("root")
+                        .pi("item", "data")
+                        .addIf("item")
+                        .attr("id", "1")
+                ).dom()
+            ),
+            XhtmlMatchers.hasXPaths(
+                "/root/item[@id = '1']",
+                "/root/processing-instruction('item')"
+            )
+        );
+    }
 }

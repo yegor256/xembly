@@ -51,7 +51,8 @@ final class AddIfDirective implements Directive {
             Node target = null;
             final int len = kids.getLength();
             for (int idx = 0; idx < len; ++idx) {
-                if (kids.item(idx).getNodeName().equals(this.name.raw())) {
+                if (kids.item(idx).getNodeType() == Node.ELEMENT_NODE
+                    && kids.item(idx).getNodeName().equals(this.name.raw())) {
                     target = kids.item(idx);
                     break;
                 }
