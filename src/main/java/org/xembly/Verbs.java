@@ -51,7 +51,21 @@ final class Verbs {
         Verbs.SIMPLE.put("XSET", value -> () -> new XsetDirective(value));
         Verbs.SIMPLE.put("ADD", value -> () -> new AddDirective(value));
         Verbs.SIMPLE.put("ADDIF", value -> () -> new AddIfDirective(value));
-        Verbs.SIMPLE.put("STRICT", value -> () -> new StrictDirective(Integer.parseInt(value)));
+        Verbs.SIMPLE.put(
+            "STRICT",
+            value -> () -> {
+                final int number;
+                try {
+                    number = Integer.parseInt(value);
+                } catch (final NumberFormatException ex) {
+                    throw new XmlContentException(
+                        String.format("Invalid number '%s' in STRICT", value),
+                        ex
+                    );
+                }
+                return new StrictDirective(number);
+            }
+        );
         Verbs.SIMPLE.put("CDATA", value -> () -> new CdataDirective(value));
         Verbs.SIMPLE.put("COMMENT", value -> () -> new CommentDirective(value));
         Verbs.COMPLEX.put("ATTR", (attr, value) -> () -> new AttrDirective(attr, value));
