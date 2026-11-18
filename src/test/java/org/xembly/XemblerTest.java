@@ -9,9 +9,11 @@ import com.jcabi.matchers.XhtmlMatchers;
 import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
 import com.jcabi.xml.XPathContext;
+import java.io.StringReader;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Random;
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.cactoos.experimental.Threads;
@@ -29,6 +31,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 import org.yaml.snakeyaml.Yaml;
 
 /**
@@ -193,7 +196,7 @@ final class XemblerTest {
     }
 
     @Test
-    void escapesEverything() {
+    void escapesEverything() throws Exception {
         final StringBuilder pool = new StringBuilder(0x20);
         for (int chr = 0x00; chr <= 0x1F; ++chr) {
             pool.append((char) chr);
@@ -203,6 +206,8 @@ final class XemblerTest {
         }
         pool.append("привет мир, XML; 42 <>&\"'");
         final Random random = new Random(0x305L);
+        final DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder();
         for (int iter = 0; iter < 500; ++iter) {
             final StringBuilder value = new StringBuilder(0);
             final int length = random.nextInt(64);
@@ -211,15 +216,17 @@ final class XemblerTest {
             }
             final String raw = value.toString();
             final String escaped = Xembler.escape(raw);
-            MatcherAssert.assertThat(
-                String.format("Can't escape text: %s", escaped),
-                new XMLDocument(
-                    new Xembler(
-                        new Directives().add("r").attr("a", escaped)
-                    ).domQuietly()
-                ),
-                XhtmlMatchers.hasXPath("/r/@a")
-            );
+            final String xml = new Xembler(
+                new Directives().add("r").attr("a", escaped)
+            ).xmlQuietly();
+            try (StringReader reader = new StringReader(xml)) {
+                MatcherAssert.assertThat(
+                    String.format("Can't escape text: %s", escaped),
+                    builder.parse(new InputSource(reader))
+                        .getDocumentElement().hasAttribute("a"),
+                    Matchers.is(true)
+                );
+            }
         }
     }
 
