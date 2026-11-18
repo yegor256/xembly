@@ -192,21 +192,10 @@ final class Verbs {
         final String command,
         final int index
     ) throws XmlContentException, ParsingException {
-        final char quote = part.charAt(index);
-        final String[] args = part.split(String.valueOf(quote), 0);
+        final String[] args = part.split(String.valueOf(part.charAt(index)), -1);
         final Optional<Callback<Directive>> cmd;
-        if (args.length == 1) {
+        if (args.length < 3) {
             cmd = Optional.empty();
-        } else if (args.length == 2) {
-            if (part.charAt(part.length() - 1) == quote) {
-                cmd = Optional.of(
-                    Verbs.SIMPLE.get(command).apply(
-                        Arg.unescape(String.format("'%s'", args[1]))
-                    )
-                );
-            } else {
-                cmd = Optional.empty();
-            }
         } else if (args.length == 3) {
             if (args[2].trim().isEmpty()) {
                 cmd = Optional.of(

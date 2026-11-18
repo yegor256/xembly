@@ -96,6 +96,17 @@ final class XemblerTest {
     }
 
     @Test
+    void setsEmptyTextOverExistingOne() throws Exception {
+        MatcherAssert.assertThat(
+            "Can't set empty text over the existing one",
+            new Xembler(
+                new Directives("ADD 'root'; SET 'keep'; SET '';")
+            ).dom().getDocumentElement().getTextContent(),
+            Matchers.equalTo("")
+        );
+    }
+
+    @Test
     void makesChangesToDomDocumentFromBuilder() throws Exception {
         final Document dom = DocumentBuilderFactory.newInstance()
             .newDocumentBuilder().newDocument();

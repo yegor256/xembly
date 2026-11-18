@@ -4,6 +4,8 @@
  */
 package org.xembly;
 
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -71,6 +73,24 @@ final class VerbsTest {
                 )
             ).xml(),
             "Can't work with new lines"
+        );
+    }
+
+    @Test
+    void parsesSingleQuotedArgumentBeginningWithSemicolon() {
+        MatcherAssert.assertThat(
+            "Single-quoted argument beginning with a semicolon must not be split",
+            new Verbs("ADD 'root'; SET ';keep';").directives().toString(),
+            Matchers.equalTo("[ADD \"root\", SET \";keep\"]")
+        );
+    }
+
+    @Test
+    void parsesDoubleQuotedArgumentBeginningWithSemicolon() {
+        MatcherAssert.assertThat(
+            "Double-quoted argument beginning with a semicolon must not be split",
+            new Verbs("ADD 'root'; SET \";keep\";").directives().toString(),
+            Matchers.equalTo("[ADD \"root\", SET \";keep\"]")
         );
     }
 }
