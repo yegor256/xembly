@@ -158,7 +158,10 @@ final class XemblerTest {
             "Can't render XML declaration",
             new Xembler(new Directives("ADD 'f';")).xmlQuietly(),
             Matchers.equalTo(
-                String.format("<?xml version=\"1.0\" encoding=\"UTF-8\"?>%c<f/>", '\n')
+                String.format(
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>%c<f/>%c",
+                    '\n', '\n'
+                )
             )
         );
     }
@@ -173,8 +176,8 @@ final class XemblerTest {
             ).xmlQuietly(),
             Matchers.equalTo(
                 String.format(
-                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>%c<f/>",
-                    '\n'
+                    "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>%c<f/>%c",
+                    '\n', '\n'
                 )
             )
         );
