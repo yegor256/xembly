@@ -289,6 +289,35 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <!--
+            JDK 24+ may ship without "jmods/" (JEP 493), so we extract
+            the modules ProGuard needs from "lib/modules" instead.
+            -->
+            <id>extract-jdk-modules</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${java.home}/bin/jimage</executable>
+              <arguments>
+                <argument>extract</argument>
+                <argument>--include</argument>
+                <argument>regex:/(java\.base|java\.logging|java\.xml)/.*</argument>
+                <argument>--dir</argument>
+                <argument>${project.build.directory}/jdk-modules</argument>
+                <argument>${java.home}/lib/modules</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>com.github.wvengen</groupId>
         <artifactId>proguard-maven-plugin</artifactId>
         <version>2.7.0</version>
@@ -322,9 +351,9 @@
                 </exclusion>
               </exclusions>
               <libs>
-                <lib>${java.home}/jmods/java.base.jmod</lib>
-                <lib>${java.home}/jmods/java.logging.jmod</lib>
-                <lib>${java.home}/jmods/java.xml.jmod</lib>
+                <lib>${project.build.directory}/jdk-modules/java.base</lib>
+                <lib>${project.build.directory}/jdk-modules/java.logging</lib>
+                <lib>${project.build.directory}/jdk-modules/java.xml</lib>
               </libs>
               <options>
                 <option>-keep public class org.xembly.** { *; }</option>
