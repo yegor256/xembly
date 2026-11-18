@@ -97,6 +97,33 @@ final class ArgTest {
     }
 
     @Test
+    void rejectsDecimalSurrogateReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#55296;'"),
+            "Surrogate code points are not valid XML characters"
+        );
+    }
+
+    @Test
+    void rejectsHexSurrogateReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#xD800;'"),
+            "Surrogate code points are not valid XML characters"
+        );
+    }
+
+    @Test
+    void rejectsLoneSurrogateCharacters() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> new Arg(String.valueOf(Character.toChars(55_296))).toString(),
+            "Lone surrogates are not valid XML content"
+        );
+    }
+
+    @Test
     void rejectsMalformedNumericReferences() {
         Assertions.assertThrows(
             XmlContentException.class,
