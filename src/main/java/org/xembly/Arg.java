@@ -172,6 +172,7 @@ final class Arg {
         Arg.range(code, 0x7F, 0x84);
         Arg.range(code, 0x86, 0x9F);
         Arg.range(code, 0xD800, 0xDFFF);
+        Arg.range(code, 0xFFFE, 0xFFFF);
         if (code < 0x00 || code > 0x10FFFF) {
             throw new XmlContentException(
                 String.format(

@@ -124,6 +124,29 @@ final class ArgTest {
     }
 
     @Test
+    void rejectsNoncharacterReferences() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#xFFFE;'"),
+            "Noncharacter code points are not valid XML characters"
+        );
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> Arg.unescape("'&#65535;'"),
+            "Noncharacter code points are not valid XML characters"
+        );
+    }
+
+    @Test
+    void rejectsNoncharacterCharacters() {
+        Assertions.assertThrows(
+            XmlContentException.class,
+            () -> new Arg("￿").toString(),
+            "Noncharacters are not valid XML content"
+        );
+    }
+
+    @Test
     void rejectsMalformedNumericReferences() {
         Assertions.assertThrows(
             XmlContentException.class,
