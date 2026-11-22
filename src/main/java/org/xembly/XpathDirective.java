@@ -35,10 +35,13 @@ final class XpathDirective implements Directive {
         ThreadLocal.withInitial(XPathFactory::newInstance);
 
     /**
-     * Pattern to match root-only XPath queries.
+     * Pattern to match root-only XPath queries. Only a literal element
+     * name or {@code *} qualifies, so that expressions with whitespace,
+     * unions, or predicates take the traditional path, where the XPath
+     * engine handles them properly.
      */
     private static final Pattern ROOT_ONLY =
-        Pattern.compile("/([^/\\(\\[\\{:]+)");
+        Pattern.compile("/(\\*|[A-Za-z_][A-Za-z0-9_.-]*)");
 
     /**
      * XPath to use.
