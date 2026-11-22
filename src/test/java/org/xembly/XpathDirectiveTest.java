@@ -110,4 +110,58 @@ final class XpathDirectiveTest {
             XhtmlMatchers.hasXPath("/high/boom-5")
         );
     }
+
+    @Test
+    void findsRootWithLeadingWhitespaceInPath() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives()
+                .add("root")
+                .xpath("/ root")
+                .strict(1)
+                .add("boom-1")
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            "Can't find root when path starts with whitespace",
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/root/boom-1")
+        );
+    }
+
+    @Test
+    void findsRootWithTrailingWhitespaceInPath() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives()
+                .add("root")
+                .xpath("/root ")
+                .strict(1)
+                .add("boom-2")
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            "Can't find root when path ends with whitespace",
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/root/boom-2")
+        );
+    }
+
+    @Test
+    void findsRootInUnionPath() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives()
+                .add("root")
+                .xpath("/root | root")
+                .strict(1)
+                .add("boom-3")
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            "Can't find root in a union path",
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPath("/root/boom-3")
+        );
+    }
 }
