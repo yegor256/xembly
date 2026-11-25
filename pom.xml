@@ -267,6 +267,14 @@
                   <annotationType>lombok\.Generated</annotationType>
                   <justification>Lombok annotation removal does not affect runtime behavior</justification>
                 </item>
+                <item>
+                  <regex>true</regex>
+                  <ignore>true</ignore>
+                  <code>java.annotation.added</code>
+                  <new>.*</new>
+                  <annotationType>lombok\.Generated</annotationType>
+                  <justification>Lombok-generated members carry the generated marker annotation only</justification>
+                </item>
               </differences>
             </revapi.differences>
           </analysisConfiguration>
