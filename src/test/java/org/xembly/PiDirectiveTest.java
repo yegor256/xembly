@@ -92,4 +92,26 @@ final class PiDirectiveTest {
             Matchers.containsString("<?MyApp x?>")
         );
     }
+
+    @Test
+    void addsProcessingInstructionsToEverySelectedParent() throws Exception {
+        final Document dom = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder().newDocument();
+        new Xembler(
+            new Directives(
+                StringUtils.join(
+                    "ADD 'root'; ADD 'item'; UP; ADD 'item'; UP;",
+                    "XPATH '/root/item'; STRICT '2'; PI 'app', 'data';"
+                )
+            )
+        ).apply(dom);
+        MatcherAssert.assertThat(
+            "Each selected parent must keep its own processing instruction",
+            XhtmlMatchers.xhtml(dom),
+            XhtmlMatchers.hasXPaths(
+                "/root/item[1]/processing-instruction('app')[.='data']",
+                "/root/item[2]/processing-instruction('app')[.='data']"
+            )
+        );
+    }
 }
