@@ -55,14 +55,20 @@ final class PiDirective implements Directive {
         } else {
             doc = dom.getOwnerDocument();
         }
-        final Node instr = doc.createProcessingInstruction(
-            this.target.raw(), this.data.raw()
-        );
         if (cursor.isEmpty()) {
-            dom.insertBefore(instr, doc.getDocumentElement());
+            dom.insertBefore(
+                doc.createProcessingInstruction(
+                    this.target.raw(), this.data.raw()
+                ),
+                doc.getDocumentElement()
+            );
         } else {
             for (final Node node : cursor) {
-                node.appendChild(instr);
+                node.appendChild(
+                    doc.createProcessingInstruction(
+                        this.target.raw(), this.data.raw()
+                    )
+                );
             }
         }
         return cursor;
